@@ -2,6 +2,8 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	margin: 0;
 	color: #646464;
+	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover;
 }
 *{
 	margin: 0;
@@ -11,7 +13,7 @@ header>iframe {
 	z-index: 100;
 }
 div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
-	padding-top: 200px;
+	padding-top: 150px;
 	width: 1200px;
 	height: 1500px;
 	margin: 0 auto;

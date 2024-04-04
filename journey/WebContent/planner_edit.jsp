@@ -109,7 +109,8 @@
 					<img src="img\japan\tokyo1.jpg" class="place_pic" />	
 					<div class="content_fdiv">
 						<div class="list_place">
-							<p class="list_place" >#<%=st%></p>						
+							<p class="list_place" >#<%=st%></p>				
+							<input type="hidden" id="pla_val<%=a*100+z %>" value="<%=st %>">		
 						</div>
 						<div class="list_thema">
 						
@@ -122,7 +123,7 @@
 					</div>
 				</div>
 				<% }%>
-				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" />
+				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" id = "place_name<%=a%>" />
 				</div>		
 						
 			<%
@@ -147,7 +148,7 @@
 					<div class="content_fdiv">
 						<div class="list_place">
 							<p class="list_place" >#<%=st%></p>
-							<input type="hidden" name="place_name<%=a%>" value="<%=st %>" />
+							<input type="hidden" id="pla_val<%=a*100+z %>" value="<%=st %>">
 						</div>
 						<div class="list_thema">
 						
@@ -160,7 +161,7 @@
 					</div>
 				</div>
 				<% }%>
-				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" />
+				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" id = "place_name<%=a%>"/>
 				</div>
 			<%
 			}}
