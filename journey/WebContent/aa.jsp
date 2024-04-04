@@ -9,7 +9,32 @@
 	int p_no = (int)session.getAttribute("p_no");
 %>
 <!DOCTYPE html>
-);
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	HashMap<String, Package_schedule> map = new HashMap<String, Package_schedule>();
+	
+	for(int i=0; i<p_period; i++){
+		Package_schedule ps = new Package_schedule();
+	
+		String placeArr = Arrays.toString(request.getParameterValues("schedule"+(i+1)));
+		String place = placeArr.replaceAll("\\[", "").replaceAll("\\]", "");
+		
+		out.println(place);
+		
+		ps.setP_no(p_no);
+		ps.setPs_schedule(place);
+		ps.setPs_day(request.getParameterValues("ps_day")[i]);
+		ps.setPs_title(request.getParameterValues("title")[i]);
+		ps.setPs_contents(request.getParameterValues("contents")[i]);
+		ps.setPs_notification(request.getParameterValues("notice")[i]);
+		ps.setPs_file1("");
+		ps.setPs_file2("");
+		ps.setPs_file3("");
 		
 		map.put(request.getParameterValues("ps_day")[i], ps);
 	}
