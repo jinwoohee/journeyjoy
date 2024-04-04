@@ -11,13 +11,13 @@ import com.jj.dao.JourneyInterface;
 
 
 public class EstimateInsert implements JourneyInterface{
-	static EstimateInsert ins = new EstimateInsert();
+	static EstimateInsert esti_ins = new EstimateInsert();
 	
 	public static EstimateInsert insertEstimate() {
-		return ins;
+		return esti_ins;
 	}
 
-	public String journeyinterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Cookie[] ck = request.getCookies();
 		String u_id = getCookieValue(ck, "u_id");
 		String e_departure = getCookieValue(ck, "e_departure");
@@ -57,9 +57,4 @@ public class EstimateInsert implements JourneyInterface{
 		}
 	}
 
-	@Override
-	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

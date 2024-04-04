@@ -73,11 +73,11 @@ public class JourneyController extends HttpServlet {
 		else if(page.equals("insert")) {
 			ji = EstimateInsert.insertEstimate();
 			try {
-				String	page_url = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(page_url).forward(request,response);
+				System.out.println("0번");
+				String page_url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(page_url).forward(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 			
 		}else if(page.equals("plan")) {
