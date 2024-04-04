@@ -89,7 +89,8 @@
 			<div id="plan_list">
 			<%
 				for(int a = 1 ; a <= datecnt ; a++){
-					out.println("<input type='hidden' name='place_name"+a+"' value='empty'>");
+				
+					String st_list = "";
 					if(edit0 == null){
 						String place =request.getParameter("selected"+a);
 						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_");
@@ -101,14 +102,14 @@
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
 					for(String st : list_place){
+						st_list += st+",";
 						z++;
 				%>
 				<div id="list_content<%=a*100+z%>">
 					<img src="img\japan\tokyo1.jpg" class="place_pic" />	
 					<div class="content_fdiv">
 						<div class="list_place">
-							<p class="list_place" >#<%=st%></p>
-							<input type="hidden" name="place_name<%=a%>" value="<%=st %>" />
+							<p class="list_place" >#<%=st%></p>						
 						</div>
 						<div class="list_thema">
 						
@@ -121,6 +122,7 @@
 					</div>
 				</div>
 				<% }%>
+				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" />
 				</div>		
 						
 			<%
@@ -135,10 +137,10 @@
 			%>
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
+				
 					for(String st : list_place){	
-						z++;
-						System.out.println(st+z+"5번");
-						
+						st_list += st+",";
+						z++;					
 				%>
 				<div id="list_content<%=a*100+z%>">
 					<img src="img\japan\tokyo1.jpg" class="place_pic" />	
@@ -158,6 +160,7 @@
 					</div>
 				</div>
 				<% }%>
+				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" />
 				</div>
 			<%
 			}}

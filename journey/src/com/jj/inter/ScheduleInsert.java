@@ -1,5 +1,7 @@
 package com.jj.inter;
 
+import java.util.Arrays;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,25 +11,29 @@ import com.jj.conn.ScheduleInsertDB;
 import com.jj.dao.JourneyInterface;
 
 public class ScheduleInsert implements JourneyInterface{
-	static ScheduleInsert schin = new ScheduleInsert();
+	static ScheduleInsert sche_in = new ScheduleInsert();
 	
 	public static ScheduleInsert insertSchedule() {
-		return schin;
+		return sche_in;
 	}
 
-	public String journeyinterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Cookie[] ck = request.getCookies();
-		
-		int e_no = (int) request.getAttribute("e_no"); 
+	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Cookie[] ck = request.getCookies();;
+		int e_no = (int) request.getAttribute("e_no");	
 		int day = Integer.parseInt(getCookieValue(ck, "datecnt"));
 		
 		for(int a = 1 ; a <= day ; a++) {		
-			String place = getCookieValue(ck, "pla"+a);
+			String place_arr= new String(request.getParameter("place_name"+a).getBytes("8859_1"),"UTF-8");
+			System.out.println(place_arr);
+			String place = place_arr.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(" ", "").replaceAll("empty", "");
 			ScheduleInsertDB isc = ScheduleInsertDB.insertdb();
 			int i = isc.insertMtd(e_no, a, place);
-
 		}
-		return "plan.jsp";
+		
+		String num = e_no+"";
+		request.setAttribute("e_no", num);
+		
+		return "plan_page.jsp";
 		
 	}
 	private String getCookieValue(Cookie[] cookies, String name) {
@@ -41,11 +47,5 @@ public class ScheduleInsert implements JourneyInterface{
 		}else {
 			return null;
 		}
-	}
-
-	@Override
-	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
