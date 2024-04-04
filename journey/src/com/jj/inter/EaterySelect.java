@@ -1,9 +1,6 @@
 package com.jj.inter;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +20,7 @@ public class EaterySelect implements JourneyInterface{
 	}
 	
 	@Override
-	public String journeyinter(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		Cookie[] ck = request.getCookies();
 		String e_food_taste = getCookieValue(ck, "e_food_taste");

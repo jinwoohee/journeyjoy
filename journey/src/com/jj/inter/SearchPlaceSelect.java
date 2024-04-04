@@ -17,7 +17,7 @@ public class SearchPlaceSelect implements JourneyInterface{
 	}
 	
 	@Override
-	public String journeyinter(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 
 		String text = new String(request.getParameter("search_place").getBytes("8859_1"),"UTF-8");

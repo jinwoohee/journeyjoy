@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jj.conn.EstimateInsertDB;
 import com.jj.dao.JourneyInterface;
-import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
 
 
 public class EstimateInsert implements JourneyInterface{
@@ -18,7 +17,7 @@ public class EstimateInsert implements JourneyInterface{
 		return ins;
 	}
 
-	public String journeyinter(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String journeyinterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Cookie[] ck = request.getCookies();
 		String u_id = getCookieValue(ck, "u_id");
 		String e_departure = getCookieValue(ck, "e_departure");
@@ -56,5 +55,11 @@ public class EstimateInsert implements JourneyInterface{
 		}else {
 			return null;
 		}
+	}
+
+	@Override
+	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
