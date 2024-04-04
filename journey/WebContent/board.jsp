@@ -75,6 +75,7 @@
 					<option>국가</option>	
 					<option>일본</option>
 					<option>캐나다</option>
+					
 				</select>
 				<select name="city">
 					<option>도시</option>
