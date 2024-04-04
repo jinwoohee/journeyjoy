@@ -158,26 +158,21 @@
 	<!-- 진수님 부분 -->
 	<insert id="estimate_insert" parameterType="com.jj.dto.Estimate">
 		insert into estimate values(default, #{u_id}, #{e_departure}, #{e_destination}, #{e_start_date}, #{e_end_date}, #{e_thema}, #{e_detail_thema}, #{e_volume}, #{e_food_taste}, curdate(), #{e_airplane}, #{e_hotel});
-	
 		<selectKey resultType="com.jj.dto.Estimate" keyColumn="e_no" keyProperty="e_no" order="AFTER">
 			SELECT LAST_INSERT_ID() AS e_no
 		</selectKey>
 	</insert>
 	
-	<select id="eatery_select" resultType="com.jj.dto.Eatery" parameterType="java.util.HashMap">
-		
-		select * from eatery where eat_food_taste in 
-		
+	<select id="eatery_select" resultType="com.jj.dto.Eatery" parameterType="java.util.HashMap">	
+		select * from eatery where eat_food_taste in 	
 		<foreach collection="eat_food_taste" item="item" index="index" separator="," open="(" close=")"> 
 			#{item}
 		</foreach>
 			order by RAND() LIMIT #{day} 
 	</select>
 	
-	<select id="place_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">
-		
-		select * from place where plac_thema like CONCAT('%',#{plac_thema},'%') and 
-		
+	<select id="place_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">		
+		select * from place where plac_thema like CONCAT('%',#{plac_thema},'%') and 	
 		<foreach collection="plac_detail_thema" item="item" index="index" separator="or" open="(" close=")">
 			plac_detail_thema like CONCAT('%',#{item},'%')
 		</foreach> 
@@ -187,9 +182,18 @@
 	<select id="search_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">
 		select * from place where plac_name like CONCAT('%',#{text},'%') or plac_detail_thema like CONCAT('%',#{text},'%')
 	</select>
+	
 	<insert id="schedule_insert" parameterType="com.jj.dto.Schedule">
 		insert into schedule values(#{e_no}, #{sche_day}, #{place})
 	</insert>
+	
+	<select id="estimate_selectone" parameterType="int" resultType="com.jj.dto.Estimate">
+		select * from estimate where e_no = #{e_no}
+	</select>
+	
+	<select id="schedule_select" parameterType="int" resultType="com.jj.dto.Schedule">
+		select * from schedule where e_no = #{e_no} order by sche_day;
+	</select>
 	
 	
 	
@@ -199,14 +203,13 @@
 	<!-- 패키지 insert -->
 	<insert id="packageInsert" parameterType="com.jj.dto.Package">
 		<selectKey resultType="com.jj.dto.Package" keyColumn="p_no,p_period" keyProperty="p_no,p_period" order="AFTER">
-			SELECT LAST_INSERT_ID() AS p_no, (SELECT p_end_date - p_start_date FROM package WHERE p_no=LAST_INSERT_ID()) AS p_period
+			SELECT LAST_INSERT_ID() AS p_no, (SELECT datediff(p_end_date, p_start_date) FROM package WHERE p_no=LAST_INSERT_ID()) AS p_period
 		</selectKey>
 		INSERT INTO package VALUES(default, #{u_id}, #{p_nation}, #{p_city}, #{p_theme}, #{p_title}, #{p_start_date}, #{p_end_date}, ${p_volume}, #{p_due_date}, ${p_guide_pay}, curdate(), #{p_file}, #{p_notification}, #{p_url});
 	</insert>
 	
 	<!-- 패키지 리스트 select -->
 	<select id="packageSelect" resultType="com.jj.dto.Package" parameterType="java.util.HashMap">
-
 		SELECT DISTINCT p.p_no, p.p_file, p.p_title, u.u_nickname, r.child_fee
 		FROM package p
 		LEFT JOIN user u
@@ -226,16 +229,14 @@
 		ON p.p_no = r.p_no
 		<where>
 			<trim prefixOverrides="and" suffixOverrides="and">
-			<!--  
-			<if test="!param1.equals('choice')">
+			<!-- <if test="!param1.equals('choice')">
 				<if test="param1.equals('progress')">
 					<![CDATA[p.p_due_date >= curdate()]]> and
 				</if>
 				<if test="param1.equals('end')">
 					<![CDATA[p.p_due_date < curdate()]]> and
 				</if>
-			</if>
-			-->
+			</if> -->
 			<if test="!param3.equals('choice')">
 				p.p_theme = #{param3} and
 			</if>
@@ -281,8 +282,9 @@
 	
 	<!-- 상세보기 select -->
 	<select id="packageDetailSelect" resultType="com.jj.dto.Package" parameterType="int">
-		SELECT p.p_no, p.u_id, p.p_title, p.p_theme ,p.p_start_date, p.p_end_date, p.p_volume, p.p_due_date, p.p_file, 
-		       p.p_notification, p.p_url, u.u_nickname, u.u_profile, r.adult_fee, r.std_fee, r.child_fee
+		SELECT p.p_no, p.u_id, p.p_title, p.p_theme, p.p_nation, p.p_city, p.p_start_date, p.p_end_date, p.p_volume, p.p_due_date, p.p_file, 
+		       p.p_notification, p.p_url, u.u_nickname, u.u_profile, r.adult_fee, r.std_fee, r.child_fee,
+		       (SELECT COUNT(*) FROM purchase WHERE p_no = ${p_no}) as cnt
 		FROM package p
 		LEFT JOIN user u
 		ON p.u_id = u.u_id
@@ -293,8 +295,8 @@
 	</select>
 	
 	<!-- 상세보기/좋아요 select -->
-	<select id="likeSelectDetail" resultType="com.jj.dto.Package_like" parameterType="int">
-		SELECT * FROM package_like WHERE p_no = ${p_no}
+	<select id="likeSelectDetail" resultType="com.jj.dto.Package_like" parameterType="com.jj.dto.Package_like">
+		SELECT * FROM package_like WHERE p_no = ${p_no} and u_id = #{u_id}
 	</select>
 	
 	<!-- 상세보기/일정 select -->
@@ -309,7 +311,7 @@
 		WHERE p_no = ${p_no};
 	</select>
 	
-	<!-- 좋아요 -->
+	<!-- 좋아요 insert -->
 	<insert id="likeInsert" parameterType="com.jj.dto.Package_like">
 		INSERT INTO package_like VALUES(#{u_id}, ${p_no});
 	</insert>

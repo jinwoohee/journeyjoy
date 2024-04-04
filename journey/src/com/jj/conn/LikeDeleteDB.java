@@ -24,7 +24,5 @@ public class LikeDeleteDB {
 		
 		ss.commit();
 		ss.close();
-
 	}
-
 }

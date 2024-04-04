@@ -79,10 +79,10 @@ request.setCharacterEncoding("utf-8");
 			</div>		
 			<div id="plan_list">
 				<%
-				for(int a = 1 ; a <= datecnt*3 ; a++){		
+				for(int a = 1 ; a <= datecnt*3 ; a++){
 				%>
 					<div class="list_content">
-					<img src="img\japan\tokyo<%=a %>.jpg" id="place_pic<%=a %>" />	
+					<img src="img\japan\tokyo<%=a %>.jpg" id="place_pic<%=a %>" />
 					<div class="content_fdiv">
 						<div class="list_place">
 							<p class="list_place">

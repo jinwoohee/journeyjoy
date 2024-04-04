@@ -159,7 +159,18 @@
 			</div>
 			<hr>
 			<div>
-				<div><% out.println(pk.getP_theme()); %></div>
+				<div>
+					<% out.println("#" + pk.getP_nation()); %>
+				</div>
+				<div>
+					<% out.println("#" + pk.getP_city()); %>
+				</div>
+				<div>
+					<% out.println("#" + pk.getP_theme()); %>
+				</div>
+				<div>
+					<% out.println("#모집 - " + pk.getP_volume()+"명"); %>
+				</div>
 			</div>
 			<div>
 				<div id="guide">
@@ -171,9 +182,7 @@
 					<%
 						if((Package_like)request.getAttribute("likeDetail") != null){
 							Package_like like = (Package_like)request.getAttribute("likeDetail");
-							if(like.getU_id() != (String) session.getAttribute("u_id")){
-								out.println("<div><img src='img/icon/heart.png'/></div>");
-							}
+							out.println("<div><img src='img/icon/heart.png'/></div>");
 						}else{
 							out.println("<div><img src='img/icon/heart2.png'/></div>");
 						}
@@ -257,7 +266,7 @@
 		</article>
 		<aside>
 			<div>
-				<p>※인원선택</p>
+				<p>※인원선택(<%=pk.getCnt()+"/"+pk.getP_volume() %>)</p>
 				<form name='pForm' action='purchase.jj?page=purchase' method='post' onsubmit='return regist()'>
 					<div>
 						<div>
@@ -314,10 +323,16 @@
 						
 						int date = Integer.parseInt(today.replaceAll("-", ""));
 						int getDate = Integer.parseInt(pk.getP_due_date().replaceAll("-", ""));
-
-						if(getDate < date || getDate != date) {
-							out.println("<input type='button' name='end' value='참여마감'>");
-						} else {
+						
+						if(pk.getCnt() >= pk.getP_volume() || getDate < date){ //모집인원 마감되면 버튼X
+							if(pk.getU_id().equals((String)session.getAttribute("u_id"))){ //모집인원 마감 > 내가 신청한 경우 취소 가능하게
+								out.println("<input type='button' name='cancel' value='참여취소'>");
+							}else{
+								out.println("<input type='button' name='end' value='참여마감'>");
+							}
+						}else if(getDate < date){ //모집마감날짜보다 현재날짜가 작아야함
+							out.println("<input type='button' name='end' value='참여마감'>"); 
+						}else{
 							if(pc != null && pc.getU_id().equals((String)session.getAttribute("u_id"))){
 								out.println("<input type='button' name='cancel' value='참여취소'>");
 							}else{

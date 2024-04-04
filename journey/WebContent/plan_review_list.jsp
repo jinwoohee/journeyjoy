@@ -89,9 +89,9 @@
 						<div>
 					  <%
 					  	if(u_id == null){
-					  			                  			 out.println("<img src='img/icon/write.png' name='write'/>");
-					  			                  		}else{
-					  			                  			out.println("<input type='submit' value='리뷰쓰기'>");
+					                  			 out.println("<img src='img/icon/write.png' name='write'/>");
+					                  		}else{
+					                  			out.println("<input type='submit' value='리뷰쓰기'>");
 					  %><%-- out.println("<a href='write_plan_review.jsp?page_no=write'><button type='button'><img src='img/icon/write.png' /></button></a>");--%><%
 					  	}
 					  %>
@@ -104,15 +104,15 @@
            		<div id="list_div">         		
 	            	<%
          			            		for(com.jj.dto.Plan_review pr : reviewList){
-         			            	         			            						out.println("<a href='plan_review_detail.jsp?page_no="+pr.getpr_no()+"'>");
-         			            	         			            						out.println("<div class='review_div'>");
-         			            	         			            						out.println("<img src='img/profile/d.jpg' />");
-         			            	         			            						out.println("<p>"+pr.getu_id()+"</p>");
-         			            	         			            						out.println("<p class='nation'>여행도시</p>");
-         			            	         			            						out.println("<img src='img/japan/"+pr.getpr_file()+"'/>");
-         			            	         			            						out.println("<p><div>"+pr.getpr_title()+"</div><div>"+pr.getpr_date()+"</div></p>");
-         			            	         			            						out.println("<p>"+pr.getpr_contents()+"</p></div></a>");
-         			            	         			            					}
+         			            						out.println("<a href='plan_review_detail.jsp?page_no="+pr.getpr_no()+"'>");
+         			            						out.println("<div class='review_div'>");
+         			            						out.println("<img src='img/profile/d.jpg' />");
+         			            						out.println("<p>"+pr.getu_id()+"</p>");
+         			            						out.println("<p class='nation'>여행도시</p>");
+         			            						out.println("<img src='img/japan/"+pr.getpr_file()+"' />");
+         			            						out.println("<p><div>"+pr.getpr_title()+"</div><div>"+pr.getpr_date()+"</div></p>");
+         			            						out.println("<p>"+pr.getpr_contents()+"</p></div></a>");
+         			            					}
          			            	%>			
                 </div>
             </article>

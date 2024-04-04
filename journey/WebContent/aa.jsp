@@ -1,8 +1,9 @@
+<%@page import="com.jj.dto.Package_schedule"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="com.jj.dto.Package_schedule"%>
+
 <%
 	request.setCharacterEncoding("utf-8");
 	int p_period = (int)session.getAttribute("p_period");

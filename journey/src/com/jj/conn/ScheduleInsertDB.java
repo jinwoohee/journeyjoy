@@ -24,7 +24,6 @@ public class ScheduleInsertDB {
 		Schedule dto = new Schedule();
 		
 		String place = places.replaceAll("_", ",");
-		
 		dto.setE_no(e_no);
 		dto.setSche_day(sche_day);
 		dto.setPlace(place);
@@ -32,10 +31,8 @@ public class ScheduleInsertDB {
 		SqlSession sqls = sql.openSession();
 		
 		int i = sqls.insert("schedule_insert",dto);
-
 		sqls.commit();
 		sqls.close();
 		return i;
 	}
-	
 }

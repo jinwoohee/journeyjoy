@@ -51,25 +51,62 @@
 		<div id="main_div">
 			<%
 				String start = "2024-03-12";
-					String end = "2024-03-15";
-					String city = "서울(한국)";
-					String thema = "힐링";
-					String with = "친구와";
-					String eat = "기타";
-					String [] place1 = {"장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소"};
-					String [] de_thema = request.getParameterValues("detale_them");
-					String [] place2 = request.getParameterValues("place2");
-					String [] place3 = request.getParameterValues("place3");
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String end = "2024-03-15";
+				String city = "서울(한국)";
+				String thema = "힐링";
+				String with = "친구와";
+				String eat = "기타";
+				String [] place1 = {"장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소"};
+				String [] de_thema = request.getParameterValues("detale_them");
+				String [] place2 = request.getParameterValues("place2");
+				String [] place3 = request.getParameterValues("place3");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				
+				Date sdate = sdf.parse(start);
+				Date edate = sdf.parse(end);
+				long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
+				
+				if(pr_no.equals("write")){						
+					out.println("<form action='plan_review_insert.jsp'>");
+					out.println("<input type='text' name='title' maxlength='50' placeholder='리뷰 제목(최대50자)' value='"+u_id+"의 서울 여행기'>");
+					out.println("<textarea name='content' placeholder='여행 후기'></textarea>");
+					out.println("<hr><div id='empty'></div>");
+					for(int a = 1 ; a <= datecnt ; a++){
+						out.println("<div class='day_plan'>");
+						out.println("<div class='day_info'>");
+						out.println("<p class='day'>Day "+a+"ㅣ2000.00.01</p>");
+						out.println("<img src='img/icon/write.png' class='day_write' onclick='place_down("+a+")'>");
+						out.println("<p class='place_info'>");
+							for(int j = 0 ; j < place1.length ; j++ ){
+								out.println("#"+place1[j]+"&nbsp;");
+							}
+						out.println("</p>");
+						out.println("<img src='img/icon/arrow_down.png' id='down"+a+"' onclick='place_down("+a+")'/>");
+						out.println("<img src='img/icon/arrow_up.png' id='up"+a+"' onclick='place_up("+a+")'/>");
+						out.println("</div>");
+						
+						out.println("<div id='pl_eat_div"+a+"'>");
+						out.println("<div id='day_review"+a+"'>");
+						out.println("<textarea name='day_review"+a+"' placeholder='일정후기'></textarea>");
+						out.println("</div>");
+						for(int i = 0; i < place1.length ; i ++){
+							out.println("<p class='place'><div class='no'>"+(i+1)+"</div>"+place1[i]+"</p>");
+							out.println("<a href='place_review_write.jsp'><img src='img/icon/write.png' class='place_write'></a>");
+						}
+						out.println("</div></div>");
+					}
 					
-					Date sdate = sdf.parse(start);
-					Date edate = sdf.parse(end);
-					long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
-					
-					if(pr_no.equals("write")){						
-						out.println("<form action='plan_review_insert.jsp'>");
-						out.println("<input type='text' name='title' maxlength='50' placeholder='리뷰 제목(최대50자)' value='"+u_id+"의 서울 여행기'>");
-						out.println("<textarea name='content' placeholder='여행 후기'></textarea>");
+					out.println("<div id='save_div'>");
+					out.println("<input type='submit' name='save' value='등록'></form>");	
+					out.println("<a href='plan_review_list.jsp'><input type='button' name='cancel' value='취소'/></a>");
+				}
+				else{
+					ArrayList<com.jj.dto.Plan_review> reviewList = dao.select_plan_review(pr_no);
+					for(com.jj.dto.Plan_review pr : reviewList){
+						out.println("<form action='plan_review_update.jsp'>");
+						out.println("<input type='hidden' name='page_no' value='"+pr_no+"'>");
+						out.println("<input type='text' name='title' placeholder='리뷰 제목(최대50자)' value='"+pr.getpr_title()+"'>");
+						out.println("<textarea name='content' placeholder='여행 후기'>"+pr.getpr_contents()+"</textarea>");			
 						out.println("<hr><div id='empty'></div>");
 						for(int a = 1 ; a <= datecnt ; a++){
 							out.println("<div class='day_plan'>");
@@ -91,53 +128,16 @@
 							out.println("</div>");
 							for(int i = 0; i < place1.length ; i ++){
 								out.println("<p class='place'><div class='no'>"+(i+1)+"</div>"+place1[i]+"</p>");
-								out.println("<a href='place_review_write.jsp'><img src='img/icon/write.png' class='place_write'></a>");
+								out.println("<a href='place_review_write.jsp'><img src='img/icon/write.png' class='place_write' /></a>");
 							}
 							out.println("</div></div>");
 						}
 						
 						out.println("<div id='save_div'>");
-						out.println("<input type='submit' name='save' value='등록'></form>");	
+						out.println("<input type='submit' name='save' value='수정'></form>");	
 						out.println("<a href='plan_review_list.jsp'><input type='button' name='cancel' value='취소'/></a>");
 					}
-					else{
-						ArrayList<com.jj.dto.Plan_review> reviewList = dao.select_plan_review(pr_no);
-						for(com.jj.dto.Plan_review pr : reviewList){
-							out.println("<form action='plan_review_update.jsp'>");
-							out.println("<input type='hidden' name='page_no' value='"+pr_no+"'>");
-							out.println("<input type='text' name='title' placeholder='리뷰 제목(최대50자)' value='"+pr.getpr_title()+"'>");
-							out.println("<textarea name='content' placeholder='여행 후기'>"+pr.getpr_contents()+"</textarea>");			
-							out.println("<hr><div id='empty'></div>");
-							for(int a = 1 ; a <= datecnt ; a++){
-								out.println("<div class='day_plan'>");
-								out.println("<div class='day_info'>");
-								out.println("<p class='day'>Day "+a+"ㅣ2000.00.01</p>");
-								out.println("<img src='img/icon/write.png' class='day_write' onclick='place_down("+a+")'>");
-								out.println("<p class='place_info'>");
-									for(int j = 0 ; j < place1.length ; j++ ){
-										out.println("#"+place1[j]+"&nbsp;");
-									}
-								out.println("</p>");
-								out.println("<img src='img/icon/arrow_down.png' id='down"+a+"' onclick='place_down("+a+")'/>");
-								out.println("<img src='img/icon/arrow_up.png' id='up"+a+"' onclick='place_up("+a+")'/>");
-								out.println("</div>");
-								
-								out.println("<div id='pl_eat_div"+a+"'>");
-								out.println("<div id='day_review"+a+"'>");
-								out.println("<textarea name='day_review"+a+"' placeholder='일정후기'></textarea>");
-								out.println("</div>");
-								for(int i = 0; i < place1.length ; i ++){
-									out.println("<p class='place'><div class='no'>"+(i+1)+"</div>"+place1[i]+"</p>");
-									out.println("<a href='place_review_write.jsp'><img src='img/icon/write.png' class='place_write' /></a>");
-								}
-								out.println("</div></div>");
-							}
-							
-							out.println("<div id='save_div'>");
-							out.println("<input type='submit' name='save' value='수정'></form>");	
-							out.println("<a href='plan_review_list.jsp'><input type='button' name='cancel' value='취소'/></a>");
-						}
-					}
+				}
 			%>
 			
 		</div>

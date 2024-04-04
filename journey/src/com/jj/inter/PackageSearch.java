@@ -22,14 +22,8 @@ public class PackageSearch implements JourneyInterface{
 	@Override
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		
-		System.out.println("---inter---");
-		//System.out.println(request.getParameter("param1"));
-		System.out.println(request.getParameter("param2"));
-		System.out.println(request.getParameter("param3"));
-		System.out.println(request.getParameter("param4"));
-		System.out.println(request.getParameter("date"));
-		System.out.println(request.getParameter("txt"));
-		
+		System.out.println("---inter/PackageSearch---");
+
 		HashMap<String, String> param = new HashMap<String, String>();
 		//param.put("param1", request.getParameter("param1"));
 		param.put("param2", request.getParameter("param2"));

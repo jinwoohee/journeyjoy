@@ -17,7 +17,7 @@ public class ScheduleInsert implements JourneyInterface{
 		return schin;
 	}
 
-	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String journeyinter(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Cookie[] ck = request.getCookies();
 		
 		int e_no = (int) request.getAttribute("e_no"); 

@@ -29,6 +29,7 @@ public class PackageDetail implements JourneyInterface{
 	@Override
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		int p_no = Integer.parseInt(request.getParameter("p_no"));
+		String u_id = request.getParameter("u_id");
 		
 		//패키지 select
 		PackageDetailDB selectPackageDetail = PackageDetailDB.select();
@@ -37,7 +38,7 @@ public class PackageDetail implements JourneyInterface{
 		
 		//찜 select
 		LikeSelectDB selectLikeDetail = LikeSelectDB.select();
-		Package_like like = selectLikeDetail.selectDetailLike(p_no);
+		Package_like like = selectLikeDetail.selectDetailLike(p_no, u_id);
 		request.setAttribute("likeDetail", like);
 		
 		//일정 select

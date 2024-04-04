@@ -18,6 +18,9 @@
 	<meta charset="UTF-8">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="css/plan_review_detail.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	
+	
 <title>Insert title here</title>
 </head>
 <script>
@@ -32,6 +35,7 @@
 		$("div[id*='plan_sel']").css({"background-color":"#0D112D"});
 		$(plan).css({"background-color":"#6C94B8"});
 	}
+	
 </script>
 <body>
 	<!-- menu bar -->
@@ -41,57 +45,62 @@
 		<div id='main_div'>
 			<%
 				for(com.jj.dto.Plan_review pr : reviewList){
-						String start = "2024-03-12";
-						String end = "2024-03-15";
-						String city = "서울(한국)";
-						String thema = "힐링";
-						String with = "친구와";
-						String eat = "기타";
-						String [] place1 = {"장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소"};
-						
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-						Date sdate = sdf.parse(start);
-						Date edate = sdf.parse(end);
-						long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
+					String start = "2024-03-12";
+					String end = "2024-03-15";
+					String city = "서울(한국)";
+					String thema = "힐링";
+					String with = "친구와";
+					String eat = "기타";
+					String [] place1 = {"장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소"};
 					
-						out.println("<table>");
-						out.println("<tr><td class='review_info'><p>작성자</p></td>");
-						out.println("<td class='user_info'><p>"+pr.getu_id()+"</p></td></tr>");
-						out.println("<tr><td class='review_info'><p>여행도시</p></td>");
-						out.println("<td class='user_info'><p>"+city+"</p></td></tr>");
-						out.println("<tr id='theme'><td class='review_info'><p>여행테마</p></td>");
-						out.println("<td class='user_info'>"+thema+"</td></tr></table>");
-						out.println("<p>"+pr.getpr_title()+"</p>");
-						//out.println("<p id='pr_date'>"+pr.getpr_date()+"</p>");
-						out.println("<div id='img_div'><img src='img/japan/"+pr.getpr_file()+"'/></div>");
-						out.println("<div id='content'>"+pr.getpr_contents()+"</div>");
-						out.println("<div id='day_select'>");
-						for(int a = 1 ; a <= datecnt ; a++){
-							out.println("<div id='plan_sel"+a+"' onclick='tab("+a+")'><p id='day_sel"+a+"' >Day"+a+"</p></div>");
-							}
-						out.println("</div>");
-						
-						for(int a= 1 ; a <= datecnt ; a++){
-							out.println("<div id='day_plan"+a+"'>");
-							out.println("<p class='day'>Day "+a+"ㅣ2000.00.01</p>");
-							out.println("<div class='map'>day"+a+"지도 들어갈 자리</div>");
-							out.println("<div class='day_review'>day"+a+" 여행후기</div>");
-							out.println("<div class='pl_eat_div'>");
-							for(int i = 0; i < place1.length ; i ++){
-								out.println("<p class='place'><div class='no'>"+(i+1)+"</div>"+place1[i]+"</p>");
-							}
-							out.println("</div></div>");
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					Date sdate = sdf.parse(start);
+					Date edate = sdf.parse(end);
+					long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
+				
+					out.println("<table>");
+					out.println("<tr><td class='review_info'><p>작성자</p></td>");
+					out.println("<td class='user_info'><p>"+pr.getu_id()+"</p></td></tr>");
+					out.println("<tr><td class='review_info'><p>여행도시</p></td>");
+					out.println("<td class='user_info'><p>"+city+"</p></td></tr>");
+					out.println("<tr id='theme'><td class='review_info'><p>여행테마</p></td>");
+					out.println("<td class='user_info'>"+thema+"</td></tr></table>");
+					out.println("<p>"+pr.getpr_title()+"</p>");
+					//out.println("<p id='pr_date'>"+pr.getpr_date()+"</p>");
+					
+					out.println("<div id='img_div'><ul id='slider'><li class='li_sli'><img src='img/japan/"+pr.getpr_file()+"'/></li>");
+					out.println("<li class='li_sli'><img src='img/japan/"+pr.getpr_file2()+"'/></li>");
+					out.println("<li class='li_sli'><img src='img/japan/"+pr.getpr_file3()+"'/></li></ul></div>");
+					
+					out.println("<input type='button' value='left' id='left'><input type='button' value='right' id='right'>");
+					out.println("<div id='content'>"+pr.getpr_contents()+"</div>");
+					out.println("<div id='day_select'>");
+					for(int a = 1 ; a <= datecnt ; a++){
+						out.println("<div id='plan_sel"+a+"' onclick='tab("+a+")'><p id='day_sel"+a+"' >Day"+a+"</p></div>");
 						}
-						out.println("<div id='btn_div'>");
-						if(u_id != null && u_id.equals(pr.getu_id())){
-							out.println("<a href='plan_review_write.jsp?page_no="+pr.getpr_no()+"'><input type='button' name='edit' value='수정하기' /></a>");
-							out.println("<a href='plan_review_delete.jsp?page_no="+pr.getpr_no()+"'><input type='button' name='delete' value='삭제' /></a>");
-						}else{
-							out.println("<input type='hidden' name='hidden' />");
+					out.println("</div>");
+					
+					for(int a= 1 ; a <= datecnt ; a++){
+						out.println("<div id='day_plan"+a+"'>");
+						out.println("<p class='day'>Day "+a+"ㅣ2000.00.01</p>");
+						out.println("<div class='map'>day"+a+"지도 들어갈 자리</div>");
+						out.println("<div class='day_review'>day"+a+" 여행후기</div>");
+						out.println("<div class='pl_eat_div'>");
+						for(int i = 0; i < place1.length ; i ++){
+							out.println("<p class='place'><div class='no'>"+(i+1)+"</div>"+place1[i]+"</p>");
 						}
-						out.println("<a href='plan_review_list.jsp'><input type='button' name='list' value='목록으로'/></a>");
-						out.println("</div");
+						out.println("</div></div>");
 					}
+					out.println("<div id='btn_div'>");
+					if(u_id != null && u_id.equals(pr.getu_id())){
+						out.println("<a href='plan_review_write.jsp?page_no="+pr.getpr_no()+"'><input type='button' name='edit' value='수정하기' /></a>");
+						out.println("<a href='plan_review_delete.jsp?page_no="+pr.getpr_no()+"'><input type='button' name='delete' value='삭제' /></a>");
+					}else{
+						out.println("<input type='hidden' name='hidden' />");
+					}
+					out.println("<a href='plan_review_list.jsp'><input type='button' name='list' value='목록으로'/></a>");
+					out.println("</div");
+				}
 			%>
 		</div>
 	</section>

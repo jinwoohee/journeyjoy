@@ -25,6 +25,14 @@ public class Package {
 	private int adult_fee;
 	private int std_fee;
 	
+	private int cnt;
+	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 	public String getU_profile() {
 		return u_profile;
 	}

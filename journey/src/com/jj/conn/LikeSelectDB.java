@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.jj.dao.SqlMapconfig;
 import com.jj.dto.Package_like;
-import com.jj.dto.Package;
 public class LikeSelectDB {
 	
 	static LikeSelectDB selectDB = new LikeSelectDB();
@@ -28,11 +27,15 @@ public class LikeSelectDB {
 		return likeList;
 	}
 	
-	public Package_like selectDetailLike(int p_no) {
+	public Package_like selectDetailLike(int p_no, String u_id) {
 		System.out.println("--- conn/likeSelectDB ---");
 		
+		Package_like pl = new Package_like();
+		pl.setP_no(p_no);
+		pl.setU_id(u_id);
+		
 		SqlSession ss = sql.openSession();
-		Package_like like = ss.selectOne("likeSelectDetail", p_no);
+		Package_like like = ss.selectOne("likeSelectDetail", pl);
 		ss.close();
 		
 		return like;	

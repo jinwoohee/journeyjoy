@@ -23,7 +23,7 @@ public class EaterySelect implements JourneyInterface{
 	}
 	
 	@Override
-	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String journeyinter(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		Cookie[] ck = request.getCookies();
 		String e_food_taste = getCookieValue(ck, "e_food_taste");

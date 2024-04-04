@@ -96,7 +96,15 @@ public class JourneyController extends HttpServlet {
 				// TODO: handle exception
 			}
 		}else if(page.equals("schedule_insert")) { 
-			ji =ScheduleInsert.insertSchedule(); 
+			ji = ScheduleInsert.insertSchedule();
+			try {
+				String page_url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(page_url).forward(request, response); 
+			} catch(Exception e) { 
+				// TODO: handle exception } }
+			}
+		}else if(page.equals("select")) {
+			ji = EstimateSelect.selectEstimate();
 			try {
 				String page_url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(page_url).forward(request, response); 
@@ -213,7 +221,8 @@ public class JourneyController extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("--- Controller / 구매취소 ---" + e);
 			}
-		}else if(page.equals("commInsert")) {
+		}
+		else if(page.equals("commInsert")) {
 			ji = CommInsert.commentInsert();
 			String result;
 			try {
@@ -224,7 +233,7 @@ public class JourneyController extends HttpServlet {
 				System.out.println("--- Controller / 댓글 insert ---" + e);
 			}
 			
-		} else {
+		}else {
 			System.out.println("--- controller else ---");
 		}
 	}

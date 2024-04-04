@@ -27,11 +27,17 @@
 </head>
 <script>
 	$(function() {
+		/* 로그인 한 사용자만 이용 */
 		$("#write").click(function(){
 			$(location).attr('href', 'package_insert.jsp');
 		});
 		
 		$("#noWrite").click(function(){
+			alert("로그인 후 이용해주세요.");
+			$(location).attr('href', 'login.jsp');	
+		});
+		
+		$("#noDetail").click(function(){
 			alert("로그인 후 이용해주세요.");
 			$(location).attr('href', 'login.jsp');	
 		});
@@ -129,13 +135,11 @@
 	<section>
 		<div id="search_section">
 			<div>
-				<%-- 
-				<select name='param1'>
+				<!-- <select name='param1'>
 					<option value="choice">전체</option>
 					<option value="progress">진행</option>
 					<option value="end">종료</option>
-				</select>
-				--%>
+				</select> -->
 
 				<select name='param2'>
 					<option value="latest">최신순</option>
@@ -175,29 +179,33 @@
 					<%
 						List<Package> pkList = (List<Package>)request.getAttribute("pkList");
 						List<Package_like> likeList = (List<Package_like>)request.getAttribute("likeList");
-						
+												
 						for(Package list : pkList){
 							out.println("<li>");
 							out.println("<input type='hidden' name='p_no' value='"+list.getP_no()+"'>");
 							out.println("<div class='thumnail'>");
-							out.println("<a href='packageDetail.jj?page=package_detail&p_no="+list.getP_no()+"'>");
-							out.println("<img src='"+list.getP_file()+"'/></a></div>");
 							
-							if(likeList.size() > 0 && session.getAttribute("u_id")!= null){ //좋아요한 값이 있는지 없는지
-								for(Package_like pl : likeList){
-									if(list.getP_no() == pl.getP_no() && pl.getU_id().equals(session.getAttribute("u_id"))){
-										out.println("<div class='heart'><img src='img/icon/heart.png'/></div>");
-										break;
-									}else{
-										out.println("<div class='heart'><img src='img/icon/heart2.png'/></div>");
-										break;
-									}
-								}
+							//로그인 안한 사용자 상세보기X
+							if(u_id != null){
+								out.println("<a href='packageDetail.jj?page=package_detail&p_no="+list.getP_no()+"&u_id="+u_id+"'>");
 							}else{
-								out.println("<div><img src='img/icon/heart2.png'/></div>");
+								out.println("<a id='noDetail' href='#'>");
 							}
-							out.println("<div><P class='title'>"+list.getP_title()+"</P></div>");
 							
+							out.println("<img src='"+list.getP_file()+"'/></a></div>");
+							int flag=1;
+							for(int idx = 0 ; idx < likeList.size() ; idx++){
+								if(list.getP_no() == likeList.get(idx).getP_no() && likeList.get(idx).getU_id().equals(session.getAttribute("u_id"))){
+									flag=2;
+								}
+							}
+							if(flag==1)
+								out.println("<div><img src='img/icon/heart2.png'/></div>");
+							else
+								out.println("<div><img src='img/icon/heart.png'/></div>");	
+							
+							out.println("<div><P class='title'>"+list.getP_title()+"</P></div>");
+				
 							DecimalFormat f = new DecimalFormat("###,###,###");
 							out.println("<div><P>"+f.format(list.getChild_fee())+"~</P></div>");
 							out.println("<div><P>"+list.getU_nickname()+"</P></div>");
