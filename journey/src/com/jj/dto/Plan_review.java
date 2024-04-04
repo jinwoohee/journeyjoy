@@ -11,6 +11,8 @@ public class Plan_review {
 	private String pr_title;
 	private String pr_contents;
 	private String pr_file;
+	private String pr_file2;
+	private String pr_file3;
 	private Date pr_date;
 	
 	public int getpr_no() {
@@ -64,4 +66,18 @@ public class Plan_review {
 	public void setpr_date(Date pr_date) {
 		this.pr_date = pr_date;
 	}
+	public String getpr_file2() {
+		return pr_file2;
+	}
+	public void setpr_file2(String pr_file2) {
+		this.pr_file2 = pr_file2;
+	}
+
+	public String getpr_file3() {
+		return pr_file3;
+	}
+	public void setpr_file3(String pr_file3) {
+		this.pr_file3 = pr_file3;
+	}
+
 }
