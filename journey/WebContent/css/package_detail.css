@@ -1,0 +1,357 @@
+body{
+	margin: 0; 
+	font-family: "Noto Sans KR", sans-serif;
+	monospace; font-size: 15px;
+	color: #646464;
+}
+
+header>iframe {
+	position: fixed;
+	z-index: 100;
+}
+
+#top_section{
+	width: 1200px; 
+	margin: 0px auto;
+	padding-top: 200px;
+}
+
+/* 메인이미지, 타이틀 정보있는 div */
+#top_section > div{
+	width: 600px; 
+	height: 400px; 
+	float: left;
+}
+
+/* 메인이미지*/
+#mainImg > img{
+	width: 600px;
+	height: 400px;
+	object-fit: cover;
+}
+
+/* 메인정보 */
+#mainInfo >div{
+	margin-left: 20px; 
+	float: left;
+}
+
+#mainInfo p{
+	font-size: 30px;
+    line-height: 135%;
+    color: #646464;
+    margin-top: 10px;
+}
+
+#mainInfo > hr{
+	width: 580px;
+	margin-left: 20px;
+	border: 1px solid #646464;
+}
+
+/* 태그 */
+#mainInfo > hr+div div{
+	width: 95px;
+	height: 30px;
+	border: 1px solid #6C94B8;
+	border-radius: 20px;
+	box-shadow: 2px 2px 5px rgba(0,0,0,.25);
+	float: left;
+	margin-top: 30px;
+	margin-right: 10px;
+	color: #6C94B8;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.title{
+	word-break : break-all;
+	height: 80px;
+}
+
+/* 닉네임 */
+#guide{display: flex; margin-top: 80px;}
+
+#profile{
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	border-radius: 50%;
+	float: left;
+}
+
+#profile + p{
+	font-size: 16px;
+	color: #646464;
+	padding-left: 10px;
+	width: 250px;
+	float: left;
+
+}
+
+/* 찜하기, 공유하기 이미지 */
+#icon{
+	display: flex; 
+	align-items: center;
+	padding-left:190px;
+}
+
+#icon img{
+	width: 30px;
+	height: 30px;
+	margin-left: 10px;
+}
+
+/* 문의하기 버튼 */
+input[name='requiry']{
+	width: 580px;
+	height: 50px;
+	background: #6C94B8;
+	border-radius: 10px;
+	border: none;
+	box-shadow: 2px 2px 5px rgba(0,0,0,.25);
+	color: white;
+	font-weight: bold;
+	margin-top: 28px;
+}
+
+/* 메인페이지 */
+#main_section {width: 1200px; margin: 0 auto;}
+
+#main_section article:first-of-type{width: 930px; float: left; margin-top:50px; border-right: 0.7px solid #cccccc;}
+#main_section article:last-of-type{width: 1200px; float: left;}
+
+/* 타이틀 */
+article > div > p{font-size: 20px; font-weight: bold;}
+
+article > div> div{display: flex;}
+
+/* 일정*/
+#main_section article > div:first-of-type>div>div:first-of-type{font-weight: bold; margin-right: 20px;}
+
+/* 일정상세*/
+
+article > hr{ border: 0.7px solid #cccccc; margin-top: 50px; margin-bottom: 70px; width: 880px; margin-left: 0}
+
+/* 상품가격 테이블 */
+tr, td{border-right: 0.1em solid #f1f1f3; padding: 15px;}
+
+tr:first-of-type >td{background: #6C94B8; color: #f1f1f3; font-size: 15px; font-weight: bold;}
+
+tr:first-of-type >td>p{
+	font-size: 12px;
+	font-weight: normal;
+	color: #f1f1f3;
+	margin-top: 8px;
+}
+
+table{
+  border: 1px #0D112D solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 880px;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* 인원선택(aside) */
+aside > div{
+	width: 240px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 50px;
+}
+
+aside > div > p{font-size: 20px; font-weight: bold; padding-left: 10px;}
+
+aside>div>form>div{padding-left: 10px; display: flex;}
+
+aside>div>form>div>div>p:first-of-type{font-size: 12px; color: #6c6c6c; margin-bottom: -12px}
+aside>div>form>div>div>p:last-of-type{font-size: 15px; font-weight: bold;}
+
+aside>div>form>div>div:first-of-type{width: 120px;}
+aside>div>form>div>div:last-of-type{margin-top: 18px;}
+
+/* 인원선택버튼 */
+aside input[type=button]{
+	float: left; 
+	width: 30px;
+	height: 30px; 
+	background: #f1f1f3; 
+	border: 0.5px solid #f1f1f3;
+	box-shadow: 0 2px 5px rgba(0,0,0,.25);
+}
+
+/* 총금액 */
+aside>div>form>div>p:first-of-type{
+	display: flex;
+	align-items: center;
+	width: 60px;
+}
+
+aside input[type=text]{
+	width: 45px;
+    height: 28px;
+    text-align: center;
+    background: white;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    float: left;
+}
+
+aside>div>form>div>p:last-of-type{
+	width: 172px;
+    font-size: 20px;
+    color: #6C94B8;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* 참여하기 버튼 */
+aside input[name='join']{
+	margin-left: 10px;
+	width: 230px;
+	height: 50px;
+	background: white;
+	border: 2px solid #6C94B8;
+	border-radius: 10px;
+	color: #6C94B8;
+	font-weight: bold;
+}
+
+/* 참여마감 버튼 */
+aside input[name='end']{
+	margin-left: 10px;
+	width: 230px;
+	height: 50px;
+	background: #CCCCCC;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+}
+
+/* 참여마감 버튼 */
+aside input[name='cancel']{
+	margin-left: 10px;
+	width: 230px;
+	height: 50px;
+	background: #0D112D;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+}
+
+
+/* 일정안내 */
+#main_section > article > div:last-of-type >div{margin-bottom: 20px;}
+.day{
+	width: 200px;
+	background: #6C94B8;
+	border-radius: 10px 0 0 10px;
+	border: none;
+	color: white;
+	text-align: center;
+	align-items: center;
+}
+
+.day>p:first-of-type{
+	font-size: 20px;
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+
+.day_title{
+	width: 680px;
+	border-radius: 0 10px 10px 0;
+	border: 1px solid #6C94B8;
+	margin-left: 0;
+	font-size: 20px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.day_title > img{
+	width: 30px;
+    height: 30px;
+    padding-left: 490px;
+}
+
+/* 일정안내 - 상세보기 */
+.day_detail{
+	width: 880px;
+	height: 300px;
+	border-radius: 0 0 5px 5px;
+	background: #f1f1f3;
+}
+
+
+/* 여행시 유의사항 */
+#main_section > article:last-of-type >div:first-of-type{
+	border-top: 1px solid #CCCCCC;
+	padding-top: 20px;
+}
+
+#main_section > article:last-of-type >div:first-of-type>div{
+	display: grid;
+    line-height: 20px;
+}
+
+article:last-of-type > hr{ border: 0.7px solid #cccccc; margin-top: 50px; margin-bottom: 70px; width: 100%;}
+
+/* 댓글 */
+#main_section > article:last-of-type >div:last-of-type{
+	width: 1200px;
+	height: 400px;
+	margin: 120px auto;
+	background: #f1f1f3;
+	position: relative;
+	border-radius: 10px;
+}
+
+/* 댓글 */
+#reply{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	display: grid;
+}
+
+#profile+p+div{
+	float: left;
+	width: 760px;
+}
+
+#reply > div > div:last-of-type{
+	float: left;
+}
+
+/* 댓글창 */
+#comment{
+	position: absolute;
+	bottom: 20px;
+	left: 10px;
+}
+
+input[name='comment_txt']{
+	width: 1080px;
+	height: 40px;
+	border-radius: 10px;
+	border: 0.5px solid #CCCCCC;
+	margin-right: 10px;
+}
+
+input[name='register']{
+	width: 80px;
+	height: 45px;
+	background: #6C94B8;
+	border-radius: 10px;
+	border: none;
+	color: white;
+	font-weight: bold;
+}

@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="journey">
+	<!-- 우히 부분 -->
+	<select id="wh_select" resultType="com.jj.dto.Company">
+		select * from company order by com_no desc
+	</select>
+	
+	<select id="wh_listselect" resultType="com.jj.dto.Company">
+		select * from company where com_no = #{com_no}
+	</select>
+	
+	<select id="cs_select" resultType="com.jj.dto.Class_list">
+		select *, (select u_nickname from user where user.u_id = class_list.u_id) as u_nickname from class_list
+	</select>
+	
+	<select id="wh_search" parameterType="java.util.HashMap" resultType="com.jj.dto.Company">
+		select * from company where 
+		<trim prefixOverrides="or" suffixOverrides="or">
+		<!-- 대직종 -->
+		<if test="com_job1 != null">
+			<foreach collection="com_job1" item="item" index="index" separator="or">
+				com_job1 like concat('%', #{item}, '%')
+			</foreach>
+			or
+		</if>
+		
+		<!-- 세부직종 -->
+		<if test="com_job2 != null">
+			<foreach collection="com_job2" item="item" index="index" separator="or">
+				com_job2 like concat('%', #{item}, '%')
+			</foreach>
+			or
+		</if>
+		
+		<!-- 국가 -->
+		<if test="com_country != null">
+			<foreach collection="com_country" item="item" index="index" separator="or">
+				com_country like concat('%', #{item}, '%')
+			</foreach>
+			or
+		</if>
+		
+		<!-- 도시 -->
+		<if test="com_city != null">
+			<foreach collection="com_city" item="item" index="index" separator="or">
+				com_city like concat('%', #{item}, '%')
+			</foreach>
+			or
+		</if>
+		
+		<!-- 학력 -->
+		<if test="com_edu_level != null">
+			<foreach collection="com_edu_level" item="item" index="index" separator="or">
+				com_edu_level like concat('%', #{item}, '%')
+			</foreach>
+			or
+		</if>
+		
+		<!-- 전공 -->
+		<if test="com_major != null">
+			<foreach collection="com_major" item="item" index="index" separator="or">
+				com_major like concat('%', #{item}, '%')
+			</foreach>
+			or
+		</if>
+		
+		<!-- 자격증 -->
+		<if test="com_license != null">
+			<foreach collection="com_license" item="item" index="index" separator="or">
+				com_license like concat('%', #{item}, '%')
+			</foreach>
+			or
+		</if>
+		
+		<!-- 급여 -->
+		<if test="com_salary != null">
+			<foreach collection="com_salary" item="item" index="index" separator="or">
+				com_sal_name = #{item}
+			</foreach>
+			or
+		</if>
+		
+		<!-- 복리후생 -->
+		<if test="com_benefits != null">
+			<foreach collection="com_benefits" item="item" index="index" separator="or">
+				com_benefits like concat('%', #{item}, '%')
+			</foreach>
+			or
+		</if>
+		
+		<!-- 근무기간 -->
+		<if test="com_work_period != null">
+			<foreach collection="com_work_period" item="item" index="index" separator="or">
+				com_work_period like concat('%', #{item}, '%')
+			</foreach>
+			or
+		</if>
+		
+		<!-- 근무요일 -->
+		<if test="com_work_days != null">
+			<foreach collection="com_work_days" item="item" index="index" separator="or">
+				<if test="item == '평일(월~금)'">
+					com_work_days not like '%토%' and com_work_days not like '%일%'
+				</if>
+				<if test="item == '주말(토,일)'">
+					com_work_days not like '%월%' and com_work_days not like '%화%' and com_work_days not like '%수%' and com_work_days not like '%목%' and com_work_days not like '%금%'
+				</if>
+			</foreach>
+			or
+		</if>
+		<if test="com_work_day != null">
+			com_work_days = #{com_work_day}
+			
+			or
+		</if>
+		
+		<!-- 근무시간 -->
+		<if test="wtime != null">
+			<foreach collection="wtime" item="item" index="index" separator="or">
+				<if test="item == '오전'">
+					<![CDATA[(com_start_time >= 6 and com_start_time <= 12 and com_end_time >= 6 and com_end_time <= 12)]]>
+				</if>
+				<if test="item == '오후'">
+					<![CDATA[(com_start_time >= 12 and com_start_time <= 18 and com_end_time >= 12 and com_end_time <= 18)]]>
+				</if>
+				<if test="item == '저녁'">
+					<![CDATA[(com_start_time >= 18 and com_start_time <= 24 and com_end_time >= 18 and com_end_time <= 24)]]>
+				</if>
+				<if test="item == '새벽'">
+					<![CDATA[(com_start_time >= 0 and com_start_time <= 6 and com_end_time >= 0 and com_end_time <= 6)]]>
+				</if>
+				<if test="item == '오전~오후'">
+					<![CDATA[(com_start_time >= 6 and com_start_time <= 18 and com_end_time >= 6 and com_end_time <= 18)]]>
+				</if>
+				<if test="item == '오후~저녁'">
+					<![CDATA[(com_start_time >= 12 and com_start_time <= 24 and com_end_time >= 12 and com_end_time <= 24)]]>
+				</if>
+				<if test="item == '저녁~새벽'">
+					<![CDATA[(com_start_time >= 18 and com_start_time <= 6 and com_end_time >= 18 and com_end_time <= 6)]]>
+				</if>
+				<if test="item == '새벽~오전'">
+					<![CDATA[(com_start_time >= 0 and com_start_time <= 12 and com_end_time >= 0 and com_end_time <= 12)]]>
+				</if>
+				<if test="item == '종일'">
+					<![CDATA[abs(com_end_time - com_start_time) >= 8]]>
+				</if>
+			</foreach>
+		</if>
+		</trim>
+		order by com_no desc
+	</select>
+	
+	
+	
+	
+	
+	<!-- 진수님 부분 -->
+	<insert id="estimate_insert" parameterType="com.jj.dto.Estimate">
+		insert into estimate values(default, #{u_id}, #{e_departure}, #{e_destination}, #{e_start_date}, #{e_end_date}, #{e_thema}, #{e_detail_thema}, #{e_volume}, #{e_food_taste}, curdate(), #{e_airplane}, #{e_hotel});
+	
+		<selectKey resultType="com.jj.dto.Estimate" keyColumn="e_no" keyProperty="e_no" order="AFTER">
+			SELECT LAST_INSERT_ID() AS e_no
+		</selectKey>
+	</insert>
+	
+	<select id="eatery_select" resultType="com.jj.dto.Eatery" parameterType="java.util.HashMap">
+		
+		select * from eatery where eat_food_taste in 
+		
+		<foreach collection="eat_food_taste" item="item" index="index" separator="," open="(" close=")"> 
+			#{item}
+		</foreach>
+			order by RAND() LIMIT #{day} 
+	</select>
+	
+	<select id="place_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">
+		
+		select * from place where plac_thema like CONCAT('%',#{plac_thema},'%') and 
+		
+		<foreach collection="plac_detail_thema" item="item" index="index" separator="or" open="(" close=")">
+			plac_detail_thema like CONCAT('%',#{item},'%')
+		</foreach> 
+			order by RAND() LIMIT #{day} 
+	</select>
+	
+	<select id="search_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">
+		select * from place where plac_name like CONCAT('%',#{text},'%') or plac_detail_thema like CONCAT('%',#{text},'%')
+	</select>
+	<insert id="schedule_insert" parameterType="com.jj.dto.Schedule">
+		insert into schedule values(#{e_no}, #{sche_day}, #{place})
+	</insert>
+	
+	
+	
+	
+	
+	<!-- 윤영 부분 -->
+	<!-- 패키지 insert -->
+	<insert id="packageInsert" parameterType="com.jj.dto.Package">
+		<selectKey resultType="com.jj.dto.Package" keyColumn="p_no,p_period" keyProperty="p_no,p_period" order="AFTER">
+			SELECT LAST_INSERT_ID() AS p_no, (SELECT p_end_date - p_start_date FROM package WHERE p_no=LAST_INSERT_ID()) AS p_period
+		</selectKey>
+		INSERT INTO package VALUES(default, #{u_id}, #{p_nation}, #{p_city}, #{p_theme}, #{p_title}, #{p_start_date}, #{p_end_date}, ${p_volume}, #{p_due_date}, ${p_guide_pay}, curdate(), #{p_file}, #{p_notification}, #{p_url});
+	</insert>
+	
+	<!-- 패키지 리스트 select -->
+	<select id="packageSelect" resultType="com.jj.dto.Package" parameterType="java.util.HashMap">
+
+		SELECT DISTINCT p.p_no, p.p_file, p.p_title, u.u_nickname, r.child_fee
+		FROM package p
+		LEFT JOIN user u
+		ON p.u_id = u.u_id
+		LEFT JOIN reward r
+		ON p.p_no = r.p_no
+		ORDER BY p.p_no DESC;
+	</select>
+	
+	<!-- 패키지 검색 -->
+	<select id="packageSearch" resultType="com.jj.dto.Package" parameterType="java.util.HashMap">
+		SELECT DISTINCT p.p_no, p.p_nation, p.p_file, p.p_title, u.u_nickname, r.child_fee
+		FROM package p 
+		LEFT JOIN user u
+		ON p.u_id = u.u_id
+		LEFT JOIN reward r
+		ON p.p_no = r.p_no
+		<where>
+			<trim prefixOverrides="and" suffixOverrides="and">
+			<!--  
+			<if test="!param1.equals('choice')">
+				<if test="param1.equals('progress')">
+					<![CDATA[p.p_due_date >= curdate()]]> and
+				</if>
+				<if test="param1.equals('end')">
+					<![CDATA[p.p_due_date < curdate()]]> and
+				</if>
+			</if>
+			-->
+			<if test="!param3.equals('choice')">
+				p.p_theme = #{param3} and
+			</if>
+			<if test="!param4.equals('choice')">
+				p.p_nation = #{param4} and
+			</if>
+			<if test="date !=null">
+			 	<![CDATA[p.p_due_date >= #{date}]]> and
+			</if>
+			<if test="txt != null or txt !=''">
+				p.p_title like concat('%', #{txt}, '%')
+			</if>
+			</trim>
+		</where>
+		<if test="!param2.equals('choice')">
+			<if test="param2.equals('latest')">
+				ORDER BY p.p_no DESC;
+			</if>
+			<if test="param2.equals('deadline')">
+				ORDER BY p.p_due_date DESC;
+			</if>
+		</if>
+		
+	</select>
+	
+	<!-- 좋아요 select -->
+	<select id="likeSelect" resultType="com.jj.dto.Package_like">
+		SELECT * FROM package_like;
+	</select>
+	
+	<!-- 일정 insert -->
+	<insert id="pscheduleInsert" parameterType="java.util.HashMap">
+		INSERT INTO package_schedule VALUES
+			<foreach collection="package_schedule" item="item" index="index" separator=",">
+				(${item.p_no}, #{item.ps_schedule}, #{item.ps_day}, #{item.ps_title}, #{item.ps_contents}, #{item.ps_notification}, #{item.ps_file1}, #{item.ps_file2}, #{item.ps_file3})
+			</foreach>
+	</insert>
+	
+	<!-- 리워드 insert -->
+	<insert id="rewardInsert" parameterType="com.jj.dto.Reward">
+		INSERT INTO reward VALUES(${p_no}, ${adult_fee}, ${std_fee}, ${child_fee});
+	</insert>
+	
+	<!-- 상세보기 select -->
+	<select id="packageDetailSelect" resultType="com.jj.dto.Package" parameterType="int">
+		SELECT p.p_no, p.u_id, p.p_title, p.p_theme ,p.p_start_date, p.p_end_date, p.p_volume, p.p_due_date, p.p_file, 
+		       p.p_notification, p.p_url, u.u_nickname, u.u_profile, r.adult_fee, r.std_fee, r.child_fee
+		FROM package p
+		LEFT JOIN user u
+		ON p.u_id = u.u_id
+		LEFT JOIN reward r
+		ON p.p_no = r.p_no
+		where p.p_no = ${p_no}
+		ORDER BY p.p_no DESC;
+	</select>
+	
+	<!-- 상세보기/좋아요 select -->
+	<select id="likeSelectDetail" resultType="com.jj.dto.Package_like" parameterType="int">
+		SELECT * FROM package_like WHERE p_no = ${p_no}
+	</select>
+	
+	<!-- 상세보기/일정 select -->
+	<select id="packageScheduleSelect" resultType="com.jj.dto.Package_schedule" parameterType="int">
+		SELECT * FROM package_schedule
+		WHERE p_no = ${p_no};
+	</select>
+	
+	<!-- 상세보기/참여 select -->
+	<select id="purchaseSelect" resultType="com.jj.dto.Purchase" parameterType="int">
+		SELECT * FROM purchase
+		WHERE p_no = ${p_no};
+	</select>
+	
+	<!-- 좋아요 -->
+	<insert id="likeInsert" parameterType="com.jj.dto.Package_like">
+		INSERT INTO package_like VALUES(#{u_id}, ${p_no});
+	</insert>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="likedelete" parameterType="com.jj.dto.Package_like">
+		DELETE FROM package_like WHERE u_id=#{u_id} and p_no=${p_no};
+	</delete>
+	
+	<!-- 구매하기 -->
+	<insert id="purchaseInsert" parameterType="com.jj.dto.Purchase">
+		INSERT INTO purchase VALUES(#{u_id}, ${p_no}, ${adult_num}, ${std_num}, ${child_num}, curdate());
+	</insert>
+	
+	<!-- 구매취소 -->
+	<insert id="purchasedelete" parameterType="com.jj.dto.Purchase">
+		DELETE FROM purchase WHERE u_id=#{u_id} and p_no=${p_no};
+	</insert>
+	
+	<!-- 패키지/댓글 입력  -->
+	<insert id="commInsert" parameterType="com.jj.dto.Community">
+		INSERT INTO community VALUES(default, ${p_no}, #{u_id}, #{comm_contents}, curdate());
+	</insert>
+	
+	<!-- 패키지/댓글 select -->
+	<select id='commSelect' resultType="com.jj.dto.Community">
+		SELECT c.comm_no, c.comm_contents, c.comm_date, u.u_nickname, u.u_profile
+		FROM community c 
+		LEFT JOIN user u
+		ON c.u_id = u.u_id
+		WHERE p_no = ${p_no};
+	</select>
+</mapper>

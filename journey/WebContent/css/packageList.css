@@ -1,0 +1,202 @@
+@charset "UTF-8";
+
+body{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: "Noto Sans KR", sans-serif;
+	color: #646464;
+	text-decoration: none;
+}
+
+/* header이미지 */
+#top_section>img{
+	width: 100%;
+	height: 400px;
+	object-fit: cover;
+	position: absolute;
+}
+
+/* header위에 검은색 div */
+#top_section>div{
+	width: 100%;
+	height: 400px;
+	background: rgba(0,0,0,0.2); 
+	position: relative;
+}
+
+/* header문구감싼 div */
+#top_section>div>div{
+	width: 1200px;
+	height: 100px;
+	margin: 0px auto;
+	padding-top: 260px;
+	color: #f1f1f3;
+}
+
+#top_section>div>div>p:first-of-type{
+	font-size: 30px;
+    font-weight: bold;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+/* 계획하기 버튼 */
+section+div{
+	width: 1200px;
+	margin: 20px auto;
+}
+
+input[type="button"]{
+	width: 150px;
+	height: 50px;
+	border-radius: 10px;
+	background: #0D112D;
+	box-shadow: 3px 3px 3px #CCCCCC;
+	color: #f1f1f3;
+	font-weight: bold;
+	float: right;
+	border: none;
+}
+
+/* 검색구간 */
+#search_section{
+	width: 1200px;
+	height: 100px;
+	margin: 90px auto;
+	display: grid;
+	background: #6c94b8;
+	border-radius: 10px;
+	box-shadow: 3px 3px 3px #CCCCCC;
+}
+
+/* 검색구간 - 콤보박스 */
+#search_section select{
+	width: 100px;
+	height: 40px;
+	border-radius: 10px;
+	margin-right: 20px;
+	text-align: center;
+	border: none;
+}
+
+#search_section select:last-of-type{width: 160px;}
+
+/* 검색구간 - 여행시작일 */
+#datepicker{
+	width: 140px;
+	height: 40px;
+	border-radius: 10px;
+	text-align: center;
+	margin-right: 20px;
+	border: none;
+}
+
+#search_section > div{
+	display: flex;
+	justify-content: center; 
+	align-items: center;
+}
+
+/* 검색구간 - 검색창 */
+#search_section input[name="searchBox"]{
+	width: 250px;
+	height: 40px;
+	border-radius: 10px;
+	border: none;
+}
+
+input[type="submit"]{
+	width: 100px;
+	height: 40px;
+	border-radius: 10px;
+	background: #0D112D;
+	color: white;
+	border: none;
+}
+
+/* 리스트 article */
+article > div{width: 1200px; margin: auto;}
+
+article ul{padding-inline-start: 0;}
+
+article li{
+	width: 280px;
+	height: 300px;
+	list-style-type: none;
+	float: left;
+	margin-left: 26px;
+	margin-bottom: 20px;
+}
+
+article li:first-of-type{margin-left: 0;}
+article li:nth-of-type(4n+1){margin-left: 0;}
+
+.thumnail{
+	width: 280px;
+	height: 200px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+article ul img{width: 100%; height: 200px;}
+
+.title{
+	word-break : break-all;
+	height: 50px;
+}
+
+li div:nth-of-type(2){
+	width: 200px;
+	float: right;
+	padding-top: 10px;
+	padding-right: 10px;
+	position: relative;
+	top: -200px;
+}
+
+/* 찜하기 아이콘 */
+li div:nth-of-type(2)>img{
+	width: 30px;
+	height: 30px;
+	float: right;
+}
+
+li div p{
+	margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+li div:nth-of-type(3){
+	width : 240px;
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: bold;
+	color: #646464;
+	float: left;
+	margin-top: -30px;
+}
+
+li div:nth-of-type(4){
+	text-decoration: none;
+	font-size: 12px;
+	color: #646464;
+	float: right;
+	margin-top: -30px;
+}
+
+li div:nth-of-type(5){
+	text-decoration: none;
+	font-size: 10px;
+	color: #646464;
+	width: 280px;
+	float: left;
+}
+
+#paging {
+	width: 1200px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    padding: 85px 0;
+}

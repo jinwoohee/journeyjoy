@@ -1,0 +1,217 @@
+body {
+	font-family: "Noto Sans KR", sans-serif;
+	margin: 0;
+	color: #646464;
+		background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover;
+}
+input{ /*모든 input의 내부 글자폰트*/
+	font-family: "Noto Sans KR", sans-serif;
+	color: rgb(64,64,64);
+}
+input[type="button"], input[type="submit"]{
+	cursor : pointer;
+}
+
+section{ /*섹션 전체 div*/
+	width: 1200px;
+	margin: 0 auto;
+	padding-top: 150px;
+	padding-bottom: 210px;
+}
+
+div[id="main_div"]{
+	width: 900px;
+    background: white;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px #cccccc	;
+    border: 1px solid #cccccc;
+    padding : 20px;
+}
+
+table{ /*모든 테이블*/
+	width : 800px;
+	margin: 20px auto;
+	border-top: 3px solid #646464;
+	border-bottom : 1px solid #646464;
+	border-spacing: 3px;
+}
+
+/* 작성자, 여행도시, 테마 tr */
+.review_info{ 
+	width: 200px;
+    text-align: center;
+    font-size: 15px;
+    color: #646464;
+    border-right: 1px solid #f1f1f3;
+    border-bottom: 1px solid #f1f1f3;
+} 
+
+/* 유저 정보 tr */
+.user_info{ 
+	width: 500px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #646464;
+    border-bottom: 1px solid #f1f1f3;
+}
+
+#theme td{
+	border-bottom : none;
+}
+
+table + p{
+	font-size: 20px;
+    font-weight: bold;
+    color: #646464;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+
+/*첨부파일 div*/
+div[id="img_div"]{ 
+	width: 400px;
+	height: 300px;
+	margin: 50px auto;
+	over-flow : hidden;
+}
+
+div[id="img_div"] img{
+	width: 400px;
+	height: 300px;
+	object-fit : cover;
+}
+
+div[id="content"]{ /*리뷰 내용 div*/
+	width: 600px;
+    border: none;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+/*일정 */
+div[id="day_select"]{
+	width : 600px;
+	height : 40px;
+	float : left;
+	margin-left : 50px;
+	margin-top : 90px;
+}
+div[id*="plan_sel"]{
+	width: 80px;
+    height: 40px;
+    float : left;
+    background: #0D112D;
+    border-radius: 10px 10px 0 0;
+    border-top : 1px solid white;
+    border-left : 1px solid white;
+    border-right : 1px solid white;
+    cursor : pointer;
+}
+div[id="plan_sel1"]{
+	background-color : #6C94B8;
+}
+
+p[id*="day_sel"]{
+	text-align: center;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    margin-block: 0;
+    padding-top: 8px;
+}
+p[id="day_sel1"]{
+	color : black;
+}
+
+div[id*="day_plan"]{ /*날짜별 일정 div*/
+	width: 800px;
+	height : 1000px;
+	margin: 130px auto;
+	border-top : 1px solid #0D112D;
+	display : none;
+}
+div[id="day_plan1"]{
+	display : block;
+}
+
+.day{ /*day1ㅣ날짜 ... 폰트*/
+	font-size: 20px;
+	float: left;
+	font-weight: bold;
+	margin-top: 30px;
+	margin-right : 400px;
+}
+div[class="map"]{ /*지도 div*/
+	width: 600px;
+    height: 420px;
+    background-color: #f1f1f3;
+    float: left;
+    margin-left : 100px;
+}
+div[class="day_review"]{
+	width:800px;
+	float : left;
+    margin : 30px 10px;
+    border: none;
+}
+div[class="pl_eat_div"]{ /*여행지 들어갈div*/
+	width: 800px;
+    float: left;
+    border-top: 3px solid #646464;
+    border-bottom: 1px solid #646464;
+}
+
+.no{
+	float: left;
+    background: #0D112D;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+}
+
+#btn_div{
+	width : 230px;
+	height : 160px;
+	margin-bottom :20px;
+	margin-left : 620px;
+}
+input[name="edit"]{
+	width: 100px;
+	height: 50px;
+	float: right;
+	border-radius: 10px;
+}
+input[name="delete"]{
+	width : 100px;
+	height : 50px;
+	float: right;
+	border-radius:10px;
+	margin-right : 10px;
+}
+input[name="list"]{
+	width: 100px;
+    height: 50px;
+    float : right;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    color : white;
+    background-color : #0D112D;
+    margin-top : 20px;
+}
+/* input[name="hidden"]{
+	width : 150px;
+	height : 50px;
+	float: left;
+	border: 0px solid white;
+	background-color : white;
+	margin-left : 447px;	
+} */

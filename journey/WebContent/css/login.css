@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+body{
+	margin: 0;
+	color: #646464;
+	font-family: "Noto Sans KR", sans-serif;
+	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover;
+}
+
+a{text-decoration: none; color: #646464;}
+
+section > div{
+	width: 700px;
+	height: 753px;
+	background-color: white;
+	margin: 100px auto;
+	box-shadow: 5px 5px 10px #CCCCCC;
+	border-radius: 10px;
+}
+
+div > div{
+	width: 700px;
+	height: 910;
+	margin: 0 auto;
+}
+
+section > div >div>p:first-of-type{
+	font-size: 30px;
+	padding: 50px 90px; 
+	float: left;
+	font-weight: bold;
+}
+img[src*="home"]{
+	width: 50px;
+	height: 50px;
+	padding: 70px 100px;
+	margin-top: 10px;
+	float: right;
+	object-fit : cover;
+}
+
+img[src*="logo"]{
+	width: 220px;
+	height: 135px;
+	margin-left: 240px;
+	margin-top: -60px;
+	object-fit : cover;
+	
+}
+
+form{
+	width: 700px;
+	height: 190px;
+	margin-top: 30px;
+}
+
+input[type='text']{
+	width: 510px;
+	height: 50px;
+	border-radius: 10px;
+	border: 1px solid #6C94B8;
+	margin-bottom: 10px;
+}
+
+input[type='password']{
+	width: 510px;
+	height: 50px;
+	border-radius: 10px;
+	border: 1px solid #6C94B8;
+	margin-bottom: 10px;
+}
+
+input[type="submit"]{
+	width: 520px;
+	height: 50px;
+	margin-top: 35px;
+	border-radius: 10px;
+	background: #2C609C;
+	border: none;
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+}
+
+/* 찾기 구간 div */
+div[id="serch"]{
+	width: 520px;
+	display: flex;
+	margin-top: 20px;
+}
+
+/* 아이디찾기|비번찾기 */
+div[id="serch"]>div:first-of-type{
+	display: flex;
+	align-items: center;
+}
+
+/* 회원가입 */
+div[id="serch"]>div:last-of-type{
+	display: flex;
+    justify-content: right;
+    font-weight: bold;
+}
+
+#search > p{
+	font-size: 15px;
+	font-weight: normal;
+	color: #646464;
+	text-decoration: none;
+}
+
+/* 간편로그인 div */
+div[id="easy_log"]{
+	width: 520px;
+	display: flex;
+}
+
+div[id="easy_log"]>div:first-of-type{
+	display: flex;
+	align-items: center;
+	margin-top: -16px;
+}

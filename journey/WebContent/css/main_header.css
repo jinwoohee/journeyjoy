@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+body{
+	margin: 0;
+	font-family: "Noto Sans KR", sans-serif;
+	color: #646464;
+}
+
+div[id="top_div"]{ /* 헤더 전체 div*/
+	position: fixed;
+	width: 100%;
+	height: 80px;
+	margin: 0 auto;
+	background: white;
+	z-index: 60;
+}
+
+div[id="main_menu_div"]{ /* 헤더 메인메뉴(5개) div*/
+	width: 1200px;
+	height: 80px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+#logo{ /* 로고 */
+	position: fixed;
+	width: 140px;
+	height: 80px;
+	float: left;
+	margin-left: 140px;
+	object-fit : cover;
+}
+
+#main_menu_div ul{ /* 메인메뉴(5개) 리스트 */
+	display: flex;
+	padding-inline-start: 0;
+}
+
+#main_menu_div ul>li{
+	list-style-type: none;	
+	cursor: pointer;
+	margin-right : 100px;
+}
+
+#main_menu_div ul>li img{
+	width: 100px;
+	height: 20px;
+	object-fit : cover;
+}
+
+
+#main_menu_div ul>li:last-of-type{
+	margin-right: 0;
+}
+
+div[id="sub_div"]{ /* mouseover 시에 나오는 배경 전체 div*/
+	position: fixed;
+	top: 80px;
+	width: 100%;
+	height: 105px;
+	background-color: white;
+	display: none;
+	z-index: 80;
+}
+
+div[id="sub_menu_div"]{ /*서브메뉴 부분 div */
+	width: 1200px;
+	height: 105px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+
+#sub_menu_div ul{ /* 서브메뉴 리스트 */
+	display: block;
+	padding-inline-start: 0;
+	margin-right: 143px;
+}
+
+#sub_menu_div ul:last-of-type{
+	margin-right: 0;
+}
+
+#sub_menu_div ul>li{
+	list-style-type: none;
+	font-size: 13px;	
+	font-weight: bold;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+div[id="login"]{ /*아이디,회원가입,마이페이지 div*/
+	position: fixed;
+	width: 200px;
+	height: 35px;
+	right: 160px;
+	top: 25px;
+}
+
+#mypage_btn{ /*마이페이지 버튼*/
+	float: right;
+	cursor: pointer;
+}
+
+div[id="mypage"]{ /*마이페이지 버튼 누르면 나오는 검정div*/
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: #222222;
+	display: none;
+	z-index: 70;
+}
+ul[id="mypage_ul"]{ /*마이페이지 리스트 */
+	float: left;
+	margin-left: 360px;
+	margin-top: 140px;
+
+}
+li[class="mypage_li"]{/*마이페이지 리스트 */
+	color: #ffffff;
+	list-style-type: none;
+	font-size: 26pt;
+	margin-bottom: 60px;
+}
+img[src*=close]{ /*마이페이지 닫는 x버튼 */
+	float: right;
+	margin-top: 45px;
+	margin-right: 170px;
+	cursor: pointer;
+}
+a{
+	text-decoration-line: none;
+	color: #646464;
+}
+a[class=sub_menu_a]{
+	color: #959595;
+	font-weight: 400;
+}

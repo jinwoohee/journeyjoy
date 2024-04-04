@@ -1,0 +1,248 @@
+body {
+	font-family: "Noto Sans KR", sans-serif;
+	margin: 0;
+	color: rgb(64,64,64);
+}
+p{
+	margin: 0;
+}
+div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
+	padding-top: 200px;
+	width: 1200px;
+	height: 1500px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+div[id="list_text"]{ /* "여행일정" 글자 div 와 아래의 선 */
+	width: 1200px;
+	height: 40px;
+	border-bottom: 2px solid rgb(64,64,64);
+}
+p[id="list_text"]{ /* "여행일정" 글자 */
+	float: left;
+	margin-top: 0px;
+	margin-left: 0px;
+	font-size: 20px;
+	font-weight: bold;
+}
+div[id="day_div"]{ /* day1,day2,day3,day4... 들어갈div*/
+	width: 900px;
+	height: 50px;
+	margin-left: 227px;
+}
+p[id*="day"]{ /*day 글자 */
+	float : left;
+	padding-top: 6px;
+	font-size: 15px;
+	font-weight: bold;
+	margin-right : 10px;
+	margin-top : 0px;
+	cursor : pointer;
+}
+p[id="day1"]{ /*day 글자 */
+	font-size: 20px;
+	margin-top : -7px;
+	cursor : auto;
+}
+
+div[id="thema_div"]{ /*내가 선택한 테마부분 전체 div(도시부터 수정하기 버튼까지)*/
+	width: 200px;
+	height: 300px;
+	float: left;
+	margin-right: 20px;
+	margin-top: 10px;
+}
+div[id="detail_div"]{ /*화살표 누르면 사라지는 부분(선택한 테마~음식취향)div  */
+	width: 160px;
+}
+p[id="city"]{ /*목적지 도시 글자 */
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+p[id="thema"]{ /*여행테마 자체 글자 */
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 25px;
+	font-weight: bold;	
+}
+p[class="thema_text"]{ /* 내가 선택한 큰 테마, 인원유형 글자 */
+	font-size: 15px;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+p[class="sub_thema"]{ /*서브테마, 음식취향 글자 */
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.button{ /*모든 버튼*/
+	background-color: white;
+	color: #6C94B8;
+	border: 0.7px solid #6C94B8;
+	border-radius: 10px;
+	font-size: 15px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-weight: bold;
+	cursor: pointer;
+}
+input[name="edit_thema"]{ /*테마 수정하기 버튼 */
+	width: 165px;
+	height: 35px;
+	margin-top: 5px;
+	margin-left: -3px;
+}
+#up{ /*내가 선택한 테마 div 닫기 */
+	float:	right;
+	border: solid white;
+	margin-top: -52px;
+	margin-right: 0px;
+	padding: 0px;
+	background-color: white;
+	cursor: pointer;
+}
+#down{ /*내가 선택한 테마 div 열기 */
+	float:	right;
+	border: solid white;
+	margin-top: -52px;
+	margin-right: 0px;
+	padding: 0px;
+	background-color: white;
+	display: none;
+	cursor: pointer;
+}
+div[id="plan_list"]{ /*여행지 리스트 전체 div */
+	width: 800px;
+	float: left;
+	margin-left: 5px;
+}
+div[id*="plan_list_day"]{
+	width: 800px;
+	float: left;
+	margin-left: 5px;
+	overflow: hidden;
+	display : none;
+}
+div[id="plan_list_day1"]{ /*여행지 리스트 day1 div */
+	display : block;
+}
+div[id*="list_content"]{ /* 여행지 하나하나의 div */
+	width: 800px;
+	height: 200px;
+	border-bottom: 0.7px solid #CCCCCC;
+	margin: 0;
+}
+img[class="place_pic"]{ /* 여행지의 사진 형식*/ 
+	width: 160px;
+	height: 160px;
+	border: 2px solid ;
+	float: left;
+	margin-top: 20px;
+	border-radius: 10px;
+}
+div[class="content_fdiv"]{ /*여행일정의 장소, 태그 (글자)부분 div */
+	width: 450px;
+	height: 160px;
+	border-right: 0.7px solid #CCCCCC;
+	float: left;
+	margin-top: 20px;
+	margin-left: 15px;
+}
+div[class="list_place"]{ /* 리스트의 여행지 이름 div*/
+	width: 430px;
+	height: 80px;
+	overflow: hidden;
+	margin-top: 10px;
+}
+p[class="list_place"]{ /* 리스트의 장소이름 글자 */
+	font-size: 20px;
+	margin-top: 0; 
+	font-weight: bold;
+}
+div[class="list_thema"]{ /*리스트의 태그 div */
+	float: left;
+	width: 330px;
+	height: 80px;
+}
+p[class="list_thema"]{ /*리스트의 태그 글자 */
+	color: #6C94B8;
+	padding: 4px 12px;
+	border: 1px solid #6C94B8;
+	border-radius: 20px;
+	box-shadow: 2px 2px 5px rgba(0,0,0,.25);
+	float: left;
+	font-size: 10px;
+	font-weight: bold;
+	margin-bottom: 8px;
+	margin-right: 12px;
+}
+input[name="delete"]{ /*장소 삭제버튼 */
+	float: right;
+	width: 110px;
+	height: 35px;
+	margin-top: 35px;
+	margin-right: 10px;
+}
+div[class="content_detail"]{ /* 예상 예산, 일정 상세보기 버튼 부분 div */
+	margin: 10px 0px;
+	width: 160px;
+	height: 160px;
+	float: right;
+}
+p[class="list_budget"]{ /* 예상 예산 글자 */
+	font-size: 18px;
+	padding-top: 40px;
+	padding-left: 10px;
+	font-weight: bold;
+}
+input[name="detail"]{ /*일정 상세보기 버튼 */
+	width: 150px;
+	height: 35px;
+	margin-top: 43px;
+}
+input[name="add_place"]{ /* 일정추가하기 버튼 */
+	width: 180px;
+	height: 45px;
+	float: right;
+	margin-top: 20px;
+	border-radius: 10px;
+}
+input[name="save_plan"]{ /*저장 버튼 */
+	margin: 0 310px;
+	width: 180px;
+	height: 45px;
+	margin-top: 130px;
+	cursor: pointer;
+}
+div[id="side_menu"]{ /*사이드 메뉴 div*/
+	position: fixed;
+	width: 120px;
+	height: 60px;
+	top: 260px;
+	right: 350px;
+	border-radius: 10px;
+	border: 2px solid rgb(64,64,64);
+}
+#side_menu_p{ /*side menu 글자 */
+	margin: 5px 0;	
+	font-weight: bold;
+}
+div[id="side_inner"]{ /*side menu 글자 아래의 사이드메뉴 내부 div */
+	position: fixed;
+	top: 295px;
+	right: 350px;
+	width: 120px;
+	border: 2px solid #0D112D;
+	border-radius: 0px 0px 10px 10px;
+	background-color: #f1f1f3;
+}
+input[name*="plan_sel"]{ /*일정선택목록으로, 일정추가하기 버튼 */
+	width: 100px;
+	height: 70px;
+	margin: 5px 10px;
+	cursor: pointer;
+}
+
+footer {
+	margin-top: 100px;
+}

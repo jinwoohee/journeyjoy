@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+body {
+    margin: 0px;
+	font-family: "Noto Sans KR", sans-serif;
+	color: #646464;
+}
+
+table {
+	border: 0px;
+	font-size: 15px;
+	width: 1200px;
+	border-collapse: collapse;
+	overflow: hidden;
+	margin-bottom: 200px;
+}
+/* 검색리스트 행 */
+tr:hover {
+	background-color: #f1f1f3;
+}
+/* 검색리스트-카테고리 */
+th {
+	padding: 10px;
+	background-color: #2c609c;
+}
+/* 검색리스트-상세내용 */
+td {
+	height: 20px;
+	text-align: center;
+	border-bottom: 1px solid #2c609c;
+}
+/* 검색리스트-회사명 */
+p:first-of-type {
+	text-align: left;
+}
+/* 검색리스트-제목 */
+p:last-of-type {
+	text-align: left;
+	margin-top: -5px;
+}
+tr th {
+	color: #f1f1f3;
+}
+tr a {
+	color: #646464;
+	text-decoration: none;
+}

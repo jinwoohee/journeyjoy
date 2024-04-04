@@ -1,0 +1,327 @@
+body {
+	font-family: "Noto Sans KR", sans-serif;
+	margin: 0;
+	color: #646464;
+}
+*{
+	margin: 0;
+}
+/* 메뉴바 */
+header>iframe {
+	z-index: 100;
+}
+div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
+	padding-top: 200px;
+	width: 1200px;
+	height: 1500px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+div[id="list_text"]{ /* "여행계획서" 글자 div 와 아래의 선 */
+	width: 1200px;
+	height: 40px;
+	border-bottom: 0px solid rgb(64,64,64);
+}
+p[id="list_text"]{ /* "여행계획서" 글자 */
+	float: left;
+	margin-top: 0px;
+	margin-left: 0px;
+	font-size: 20px;
+	font-weight: bold;
+}
+div[id="radio_div"]{ /*라디오버튼 div*/
+	width: 900px;
+	height: 40px;
+	margin: 0 auto;
+}
+input[name="plan"]{ /*여행계획서, 가계부, 체크리스트 버튼*/
+	display: none;
+}
+.plan_radio{ /*여행계획서, 가계부, 체크리스트 라디오버튼 */
+	float: left;
+	padding: 5px 20px;
+	background-color: white;
+	border-radius: 10px;
+	border: 1px solid #6C94B8;
+	font-weight: bold;
+	font-size: 15px;
+	margin-right: -10px;
+	margin-left: 20px;
+	margin-top: 10px;
+	color:  #6C94B8;
+	cursor: pointer;
+}
+div[id="plan"]{ /*여행계획서 자체 div*/
+	width: 900px;
+	height: 1500px;
+	background-color: white;
+	margin: 20px auto;	
+	border-radius: 10px;
+	border: 2px solid #0D112D;
+	box-shadow: 3px 3px 3px #CCCCCC;
+}
+input[name="plan_subject"]{ /*제목 text*/
+	width: 700px;
+	height: 40px;
+	border: 2px solid ;
+	border-radius: 10px;
+	margin: 25px 70px;
+	margin-top: 40px;
+	font-weight: bold;
+	font-family: "Noto Sans KR", sans-serif;
+	font-size: 12px;
+	color: rgb(64,64,64);
+}
+div[id="plan_info"]{ /*여행정보(도시,날짜,테마) div*/
+	width: 600px;
+	height: 150px;
+	margin-left: 70px;
+	margin-bottom: -20px;
+}
+p[id="city"]{ /*도시 */
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 5px;
+	color: #646464;
+}
+p[id="plan_date"]{ /*여행날짜*/
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 5px;
+	color: #646464;
+}
+p[class="list_thema"]{ /*선택한 테마 글자*/
+	color: #6C94B8;
+	padding: 4px 12px;
+	border: 1px solid #6C94B8;
+	border-radius: 20px;
+	box-shadow: 2px 2px 5px rgba(0,0,0,.25);
+	float: left;
+	font-size: 10px;
+	font-weight: bold;
+	margin-bottom: 8px;
+	margin-right: 12px;
+}
+div[id="plan_div"]{ /*여행일정 div*/
+	width: 800px;
+	margin: 0 auto;
+}
+p[class="plan_sub"]{ /*여행일정, 추가상품 글자 폰트*/
+	font-size: 20px;
+	margin-left: 25px;
+	font-weight: bold;
+	color: #646464;
+}
+div[class="plan_day"]{ /*여행일정 box 테두리 */
+	width: 750px;
+	height: 80px;
+	background-color: white;
+	margin: 30px auto;
+
+}
+div[class="plan_date"]{ /*일차수 div*/
+	float: left;
+	width: 200px;
+	height: 90px;
+	background: #6C94B8;
+	border-radius: 10px 0 0 10px;
+	border: 1px solid #6C94B8;
+	color: white;
+	text-align: center;
+	align-items: center;
+}
+p[class="day"]{ /*n일차 글자 */
+	margin: 0;
+	padding: 17px 20px;
+	padding-bottom: 0px;
+	font-size: 20px;	
+	font-weight: bold;
+}
+p[class="date"]{ /* 날짜,요일 */
+	margin: 0;
+	padding: 12px 22px;
+	padding-top: 5px;
+	font-size: 14px;
+}
+p[class="place_name"]{ /*여행일정 박스 안 여행지이름 글자*/
+	font-size: 20px;
+	margin-left: 10px;
+	color: #646464;
+}
+div[class="plan_detail"]{ /*상세정보 div*/
+	width: 540px;
+	height: 90px;
+	float: left;
+	border-radius: 0 10px 10px 0;
+	border: 1px solid #6C94B8;
+	margin-left: 0;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+button[class="up"]{ /*상세정보 열고닫기 버튼*/
+	float:	right;
+	border: solid white;
+	padding: 0px;
+	padding-left: 30px;
+	margin-right: 35px;
+	background-color: white;
+	cursor: pointer;
+}
+img[src*="arrow"]{
+	width: 25px;
+	height: 25px;
+}
+img[src*="up"]{
+	display: none;
+}
+
+div[class="detail_info"]{ /*상세정보 열었을때 div*/
+	width: 750px;
+	height: 100%;
+	margin: 30px 0;
+	display: none;
+}
+div[class="map_info"]{ /*지도 감싸는 div*/
+	width: 750px;
+	height: 410px;
+	background-color: grey;
+}
+div[class="map"]{/*상세정보 안의 지도 div*/
+	float: left;
+	width: 450px;
+	height: 400px;
+	background-color: white;
+}
+div[class="place_info"]{/*상세정보 안의 장소 정보*/
+	float: right;
+	width: 280px;
+	height: 400px;
+	background-color: white;
+}
+div[class="place"]{ /*장소 리스트 div*/
+	width: 600px;
+	height: 50px;
+	margin: 10px auto;
+	border-radius: 5px;
+	border: 2px solid #0D112D;
+	background-color: white;
+}
+h3[class="place_name"]{ /*장소이름*/
+	margin: 5px;
+	padding: 10px 20px;
+	padding-bottom: 0px;
+	float: left;
+}
+h4[class="place_thema"]{ /*장소 테마*/
+	font-size: 8pt;
+	border: 1.5px solid #0D112D;
+	border-radius: 5px;
+	float: left;
+	padding: 7px 9px;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+div[id="product"]{ /*추가상품,추천상품 전체 div*/
+	width: 800px;
+	height: 100%;
+	margin: 0 20px;
+}
+div[class="product_add"]{/*추가상품, 추천상품 각각 div*/
+	width: 800px;
+	height: 100%;
+	margin: 30px auto;
+}
+table[id="product"]{/*추가상품 테이블*/
+	width: 790px;
+	height: 30px;
+	border: 2px solid #0D112D;
+	border-radius: 5px;
+	margin-top: 15px;
+	background-color: white;
+}
+td[class="product"]{/*테이블 맨위 정보 행*/
+	height: 20px;
+	border-bottom: 2px solid #0D112D;
+}
+td[class="item"]{
+	height: 30px;
+}
+td[id="del"]{
+	width: 40px;
+}
+
+div[id="product_adv"]{ /*추천상품 리스트 div*/
+	width: 1400px;
+	height: 240px;
+	border: 2px solid #0D112D;
+	border-radius: 5px;
+	background-color: white;
+}
+iframe{
+	width: 800px;
+	height: 270px;
+	border: 0;
+}
+div[class="product_item"]{ /*리스트 안 항목div */
+	width: 170px;
+	height: 175px;
+	border: 2px solid #0D112D;
+	border-radius: 5px;
+	margin-top: 15px;
+	margin-left: 15px;
+	float: left;
+}
+img[src*="ticket"]{ /*티켓 이미지*/
+	width: 150px;
+	height: 70px;
+	margin: 10px 10px;
+	border-radius: 5px;
+	border: 2px solid #0D112D;
+}
+table[class="product_tb"]{ /* 추천상품 정보 테이블 */
+	margin-left: 10px;
+	width: 150px;
+}
+td[class="product_item"]{ /* 추천상품 td */
+	border-bottom: 1.5px solid #0D112D;
+	width: 150px;
+}
+input[name="save_plan"]{ /*저장 버튼*/
+	width: 300px;
+	height: 50px;
+	border-radius: 5px;
+	float: left;
+	font-size: 16pt;
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-weight: bold;
+	color: rgb(64,64,64);
+	background-color: white;
+	margin-top: 120px;
+	margin-left: 250px;
+	cursor: pointer;
+}
+button[class="plus_prod"]{ /*추가상품 추가버튼*/
+	width: 10px;
+	height: 15px;
+	float: right;
+	margin-right: 5px;
+	background-color: white;
+	border: solid white;
+	cursor: pointer;
+}
+button[class="minus_prod"]{ /*추가상품 삭제버튼*/
+	width: 1px;
+	height: 1px;
+	float: right;
+	margin-right: 20px;
+	margin-top: -7px;
+	background-color: white;
+	border: 0px solid white;
+	cursor: pointer;
+}
+
+footer{
+	margin-top: 100px;
+}
