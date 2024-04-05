@@ -230,7 +230,7 @@
 		<where>
 			<trim prefixOverrides="and" suffixOverrides="and">
 			<if test="!param.equals('')">
-				<if test="param.equals('healing') || param.equals('acticity') || param.equals('nature') || param.equals('themepark') || param.equals('eating') || param.equals('favorite')">
+				<if test="param.equals('healing') || param.equals('activity') || param.equals('nature') || param.equals('themepark') || param.equals('eating') || param.equals('favorite')">
 					p.p_theme = #{param}
 				</if>
 				<if test="param.equals('japan') || param.equals('canada')">
@@ -256,7 +256,7 @@
 	<insert id="pscheduleInsert" parameterType="java.util.HashMap">
 		INSERT INTO package_schedule VALUES
 			<foreach collection="package_schedule" item="item" index="index" separator=",">
-				(${item.p_no}, #{item.ps_schedule}, #{item.ps_day}, #{item.ps_title}, #{item.ps_contents}, #{item.ps_notification}, #{item.ps_file1}, #{item.ps_file2}, #{item.ps_file3})
+				(${item.p_no}, #{item.ps_schedule}, #{item.ps_day}, #{item.ps_title}, #{item.ps_contents}, #{item.ps_notification})
 			</foreach>
 	</insert>
 	
@@ -285,7 +285,12 @@
 	
 	<!-- 상세보기/일정 select -->
 	<select id="packageScheduleSelect" resultType="com.jj.dto.Package_schedule" parameterType="int">
-		SELECT * FROM package_schedule WHERE p_no = ${p_no};
+	   SELECT DISTINCT ps.ps_day, ps.ps_schedule, ps_title, ps_contents, ps_notification,
+              p.plac_no, p.plac_name, p.plac_addr, p.plac_explan, p.plac_file1, p.plac_file2, p.plac_file3
+       FROM package_schedule ps
+       LEFT JOIN place p
+       ON ps.ps_schedule in (p.plac_no)
+       WHERE ps.p_no = ${p_no}
 	</select>
 	
 	<!-- 상세보기/참여 select -->

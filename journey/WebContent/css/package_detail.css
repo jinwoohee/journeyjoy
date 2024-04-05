@@ -283,13 +283,77 @@ aside input[name='cancel']{
 }
 
 /* 일정안내 - 상세보기 */
-.day_detail{
-	width: 880px;
-	height: 300px;
-	border-radius: 0 0 5px 5px;
-	background: #f1f1f3;
+.day_detail{width: 880px; border: 1px solid #CCCCCC; display: flow;}
+
+.place_detail div{
+	margin-left: 20px;
 }
 
+.place_detail > div:first-of-type{
+	width: 880px;
+	display: flex;
+    align-items: center;
+}
+
+/* 장소이름 */
+.place_detail > div:first-of-type> p{
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 0;
+	float: left;
+	color : #0D112D;
+}
+
+/* 주소 */
+.place_detail > div:nth-of-type(2){
+	border-left: 2px solid #CCCCCC;
+	padding-left: 10px;
+}
+.place_detail > div:nth-of-type(2) > p{
+	color : #CCCCCC;
+	font-size: 15px;
+}
+
+.place_detail hr{
+	width: 840px;
+	margin-top : 20px;
+	margin-bottom : 20px;
+	margin-left: 20px;
+}
+
+/* 장소정보 */
+.place_detail > div:nth-of-type(3){
+	width : 840px;
+	line-height : 2;
+	font-size : 18px;
+}
+
+/* 일정내용 */
+.contents{width:840px; margin-left: 20px; margin-top: 80px;}
+
+.contents > div:first-of-type > p{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.contents > div:nth-of-type(2) > p{
+	width : 840px;
+	line-height : 2;
+	font-size : 18px;
+	margin-bottom: 50px;
+}
+
+.contents > div:nth-of-type(3) > p{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.contents > div:last-of-type > p{
+	width : 840px;
+	line-height : 2;
+	font-size : 18px;
+	margin-bottom: 50px;
+}
 
 /* 여행시 유의사항 */
 #main_section > article:last-of-type >div:first-of-type{

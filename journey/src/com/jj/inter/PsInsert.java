@@ -38,14 +38,6 @@ public class PsInsert implements JourneyInterface{
 			ps = (Package_schedule)a.get(key);
 			psList.add(ps);
 			psMap.put("package_schedule", psList);
-			
-			/*
-			 * System.out.println(key); System.out.println("리스트 개수 : " + psList.size());
-			 * System.out.println("타이틀 : " +
-			 * psList.get(Integer.parseInt(key)-1).getPs_title());
-			 * System.out.println("일정 : " +
-			 * psList.get(Integer.parseInt(key)-1).getPs_schedule());
-			 */
 		}
 		
 		PsInsertDB psInsertDB = PsInsertDB.insert();

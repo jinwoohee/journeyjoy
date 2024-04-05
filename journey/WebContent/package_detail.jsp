@@ -256,12 +256,34 @@
 						out.println("<p>"+psList.getPs_title()+"</p>");
 						out.println("<img src='img/icon/arrow_up.png'></div>");
 						out.println("</div>");
-					}
 				%>
-
+				<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
 				<div class="day_detail">
-				<% 
-					
+					<div class="place_detail">
+						<%
+							out.println("<div><p>"+psList.getPlac_name()+"</p></div>");
+							out.println("<div><p>"+psList.getPlac_addr()+"</p></div><hr>");
+							
+							if(psList.getPlac_file1() != null){
+								out.println("<div><img src='"+psList.getPlac_file1()+"'></div>");
+							}else if(psList.getPlac_file2() != null){
+								out.println("<div><img src='"+psList.getPlac_file2()+"'></div>");
+							}else if(psList.getPlac_file3() != null){
+								out.println("<div><img src='"+psList.getPlac_file3()+"'></div>");
+							}
+							out.println("<div><p>"+psList.getPlac_explan()+"</p></div>");
+						%>	
+					</div>
+					<div class="contents">
+						<div><p>※ 일정 내용</p></div>
+						<%
+							out.println("<div><p>"+psList.getPs_contents()+"</p></div>");
+							out.println("<div><p>※ 공지사항</p></div>");
+							out.println("<div><p>"+psList.getPs_notification()+"</p></div>");
+						%>
+					</div>
+				<% 						
+					}
 				%>
 				</div>
 			</div>

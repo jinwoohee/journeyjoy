@@ -8,10 +8,58 @@ public class Package_schedule {
 	private String ps_title;
 	private String ps_contents;
 	private String ps_notification;
-	private String ps_file1;
-	private String ps_file2;
-	private String ps_file3;
 	
+	private int plac_no;
+	private String plac_name;
+	private String plac_addr;
+	private String plac_explan;
+	private String plac_file1;
+	private String plac_file2;
+	private String plac_file3;
+	
+	
+	public int getPlac_no() {
+		return plac_no;
+	}
+	public void setPlac_no(int plac_no) {
+		this.plac_no = plac_no;
+	}
+	public String getPlac_name() {
+		return plac_name;
+	}
+	public void setPlac_name(String plac_name) {
+		this.plac_name = plac_name;
+	}
+	public String getPlac_addr() {
+		return plac_addr;
+	}
+	public void setPlac_addr(String plac_addr) {
+		this.plac_addr = plac_addr;
+	}
+	public String getPlac_explan() {
+		return plac_explan;
+	}
+	public void setPlac_explan(String plac_explan) {
+		this.plac_explan = plac_explan;
+	}
+	public String getPlac_file1() {
+		return plac_file1;
+	}
+	public void setPlac_file1(String plac_file1) {
+		this.plac_file1 = plac_file1;
+	}
+	public String getPlac_file2() {
+		return plac_file2;
+	}
+	public void setPlac_file2(String plac_file2) {
+		this.plac_file2 = plac_file2;
+	}
+	public String getPlac_file3() {
+		return plac_file3;
+	}
+	public void setPlac_file3(String plac_file3) {
+		this.plac_file3 = plac_file3;
+	}
 	public int getP_no() {
 		return p_no;
 	}
@@ -48,24 +96,6 @@ public class Package_schedule {
 	}
 	public void setPs_notification(String ps_notification) {
 		this.ps_notification = ps_notification;
-	}
-	public String getPs_file1() {
-		return ps_file1;
-	}
-	public void setPs_file1(String ps_file1) {
-		this.ps_file1 = ps_file1;
-	}
-	public String getPs_file2() {
-		return ps_file2;
-	}
-	public void setPs_file2(String ps_file2) {
-		this.ps_file2 = ps_file2;
-	}
-	public String getPs_file3() {
-		return ps_file3;
-	}
-	public void setPs_file3(String ps_file3) {
-		this.ps_file3 = ps_file3;
 	}
 	
 }

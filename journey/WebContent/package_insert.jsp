@@ -180,9 +180,9 @@
 					    		<option value="healing">힐링</option>
 					    		<option value="activity">체험/액티비티</option>
 					    		<option value="nature">자연</option>
-					    		<option value="themePark">테마파크</option>
-					    		<option value="eat">먹방</option>
-					    		<option value="pick">덕질</option>
+					    		<option value="themepark">테마파크</option>
+					    		<option value="eating">먹방</option>
+					    		<option value="favorite">덕질</option>
 						  	</select>
 						</td>
 					</tr>

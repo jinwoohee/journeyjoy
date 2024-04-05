@@ -33,9 +33,6 @@
 		ps.setPs_title(request.getParameterValues("title")[i]);
 		ps.setPs_contents(request.getParameterValues("contents")[i]);
 		ps.setPs_notification(request.getParameterValues("notice")[i]);
-		ps.setPs_file1("");
-		ps.setPs_file2("");
-		ps.setPs_file3("");
 		
 		map.put(request.getParameterValues("ps_day")[i], ps);
 	}

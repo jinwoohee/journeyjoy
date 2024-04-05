@@ -163,7 +163,7 @@
 			<div id='popular'><img alt="인기순" src="img/icon/search2.png"></div>
 			<div id='closing'><img alt="마감순" src="img/icon/search3.png"></div>
 			<div id='healing'><img alt="힐링" src="img/icon/search4.png"></div>
-			<div id='acticity'><img alt="체험/액티비티" src="img/icon/search12.png"></div>
+			<div id='activity'><img alt="체험/액티비티" src="img/icon/search12.png"></div>
 			<div id='nature'><img alt="자연" src="img/icon/search6.png"></div>
 			<div id='themepark'><img alt="테마파크" src="img/icon/search5.png"></div>
 			<div id='eating'><img alt="먹방" src="img/icon/search8.png"></div>

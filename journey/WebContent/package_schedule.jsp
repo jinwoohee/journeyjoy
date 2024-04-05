@@ -169,17 +169,6 @@
 								<textarea name='notice' maxlength='100' cols='5' placeholder='공지사항 입력'></textarea>
 							</td>
 						</tr>
-						<tr><td>첨부파일</td></tr>
-						<tr>
-							<td>
-								<div id='file'>
-									<div></div>
-									<div></div>
-									<div></div>
-								<input type='button' value='파일 등록'>
-							</div>
-						</td>
-					</tr>
 				</table>
 					<div id='buttonArea'>
 						<input type="hidden" name="p_no" value="<%=p_no%>">
