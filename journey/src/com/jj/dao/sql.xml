@@ -210,7 +210,7 @@
 	
 	<!-- 패키지 리스트 select -->
 	<select id="packageSelect" resultType="com.jj.dto.Package" parameterType="java.util.HashMap">
-		SELECT DISTINCT p.p_no, p.p_file, p.p_title, u.u_nickname, r.child_fee
+		SELECT DISTINCT p.p_no, p.p_file, p.p_nation, p.p_city, p.p_title, u.u_nickname, r.child_fee
 		FROM package p
 		LEFT JOIN user u
 		ON p.u_id = u.u_id
@@ -220,8 +220,8 @@
 	</select>
 	
 	<!-- 패키지 검색 -->
-	<select id="packageSearch" resultType="com.jj.dto.Package" parameterType="java.util.HashMap">
-		SELECT DISTINCT p.p_no, p.p_nation, p.p_file, p.p_title, u.u_nickname, r.child_fee
+	<select id="packageSearch" resultType="com.jj.dto.Package" parameterType="String">
+		SELECT DISTINCT p.p_no, p.p_file, p.p_nation, p.p_city, p.p_title, u.u_nickname, r.child_fee, p.p_due_date
 		FROM package p 
 		LEFT JOIN user u
 		ON p.u_id = u.u_id
@@ -229,37 +229,22 @@
 		ON p.p_no = r.p_no
 		<where>
 			<trim prefixOverrides="and" suffixOverrides="and">
-			<!-- <if test="!param1.equals('choice')">
-				<if test="param1.equals('progress')">
-					<![CDATA[p.p_due_date >= curdate()]]> and
+			<if test="!param.equals('')">
+				<if test="param.equals('healing') || param.equals('acticity') || param.equals('nature') || param.equals('themepark') || param.equals('eating') || param.equals('favorite')">
+					p.p_theme = #{param}
 				</if>
-				<if test="param1.equals('end')">
-					<![CDATA[p.p_due_date < curdate()]]> and
+				<if test="param.equals('japan') || param.equals('canada')">
+					p.p_nation = #{param}
 				</if>
-			</if> -->
-			<if test="!param3.equals('choice')">
-				p.p_theme = #{param3} and
-			</if>
-			<if test="!param4.equals('choice')">
-				p.p_nation = #{param4} and
-			</if>
-			<if test="date !=null">
-			 	<![CDATA[p.p_due_date >= #{date}]]> and
-			</if>
-			<if test="txt != null or txt !=''">
-				p.p_title like concat('%', #{txt}, '%')
 			</if>
 			</trim>
 		</where>
-		<if test="!param2.equals('choice')">
-			<if test="param2.equals('latest')">
-				ORDER BY p.p_no DESC;
-			</if>
-			<if test="param2.equals('deadline')">
-				ORDER BY p.p_due_date DESC;
-			</if>
+		<if test="param.equals('recent')">
+			ORDER BY p.p_no DESC;
 		</if>
-		
+		<if test="param.equals('closing')">
+			ORDER BY p.p_due_date DESC;		
+		</if>
 	</select>
 	
 	<!-- 좋아요 select -->

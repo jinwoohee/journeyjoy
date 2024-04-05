@@ -19,7 +19,7 @@ public class PackageSearchDB {
 	
 	SqlSessionFactory sql = SqlMapconfig.getSqlSession();
 	
-	public List<Package> selectPackage(HashMap<String, String> param){
+	public List<Package> selectPackage(String param){
 		System.out.println("--- conn/packageSearchDB ---");
 
 		SqlSession ss = sql.openSession();

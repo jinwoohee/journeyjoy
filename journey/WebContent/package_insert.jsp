@@ -131,11 +131,11 @@
 		}else if(pForm.startDt.value == '' || pForm.endDt.value == ''){
 			alert("여행기간을 선택해주세요.");
 			return false;
-		}else if(pForm.volumn.value == ''){
+		}else if(pForm.volumn.value == '' || pForm.volumn.value < 3){
 			alert("여행최소인원을 작성해주세요.(3명이상)");
 			return false;
 		}else if(pForm.dueDt.value == ''){
-			alert("모집 마감 날짜를 선택해주세요.");
+			alert("신청 마감 날짜를 선택해주세요.");
 			return false;
 		}else if(pForm.guide.value == ''){
 			alert("가이드 비용을 작성해주세요.");
@@ -178,8 +178,11 @@
 							<select name="theme" size="1">
 					    		<option value="choice">테마</option>
 					    		<option value="healing">힐링</option>
-					    		<option value="leisure">레저</option>
+					    		<option value="activity">체험/액티비티</option>
+					    		<option value="nature">자연</option>
+					    		<option value="themePark">테마파크</option>
 					    		<option value="eat">먹방</option>
+					    		<option value="pick">덕질</option>
 						  	</select>
 						</td>
 					</tr>

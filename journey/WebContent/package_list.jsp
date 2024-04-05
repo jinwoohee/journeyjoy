@@ -85,6 +85,31 @@
         	 });
         });
         
+        /* 검색 이미지 아이콘 */
+        $('#search_section div').mouseenter(function(){
+        	$(this).css({"box-shadow":"0 0 8px #CCCCCC"});
+        });
+        $('#search_section div').mouseleave(function(){
+        	$(this).css({"box-shadow": "none"});
+        });
+        
+    	/* 검색 */
+        $('#search_section div').click(function(){
+        	if($(this).css('background-color') != 'rgb(241, 241, 243)'){
+        		console.log($(this).attr('id'));
+        		$(this).css({"background":"#f1f1f3", "border-radius":"10px"});
+        		$(this).siblings('div').css({"background":"white"});
+        		
+        		$.ajax({ //최신순, 인기순, 마감순, 힐링, 액티비티, 자연, 테마파크, 먹방, 덕질, 일본, 캐나다, 그외
+            		url : "package_list.jj?page=packageSearch",
+            		data : {"param" : $(this).attr('id')},
+            		success : function(re){
+            			$("#packageList_div").html(re);
+            		}
+            	 });
+        	}
+        });
+        
 
         /* 페이징 */
         /* $("#paging").twbsPagination({
@@ -134,40 +159,18 @@
 	<!-- 검색구간 -->
 	<section>
 		<div id="search_section">
-			<div>
-				<!-- <select name='param1'>
-					<option value="choice">전체</option>
-					<option value="progress">진행</option>
-					<option value="end">종료</option>
-				</select> -->
-
-				<select name='param2'>
-					<option value="latest">최신순</option>
-					<option value="popularity">인기순</option>
-					<option value="deadline">마감순</option>
-				</select>
-				
-				<select name='param3'>
-					<option value="choice">여행테마</option>
-					<option value="healing">힐링</option>
-					<option value="leisure">레저</option>
-					<option value="eat">먹방</option>
-				</select>
-
-				<select name='param4'>
-					<option value="choice">여행국가</option>
-					<option value="japan">일본</option>
-					<option value="canada">캐나다</option>
-					<option value="america">미국</option>
-				</select>
-
-				<input type="text" id="datepicker" name='date'>
-
-				<div id="search">
-					<input type="text" name="searchBox" placeholder="  검색단어 입력">
-					<input type="submit" id='searchBtn' value="검색">
-				</div>
-			</div>
+			<div id='recent'><img alt="최신순" src="img/icon/search1.png"></div>
+			<div id='popular'><img alt="인기순" src="img/icon/search2.png"></div>
+			<div id='closing'><img alt="마감순" src="img/icon/search3.png"></div>
+			<div id='healing'><img alt="힐링" src="img/icon/search4.png"></div>
+			<div id='acticity'><img alt="체험/액티비티" src="img/icon/search12.png"></div>
+			<div id='nature'><img alt="자연" src="img/icon/search6.png"></div>
+			<div id='themepark'><img alt="테마파크" src="img/icon/search5.png"></div>
+			<div id='eating'><img alt="먹방" src="img/icon/search8.png"></div>
+			<div id='favorite'><img alt="덕질" src="img/icon/search7.png"></div>
+			<div id='japan'><img alt="일본" src="img/icon/search9.png"></div>
+			<div id='canada'><img alt="캐나다" src="img/icon/search10.png"></div>
+			<div id='etc'><img alt="그외" src="img/icon/search11.png"></div>
 		</div>
 	</section>
 
@@ -184,14 +187,7 @@
 							out.println("<li>");
 							out.println("<input type='hidden' name='p_no' value='"+list.getP_no()+"'>");
 							out.println("<div class='thumnail'>");
-							
-							//로그인 안한 사용자 상세보기X
-							if(u_id != null){
-								out.println("<a href='packageDetail.jj?page=package_detail&p_no="+list.getP_no()+"&u_id="+u_id+"'>");
-							}else{
-								out.println("<a id='noDetail' href='#'>");
-							}
-							
+							out.println("<a href='packageDetail.jj?page=package_detail&p_no="+list.getP_no()+"&u_id="+u_id+"'>");
 							out.println("<img src='"+list.getP_file()+"'/></a></div>");
 							int flag=1;
 							for(int idx = 0 ; idx < likeList.size() ; idx++){
@@ -204,11 +200,13 @@
 							else
 								out.println("<div><img src='img/icon/heart.png'/></div>");	
 							
+							out.println("<div><p>"+list.getP_nation()+"</p></div>");
+							out.println("<div><p>"+list.getP_city()+"</p></div>");
 							out.println("<div><P class='title'>"+list.getP_title()+"</P></div>");
-				
+							out.println("<div><P>"+list.getU_nickname()+"</P></div>");
+							
 							DecimalFormat f = new DecimalFormat("###,###,###");
 							out.println("<div><P>"+f.format(list.getChild_fee())+"~</P></div>");
-							out.println("<div><P>"+list.getU_nickname()+"</P></div>");
 							out.println("</li>");
 						}
 					%>

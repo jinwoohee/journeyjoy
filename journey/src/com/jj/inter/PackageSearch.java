@@ -7,9 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jj.conn.LikeSelectDB;
 import com.jj.conn.PackageSearchDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Package;
+import com.jj.dto.Package_like;
 
 public class PackageSearch implements JourneyInterface{
 	
@@ -24,17 +26,16 @@ public class PackageSearch implements JourneyInterface{
 		
 		System.out.println("---inter/PackageSearch---");
 
-		HashMap<String, String> param = new HashMap<String, String>();
-		//param.put("param1", request.getParameter("param1"));
-		param.put("param2", request.getParameter("param2"));
-		param.put("param3", request.getParameter("param3"));
-		param.put("param4", request.getParameter("param4"));
-		param.put("date", request.getParameter("date"));
-		param.put("txt", request.getParameter("txt"));
+		String param = request.getParameter("param");
 		
 		PackageSearchDB searchPackage = PackageSearchDB.select();
 		List<Package> pkList = searchPackage.selectPackage(param);
 		request.setAttribute("pkList", pkList);
+		
+		/* 좋아요 */
+		LikeSelectDB selectLike = LikeSelectDB.select();
+		List<Package_like> likeList = selectLike.selectLike();
+		request.setAttribute("likeList", likeList);
 
 		return "ajax.jsp";
 	}
