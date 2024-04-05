@@ -4,6 +4,7 @@
 <%@page import="java.net.URLDecoder"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <%
 	String u_id = (String) session.getAttribute("u_id");
 %>
@@ -17,26 +18,7 @@
 	
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<style type="text/css">
-		.fcolor {
-			color: #f1f1f3;
-		}
-		.bcolor {
-			background-color: #2c609c;
-		}
-		.orifcolor {
-			color: #646464;
-		}
-		.oribcolor {
-			background-color: #f1f1f3;
-		}
-		.word {
-			font-weight: bold;
-			border: 2px solid #2c609c;
-			border-radius: 10px;
-    		background-color: #f1f1f3;
-		}
-	</style>
+	
 	<script type="text/javascript">
 		var onclk1 = true; //큰 조건 선택시 글자색
 		var onclk2 = true; //큰 조건 선택시 배경색
@@ -48,7 +30,7 @@
 		$(document).ready(function() {
 			$('.ly_sub, .resultSetWrap, .arrup').hide();
 			$('.sub1, .sub2, .sub3, .sub4, .sub5, .sub6, .sub7, .sub8, .sub9').parent().hide(); //직종 상세 레이어
-			$('.sub10, .sub11, .sub12, .sub13, .sub14, .sub15').parent().hide(); //국가 상세 레이어
+			$('.sub10, .sub11, .sub12, .sub13, .sub14, .sub15, .sub16, .sub17, .sub18').parent().hide(); //국가 상세 레이어
 			
 			//큰 조건 클릭 시 글자,배경색 변화
 			$('.detailBox>dl>dt').click(function() {
@@ -173,7 +155,7 @@
 								
 								if (checked) {
 									if ($label.text() == '전체') { //text가 전체일때
-										$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+										$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 										if ($name == $input.attr('name')) { //같은 name의 input만
 											$input.next().css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
 										}
@@ -190,7 +172,7 @@
 											$('.resultSetWrap').show();
 										}
 									} else { //text가 전체가 아닐때
-										$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+										$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 										$input.next().eq(0).css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
 										
 										var gdata = '[data-group!='+ chkid +'] [data-name*='+ $name +']';
@@ -224,7 +206,7 @@
 								var $label = $(this).next();
 
 								if (checked) { //1차 선택시
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 									$(this).parent().siblings('.item').find('label').css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
 									
 									//직종 상세 레이어
@@ -327,6 +309,9 @@
 										$('.sub13').parent().hide();
 										$('.sub14').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub10').parent().show();
 									} else if ($label.text() == '캐나다') {
 										$('.sub10').parent().hide();
@@ -334,6 +319,9 @@
 										$('.sub13').parent().hide();
 										$('.sub14').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub11').parent().show();
 									} else if ($label.text() == '필리핀') {
 										$('.sub10').parent().hide();
@@ -341,6 +329,9 @@
 										$('.sub13').parent().hide();
 										$('.sub14').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub12').parent().show();
 									} else if ($label.text() == '미국') {
 										$('.sub10').parent().hide();
@@ -348,6 +339,9 @@
 										$('.sub12').parent().hide();
 										$('.sub14').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub13').parent().show();
 									} else if ($label.text() == '호주') {
 										$('.sub10').parent().hide();
@@ -355,6 +349,9 @@
 										$('.sub12').parent().hide();
 										$('.sub13').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub14').parent().show();
 									} else if ($label.text() == '뉴질랜드') {
 										$('.sub10').parent().hide();
@@ -362,7 +359,40 @@
 										$('.sub12').parent().hide();
 										$('.sub13').parent().hide();
 										$('.sub14').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub15').parent().show();
+									} else if ($label.text() == '동남아') {
+										$('.sub10').parent().hide();
+										$('.sub11').parent().hide();
+										$('.sub12').parent().hide();
+										$('.sub13').parent().hide();
+										$('.sub14').parent().hide();
+										$('.sub15').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
+										$('.sub16').parent().show();
+									} else if ($label.text() == '중국') {
+										$('.sub10').parent().hide();
+										$('.sub11').parent().hide();
+										$('.sub12').parent().hide();
+										$('.sub13').parent().hide();
+										$('.sub14').parent().hide();
+										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub18').parent().hide();
+										$('.sub17').parent().show();
+									} else if ($label.text() == '유럽') {
+										$('.sub10').parent().hide();
+										$('.sub11').parent().hide();
+										$('.sub12').parent().hide();
+										$('.sub13').parent().hide();
+										$('.sub14').parent().hide();
+										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().show();
 									}
 								} else { //1차 선택해제시
 									$label.css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
@@ -401,6 +431,12 @@
 										$('.sub14').parent().hide();
 									} else if ($label.text() == '뉴질랜드') {
 										$('.sub15').parent().hide();
+									} else if ($label.text() == '동남아') {
+										$('.sub16').parent().hide();
+									} else if ($label.text() == '중국') {
+										$('.sub17').parent().hide();
+									} else if ($label.text() == '유럽') {
+										$('.sub18').parent().hide();
 									}
 								}
 							});
@@ -428,12 +464,12 @@
 
 							if (checked) {
 								if (chkid == 'date1') { //평일 클릭했을때
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
-									$('#date3').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //월
-									$('#date4').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //화
-									$('#date5').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //수
-									$('#date6').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //목
-									$('#date7').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //금
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$('#date3').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //월
+									$('#date4').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //화
+									$('#date5').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //수
+									$('#date6').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //목
+									$('#date7').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //금
 									$('#date3').attr('checked', true);
 									$('#date4').attr('checked', true);
 									$('#date5').attr('checked', true);
@@ -444,9 +480,9 @@
 									$('.items').append('<li id='+ chkid + ' name=' + chkname + ' data-group='+ chkid + '><button>'+ $label.text() +'<span class="ico">-'+ lb_value +'삭제</span></button></li>');
 									$('.items li').data('group', chkid);
 								} else if (chkid == 'date2') { //주말 클릭했을때
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
-									$('#date8').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //토
-									$('#date9').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //일
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$('#date8').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //토
+									$('#date9').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //일
 									$('#date8').attr('checked', true);
 									$('#date9').attr('checked', true);
 									
@@ -455,23 +491,23 @@
 									$('.items li').data('group', chkid);
 								} else if (wlen >= 4) { //월,화,수,목,금 모두 클릭했을때
 									console.log('week all');
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
-									$('#date1').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$('#date1').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 									$('#date1').prop('checked', true);
 									
 									$('.items li[name=week]').remove(); //검색창에 월,화,수,목,금 모두 삭제
 									//검색창에 평일 추가
 									$('.items').append('<li id="date1" name="date" data-group="date1"><button>'+ $('#date1').next().text() +'<span class="ico">-com_work_days삭제</span></button></li>');
 								} else if (wklen >= 1) { //토,일 모두 클릭했을때
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
-									$('#date2').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$('#date2').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 									$('#date2').prop('checked', true);
 									
 									$('.items li[name=weekend]').remove(); //검색창에 토,일 모두 삭제
 									//검색창에 주말 추가
 									$('.items').append('<li id="date2" name="date" data-group="date2"><button>'+ $('#date2').next().text() +'<span class="ico">-com_work_days삭제</span></button></li>');
 								} else {
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 									$('.items').append('<li id='+ chkid + ' name=' + chkname + ' data-group='+ chkid + '><button>'+ $label.text() +'<span class="ico">-'+ lb_value +'삭제</span></button></li>');
 									$('.items li').data('group', chkid);
 								}
@@ -994,6 +1030,18 @@
 											<input type="checkbox" class="inp_chk" id="nt6" name="nation">
 											<label class="lb_tag" for="nt6">뉴질랜드</label>
 										</li>
+										<li class="item">
+											<input type="checkbox" class="inp_chk" id="nt7" name="nation">
+											<label class="lb_tag" for="nt7">동남아</label>
+										</li>
+										<li class="item">
+											<input type="checkbox" class="inp_chk" id="nt8" name="nation">
+											<label class="lb_tag" for="nt8">중국</label>
+										</li>
+										<li class="item">
+											<input type="checkbox" class="inp_chk" id="nt9" name="nation">
+											<label class="lb_tag" for="nt9">유럽</label>
+										</li>
 									</ul>
 								</dd>
 								<dd class="ly_sub">
@@ -1027,6 +1075,18 @@
 													<li class="item">
 														<input type="checkbox" class="inp_chk" id="nat6" name="nation">
 														<label class="lb_tag" for="nat6" value="com_country">뉴질랜드</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk" id="nat7" name="nation">
+														<label class="lb_tag" for="nat7" value="com_country">동남아</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk" id="nat8" name="nation">
+														<label class="lb_tag" for="nat8" value="com_country">중국</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk" id="nat9" name="nation">
+														<label class="lb_tag" for="nat9" value="com_country">유럽</label>
 													</li>
 												</ul>
 											</dd>
@@ -1178,6 +1238,88 @@
 													<li class="item">
 														<input type="checkbox" class="inp_chk sub15" id="nat6_step4" name="nation6">
 														<label class="lb_tag" for="nat6_step4" value="com_city">퀸스타운</label>
+													</li>
+													
+													<%-- 동남아 --%>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step1" name="nation6">
+														<label class="lb_tag" for="nat7_step1">전체</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step2" name="nation6">
+														<label class="lb_tag" for="nat7_step2">방콕</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step3" name="nation6">
+														<label class="lb_tag" for="nat7_step3">세부</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step4" name="nation6">
+														<label class="lb_tag" for="nat7_step4">싱가포르</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step5" name="nation6">
+														<label class="lb_tag" for="nat7_step5">다낭</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step6" name="nation6">
+														<label class="lb_tag" for="nat7_step6">타이베이</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step7" name="nation6">
+														<label class="lb_tag" for="nat7_step7">마닐라</label>
+													</li>
+													
+													<%-- 중국 --%>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step1" name="nation6">
+														<label class="lb_tag" for="nat8_step1">전체</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step2" name="nation6">
+														<label class="lb_tag" for="nat8_step2">상하이</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step3" name="nation6">
+														<label class="lb_tag" for="nat8_step3">베이징</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step4" name="nation6">
+														<label class="lb_tag" for="nat8_step4">광저우</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step5" name="nation6">
+														<label class="lb_tag" for="nat8_step5">청도</label>
+													</li>
+													
+													<%-- 유럽 --%>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step1" name="nation6">
+														<label class="lb_tag" for="nat9_step1">전체</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step2" name="nation6">
+														<label class="lb_tag" for="nat9_step2">로마</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step3" name="nation6">
+														<label class="lb_tag" for="nat9_step3">프랑크푸르트</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step4" name="nation6">
+														<label class="lb_tag" for="nat9_step4">런던</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step5" name="nation6">
+														<label class="lb_tag" for="nat9_step5">바르셀로나</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step6" name="nation6">
+														<label class="lb_tag" for="nat9_step6">파리</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step7" name="nation6">
+														<label class="lb_tag" for="nat9_step7">프라하</label>
 													</li>
 												</ul>
 											</dd>
@@ -1583,35 +1725,73 @@
 			
 			<article>
 				<form class="list_form">
-					<table>
-						<tr>
-							<th width="150px">근무지</th>
-							<th width="600px">회사명/공고제목</th>
-							<th width="100px">근무시간</th>
-							<th width="100px">급여</th>
-							<th width="100px">마감날짜</th>
-						</tr>
+					<div class="wrap_form">
 						<%
 							List<Company> list = (List<Company>)request.getAttribute("list");
 							
-							for (Company c : list) {
+							for (Company com : list) {
 						%>
-						<tr>
-							<td><%= c.getCom_country() + " / " + c.getCom_city() %></td>
-							<td>
-								<a href="workingholiday.jj?page=whlist&com_no=<%= c.getCom_no() %>">
-									<p><%= c.getCom_name() %></p>
-									<p><%= c.getCom_title() %></p>
-								</a>
-							</td>
-							<td><%= c.getCom_start_time() + ":00~" + c.getCom_end_time() + ":00" %></td>
-							<c:set var="salary" value="<%= c.getCom_salary() %>" />
-							<fmt:formatNumber var="sal" value="${ salary }" />
-							<td>${ sal }원</td>
-							<td><%= c.getCom_term() %></td>
-						</tr>
+						<div>
+							<a href="workingholiday.jj?page=whlist&com_no=<%= com.getCom_no() %>">
+							<ul>
+								<li>
+									<p class="com_title"><%= com.getCom_title() %></p>
+									<p class="com_name"><%= com.getCom_name() %></p>
+									<hr>
+									<p class="com_country"><%= com.getCom_country() %>(<%= com.getCom_city() %>)</p>
+									<p class="com_job"><%= com.getCom_job1() %> > <%= com.getCom_job2() %></p>
+									<p class="com_wtime"><%= com.getCom_start_time() + ":00~" + com.getCom_end_time() + ":00" %></p>
+									
+									<fmt:parseNumber var="end_time" integerOnly="true" type="number" value="<%= com.getCom_end_time() %>" />
+	                            	<fmt:parseNumber var="start_time" integerOnly="true" type="number" value="<%= com.getCom_start_time() %>" />
+	                            	<c:set var="etime" value="${ end_time }" />
+	                            	<c:set var="stime" value="${ start_time }" />
+	                            	<c:set var="wtime" value="${ etime-stime<0 ? -(etime-stime) : etime-stime }" />
+	                            	
+	                            	<c:set var="sal_name" value="<%= com.getCom_sal_name() %>" />
+	                            	<c:set var="salary" value="<%= com.getCom_salary() %>" />
+	                            	<fmt:formatNumber var="sal" value="${ salary }" /> <%-- 시급/건별 --%>
+	                            	
+	                            	<c:set var="day" value="${ salary*wtime }" /> <%-- 일급 --%>
+	                            	<fmt:formatNumber var="result1" value="${ day }" />
+	                            	
+	                            	<c:set var="workdays" value="<%= com.getCom_work_days() %>" />
+	                            	<c:set var="days" value="${ fn:split(workdays, ',') }" />
+	                            	<c:set var="week" value="${ salary*wtime*fn:length(days) }" /> <%-- 주급 --%>
+	                            	<fmt:formatNumber var="result2" value="${ week }" />
+	                            	
+	                            	<c:set var="month" value="${ salary*wtime*fn:length(days)*4 }" /> <%-- 월급 --%>
+	                            	<fmt:formatNumber var="result3" value="${ month }" />
+	                            	
+	                            	<c:set var="year" value="${ salary*wtime*fn:length(days)*4*12 }" /> <%-- 연봉 --%>
+	                            	<fmt:formatNumber var="result4" value="${ year }" />
+	                            	
+	                            	<c:if test="${ sal_name eq '시급' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ sal }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '일급' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ result1 }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '주급' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ result2 }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '월급' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ result3 }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '연봉' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ result4 }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '건별' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ sal }원</p>
+	                            	</c:if>
+	                            	
+									<p class="com_etime">~<%= com.getCom_term() %></p>
+								</li>
+							</ul>
+							</a>
+						</div>
 						<% } %>
-					</table>
+					</div>
 				</form>
 			</article>
 		</section>

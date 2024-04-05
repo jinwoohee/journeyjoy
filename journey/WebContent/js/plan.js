@@ -6,18 +6,16 @@ $(function() {
 	$('input[name=plan], .place').mouseout(function(){
 		$(this).css({"background-color":"white", "color":"#0D112D"});
 	});
-	$('img[src*=up]').click(function() {
-		$('img[src*=up]').css({"display":"none"});
-		$('img[src*=down]').show();
-		$('.detail_info').slideUp();
-	});
-	$('img[src*=down]').click(function() {
-		$('img[src*=down]').css({"display":"none"});
-		$('img[src*=up]').show();
-		$('.detail_info').slideDown();
-	});
 
 });
-
-
+}
+function open_div(num){
+	$("img[id='open"+num+"']").css({"display":"none"});
+	$("img[id='close"+num+"']").show();
+	$("div[id='detail_info"+num+"']").slideDown();
+}
+function close_div(num){
+	$("img[id='close"+num+"']").css({"display":"none"});
+	$("img[id='open"+num+"']").show();
+	$("div[id='detail_info"+num+"']").slideUp();
 }

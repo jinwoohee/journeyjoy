@@ -29,7 +29,17 @@ function day_select(num){
 	$(list_no).css({'display':'block'});
 	
 }
+
+
 function del_list(num){
+	var day = Math.trunc(num/100);
+	
+	var val = document.getElementById("pla_val"+num).value+",";
+	var place = document.getElementById("place_name"+day);
+	
+	var result = place.value.replaceAll(val,"");
+	place.setAttribute('value',result);
+	 
 	var list = document.getElementById("list_content"+num);
 	list.remove();
 }
