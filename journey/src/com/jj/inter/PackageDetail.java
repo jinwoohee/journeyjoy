@@ -31,6 +31,8 @@ public class PackageDetail implements JourneyInterface{
 		int p_no = Integer.parseInt(request.getParameter("p_no"));
 		String u_id = request.getParameter("u_id");
 		
+		System.out.println("---inter/packageDetail---");
+		
 		//패키지 select
 		PackageDetailDB selectPackageDetail = PackageDetailDB.select();
 		com.jj.dto.Package pkDetail = selectPackageDetail.selectPackageDetail(p_no);
@@ -53,7 +55,7 @@ public class PackageDetail implements JourneyInterface{
 		
 		//참여여부 select
 		PurchaseSelectDB selectPurchase = PurchaseSelectDB.select();
-		Purchase purchase = selectPurchase.selectPur(p_no);
+		Purchase purchase = selectPurchase.selectPur(p_no, u_id);
 		request.setAttribute("purchase", purchase);
 		
 

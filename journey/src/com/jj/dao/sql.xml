@@ -282,9 +282,8 @@
 	
 	<!-- 상세보기 select -->
 	<select id="packageDetailSelect" resultType="com.jj.dto.Package" parameterType="int">
-		SELECT p.p_no, p.u_id, p.p_title, p.p_theme, p.p_nation, p.p_city, p.p_start_date, p.p_end_date, p.p_volume, p.p_due_date, p.p_file, 
-		       p.p_notification, p.p_url, u.u_nickname, u.u_profile, r.adult_fee, r.std_fee, r.child_fee,
-		       (SELECT COUNT(*) FROM purchase WHERE p_no = ${p_no}) as cnt
+		SELECT DISTINCT p.p_no, p.u_id, p.p_title, p.p_theme, p.p_nation, p.p_city, p.p_start_date, p.p_end_date, p.p_volume, p.p_due_date, p.p_file, 
+		       p.p_notification, p.p_url, u.u_nickname, u.u_profile, r.adult_fee, r.std_fee, r.child_fee
 		FROM package p
 		LEFT JOIN user u
 		ON p.u_id = u.u_id
@@ -301,14 +300,12 @@
 	
 	<!-- 상세보기/일정 select -->
 	<select id="packageScheduleSelect" resultType="com.jj.dto.Package_schedule" parameterType="int">
-		SELECT * FROM package_schedule
-		WHERE p_no = ${p_no};
+		SELECT * FROM package_schedule WHERE p_no = ${p_no};
 	</select>
 	
 	<!-- 상세보기/참여 select -->
 	<select id="purchaseSelect" resultType="com.jj.dto.Purchase" parameterType="int">
-		SELECT * FROM purchase
-		WHERE p_no = ${p_no};
+		SELECT * FROM purchase WHERE p_no = ${p_no} and u_id = #{u_id}
 	</select>
 	
 	<!-- 좋아요 insert -->

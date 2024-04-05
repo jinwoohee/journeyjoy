@@ -16,12 +16,16 @@ public class PurchaseSelectDB {
 	
 	SqlSessionFactory sql = SqlMapconfig.getSqlSession();
 	
-	public Purchase selectPur(int p_no){
+	public Purchase selectPur(int p_no, String u_id){
 		
 		System.out.println("--- conn/purchaseSelectDB ---");
 		
+		Purchase p = new Purchase();
+		p.setP_no(p_no);
+		p.setU_id(u_id);
+		
 		SqlSession ss = sql.openSession();
-		Purchase purchase = ss.selectOne("purchaseSelect", p_no);
+		Purchase purchase = ss.selectOne("purchaseSelect", p);
 		ss.close();
 		
 		return purchase;

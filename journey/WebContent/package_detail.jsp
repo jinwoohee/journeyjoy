@@ -29,7 +29,8 @@
 	$(function(){
 		/* 인원선택 */
 		var result = document.getElementById("total");
-		result.innerHTML = $("input[name='adultFee']").val()+"원";
+		var adultFee = $("input[name='adultFee']").val();
+		result.innerHTML = adultFee.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원";
 		
 		$("aside input[type='button']").click(function(){
 			var adultNum = parseInt($("#adult>input[name='adultCount']").val());
@@ -73,7 +74,8 @@
 					}
 				}
 			}
-			result.innerHTML = ((adultNum)*adultFee)+((stdNum)*stdFee)+((childNum)*childFee)+"원";
+			var total = ((adultNum)*adultFee)+((stdNum)*stdFee)+((childNum)*childFee);
+			result.innerHTML = total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원";
 		});
 		
 		var p_no = $("input[name='no']").val();
