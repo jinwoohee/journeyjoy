@@ -335,6 +335,7 @@ body {
 }
 .lb_tag { /* label 크기설정, 부모li와 동일 */
 	display: block;
+	font-size: 15px;
     width: fit-content;
     height: 35px;
     cursor: pointer;

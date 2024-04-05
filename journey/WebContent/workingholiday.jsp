@@ -48,7 +48,7 @@
 		$(document).ready(function() {
 			$('.ly_sub, .resultSetWrap, .arrup').hide();
 			$('.sub1, .sub2, .sub3, .sub4, .sub5, .sub6, .sub7, .sub8, .sub9').parent().hide(); //직종 상세 레이어
-			$('.sub10, .sub11, .sub12, .sub13, .sub14, .sub15').parent().hide(); //국가 상세 레이어
+			$('.sub10, .sub11, .sub12, .sub13, .sub14, .sub15, .sub16, .sub17, .sub18').parent().hide(); //국가 상세 레이어
 			
 			//큰 조건 클릭 시 글자,배경색 변화
 			$('.detailBox>dl>dt').click(function() {
@@ -327,6 +327,9 @@
 										$('.sub13').parent().hide();
 										$('.sub14').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub10').parent().show();
 									} else if ($label.text() == '캐나다') {
 										$('.sub10').parent().hide();
@@ -334,6 +337,9 @@
 										$('.sub13').parent().hide();
 										$('.sub14').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub11').parent().show();
 									} else if ($label.text() == '필리핀') {
 										$('.sub10').parent().hide();
@@ -341,6 +347,9 @@
 										$('.sub13').parent().hide();
 										$('.sub14').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub12').parent().show();
 									} else if ($label.text() == '미국') {
 										$('.sub10').parent().hide();
@@ -348,6 +357,9 @@
 										$('.sub12').parent().hide();
 										$('.sub14').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub13').parent().show();
 									} else if ($label.text() == '호주') {
 										$('.sub10').parent().hide();
@@ -355,6 +367,9 @@
 										$('.sub12').parent().hide();
 										$('.sub13').parent().hide();
 										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub14').parent().show();
 									} else if ($label.text() == '뉴질랜드') {
 										$('.sub10').parent().hide();
@@ -362,7 +377,40 @@
 										$('.sub12').parent().hide();
 										$('.sub13').parent().hide();
 										$('.sub14').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
 										$('.sub15').parent().show();
+									} else if ($label.text() == '동남아') {
+										$('.sub10').parent().hide();
+										$('.sub11').parent().hide();
+										$('.sub12').parent().hide();
+										$('.sub13').parent().hide();
+										$('.sub14').parent().hide();
+										$('.sub15').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().hide();
+										$('.sub16').parent().show();
+									} else if ($label.text() == '중국') {
+										$('.sub10').parent().hide();
+										$('.sub11').parent().hide();
+										$('.sub12').parent().hide();
+										$('.sub13').parent().hide();
+										$('.sub14').parent().hide();
+										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub18').parent().hide();
+										$('.sub17').parent().show();
+									} else if ($label.text() == '유럽') {
+										$('.sub10').parent().hide();
+										$('.sub11').parent().hide();
+										$('.sub12').parent().hide();
+										$('.sub13').parent().hide();
+										$('.sub14').parent().hide();
+										$('.sub15').parent().hide();
+										$('.sub16').parent().hide();
+										$('.sub17').parent().hide();
+										$('.sub18').parent().show();
 									}
 								} else { //1차 선택해제시
 									$label.css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
@@ -401,6 +449,12 @@
 										$('.sub14').parent().hide();
 									} else if ($label.text() == '뉴질랜드') {
 										$('.sub15').parent().hide();
+									} else if ($label.text() == '동남아') {
+										$('.sub16').parent().hide();
+									} else if ($label.text() == '중국') {
+										$('.sub17').parent().hide();
+									} else if ($label.text() == '유럽') {
+										$('.sub18').parent().hide();
 									}
 								}
 							});
@@ -994,6 +1048,18 @@
 											<input type="checkbox" class="inp_chk" id="nt6" name="nation">
 											<label class="lb_tag" for="nt6">뉴질랜드</label>
 										</li>
+										<li class="item">
+											<input type="checkbox" class="inp_chk" id="nt7" name="nation">
+											<label class="lb_tag" for="nt7">동남아</label>
+										</li>
+										<li class="item">
+											<input type="checkbox" class="inp_chk" id="nt8" name="nation">
+											<label class="lb_tag" for="nt8">중국</label>
+										</li>
+										<li class="item">
+											<input type="checkbox" class="inp_chk" id="nt9" name="nation">
+											<label class="lb_tag" for="nt9">유럽</label>
+										</li>
 									</ul>
 								</dd>
 								<dd class="ly_sub">
@@ -1027,6 +1093,18 @@
 													<li class="item">
 														<input type="checkbox" class="inp_chk" id="nat6" name="nation">
 														<label class="lb_tag" for="nat6" value="com_country">뉴질랜드</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk" id="nat7" name="nation">
+														<label class="lb_tag" for="nat7" value="com_country">동남아</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk" id="nat8" name="nation">
+														<label class="lb_tag" for="nat8" value="com_country">중국</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk" id="nat9" name="nation">
+														<label class="lb_tag" for="nat9" value="com_country">유럽</label>
 													</li>
 												</ul>
 											</dd>
@@ -1178,6 +1256,88 @@
 													<li class="item">
 														<input type="checkbox" class="inp_chk sub15" id="nat6_step4" name="nation6">
 														<label class="lb_tag" for="nat6_step4" value="com_city">퀸스타운</label>
+													</li>
+													
+													<%-- 동남아 --%>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step1" name="nation6">
+														<label class="lb_tag" for="nat7_step1">전체</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step2" name="nation6">
+														<label class="lb_tag" for="nat7_step2">방콕</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step3" name="nation6">
+														<label class="lb_tag" for="nat7_step3">세부</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step4" name="nation6">
+														<label class="lb_tag" for="nat7_step4">싱가포르</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step5" name="nation6">
+														<label class="lb_tag" for="nat7_step5">다낭</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step6" name="nation6">
+														<label class="lb_tag" for="nat7_step6">타이베이</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub16" id="nat7_step7" name="nation6">
+														<label class="lb_tag" for="nat7_step7">마닐라</label>
+													</li>
+													
+													<%-- 중국 --%>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step1" name="nation6">
+														<label class="lb_tag" for="nat8_step1">전체</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step2" name="nation6">
+														<label class="lb_tag" for="nat8_step2">상하이</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step3" name="nation6">
+														<label class="lb_tag" for="nat8_step3">베이징</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step4" name="nation6">
+														<label class="lb_tag" for="nat8_step4">광저우</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub17" id="nat8_step5" name="nation6">
+														<label class="lb_tag" for="nat8_step5">청도</label>
+													</li>
+													
+													<%-- 유럽 --%>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step1" name="nation6">
+														<label class="lb_tag" for="nat9_step1">전체</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step2" name="nation6">
+														<label class="lb_tag" for="nat9_step2">로마</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step3" name="nation6">
+														<label class="lb_tag" for="nat9_step3">프랑크푸르트</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step4" name="nation6">
+														<label class="lb_tag" for="nat9_step4">런던</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step5" name="nation6">
+														<label class="lb_tag" for="nat9_step5">바르셀로나</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step6" name="nation6">
+														<label class="lb_tag" for="nat9_step6">파리</label>
+													</li>
+													<li class="item">
+														<input type="checkbox" class="inp_chk sub18" id="nat9_step7" name="nation6">
+														<label class="lb_tag" for="nat9_step7">프라하</label>
 													</li>
 												</ul>
 											</dd>
