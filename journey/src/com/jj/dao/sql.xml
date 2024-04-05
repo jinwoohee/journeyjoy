@@ -101,10 +101,10 @@
 		<if test="com_work_days != null">
 			<foreach collection="com_work_days" item="item" index="index" separator="or">
 				<if test="item == '평일(월~금)'">
-					com_work_days not like '%토%' and com_work_days not like '%일%'
+					com_work_days = '월,화,수,목,금'
 				</if>
 				<if test="item == '주말(토,일)'">
-					com_work_days not like '%월%' and com_work_days not like '%화%' and com_work_days not like '%수%' and com_work_days not like '%목%' and com_work_days not like '%금%'
+					com_work_days = '토,일'
 				</if>
 			</foreach>
 			or
