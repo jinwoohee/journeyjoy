@@ -4,6 +4,7 @@
 <%@page import="java.net.URLDecoder"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <%
 	String u_id = (String) session.getAttribute("u_id");
 %>
@@ -1743,35 +1744,73 @@
 			
 			<article>
 				<form class="list_form">
-					<table>
-						<tr>
-							<th width="150px">근무지</th>
-							<th width="600px">회사명/공고제목</th>
-							<th width="100px">근무시간</th>
-							<th width="100px">급여</th>
-							<th width="100px">마감날짜</th>
-						</tr>
+					<div class="wrap_form">
 						<%
 							List<Company> list = (List<Company>)request.getAttribute("list");
 							
-							for (Company c : list) {
+							for (Company com : list) {
 						%>
-						<tr>
-							<td><%= c.getCom_country() + " / " + c.getCom_city() %></td>
-							<td>
-								<a href="workingholiday.jj?page=whlist&com_no=<%= c.getCom_no() %>">
-									<p><%= c.getCom_name() %></p>
-									<p><%= c.getCom_title() %></p>
-								</a>
-							</td>
-							<td><%= c.getCom_start_time() + ":00~" + c.getCom_end_time() + ":00" %></td>
-							<c:set var="salary" value="<%= c.getCom_salary() %>" />
-							<fmt:formatNumber var="sal" value="${ salary }" />
-							<td>${ sal }원</td>
-							<td><%= c.getCom_term() %></td>
-						</tr>
+						<div>
+							<a href="workingholiday.jj?page=whlist&com_no=<%= com.getCom_no() %>">
+							<ul>
+								<li>
+									<p class="com_title"><%= com.getCom_title() %></p>
+									<p class="com_name"><%= com.getCom_name() %></p>
+									<hr>
+									<p class="com_country"><%= com.getCom_country() %>(<%= com.getCom_city() %>)</p>
+									<p class="com_job"><%= com.getCom_job1() %> > <%= com.getCom_job2() %></p>
+									<p class="com_wtime"><%= com.getCom_start_time() + ":00~" + com.getCom_end_time() + ":00" %></p>
+									
+									<fmt:parseNumber var="end_time" integerOnly="true" type="number" value="<%= com.getCom_end_time() %>" />
+	                            	<fmt:parseNumber var="start_time" integerOnly="true" type="number" value="<%= com.getCom_start_time() %>" />
+	                            	<c:set var="etime" value="${ end_time }" />
+	                            	<c:set var="stime" value="${ start_time }" />
+	                            	<c:set var="wtime" value="${ etime-stime<0 ? -(etime-stime) : etime-stime }" />
+	                            	
+	                            	<c:set var="sal_name" value="<%= com.getCom_sal_name() %>" />
+	                            	<c:set var="salary" value="<%= com.getCom_salary() %>" />
+	                            	<fmt:formatNumber var="sal" value="${ salary }" /> <%-- 시급/건별 --%>
+	                            	
+	                            	<c:set var="day" value="${ salary*wtime }" /> <%-- 일급 --%>
+	                            	<fmt:formatNumber var="result1" value="${ day }" />
+	                            	
+	                            	<c:set var="workdays" value="<%= com.getCom_work_days() %>" />
+	                            	<c:set var="days" value="${ fn:split(workdays, ',') }" />
+	                            	<c:set var="week" value="${ salary*wtime*fn:length(days) }" /> <%-- 주급 --%>
+	                            	<fmt:formatNumber var="result2" value="${ week }" />
+	                            	
+	                            	<c:set var="month" value="${ salary*wtime*fn:length(days)*4 }" /> <%-- 월급 --%>
+	                            	<fmt:formatNumber var="result3" value="${ month }" />
+	                            	
+	                            	<c:set var="year" value="${ salary*wtime*fn:length(days)*4*12 }" /> <%-- 연봉 --%>
+	                            	<fmt:formatNumber var="result4" value="${ year }" />
+	                            	
+	                            	<c:if test="${ sal_name eq '시급' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ sal }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '일급' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ result1 }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '주급' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ result2 }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '월급' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ result3 }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '연봉' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ result4 }원</p>
+	                            	</c:if>
+	                            	<c:if test="${ sal_name eq '건별' }">
+	                            		<p class="com_sal"><%= com.getCom_sal_name() %> ${ sal }원</p>
+	                            	</c:if>
+	                            	
+									<p class="com_etime">~<%= com.getCom_term() %></p>
+								</li>
+							</ul>
+							</a>
+						</div>
 						<% } %>
-					</table>
+					</div>
 				</form>
 			</article>
 		</section>

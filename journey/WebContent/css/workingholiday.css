@@ -445,41 +445,79 @@ li button, .item_reset button { /* 버튼 모양 */
 
 
 /* 검색리스트 */
-article:last-of-type table {
-	border: 0px;
-	font-size: 15px;
-	width: 1200px;
-	border-collapse: collapse;
-	overflow: hidden;
-	margin-bottom: 200px;
+.wrap_form > div {
+	width: 368px;
+    border: 1px groove #2c609c;
+    border-radius: 10px;
+    margin-bottom: 50px;
+	float: left;
+    margin-right: 15px;
+    margin-left: 15px;
 }
-/* 검색리스트 행 */
-article:last-of-type tr:hover {
-	background-color: #f1f1f3;
+
+.wrap_form div:hover {
+	/* box-shadow: 3px 3px 3px #9BBBD7; */
+	box-shadow: 0px 4px 24px 0px #9BBBD7; 
 }
-/* 검색리스트-카테고리 */
-article:last-of-type th {
-	padding: 10px;
-	background-color: #2c609c;
+
+.wrap_form ul {
+	list-style: none;
+	padding-inline-start: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
-/* 검색리스트-상세내용 */
-article:last-of-type td {
-	height: 20px;
-	text-align: center;
-	border-bottom: 1px solid #2c609c;
+
+.wrap_form hr {
+	border: 1px groove #cccccc;
 }
-/* 검색리스트-회사명 */
-article:last-of-type p:first-of-type {
-	text-align: left;
+
+.com_title { /* 공고제목 */
+	color: black;
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 0px;
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
-/* 검색리스트-제목 */
-article:last-of-type p:last-of-type {
-	text-align: left;
-	margin-top: -5px;
+
+.com_name { /* 회사명 */
+	font-size: 14px;
+	margin-top: 0px;
 }
-article:last-of-type tr th {
-	color: #f1f1f3;
+
+.com_country { /* 나라,도시 */
+	font-size: 14px;
+	margin-top: 3px;
+    margin-bottom: 0px;
 }
-article:last-of-type tr a {
-	color: #646464;
+
+.com_job { /* 필터 */
+	font-size: 14px;
+	margin-top: 3px;
+    margin-bottom: 0px;
 }
+
+.com_wtime { /* 근무시간 */
+	font-size: 14px;
+	margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+.com_sal { /* 급여 */
+	color: black;
+	font-size: 14px;
+	margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+.com_etime { /* 마감날짜 */
+	color: #cccccc;
+	font-size: 14px;
+	float: right;
+	margin-top: 0px;
+}
+
+
+
+
