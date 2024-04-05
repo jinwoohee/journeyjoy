@@ -18,26 +18,7 @@
 	
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<style type="text/css">
-		.fcolor {
-			color: #f1f1f3;
-		}
-		.bcolor {
-			background-color: #2c609c;
-		}
-		.orifcolor {
-			color: #646464;
-		}
-		.oribcolor {
-			background-color: #f1f1f3;
-		}
-		.word {
-			font-weight: bold;
-			border: 2px solid #2c609c;
-			border-radius: 10px;
-    		background-color: #f1f1f3;
-		}
-	</style>
+	
 	<script type="text/javascript">
 		var onclk1 = true; //큰 조건 선택시 글자색
 		var onclk2 = true; //큰 조건 선택시 배경색
@@ -174,7 +155,7 @@
 								
 								if (checked) {
 									if ($label.text() == '전체') { //text가 전체일때
-										$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+										$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 										if ($name == $input.attr('name')) { //같은 name의 input만
 											$input.next().css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
 										}
@@ -191,7 +172,7 @@
 											$('.resultSetWrap').show();
 										}
 									} else { //text가 전체가 아닐때
-										$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+										$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 										$input.next().eq(0).css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
 										
 										var gdata = '[data-group!='+ chkid +'] [data-name*='+ $name +']';
@@ -225,7 +206,7 @@
 								var $label = $(this).next();
 
 								if (checked) { //1차 선택시
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 									$(this).parent().siblings('.item').find('label').css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
 									
 									//직종 상세 레이어
@@ -483,12 +464,12 @@
 
 							if (checked) {
 								if (chkid == 'date1') { //평일 클릭했을때
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
-									$('#date3').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //월
-									$('#date4').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //화
-									$('#date5').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //수
-									$('#date6').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //목
-									$('#date7').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //금
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$('#date3').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //월
+									$('#date4').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //화
+									$('#date5').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //수
+									$('#date6').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //목
+									$('#date7').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //금
 									$('#date3').attr('checked', true);
 									$('#date4').attr('checked', true);
 									$('#date5').attr('checked', true);
@@ -499,9 +480,9 @@
 									$('.items').append('<li id='+ chkid + ' name=' + chkname + ' data-group='+ chkid + '><button>'+ $label.text() +'<span class="ico">-'+ lb_value +'삭제</span></button></li>');
 									$('.items li').data('group', chkid);
 								} else if (chkid == 'date2') { //주말 클릭했을때
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
-									$('#date8').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //토
-									$('#date9').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //일
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$('#date8').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //토
+									$('#date9').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'}); //일
 									$('#date8').attr('checked', true);
 									$('#date9').attr('checked', true);
 									
@@ -510,23 +491,23 @@
 									$('.items li').data('group', chkid);
 								} else if (wlen >= 4) { //월,화,수,목,금 모두 클릭했을때
 									console.log('week all');
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
-									$('#date1').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$('#date1').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 									$('#date1').prop('checked', true);
 									
 									$('.items li[name=week]').remove(); //검색창에 월,화,수,목,금 모두 삭제
 									//검색창에 평일 추가
 									$('.items').append('<li id="date1" name="date" data-group="date1"><button>'+ $('#date1').next().text() +'<span class="ico">-com_work_days삭제</span></button></li>');
 								} else if (wklen >= 1) { //토,일 모두 클릭했을때
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
-									$('#date2').next().css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$('#date2').next().css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 									$('#date2').prop('checked', true);
 									
 									$('.items li[name=weekend]').remove(); //검색창에 토,일 모두 삭제
 									//검색창에 주말 추가
 									$('.items').append('<li id="date2" name="date" data-group="date2"><button>'+ $('#date2').next().text() +'<span class="ico">-com_work_days삭제</span></button></li>');
 								} else {
-									$label.css({'font-weight':'bold', 'border':'2px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
+									$label.css({'font-weight':'bold', 'border':'1px solid #2c609c', 'border-radius':'10px', 'background-color':'#f1f1f3'});
 									$('.items').append('<li id='+ chkid + ' name=' + chkname + ' data-group='+ chkid + '><button>'+ $label.text() +'<span class="ico">-'+ lb_value +'삭제</span></button></li>');
 									$('.items li').data('group', chkid);
 								}

@@ -3,7 +3,10 @@
 <%@page import="com.jj.dto.Company"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	String u_id = (String) session.getAttribute("u_id");
+%>
 <html>
 <head>
     <meta charset="utf-8">
