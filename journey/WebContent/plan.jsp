@@ -169,7 +169,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						<div id = "slide_div">
 						<div class = "kind_slider">
 						<ul class="slider">
-						<li>							
+						<li id="plan_li">							
 							<div class="product_adv">
 						<%
 							for(Ticket ti : tick){				

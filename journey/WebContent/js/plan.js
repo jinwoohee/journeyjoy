@@ -1,11 +1,11 @@
 window.onload = function() {
 	  const kindWrap =  document.querySelector('#slide_div');
 	  const slider = kindWrap.querySelector('.slider');
-	  const slideLis = slider.querySelectorAll('li');
+	  const slideLis = document.getElementById('plan_li');
 	  var items = document.getElementById("item").value;
 	  
 	  /* ul 넓이 계산해 주기 */
-	  const liWidth = slideLis[0].clientWidth;
+	  const liWidth = slideLis.clientWidth;
 	  const sliderWidth = liWidth * items;
 	  slider.style.width = `${sliderWidth}px` ;
 
