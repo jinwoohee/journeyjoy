@@ -244,7 +244,6 @@
 			<!-- 일정안내 -->
 			<div>
 				<p>※일정안내</p>
-
 				<%
 					List<Package_schedule> ps = (List<Package_schedule>)request.getAttribute("ps");
 					
@@ -257,7 +256,6 @@
 						out.println("<img src='img/icon/arrow_up.png'></div>");
 						out.println("</div>");
 				%>
-				<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////// -->
 				<div class="day_detail">
 					<div class="place_detail">
 						<%
@@ -282,10 +280,10 @@
 							out.println("<div><p>"+psList.getPs_notification()+"</p></div>");
 						%>
 					</div>
+				</div>
 				<% 						
 					}
 				%>
-				</div>
 			</div>
 		</article>
 		<aside>
@@ -297,7 +295,7 @@
 							<p>성인</p>
 							<% 
 								out.println("<input type='hidden' name='p_no' value='"+pk.getP_no()+"'>");
-								out.println("<input type='hidden' name='u_id' value='"+pk.getU_id()+"'>");
+								out.println("<input type='hidden' name='u_id' value='"+(String)session.getAttribute("u_id")+"'>");
 								out.println("<p>"+f.format(pk.getAdult_fee())+"원</p>"); 
 							%>
 						</div>
@@ -407,7 +405,7 @@
 					<div id="comment">
 						<%
 							out.println("<input type='hidden' name='no' value='"+pk.getP_no()+"'>");
-							out.println("<input type='hidden' name='id' value='"+pk.getU_id()+"'>");
+							out.println("<input type='hidden' name='id' value='"+(String)session.getAttribute("u_id")+"'>");
 						%>
 						<input type="text" name="comment_txt" placeholder=" 댓글을 남겨주세요.">
 						<input type="button" name="register" value="등록" onclick="commRegist()">

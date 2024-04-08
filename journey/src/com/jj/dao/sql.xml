@@ -294,7 +294,7 @@
 	</select>
 	
 	<!-- 상세보기/참여 select -->
-	<select id="purchaseSelect" resultType="com.jj.dto.Purchase" parameterType="int">
+	<select id="purchaseSelect" resultType="com.jj.dto.Purchase" parameterType="com.jj.dto.Purchase">
 		SELECT * FROM purchase WHERE p_no = ${p_no} and u_id = #{u_id}
 	</select>
 	

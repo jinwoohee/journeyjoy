@@ -276,10 +276,14 @@ aside input[name='cancel']{
     justify-content: center;
 }
 
+.day_title > p{
+	width: 580px;
+}
+
 .day_title > img{
 	width: 30px;
     height: 30px;
-    padding-left: 490px;
+    padding-left: 40px;
 }
 
 /* 일정안내 - 상세보기 */

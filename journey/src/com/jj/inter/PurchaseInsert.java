@@ -18,7 +18,7 @@ public class PurchaseInsert implements JourneyInterface{
 	@Override
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("--- inter/PurchaseInsert ---");
-		
+
 		PurchaseInsertDB insertDB = PurchaseInsertDB.insert();
 		
 		Purchase purchase = new Purchase();
