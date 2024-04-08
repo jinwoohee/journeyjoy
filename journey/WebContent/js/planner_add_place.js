@@ -48,7 +48,10 @@ function checking(id){ /*테마 체크 여부 */
 function plan_add_btn(num){	
 	var edit = document.getElementById("edited"+num);
 	var before =document.getElementById("places_text"+num).innerText;
-	
+	var empty = document.getElementById("places_textb"+num);
+	if(empty !=null){
+		empty.remove();
+	}
 	$("input[name='place_one']").each(function(){
 	    if( $(this).is(":checked") == true ){	    	
 	      var id = $(this).attr('id');
@@ -60,7 +63,6 @@ function plan_add_btn(num){
 	      
 	      var after = document.getElementById("places_text"+num).innerText;
 	  	  edit.setAttribute('value',after);
-	    }else{	    	
 	    }
 	});
 	

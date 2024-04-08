@@ -644,6 +644,14 @@
 				$('.items li').remove();
 				$('.lb_tag').css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
 				$('.item input').prop('checked', false);
+				
+				$.ajax({
+					type : 'post',
+					url : 'workingholiday.jj?page=whclear',
+					success : function(data) {
+						$('.list_form').html(data);
+					}
+				});
 			});
 
 			//검색조건-큰 조건 선택 시(글자색)

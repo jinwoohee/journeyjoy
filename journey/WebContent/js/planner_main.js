@@ -1,7 +1,7 @@
 window.onload = function() {
   const kindWrap =  document.querySelector('.kind_wrap');
   const slider = kindWrap.querySelector('.slider');
-  const slideLis = slider.querySelectorAll('li')
+  const slideLis = slider.querySelectorAll('li');
 
   /* ul 넓이 계산해 주기 */
   const liWidth = slideLis[0].clientWidth;

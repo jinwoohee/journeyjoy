@@ -128,8 +128,14 @@
 						
 			<%
 					}else if(edit0.equals("1")){
+						System.out.println("1일때 -1");
 						String place = request.getParameter("edit_plan"+a);
+						System.out.println(place);
+						
+						if(place != ""){
 						String place_list = place.replaceAll("#", "").replaceAll(" ","_");
+						
+						System.out.println("1일때 -3");
 						System.out.println("2-1-"+a+"번"+place);
 						System.out.println("2-2-"+a+"번"+place_list);
 						
@@ -164,7 +170,20 @@
 				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" id = "place_name<%=a%>"/>
 				</div>
 			<%
-			}}
+					}else{%>
+					<div id="plan_list_day<%=a%>">
+						<div id="list_content">
+							<div class="content_fdiv">
+								<div class="list_place">
+									<p class="list_place" >일정이 비었습니다.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+			<% 	
+					}							
+				}
+			}
 			%>
 					<input type="submit" name="add_place" value="여행지 추가하기" class="button">
 					<input type="submit" name="save_plan" value="저장" class="button"/>

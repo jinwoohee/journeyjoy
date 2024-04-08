@@ -22,6 +22,7 @@ import com.jj.inter.PurchaseInsert;
 import com.jj.inter.RewardInsert;
 import com.jj.inter.ScheduleInsert;
 import com.jj.inter.SearchPlaceSelect;
+import com.jj.inter.WhClear;
 import com.jj.inter.WhSearch;
 import com.jj.inter.WhSelect;
 import com.jj.inter.WhlistSelect;
@@ -67,7 +68,16 @@ public class JourneyController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} 
+		} else if (page.equals("whclear")) {
+			ji = WhClear.whclear();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		//진수님 부분
 		else if(page.equals("insert")) {
@@ -105,6 +115,7 @@ public class JourneyController extends HttpServlet {
 				// TODO: handle exception } }
 			}
 		}else if(page.equals("select")) {
+			System.out.println("----컨트롤러----");
 			ji = EstimateSelect.selectEstimate();
 			try {
 				String page_url = ji.journeyInterface(request, response);
