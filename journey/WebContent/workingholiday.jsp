@@ -638,7 +638,7 @@
 				}
 			});
 
-			//검색창-초기화 버튼 클릭 시 aaa
+			//검색창-초기화 버튼 클릭 시
 			$('.item_reset').click(function() {
 				$('.resultSetWrap').hide();
 				$('.items li').remove();
