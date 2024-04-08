@@ -192,7 +192,18 @@
 	</select>
 	
 	<select id="schedule_select" parameterType="int" resultType="com.jj.dto.Schedule">
-		select * from schedule where e_no = #{e_no} order by sche_day;
+		select * from schedule where e_no = #{e_no} order by sche_day
+	</select>
+	
+	<select id="product_select" parameterType="String" resultType="com.jj.dto.Product">
+		select * from product where prod_city = #{e_destination}
+	</select>
+	
+	<select id="ticket_select" resultType="com.jj.dto.Ticket" parameterType="java.util.HashMap">
+		select * from ticket where tick_sort in
+			<foreach collection="tick_sort" item="item" index="index" separator="," open="(" close=")"> 
+			#{item}
+		</foreach>
 	</select>
 	
 	
