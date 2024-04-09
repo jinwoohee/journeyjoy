@@ -82,7 +82,7 @@
 		var u_id = $("input[name='id']").val();
 		
 		/* 일정안내 상세보기 */
-		$('.day_detail').hide();
+		/* $('.day_detail').hide();
 		$(".day_title>img").click(function(){
 			if($(this).attr('src') == 'img/icon/arrow_up.png'){
         		$(this).attr('src','img/icon/arrow_down.png');
@@ -91,7 +91,7 @@
         		$(this).attr('src','img/icon/arrow_up.png');
         		$('.day_detail').slideUp();
         	}
-		});
+		}); */
 		
 		/* 공유하기 링크복사 */
 		$("#share").click(function(){
@@ -119,6 +119,16 @@
 			$(location).attr('href','purcahseDelete.jj?page=purchase_delete&p_no='+p_no+'&u_id='+u_id);
 		});
 		
+		/* 문의하기 */
+		$('input[name=inquiry]').click(function(){
+			if($('#inquiryDiv').css('display') == 'none'){
+				$('#inquiryDiv').css('display', 'block');
+			}else{
+				$('#inquiryDiv').css('display', 'none');
+			}
+			
+		});
+		
 	});
 	
 	function regist(){
@@ -130,6 +140,7 @@
 		}
 	}
 	
+	/* 커뮤니티 */
 	function commRegist(){
 		if(commForm.comment_txt.value == ''){
 			alert("댓글을 입력해주세요.");
@@ -138,6 +149,29 @@
 			alert("댓글이 등록되었습니다.");
 			document.commForm.submit();
 		}
+	}
+	
+	/* 문의하기 */
+	function inquiryCheck(){
+		if(inquiryForm.inquiryContent.value == ''){
+			alert("문의내용을 입력해주세요.");
+			return false;
+		}else{
+			alert("문의하였습니다.");
+			document.inquiryForm.submit();
+		}
+	}
+	
+	function open_div(num){
+		$("img[id='open"+num+"']").css({"display":"none"});
+		$("img[id='close"+num+"']").show();
+		$("div[class='day_detail"+num+"']").slideDown();
+	}
+	
+	function close_div(num){
+		$("img[id='open"+num+"']").show();
+		$("img[id='close"+num+"']").css({"display":"none"});
+		$("div[class='day_detail"+num+"']").slideUp();
 	}
 </script>
 
@@ -196,7 +230,7 @@
 				</div>
 			</div>
 			<div>
-				<input type="button" name="requiry" value="문의하기">
+				<input type="button" name="inquiry" value="가이드에게 문의하기">
 			</div>
 		</div>
 	</section>
@@ -253,10 +287,11 @@
 						out.println("<p>"+psList.getPs_day()+"일차</p></div>");
 						out.println("<div class='day_title'>");
 						out.println("<p>"+psList.getPs_title()+"</p>");
-						out.println("<img src='img/icon/arrow_up.png'></div>");
+						out.println("<img src='img/icon/arrow_up.png' onclick='open_div("+psList.getPs_day()+")' id='open"+psList.getPs_day()+"'>");
+						out.println("<img src='img/icon/arrow_down.png' onclick='close_div("+psList.getPs_day()+")' id='close"+psList.getPs_day()+"'></div>");
 						out.println("</div>");
 				%>
-				<div class="day_detail">
+				<div class="day_detail<%=psList.getPs_day()%>">
 					<div class="place_detail">
 						<%
 							out.println("<div><p>"+psList.getPlac_name()+"</p></div>");
@@ -414,6 +449,15 @@
 			</div>
 		</article>
 	</section>
+	<div id='inquiryDiv'>
+		<p>문의하기</p>
+		<form name='inquiryForm' action='inquiryInsert.jj?page=inquiryInsert' method="post">
+			<div>
+				<textarea name='inquiryContent' rows="20" cols="20" placeholder="문의내용"></textarea>
+			</div>
+			<div><input type="button" name='inquiryBtn' value='문의하기' onclick="inquiryCheck()"></div>
+		</form>
+	</div>
 	<jsp:include page="main_footer.jsp" />
 </body>
 </html>

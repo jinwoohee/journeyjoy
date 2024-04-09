@@ -104,7 +104,7 @@ header>iframe {
 }
 
 /* 문의하기 버튼 */
-input[name='requiry']{
+input[name='inquiry']{
 	width: 580px;
 	height: 50px;
 	background: #6C94B8;
@@ -286,8 +286,12 @@ aside input[name='cancel']{
     padding-left: 40px;
 }
 
+.day_title > img[src*="down"]{
+	display: none;
+}
+
 /* 일정안내 - 상세보기 */
-.day_detail{width: 880px; border: 1px solid #CCCCCC; display: flow;}
+div[class *= day_detail]{width: 880px; border: 1px solid #CCCCCC; display: none;}
 
 .place_detail div{
 	margin-left: 20px;
@@ -422,4 +426,46 @@ input[name='register']{
 	border: none;
 	color: white;
 	font-weight: bold;
+}
+
+/* 문의하기 */
+#inquiryDiv{
+    width: 560px;
+    height: 320px;
+    position: absolute;
+    margin: auto;
+    left: 52%;
+    top: 65%;
+    background: white;
+    border: 1px solid #6C94B8;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 1px 1px 5px #CCCCCC;
+    display : none;
+}
+
+#inquiryDiv > p{
+	font-size: 18px;
+    margin-left: 43px;
+}
+
+#inquiryDiv div{
+	display: flex;
+    justify-content: center;
+}
+
+#inquiryDiv > form > div > textarea{
+	width: 450px;
+    height: 150px;
+    resize : none;
+    padding: 10px 10px;
+}
+
+#inquiryDiv > form > div > input[type='button']{
+	width: 473px;
+    height: 40px;
+    margin-top: 20px;
+    background : #0D112D;
+    border : none;
+    color : white;
+    font-weight : bold;
 }

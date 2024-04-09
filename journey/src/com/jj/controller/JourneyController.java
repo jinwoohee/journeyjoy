@@ -233,8 +233,7 @@ public class JourneyController extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("--- Controller / 구매취소 ---" + e);
 			}
-		}
-		else if(page.equals("commInsert")) {
+		}else if(page.equals("commInsert")) {
 			ji = CommInsert.commentInsert();
 			String result;
 			try {
@@ -244,6 +243,7 @@ public class JourneyController extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("--- Controller / 댓글 insert ---" + e);
 			}
+		}else if(page.equals("inquiryInsert")) {
 			
 		}else {
 			System.out.println("--- controller else ---");
