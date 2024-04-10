@@ -342,4 +342,32 @@
 		ON c.u_id = u.u_id
 		WHERE p_no = ${p_no};
 	</select>
+	
+	<!-- 장소리뷰 검색  -->
+	<select id="placeReviewSearch" resultType="com.jj.dto.Location_review" parameterType="String">
+		SELECT DISTINCT l.*, u.u_nickname
+		FROM location_review l
+		LEFT JOIN user u
+		ON l.u_id = u.u_id
+		<where>
+			<trim prefixOverrides="and" suffixOverrides="and">
+			<if test="!param.equals('')">
+				<!-- 국가/관광지의 국가서치해서 가져오기 
+				<if test="param.equals('japan') || param.equals('canada')">
+					p.p_nation = #{param}
+				</if>
+				-->
+				<if test="!param.equals('recent') || !param.equals('starRating')">
+					l.lr_contents like concat('%', #{param}, '%')
+				</if>
+			</if>
+			</trim>
+		</where>
+		<if test="param.equals('recent')">
+			ORDER BY l.lr_no DESC;
+		</if>
+		<if test="param.equals('starRating')">
+			ORDER BY l.lr_star DESC;		
+		</if>
+	</select>
 </mapper>

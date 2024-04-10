@@ -16,6 +16,7 @@ import com.jj.inter.PackageDetail;
 import com.jj.inter.PackageInsert;
 import com.jj.inter.PackageSearch;
 import com.jj.inter.PackageSelect;
+import com.jj.inter.PlaceReviewSearch;
 import com.jj.inter.PsInsert;
 import com.jj.inter.PurchaseDelete;
 import com.jj.inter.PurchaseInsert;
@@ -245,6 +246,15 @@ public class JourneyController extends HttpServlet {
 			}
 		}else if(page.equals("inquiryInsert")) {
 			
+		}else if(page.equals("placeReviewSearch")) {
+			ji = PlaceReviewSearch.placeReviewSearchInter();
+			String result;
+			try {
+				result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 패키지 검색 ---" + e);
+			}
 		}else {
 			System.out.println("--- controller else ---");
 		}

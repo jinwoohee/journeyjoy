@@ -20,39 +20,34 @@ section{
 #search_section{
 	width: 1200px;
 	height: 100px;
-	display: grid;
+	display: flex;
+	justify-content: center; 
+	align-items: center;
 	background: #6c94b8;
 	border-radius: 10px;
 	box-shadow: 3px 3px 3px #CCCCCC;
 	margin-bottom: 20px;
 }
 
-#search_section > div{
-	display: flex;
-	justify-content: center; 
-	align-items: center;
-}
-
 /* 검색구간 - 콤보박스 */
 #search_section select{
-	width: 130px;
+	width: 150px;
 	height: 40px;
-	border-radius: 10px;
 	margin-right: 20px;
 	text-align: center;
-	border: none;
+	border: 2px solid #6C94B8;
 }
 
 /* 검색구간 - 검색창 */
 #search_section input[name="searchBox"]{
-	width: 250px;
+	width: 300px;
 	height: 40px;
-	border-radius: 10px;
 	border: none;
+	padding-left : 10px;
 }
 
 /* 검색구간 - 검색버튼 */
-#search_section button{
+#search_section input[type='button']{
 	width: 100px;
 	height: 45px;
 	border-radius: 10px;

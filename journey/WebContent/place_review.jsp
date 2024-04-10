@@ -52,6 +52,28 @@
 		 $(".review").mouseleave(function(){
 			 $(this).css({'background':'none'});
         });
+		 
+		 //검색창 
+		 $("input[name='search']").click(function(){
+			 $.ajax({ //검색버튼 
+         		url : "placeReview_list.jj?page=placeReviewSearch",
+         		data : {"param" : $("input[name='searchBox']").val()},
+         		success : function(re){
+         			$("#review_section").html(re);
+         		}
+         	 });
+		 });
+		 
+		 //최신순, 별점순
+		 $("#sort_section div").click(function(){
+			 $.ajax({
+         		url : "placeReview_list.jj?page=placeReviewSearch",
+         		data : {"param" : $(this).attr('id')},
+         		success : function(re){
+         			$("#review_section").html(re);
+         		}
+         	 });
+		 });
 	});
 </script>
 <body>
@@ -59,49 +81,32 @@
 	<div>
 		<section>
 			<!-- 검색구간 -->
-			<form method='post'>
-				<div id="search_section">
-					<div>
-						<select name='filter'>
-		                	<option value='latest'>최신순</option>
-		                	<option value='high'>별점높은순</option>
-		                	<option value='low'>별점낮은순</option>
-		            	</select>
-		            	
-						<select name='nation'>
-		                    <option value='-'>국가</option>
-		                    <option value='japan'>일본</option>
-		                    <option value='canada'>캐나다</option>
-		                </select>
-	
-		                <select name='city'>
-		                    <option value='-'>도시</option>
-		                    <option value='tokyo'>도쿄</option>
-		                    <option value='osaka'>오사카</option>
-		                </select>
-		                
-		                <select name='category'>
-		                	<option value='-'>카테고리</option>
-		                	<option value='place'>관광지</option>
-		                	<option value='restaurant'>음식점</option>
-		                </select>
-	
-		                <div id="search">
-							<input type="text" name="searchBox" placeholder="  검색단어 입력">
-							<button type='submit' name='search'>검색</button>
-						</div>
-						<div>
-						<%
-						 if(u_id != null){
-							 out.println("<img src='img/icon/write.png' name='write'/>");
-						 }else{
-							 out.println("<img src='img/icon/write.png' name='noWrite'/>");
-						 }
-						%>
-						</div>
-					</div>
+			<div id="search_section">
+				<div id='sort_section'>
+					<div id='recent'><img alt="최신순" src="img/icon/search1.png"></div>
+					<div id='starRating'><img alt="별점순" src="img/icon/search2.png"></div>
 				</div>
-			</form>
+				<div>
+					<select name='nation'>
+	                    <option value=''>국가</option>
+	                    <option value='japan'>일본</option>
+	                    <option value='canada'>캐나다</option>
+                	</select>
+				</div>
+                <div id="search">
+					<input type="text" name="searchBox" placeholder="검색단어 입력">
+					<input type='button' name='search' value='검색'>
+				</div>
+				<div>
+				<%
+				 if(u_id != null){
+					 out.println("<img src='img/icon/write.png' name='write'/>");
+				 }else{
+					 out.println("<img src='img/icon/write.png' name='noWrite'/>");
+				 }
+				%>
+				</div>
+			</div>
 		</section>
 
         <section>
@@ -113,13 +118,16 @@
        					int lr_no=0;
        					String search = request.getParameter("searchBox");
        					
+       					lrList = place.select_placeReview(lr_no);
+       					
        					//검색창select
-       					if(search != null){
+       					
+       					/*if(search != null){
        						lrList = place.search_placeReview(search);
        					}else{
        					//기본select
            					lrList = place.select_placeReview(lr_no);
-       					}
+       					}*/
 
        					for(Location_review lr : lrList){
        						out.println("<div class='review'>"); //전체
