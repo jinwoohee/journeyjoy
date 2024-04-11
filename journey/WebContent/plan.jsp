@@ -50,7 +50,7 @@ Date sdate = sdf.parse(e_start_date);
 Date edate = sdf.parse(e_end_date);
 long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 
-
+System.out.println("");
 %>
 <!DOCTYPE html>
 <html>
@@ -203,6 +203,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 										<td name="prod_price" class="product_item" ><%=pro.getProd_price() %>
 										<button class="plus_prod" onclick="asda()">
 											<img src="img\plus.png" />
+											
 										</button>
 									</td>
 									</tr>

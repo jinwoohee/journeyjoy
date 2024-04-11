@@ -39,9 +39,8 @@ $(function() {
 	});
 
 });
-
-
 }
+
 function open_div(num){
 	$("img[id='open"+num+"']").css({"display":"none"});
 	$("img[id='close"+num+"']").show();
