@@ -113,11 +113,11 @@ function hideMenu(){
 				</ul>
 			</div>
 			<div id="login">
-				<img src="img/icon/mypage_btn.png" onclick="showMenu()" id="mypage_btn"/>
 				<%
 					if(loginChk.equals("로그인")){
 						out.println("<a href='login.jsp' class='head_banner'>"+loginChk+"</a> &nbsp;&nbsp;&nbsp;");
 					}else{
+						out.println("<img src='img/icon/bell.png' class='bell' />");
 						out.println("<a href='#' class='head_banner'>"+loginChk+"</a> &nbsp;&nbsp;&nbsp;");
 					}
 
@@ -127,6 +127,7 @@ function hideMenu(){
 						out.println("<a href='logout_session.jsp' class='head_banner'>"+joinChk+"</a>"); //로그아웃
 					}
 				%>
+				<img src="img/icon/mypage_btn.png" onclick="showMenu()" id="mypage_btn"/>
 			</div>
 		</div>
 
