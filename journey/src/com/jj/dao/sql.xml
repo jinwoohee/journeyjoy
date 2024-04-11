@@ -296,7 +296,7 @@
 		</if>
 	</select>
 	
-	<!-- 좋아요 select -->
+	<!-- 좋아요 select --> 
 	<select id="likeSelect" resultType="com.jj.dto.Package_like">
 		SELECT * FROM package_like;
 	</select>
