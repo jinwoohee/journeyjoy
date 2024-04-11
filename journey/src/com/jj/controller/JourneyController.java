@@ -126,6 +126,7 @@ public class JourneyController extends HttpServlet {
 			}
 		}
 		
+		
 		//윤영 부분
 		else if(page.equals("packageInsert")) { //패키지 insert
 			ji = PackageInsert.packageInsertinter();

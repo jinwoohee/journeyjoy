@@ -50,7 +50,6 @@ Date sdate = sdf.parse(e_start_date);
 Date edate = sdf.parse(e_end_date);
 long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 
-System.out.println("");
 %>
 <!DOCTYPE html>
 <html>
@@ -164,7 +163,7 @@ System.out.println("");
 						</table>
 					</div>
 					<div class="product_add">
-						<p class="plan_sub">※추천상품</p>				
+						<p class="plan_sub">※이런 상품은 어떠세요?</p>				
 						<div id="item_div">
 						<div id = "slide_div">
 						<div class = "kind_slider">
