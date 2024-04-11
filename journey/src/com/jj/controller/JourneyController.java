@@ -254,7 +254,7 @@ public class JourneyController extends HttpServlet {
 				result = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(result).forward(request, response);
 			} catch (Exception e) {
-				System.out.println("--- Controller / 장소리뷰 검색 ---" + e);
+				System.out.println("--- Controller / 장소리뷰검색 ---" + e);
 			}
 		}else {
 			System.out.println("--- controller else ---");

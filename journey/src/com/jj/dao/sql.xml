@@ -343,7 +343,7 @@
 		WHERE p_no = ${p_no};
 	</select>
 	
-	<!-- 장소리뷰 검색  -->
+	<!-- 장소리뷰 검색필터  -->
 	<select id="placeReviewSearch" resultType="com.jj.dto.Location_review" parameterType="java.util.HashMap">
 		SELECT DISTINCT l.*, u.u_nickname
 		FROM location_review l

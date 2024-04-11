@@ -13,7 +13,7 @@ public class PlaceReviewSearchDB {
 	
 	static PlaceReviewSearchDB selectDB = new PlaceReviewSearchDB();
 	
-	public static PlaceReviewSearchDB select() {
+	public static PlaceReviewSearchDB select(){
 		return selectDB;
 	}
 	

@@ -14,7 +14,7 @@ public class PlaceReviewSearch implements JourneyInterface{
 	
 	static PlaceReviewSearch pSelect = new PlaceReviewSearch();
 	
-	public static PlaceReviewSearch placeReviewSearchInter() {
+	public static PlaceReviewSearch placeReviewSearchInter(){
 		return pSelect;
 	}
 

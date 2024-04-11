@@ -14,7 +14,7 @@ public class Review {
 	
 	/* 생성자 */
 	public Review() throws Exception {
-		Class.forName("com.mysql.jdbc.Driver"); //라이브러리 연결은 실행시 한번만 선언하면 되기때문에
+		Class.forName("com.mysql.cj.jdbc.Driver"); //라이브러리 연결은 실행시 한번만 선언하면 되기때문에
 	}
 	
 	/* DB연결 */
