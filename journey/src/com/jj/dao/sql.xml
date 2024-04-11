@@ -206,6 +206,9 @@
 		</foreach>
 	</select>
 	
+	<insert id="plan_insert" parameterType="com.jj.dto.Plan">
+		insert into plan values(default, #{e_no}, #{plan_title}, #{plan_product}, curdate(), #{plan_url})
+	</insert>
 	
 	
 	

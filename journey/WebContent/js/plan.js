@@ -51,3 +51,67 @@ function close_div(num){
 	$("img[id='open"+num+"']").show();
 	$("div[id='detail_info"+num+"']").slideUp();
 }
+
+function add_prod(num){
+	var product_name = document.getElementById("product_name"+num).innerText;
+	var product_sort = document.getElementById("product_sort"+num).value;
+	var product_price = document.getElementById("product_price"+num).innerText;
+	var product_no = document.getElementById("product_no"+num).value;
+	
+	var name = document.createElement("p");
+	name.textContent = product_name;
+	
+	var sort = document.createElement("p");
+	sort.textContent = product_sort;
+	
+	var price = document.createElement("p");
+	price.textContent = product_price;
+	
+	var del = document.createElement("img");
+	del.setAttribute("src", "img/icon/minus.png");
+	del.setAttribute("onclick" , "cancel_prod("+num+")");
+	del.id = "del"+num;
+	
+	var no = document.createElement("input");
+	no.setAttribute("type","hidden");
+	no.value = product_no;
+	no.id = "num"+num;
+	
+	var taList = document.getElementById('product_table');
+	var row = taList.insertRow(taList.rows.length);
+	
+	var td1 = row.insertCell(0);
+	var td2 = row.insertCell(1);
+	var td3 = row.insertCell(2);
+	var td4 = row.insertCell(3);
+	
+	td1.appendChild(name);
+	td1.appendChild(no);
+	td2.appendChild(sort);
+	td3.appendChild(price);
+	td4.appendChild(del);
+	
+	var div = document.getElementById("product_item"+num);
+	div.style.display = "none";
+	
+	
+	var select = document.getElementById("selected_prod");
+	
+	var after = select.value+product_no+",";
+	select.setAttribute('value',after);
+}
+function cancel_prod(num){
+	var select = document.getElementById("selected_prod");
+	var no = document.getElementById("num"+num).value+",";
+	var result = select.value.replaceAll(no,"");
+	select.setAttribute('value',result);
+	
+	var tdd = document.getElementById("del"+num).parentNode;
+	var trr = tdd.parentNode;
+	var tbb = trr.parentNode;
+	tbb.removeChild(trr);
+	
+	var div = document.getElementById("product_item"+num);
+	div.style.display = "block";
+	
+}

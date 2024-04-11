@@ -68,6 +68,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 	<jsp:include page="main_header.jsp"></jsp:include>
 	<!-- 페이지 섹션 -->
 	<section>
+	<form action="planner.jj?page=save_plan" method="post">
 	<input type="hidden" id="item" value="<%= items%>">
 		<div id="content">
 			<div id="list_text">
@@ -81,8 +82,10 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 				<input type="radio" name="plan" value="체크리스트" id="checklist_btn">
 				<label for="checklist_btn" class="plan_radio">체크리스트</label>
 			</div>
+			<input type="hidden" name="selected_prod" id="selected_prod" value="">
+			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">
 			<div id="plan">
-				<input type="text" name="plan_subject" placeholder="계획서 제목(최대50자)" maxlength="50" />
+				<input type="text" name="plan_subject" placeholder="계획서 제목(최대50자)" maxlength="50" value="<%=esti.get(0).getu_id()%>의 <%=esti.get(0).gete_destination() %>여행계획서"/>
 				<div id="plan_info">
 					<p id="city"><%=e_destination %></p>
 					<p id="plan_date"><%=sdt %>&nbsp;~&nbsp;<%=edt %></p>
@@ -153,11 +156,11 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 				<div id="product">
 					<div class="product_add">
 						<p class="product_sub">※추가상품</p>
-						<table id="product">
+						<table id="product_table">
 							<tr>
-								<td class="product">이름</td>
-								<td class="product">종류</td>
-								<td class="product">가격</td>
+								<td id="product_add_name">이름</td>
+								<td id="product_add_sort">종류</td>
+								<td id="product_add_price">가격</td>
 								<td id="del">삭제</td>
 							</tr>
 						</table>
@@ -170,43 +173,47 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						<ul class="slider">
 						<li id="plan_li">							
 							<div class="product_adv">
-						<%
-							for(Ticket ti : tick){				
+						<%int i = 0;
+							for(Ticket ti : tick){	
+								int j = 1;
+								i++;
 						%>
-							<div class="product_item">
+							<div id="product_item<%=j*100+i%>">
 								<img src="img\ticket.png" />
-								<table class="product_tb">
+								<table id="product_tb<%=j*100+i%>">
 									<tr>
-										<td name="prod_name" class="product_item"><%=ti.getTick_name() %></td>
+										<td name="prod_name" id="product_name<%=j*100+i%>"><%=ti.getTick_name() %></td>
 									</tr>
 									<tr>
-										<td name="prod_price" class="product_item" ><%=ti.getTick_price() %>
-										<button class="plus_prod" onclick="asda()">
-											<img src="img\plus.png" />
-										</button>
+										<td name="prod_price" id="product_price<%=j*100+i%>" ><%=ti.getTick_price() %>																					
 									</td>
+									<td><img src="img/icon/plus.png" onclick="add_prod(<%=j*100+i%>)"/></td>
 									</tr>
-								</table>	
+								</table>
+								<input type="hidden" id="product_sort<%=j*100+i%>" value="<%=ti.getTick_sort()%>">
+								<input type="hidden" id="product_no<%=j*100+i%>" value="<%=ti.getTick_no()%>">	
 							</div>
 						<%}
+						
 						for(Product pro : prod){
+							int j = 3;
+							i++;
 						%>
-							<div class="product_item">
+							<div id="product_item<%=j*100+i%>">
 								<img src="img\ticket.png" />
-								<table class="product_tb">
+								<table id="product_tb<%=j*100+i%>">
 									<tr>
-										<td name="prod_name" class="product_item"><%=pro.getProd_name() %></td>
+										<td name="prod_name" id="product_name<%=j*100+i%>"><%=pro.getProd_name() %></td>
 									</tr>
 
 									<tr>
-										<td name="prod_price" class="product_item" ><%=pro.getProd_price() %>
-										<button class="plus_prod" onclick="asda()">
-											<img src="img\plus.png" />
-											
-										</button>
+										<td name="prod_price" id="product_price<%=j*100+i%>" ><%=pro.getProd_price() %>
+											<img src="img/icon/plus.png" onclick="add_prod(<%=j*100+i%>)"/>											
 									</td>
 									</tr>
-								</table>	
+								</table>
+								<input type="hidden" id="product_sort<%=j*100+i%>" value="<%=pro.getProd_sort()%>">
+								<input type="hidden" id="product_no<%=j*100+i%>" value="<%=pro.getProd_no()%>">	
 							</div>
 						<%} %> 
 							</div>
@@ -222,10 +229,11 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 				</div>
 			<p align="right">예상 경비 약 10,000,000 </p>
 			<div id="save_btn_div">
-					<input type="button" name="save_plan" value="저장">
+					<input type="submit" name="save_plan" value="저장">
 					</div>
 		</div>
 		</div>
+		</form>
 	</section>
 
 	<footer>

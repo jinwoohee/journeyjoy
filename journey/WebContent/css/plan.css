@@ -254,7 +254,7 @@ div[class="product_add"]{/*異붽��긽�뭹, 異붿쿇�긽�뭹 媛곴�
 	width: 800px;
 	margin: 50px auto;
 }
-table[id="product"]{/*異붽��긽�뭹 �뀒�씠釉�*/
+table[id="product_table"]{/*異붽��긽�뭹 �뀒�씠釉�*/
 	width: 750px;
 	height: 30px;
 	border: 2px solid #0D112D;
@@ -262,7 +262,17 @@ table[id="product"]{/*異붽��긽�뭹 �뀒�씠釉�*/
 	margin: 15px auto;
 	background-color: white;
 }
-td[class="product"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
+td[id="product_add_name"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
+	height: 20px;
+	border-bottom: 2px solid #0D112D;
+	margin-top : 15px;
+}
+td[id="product_add_sort"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
+	height: 20px;
+	border-bottom: 2px solid #0D112D;
+	margin-top : 15px;
+}
+td[id="product_add_price"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
 	height: 20px;
 	border-bottom: 2px solid #0D112D;
 	margin-top : 15px;
@@ -294,7 +304,7 @@ div[id="slide_div"]{
 	margin : 0 auto;
 }
 
-div[class="product_item"]{ /*由ъ뒪�듃 �븞 �빆紐쯣iv */
+div[id*="product_item"]{ /*由ъ뒪�듃 �븞 �빆紐쯣iv */
 	width: 170px;
 	height: 175px;
 	border: 2px solid #0D112D;
@@ -310,11 +320,15 @@ img[src*="ticket"]{ /*�떚耳� �씠誘몄�*/
 	border-radius: 5px;
 	border: 2px solid #0D112D;
 }
-table[class="product_tb"]{ /* 異붿쿇�긽�뭹 �젙蹂� �뀒�씠釉� */
+table[id*="product_tb"]{ /* 異붿쿇�긽�뭹 �젙蹂� �뀒�씠釉� */
 	margin-left: 10px;
 	width: 150px;
 }
-td[class="product_item"]{ /* 異붿쿇�긽�뭹 td */
+td[id*="product_name"]{ /* 異붿쿇�긽�뭹 td */
+	border-bottom: 1.5px solid #0D112D;
+	width: 150px;
+}
+td[id*="product_price"]{ /* 異붿쿇�긽�뭹 td */
 	border-bottom: 1.5px solid #0D112D;
 	width: 150px;
 }
@@ -332,23 +346,10 @@ input[name="save_plan"]{ /*���옣 踰꾪듉*/
 	margin-left: 250px;
 	cursor: pointer;
 }
-button[class="plus_prod"]{ /*異붽��긽�뭹 異붽�踰꾪듉*/
-	width: 10px;
-	height: 15px;
-	float: right;
-	margin-right: 5px;
-	background-color: white;
-	border: solid white;
+img[src*="minus"]{ /*異붽��긽�뭹 異붽�踰꾪듉*/
 	cursor: pointer;
 }
-button[class="minus_prod"]{ /*異붽��긽�뭹 �궘�젣踰꾪듉*/
-	width: 1px;
-	height: 1px;
-	float: right;
-	margin-right: 20px;
-	margin-top: -7px;
-	background-color: white;
-	border: 0px solid white;
+img[src*="plus"]{ /*異붽��긽�뭹 �궘�젣踰꾪듉*/
 	cursor: pointer;
 }
 #save_btn_div{
