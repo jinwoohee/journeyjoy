@@ -117,7 +117,7 @@ function hideMenu(){
 					if(loginChk.equals("로그인")){
 						out.println("<a href='login.jsp' class='head_banner'>"+loginChk+"</a> &nbsp;&nbsp;&nbsp;");
 					}else{
-						out.println("<img src='img/icon/bell.png' class='bell' />");
+						out.println("<img src='img/icon/bell.png' class='bell' />"); 
 						out.println("<a href='#' class='head_banner'>"+loginChk+"</a> &nbsp;&nbsp;&nbsp;");
 					}
 
