@@ -30,7 +30,7 @@
 		/* 인원선택 */
 		var result = document.getElementById("total");
 		var adultFee = $("input[name='adultFee']").val();
-		result.innerHTML = adultFee.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원";
+		//result.innerHTML = adultFee.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원";
 		
 		$("aside input[type='button']").click(function(){
 			var adultNum = parseInt($("#adult>input[name='adultCount']").val());
@@ -454,6 +454,10 @@
 		<form name='inquiryForm' action='inquiryInsert.jj?page=inquiryInsert' method="post">
 			<div>
 				<textarea name='inquiryContent' rows="20" cols="20" placeholder="문의내용"></textarea>
+				<%
+					out.println("<input type='hidden' name='no' value='"+pk.getP_no()+"'>");
+					out.println("<input type='hidden' name='id' value='"+(String)session.getAttribute("u_id")+"'>");
+				%>
 			</div>
 			<div><input type="button" name='inquiryBtn' value='문의하기' onclick="inquiryCheck()"></div>
 		</form>
