@@ -21,9 +21,12 @@ request.setCharacterEncoding("utf-8");
 <% 
 	String e_no = (String) request.getAttribute("e_no");
 
-if(e_no == null){
-	System.out.println("e_no null");
+if(e_no.equals("list")){
+	response.addCookie(new Cookie("where", "list"));
+	response.sendRedirect("planner.jj?page=select");
 }else{
+
+	response.addCookie(new Cookie("where", "detail"));
 	response.addCookie(new Cookie("e_no", e_no));
 	response.sendRedirect("planner.jj?page=select");
 }

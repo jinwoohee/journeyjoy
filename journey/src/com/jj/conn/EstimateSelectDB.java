@@ -21,11 +21,10 @@ public class EstimateSelectDB {
 	
 	public List<Estimate> selectMth(String u_id) {	
 		SqlSession sqls = sql.openSession();	
-		
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("u_id", u_id);
-		
 		List<Estimate> estiList = sqls.selectList("estimate_select",param);
+
 		sqls.close();
 		return estiList;
 	}

@@ -11,6 +11,7 @@ $(function() {
 	$(".plan").mouseout(function() {
 		$(this).css({'box-shadow':'0 0 0 0px rgb(64,64,64) inset'});
 	});
+
 });
 
 function checking(id){ /*테마 체크 여부 */
@@ -20,3 +21,6 @@ function checking(id){ /*테마 체크 여부 */
     $("label[for="+id+"]").css({"background-color":"white", "color":"#6C94B8"});
   }
  }
+function del_plan(num){
+	$("form").attr("action","plan.jj?page=plan_delete&e_no="+num);
+}
