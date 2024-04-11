@@ -50,7 +50,6 @@ Date sdate = sdf.parse(e_start_date);
 Date edate = sdf.parse(e_end_date);
 long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 
-
 %>
 <!DOCTYPE html>
 <html>
@@ -164,7 +163,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						</table>
 					</div>
 					<div class="product_add">
-						<p class="plan_sub">※추천상품</p>				
+						<p class="plan_sub">※이런 상품은 어떠세요?</p>				
 						<div id="item_div">
 						<div id = "slide_div">
 						<div class = "kind_slider">
@@ -203,6 +202,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 										<td name="prod_price" class="product_item" ><%=pro.getProd_price() %>
 										<button class="plus_prod" onclick="asda()">
 											<img src="img\plus.png" />
+											
 										</button>
 									</td>
 									</tr>
