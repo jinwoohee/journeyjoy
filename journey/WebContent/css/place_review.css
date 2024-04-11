@@ -56,11 +56,28 @@ section{
 	border: none;
 }
 
+/* 검색구간 - 소트 */
+#sort_section{
+	display : flex;
+	margin-right: 30px;
+}
+
+#sort_section img{
+	width : 85px;
+	height : 40px;
+	object-fit : cover;
+}
+
+#recent{
+	margin-right: 10px;
+}
+
 /* 작성버튼 */
-#search_section img{
+#search_section > div:last-of-type img{
 	width:40px;
 	height:40px; 
 	margin-left: 50px;
+	object-fit : cover;
 }
 
 
