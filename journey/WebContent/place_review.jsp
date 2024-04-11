@@ -57,7 +57,7 @@
 		 $("input[name='search']").click(function(){
 			 $.ajax({ //검색버튼 
          		url : "placeReview_list.jj?page=placeReviewSearch",
-         		data : {"param" : $("input[name='searchBox']").val()},
+         		data : {"txt" : $("input[name='searchBox']").val()},
          		success : function(re){
          			$("#review_section").html(re);
          		}
@@ -74,6 +74,30 @@
          		}
          	 });
 		 });
+		 
+		 //도시
+		 $('select[name=nation]').change(function() {
+			if ($(this).find('option:selected').text() == '국가') {
+				$('select[name=city]').find('option').remove();
+				$('select[name=city]').append('<option>도시</option>');
+			} else if ($(this).find('option:selected').text() == '일본') {
+				$('select[name=city]').find('option').remove();
+				$('select[name=city]').append('<option>도시</option>');
+				$('select[name=city]').append('<option>도쿄</option>');
+				$('select[name=city]').append('<option>오사카</option>');
+				$('select[name=city]').append('<option>후쿠오카</option>');
+				$('select[name=city]').append('<option>교토</option>');
+				$('select[name=city]').append('<option>나리타</option>');
+			} else if ($(this).find('option:selected').text() == '캐나다') {
+				$('select[name=city]').find('option').remove();
+				$('select[name=city]').append('<option>도시</option>');
+				$('select[name=city]').append('<option>벤쿠버</option>');
+				$('select[name=city]').append('<option>토론토</option>');
+				$('select[name=city]').append('<option>캘거리</option>');
+				$('select[name=city]').append('<option>빅토리아</option>');
+				$('select[name=city]').append('<option>몬트리올</option>');
+			}
+		});
 	});
 </script>
 <body>
@@ -83,8 +107,8 @@
 			<!-- 검색구간 -->
 			<div id="search_section">
 				<div id='sort_section'>
-					<div id='recent'><img alt="최신순" src="img/icon/search1.png"></div>
-					<div id='starRating'><img alt="별점순" src="img/icon/search2.png"></div>
+					<div id='recent'><img alt="최신순" src="img/icon/lrIcon-02.png"></div>
+					<div id='starRating'><img alt="별점순" src="img/icon/lrIcon-04.png"></div>
 				</div>
 				<div>
 					<select name='nation'>
@@ -92,6 +116,11 @@
 	                    <option value='japan'>일본</option>
 	                    <option value='canada'>캐나다</option>
                 	</select>
+                	
+                	<select name='city'>
+	                    <option value=''>도시</option>
+                	</select>
+
 				</div>
                 <div id="search">
 					<input type="text" name="searchBox" placeholder="검색단어 입력">

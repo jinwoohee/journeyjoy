@@ -244,16 +244,16 @@ public class JourneyController extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("--- Controller / 댓글 insert ---" + e);
 			}
-		}else if(page.equals("inquiryInsert")) {
+		}else if(page.equals("inquiryInsert")) {//문의하기
 			
-		}else if(page.equals("placeReviewSearch")) {
+		}else if(page.equals("placeReviewSearch")) {//장소리뷰 검색
 			ji = PlaceReviewSearch.placeReviewSearchInter();
 			String result;
 			try {
 				result = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(result).forward(request, response);
 			} catch (Exception e) {
-				System.out.println("--- Controller / 패키지 검색 ---" + e);
+				System.out.println("--- Controller / 장소리뷰 검색 ---" + e);
 			}
 		}else {
 			System.out.println("--- controller else ---");

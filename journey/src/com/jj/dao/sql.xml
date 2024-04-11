@@ -344,30 +344,28 @@
 	</select>
 	
 	<!-- 장소리뷰 검색  -->
-	<select id="placeReviewSearch" resultType="com.jj.dto.Location_review" parameterType="String">
+	<select id="placeReviewSearch" resultType="com.jj.dto.Location_review" parameterType="java.util.HashMap">
 		SELECT DISTINCT l.*, u.u_nickname
 		FROM location_review l
 		LEFT JOIN user u
 		ON l.u_id = u.u_id
+		LEFT JOIN place p
+		ON l.pl_eat_no = p.plac_no
+		LEFT JOIN eatery e
+		ON l.pl_eat_no = e.eat_no
 		<where>
-			<trim prefixOverrides="and" suffixOverrides="and">
-			<if test="!param.equals('')">
-				<!-- 국가/관광지의 국가서치해서 가져오기 
-				<if test="param.equals('japan') || param.equals('canada')">
-					p.p_nation = #{param}
-				</if>
-				-->
-				<if test="!param.equals('recent') || !param.equals('starRating')">
-					l.lr_contents like concat('%', #{param}, '%')
-				</if>
+			<if test="search!= null">
+				l.lr_contents like concat('%', #{search}, '%')
 			</if>
-			</trim>
 		</where>
-		<if test="param.equals('recent')">
-			ORDER BY l.lr_no DESC;
+		<if test="param != null">
+			<if test="param.equals('recent')">
+				ORDER BY l.lr_no DESC;
+			</if>
+			<if test="param.equals('starRating')">
+				ORDER BY l.lr_star DESC;		
+			</if>
 		</if>
-		<if test="param.equals('starRating')">
-			ORDER BY l.lr_star DESC;		
-		</if>
+		
 	</select>
 </mapper>
