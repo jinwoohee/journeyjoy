@@ -156,6 +156,7 @@
 	
 	
 	<!-- 진수님 부분 -->
+	<!-- 견적 저장 -->
 	<insert id="estimate_insert" parameterType="com.jj.dto.Estimate">
 		insert into estimate values(default, #{u_id}, #{e_departure}, #{e_destination}, #{e_start_date}, #{e_end_date}, #{e_thema}, #{e_detail_thema}, #{e_volume}, #{e_food_taste}, curdate(), #{e_airplane}, #{e_hotel});
 		<selectKey resultType="com.jj.dto.Estimate" keyColumn="e_no" keyProperty="e_no" order="AFTER">
@@ -163,6 +164,7 @@
 		</selectKey>
 	</insert>
 	
+	<!-- 음식점 불러오기 -->
 	<select id="eatery_select" resultType="com.jj.dto.Eatery" parameterType="java.util.HashMap">	
 		select * from eatery where eat_food_taste in 	
 		<foreach collection="eat_food_taste" item="item" index="index" separator="," open="(" close=")"> 
@@ -171,6 +173,7 @@
 			order by RAND() LIMIT #{day} 
 	</select>
 	
+	<!-- 관광지 불러오기 -->
 	<select id="place_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">		
 		select * from place where plac_thema like CONCAT('%',#{plac_thema},'%') and 	
 		<foreach collection="plac_detail_thema" item="item" index="index" separator="or" open="(" close=")">
@@ -179,26 +182,32 @@
 			order by RAND() LIMIT #{day} 
 	</select>
 	
+	<!-- 장소검색 한거 불러오기 -->
 	<select id="search_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">
 		select * from place where plac_name like CONCAT('%',#{text},'%') or plac_detail_thema like CONCAT('%',#{text},'%')
 	</select>
 	
+	<!-- 일정 저장 -->
 	<insert id="schedule_insert" parameterType="com.jj.dto.Schedule">
 		insert into schedule values(#{e_no}, #{sche_day}, #{place})
 	</insert>
 	
+	<!-- 견적,일정 저장 후 견적 불러오기 -->
 	<select id="estimate_selectone" parameterType="int" resultType="com.jj.dto.Estimate">
 		select * from estimate where e_no = #{e_no}
 	</select>
 	
+	<!-- 일정 불러오기 -->
 	<select id="schedule_select" parameterType="int" resultType="com.jj.dto.Schedule">
 		select * from schedule where e_no = #{e_no} order by sche_day
 	</select>
 	
+	<!-- 상품 불러오기 -->
 	<select id="product_select" parameterType="String" resultType="com.jj.dto.Product">
 		select * from product where prod_city = #{e_destination}
 	</select>
 	
+	<!-- 티켓 불러오기 -->
 	<select id="ticket_select" resultType="com.jj.dto.Ticket" parameterType="java.util.HashMap">
 		select * from ticket where tick_sort in
 			<foreach collection="tick_sort" item="item" index="index" separator="," open="(" close=")"> 
@@ -206,13 +215,17 @@
 		</foreach>
 	</select>
 	
+	<!-- 계획서 저장 -->
 	<insert id="plan_insert" parameterType="com.jj.dto.Plan">
 		insert into plan values(default, #{e_no}, #{plan_title}, #{plan_product}, curdate(), #{plan_url})
 	</insert>
+	
+	<!-- 견적불러오기 -->
 	<select id="estimate_select" parameterType="String" resultType="com.jj.dto.Estimate">
 		select * from estimate where u_id = #{u_id}
 	</select>
 	
+	<!-- 여행계획서 리스트 -->
 	<select id="plan_select" parameterType="String" resultType="com.jj.dto.Plan">
 		 SELECT * FROM plan p
         LEFT JOIN estimate e
@@ -220,6 +233,7 @@
         WHERE u_id = #{u_id}
 	</select>
 	
+	<!-- 여행계획 삭제 -->
 	<delete id="plan_delete" parameterType="int">
 		delete from plan where e_no = #{e_no};
 	</delete>
