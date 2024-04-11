@@ -8,7 +8,7 @@ body {
 }
 
 /* 메뉴바 */
-header>iframe {
+header>iframe {  
 	position: fixed;
 	z-index: 100;
 }
