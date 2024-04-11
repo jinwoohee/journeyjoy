@@ -19,7 +19,7 @@
 		<trim prefixOverrides="or" suffixOverrides="or"> 
 		<!-- 대직종 -->
 		<if test="com_job1 != null">
-			<foreach collection="com_job1" item="item" index="index" separator="or">
+			<foreach collection="com_job1" item="item" index="index" separator="or" open="(" close=")">
 				com_job1 like concat('%', #{item}, '%')
 			</foreach>
 			or
@@ -27,7 +27,7 @@
 		
 		<!-- 세부직종 -->
 		<if test="com_job2 != null">
-			<foreach collection="com_job2" item="item" index="index" separator="or">
+			<foreach collection="com_job2" item="item" index="index" separator="or" open="(" close=")">
 				com_job2 like concat('%', #{item}, '%')
 			</foreach>
 			or
@@ -35,7 +35,7 @@
 		
 		<!-- 국가 -->
 		<if test="com_country != null">
-			<foreach collection="com_country" item="item" index="index" separator="or">
+			<foreach collection="com_country" item="item" index="index" separator="or" open="(" close=")">
 				com_country like concat('%', #{item}, '%')
 			</foreach>
 			or
@@ -43,7 +43,7 @@
 		
 		<!-- 도시 -->
 		<if test="com_city != null">
-			<foreach collection="com_city" item="item" index="index" separator="or">
+			<foreach collection="com_city" item="item" index="index" separator="or" open="(" close=")">
 				com_city like concat('%', #{item}, '%')
 			</foreach>
 			or
@@ -51,7 +51,7 @@
 		
 		<!-- 학력 -->
 		<if test="com_edu_level != null">
-			<foreach collection="com_edu_level" item="item" index="index" separator="or">
+			<foreach collection="com_edu_level" item="item" index="index" separator="or" open="(" close=")">
 				com_edu_level like concat('%', #{item}, '%')
 			</foreach>
 			or
@@ -59,7 +59,7 @@
 		
 		<!-- 전공 -->
 		<if test="com_major != null">
-			<foreach collection="com_major" item="item" index="index" separator="or">
+			<foreach collection="com_major" item="item" index="index" separator="or" open="(" close=")">
 				com_major like concat('%', #{item}, '%')
 			</foreach>
 			or
@@ -67,7 +67,7 @@
 		
 		<!-- 자격증 -->
 		<if test="com_license != null">
-			<foreach collection="com_license" item="item" index="index" separator="or">
+			<foreach collection="com_license" item="item" index="index" separator="or" open="(" close=")">
 				com_license like concat('%', #{item}, '%')
 			</foreach>
 			or
@@ -75,7 +75,7 @@
 		
 		<!-- 급여 -->
 		<if test="com_salary != null">
-			<foreach collection="com_salary" item="item" index="index" separator="or">
+			<foreach collection="com_salary" item="item" index="index" separator="or" open="(" close=")">
 				com_sal_name = #{item}
 			</foreach>
 			or
@@ -83,7 +83,7 @@
 		
 		<!-- 복리후생 -->
 		<if test="com_benefits != null">
-			<foreach collection="com_benefits" item="item" index="index" separator="or">
+			<foreach collection="com_benefits" item="item" index="index" separator="or" open="(" close=")">
 				com_benefits like concat('%', #{item}, '%')
 			</foreach>
 			or
@@ -91,7 +91,7 @@
 		
 		<!-- 근무기간 -->
 		<if test="com_work_period != null">
-			<foreach collection="com_work_period" item="item" index="index" separator="or">
+			<foreach collection="com_work_period" item="item" index="index" separator="or" open="(" close=")">
 				com_work_period like concat('%', #{item}, '%')
 			</foreach>
 			or
@@ -99,7 +99,7 @@
 		
 		<!-- 근무요일 -->
 		<if test="com_work_days != null">
-			<foreach collection="com_work_days" item="item" index="index" separator="or">
+			<foreach collection="com_work_days" item="item" index="index" separator="or" open="(" close=")">
 				<if test="item == '평일(월~금)'">
 					com_work_days = '월,화,수,목,금'
 				</if>
@@ -117,7 +117,7 @@
 		
 		<!-- 근무시간 -->
 		<if test="wtime != null">
-			<foreach collection="wtime" item="item" index="index" separator="or">
+			<foreach collection="wtime" item="item" index="index" separator="or" open="(" close=")">
 				<if test="item == '오전'">
 					<![CDATA[(com_start_time >= 6 and com_start_time <= 12 and com_end_time >= 6 and com_end_time <= 12)]]>
 				</if>
@@ -406,4 +406,12 @@
 		</if>
 		
 	</select>
+	
+	<!-- 문의하기 insert -->
+	<insert id="inquiry_insert" parameterType="com.jj.dto.Inquiry">
+		insert into inquiry values(default, #{p_no}, #{u_id}, #{i_contents}, curdate());
+	</insert>
+	
+	
+	
 </mapper>
