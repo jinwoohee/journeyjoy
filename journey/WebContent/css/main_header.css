@@ -98,7 +98,7 @@ div[id="login"]{ /*아이디,회원가입,마이페이지 div*/
 	right: 160px;
 	top: 25px;
 	display: flex;
-    align-items: center; 
+    align-items: center;
 }
 
 .bell {
