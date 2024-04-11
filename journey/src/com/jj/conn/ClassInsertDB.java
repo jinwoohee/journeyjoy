@@ -1,23 +1,29 @@
 package com.jj.conn;
 
 import java.sql.Connection;
-import java.util.ArrayList;
 
 import com.jj.dao.JourneySql;
 import com.jj.dto.Class_list;
 import static com.jj.db.JdbcUtil.*;
 
-public class ClassListSelectDB {
-
-	public ArrayList<Class_list> selectClass() {
+public class ClassInsertDB {
+	
+	public void insertClass(Class_list cl) {
 		
-		ArrayList<Class_list> classList = null;
+		System.out.println("conn/insertClass");
+		
 		Connection con = getConnection();
 		JourneySql sql = JourneySql.getInstance();
 		sql.setConnection(con);
-		classList = sql.selectClassList();
-		close(con);
 		
-		return classList;
+		int resultCount = sql.insertClass(cl);
+		
+		if(resultCount > 0) {
+			commit(con);
+		}else {
+			rollback(con);
+		}
+		
+		close(con);
 	}
 }

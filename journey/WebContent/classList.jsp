@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Class_list"%>
@@ -49,7 +50,6 @@
         });
 
         $(".joinClass").click(function(){
-        	console.log("dddd");
         	if($(this).hasClass("toggleBtn")){
         		$(this).removeClass("toggleBtn");
         	}else{
@@ -61,6 +61,10 @@
         	alert("로그인 후 이용가능합니다.");
 			$('form[name="button"]').attr('action', 'login.jsp');
 		});
+        
+        $('.make_btn').click(function(){
+        	$(location).attr('href', 'class_insert.jsp');
+        })
 
         /* 페이징
         $("#paging").twbsPagination({
@@ -99,9 +103,9 @@
 		<div>
 			<%
 				if (u_id != null) {
-					out.println("<button><a href=''>모임 만들기</a></button>");
+					out.println("<input type='button' class='make_btn' value='모임 만들기'>");
 				} else {
-					out.println("<button class='not_btn'>모임 만들기</button>");
+					out.println("<input type='button' class='not_btn' value='모임 만들기'>");
 				}
 			%>
 		</div>
@@ -163,9 +167,9 @@
 
 	<!-- 리스트 출력 -->
 	<%
-		List<Class_list> clist =  (List<Class_list>)request.getAttribute("clist");
+		ArrayList<Class_list> classList = (ArrayList<Class_list>)request.getAttribute("clist");
 							
-		for (Class_list c : clist) {
+		for (Class_list c : classList) {
 	%>
 	<section>
 		<article>

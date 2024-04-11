@@ -1,7 +1,5 @@
 package com.jj.dto;
 
-import java.sql.Date;
-
 public class Class_list {
 	private int c_no;
 	private String u_id;
@@ -14,8 +12,8 @@ public class Class_list {
 	private String c_file3;
 	private int c_volume;
 	private int c_charge;
-	private Date c_end_date;
-	private Date c_date;
+	private String c_end_date;
+	private String c_date;
 	private String c_url;
 	private String u_nickname;
 	
@@ -85,16 +83,17 @@ public class Class_list {
 	public void setC_charge(int c_charge) {
 		this.c_charge = c_charge;
 	}
-	public Date getC_end_date() {
+	
+	public String getC_end_date() {
 		return c_end_date;
 	}
-	public void setC_end_date(Date c_end_date) {
+	public void setC_end_date(String c_end_date) {
 		this.c_end_date = c_end_date;
 	}
-	public Date getC_date() {
+	public String getC_date() {
 		return c_date;
 	}
-	public void setC_date(Date c_date) {
+	public void setC_date(String c_date) {
 		this.c_date = c_date;
 	}
 	public String getC_url() {

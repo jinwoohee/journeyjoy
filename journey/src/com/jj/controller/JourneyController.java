@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.dao.JourneyInterface;
+import com.jj.inter.ClassInsert;
 import com.jj.inter.ClassListSelect;
 import com.jj.inter.CommInsert;
 import com.jj.inter.EaterySelect;
@@ -48,15 +49,6 @@ public class JourneyController extends HttpServlet {
 			}
 		} else if (page.equals("whlist")) { //워홀 1개만 select
 			ji = WhlistSelect.whlistselect();
-			try {
-				String url = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(url).forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if (page.equals("clist")) {
-			ji = ClassListSelect.classlistselect();
 			try {
 				String url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(url).forward(request, response);
@@ -291,6 +283,24 @@ public class JourneyController extends HttpServlet {
 				request.getRequestDispatcher(result).forward(request, response);
 			} catch (Exception e) {
 				System.out.println("--- Controller / 장소리뷰검색 ---" + e);
+			}
+		}else if(page.equals("classInsert")) {//모임 등록하기
+			ji = ClassInsert.classInsert();
+			String result;
+			try {
+				result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 모임 insert ---" + e);
+			}
+		}else if (page.equals("clist")) { //모임 select
+			ji = ClassListSelect.classlistselect();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}else {
 			System.out.println("--- controller else ---");
