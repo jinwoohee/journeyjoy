@@ -91,11 +91,11 @@ span{ /*계획서 저장날짜*/
 	float: right;
 	font-weight: bold;
 }
-input[name="del_plan"]{ /*계획서 삭제버튼 */
+input[name*="del_plan"]{ /*계획서 삭제버튼 */
 	float: right;
 	width: 90px;
 	height: 40px;
-	margin-top: -20px;
+	margin-top: -50px;
 }
 a{
 	text-decoration-line: none;

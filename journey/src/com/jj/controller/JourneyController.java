@@ -18,7 +18,9 @@ import com.jj.inter.PackageInsert;
 import com.jj.inter.PackageSearch;
 import com.jj.inter.PackageSelect;
 import com.jj.inter.PlaceReviewSearch;
+import com.jj.inter.PlanDelete;
 import com.jj.inter.PlanInsert;
+import com.jj.inter.PlanSelect;
 import com.jj.inter.PsInsert;
 import com.jj.inter.PurchaseDelete;
 import com.jj.inter.PurchaseInsert;
@@ -126,13 +128,29 @@ public class JourneyController extends HttpServlet {
 				// TODO: handle exception } }
 			}
 		}else if(page.equals("save_plan")) {
-			System.out.println("----컨트롤러----1");
 			ji = PlanInsert.insertPlan();
 			try {
 				String page_url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(page_url).forward(request, response); 
 			} catch(Exception e) { 
 				// TODO: handle exception } }save_plan
+			}
+		}else if(page.equals("plan_select")) {
+			ji = PlanSelect.selectPlan();
+			try {
+				String page_url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(page_url).forward(request, response); 
+			} catch(Exception e) { 
+				// TODO: handle exception } }
+			}
+		}else if(page.equals("plan_delete")) {
+			System.out.println("딜리트들어옴");
+			ji = PlanDelete.deletePlan();
+			try {
+				String page_url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(page_url).forward(request, response); 
+			} catch(Exception e) { 
+				// TODO: handle exception } }
 			}
 		}
 		

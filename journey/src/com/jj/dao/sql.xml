@@ -209,7 +209,28 @@
 	<insert id="plan_insert" parameterType="com.jj.dto.Plan">
 		insert into plan values(default, #{e_no}, #{plan_title}, #{plan_product}, curdate(), #{plan_url})
 	</insert>
+	<select id="estimate_select" parameterType="String" resultType="com.jj.dto.Estimate">
+		select * from estimate where u_id = #{u_id}
+	</select>
 	
+	<select id="plan_select" parameterType="String" resultType="com.jj.dto.Plan">
+		 SELECT * FROM plan p
+        LEFT JOIN estimate e
+        ON p.e_no = e.e_no
+        WHERE u_id = #{u_id}
+	</select>
+	
+	<delete id="plan_delete" parameterType="int">
+		delete from plan where e_no = #{e_no};
+	</delete>
+	
+	<delete id="schedule_delete" parameterType="int">
+		delete from schedule where e_no = #{e_no};
+	</delete>
+	
+	<delete id="estimate_delete" parameterType="int">
+		delete from estimate where e_no = #{e_no};
+	</delete>
 	
 	
 	
