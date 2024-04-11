@@ -35,7 +35,7 @@ public class RewardInsert implements JourneyInterface{
 		reward.setStd_fee(Integer.parseInt(std));
 		reward.setChild_fee(Integer.parseInt(child));
 		
-		insertDB.isnertReward(reward);
+		insertDB.insertReward(reward);
 	
 		return "package_list.jj?page=packageSelect";
 	}

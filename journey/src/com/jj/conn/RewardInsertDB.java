@@ -16,7 +16,7 @@ public class RewardInsertDB {
 	
 	SqlSessionFactory sql = SqlMapconfig.getSqlSession();
 	
-	public void isnertReward(Reward reward) {
+	public void insertReward(Reward reward) {
 		
 		System.out.println("--- conn/rewardInsertDB ---");
 		SqlSession ss = sql.openSession();
