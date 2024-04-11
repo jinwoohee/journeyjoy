@@ -13,7 +13,7 @@ import com.jj.dao.JourneyInterface;
 public class PlanInsert implements JourneyInterface{
 	static PlanInsert plan_ins = new PlanInsert();
 	
-	public static PlanInsert insertPlan() {
+	public static PlanInsert insertPlan() { 
 		return plan_ins;
 	}
 

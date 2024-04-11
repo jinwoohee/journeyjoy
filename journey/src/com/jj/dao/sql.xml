@@ -16,7 +16,7 @@
 	
 	<select id="wh_search" parameterType="java.util.HashMap" resultType="com.jj.dto.Company">
 		select * from company where 
-		<trim prefixOverrides="or" suffixOverrides="or">
+		<trim prefixOverrides="or" suffixOverrides="or"> 
 		<!-- 대직종 -->
 		<if test="com_job1 != null">
 			<foreach collection="com_job1" item="item" index="index" separator="or">

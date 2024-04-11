@@ -14,7 +14,7 @@ public class PlanInsertDB {
 	static PlanInsertDB idb = new PlanInsertDB();
 	
 	public static PlanInsertDB indb() {
-		return idb;
+		return idb; 
 	}
 	
 	SqlSessionFactory sql = SqlMapconfig.getSqlSession();

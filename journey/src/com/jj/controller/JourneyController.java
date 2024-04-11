@@ -214,7 +214,7 @@ public class JourneyController extends HttpServlet {
 			
 		}else if(page.equals("like_delete")) { //찜하기해제
 			ji = LikeDelete.likeDeleteinter();
-			String result;
+			String result; 
 			try {
 				result = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(result).forward(request, response);

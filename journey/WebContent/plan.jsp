@@ -9,7 +9,7 @@
 <%@page import="java.util.Date" %>
 <%
 request.setCharacterEncoding("utf-8");
-	Cookie[] cookies = request.getCookies();
+	Cookie[] cookies = request.getCookies(); 
 %>
 <%!
 	private String getCookieValue(Cookie[] cookies, String name){
