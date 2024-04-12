@@ -14,7 +14,7 @@ import com.jj.dto.Inquiry;
 
 import static com.jj.db.JdbcUtil.*;
 
-public class JourneySql {
+public class JourneySql { 
 	
 	DataSource ds;
 	Connection con;
