@@ -30,7 +30,7 @@
 		/* 인원선택 */
 		var result = document.getElementById("total");
 		var adultFee = $("input[name='adultFee']").val();
-		//result.innerHTML = adultFee.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원";
+		result.innerHTML = adultFee.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원";
 		
 		$("aside input[type='button']").click(function(){
 			var adultNum = parseInt($("#adult>input[name='adultCount']").val());
@@ -119,7 +119,7 @@
 			$(location).attr('href','purcahseDelete.jj?page=purchase_delete&p_no='+p_no+'&u_id='+u_id);
 		});
 		
-		/* 문의하기 */
+		/* 문의하기 div */
 		$('input[name=inquiry]').click(function(){
 			if($('#inquiryDiv').css('display') == 'none'){
 				$('#inquiryDiv').css('display', 'block');
@@ -129,6 +129,28 @@
 			
 		});
 		
+		/* 문의하기 버튼 */
+		$('.inquiry_btn').click(function() {
+			if ($('form[name=inquiryForm] textarea').val() != '') {
+				var no = $('input[name=no]').val();
+				var id = $('input[name=id]').val();
+				var contents = $('form[name=inquiryForm] textarea').val();
+				
+				$.ajax({
+					type : 'post',
+					data : {"no" : no, "id" : id, "contents" : contents},
+					url : 'inquiryInsert.jj?page=inquiryInsert',
+					success : function(e) {
+						$('#inquiryDiv').css('display', 'none');
+						$('form[name=inquiryForm] textarea').val('');
+					}
+				});
+			} else {
+				alert("댓글을 입력해주세요.");
+			}
+			
+			
+		});
 	});
 	
 	function regist(){
@@ -157,8 +179,8 @@
 			alert("문의내용을 입력해주세요.");
 			return false;
 		}else{
-			alert("문의하였습니다.");
-			document.inquiryForm.submit();
+			//alert("문의하였습니다.");
+			//document.inquiryForm.submit();
 		}
 	}
 	
@@ -173,6 +195,8 @@
 		$("img[id='close"+num+"']").css({"display":"none"});
 		$("div[class='day_detail"+num+"']").slideUp();
 	}
+	
+	
 </script>
 
 <body>
@@ -436,14 +460,14 @@
 					
 				%>
 				</div>
-				<form name='commForm' action='commInsert.jj?page=commInsert' method='post'>
+				<form name='commForm' method='post'>
 					<div id="comment">
 						<%
 							out.println("<input type='hidden' name='no' value='"+pk.getP_no()+"'>");
 							out.println("<input type='hidden' name='id' value='"+(String)session.getAttribute("u_id")+"'>");
 						%>
 						<input type="text" name="comment_txt" placeholder=" 댓글을 남겨주세요.">
-						<input type="button" name="register" value="등록" onclick="commRegist()">
+						<input type="button" name="register" value="등록" class="inquiry_btn" onclick="commRegist()">
 					</div>
 				</form>
 			</div>
@@ -451,7 +475,7 @@
 	</section>
 	<div id='inquiryDiv'>
 		<p>문의하기</p>
-		<form name='inquiryForm' action='inquiryInsert.jj?page=inquiryInsert' method="post">
+		<form name='inquiryForm' method="post">
 			<div>
 				<textarea name='inquiryContent' rows="20" cols="20" placeholder="문의내용"></textarea>
 				<%
@@ -459,7 +483,7 @@
 					out.println("<input type='hidden' name='id' value='"+(String)session.getAttribute("u_id")+"'>");
 				%>
 			</div>
-			<div><input type="button" name='inquiryBtn' value='문의하기' onclick="inquiryCheck()"></div>
+			<div><button type="button" class="inquiry_btn">문의하기</button></div>
 		</form>
 	</div>
 	<jsp:include page="main_footer.jsp" />

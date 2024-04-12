@@ -458,9 +458,10 @@ input[name='register']{
     height: 150px;
     resize : none;
     padding: 10px 10px;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
-#inquiryDiv > form > div > input[type='button']{
+.inquiry_btn {
 	width: 473px;
     height: 40px;
     margin-top: 20px;

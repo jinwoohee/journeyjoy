@@ -315,7 +315,7 @@
 	
 	<!-- 상세보기/좋아요 select -->
 	<select id="likeSelectDetail" resultType="com.jj.dto.Package_like" parameterType="com.jj.dto.Package_like">
-		SELECT * FROM package_like WHERE p_no = ${p_no} and u_id = #{u_id}
+		SELECT distinct * FROM package_like WHERE p_no = ${p_no} and u_id = #{u_id}
 	</select>
 	
 	<!-- 상세보기/일정 select -->

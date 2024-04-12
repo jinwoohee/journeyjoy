@@ -18,7 +18,7 @@ public class InquiryInsert implements JourneyInterface {
 	@Override
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		String i_contents = new String(request.getParameter("inquiryContent").getBytes("8859_1"),"UTF-8");
+		String i_contents = request.getParameter("contents");
 		int p_no = Integer.parseInt(request.getParameter("no"));
 		String u_id = request.getParameter("id");
 		//System.out.println("InquiryInsert----->"+p_no+"/"+u_id+"/"+i_contents);
@@ -26,7 +26,7 @@ public class InquiryInsert implements JourneyInterface {
 		InquiryInsertDB qInsertDB = new InquiryInsertDB();
 		int row = qInsertDB.inquiryInsertDB(i_contents, p_no, u_id);
 		
-		return "packageDetail.jj?page=package_detail&p_no="+p_no;
+		return "packageDetail.jj?page=package_detail";
 	}
 
 }

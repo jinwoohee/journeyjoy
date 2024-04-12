@@ -275,6 +275,8 @@ public class JourneyController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (page.equals("inquiry_notice")) { //문의하기 알림
+			System.out.println("inquiry_notice");
 		}else if(page.equals("placeReviewSearch")) {//장소리뷰 검색
 			ji = PlaceReviewSearch.placeReviewSearchInter();
 			String result;
