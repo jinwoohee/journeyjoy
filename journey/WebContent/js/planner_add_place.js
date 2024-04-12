@@ -67,3 +67,12 @@ function plan_add_btn(num){
 	});
 	
 }
+
+window.initMap = function () {
+	const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 34.6964016465328, lng: 135.4867092276206 }, 
+    zoom: 9,
+  });
+}
+
+

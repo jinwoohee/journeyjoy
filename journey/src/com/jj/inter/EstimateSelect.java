@@ -96,6 +96,35 @@ public class EstimateSelect implements JourneyInterface{
 				
 				request.setAttribute("paging", "my_detail");
 				return "plan.jsp";
+				
+			}else if(wh.equals("edit_my")) {
+				System.out.println("my_edit");
+				int e_no = Integer.parseInt(num);
+				List<Estimate> estiList = estidb.selmtd(e_no); // 견적 select
+				request.setAttribute("estimate", estiList);
+				
+				ScheduleSelectDB schedb = ScheduleSelectDB.seldb(); // 일정 select
+				List<Schedule> scheList = schedb.selmtd(e_no);
+				request.setAttribute("schedule", scheList);
+				
+				PlanSelectDB plandb = PlanSelectDB.seldb();
+				List<Plan> planList = plandb.select_e_no(e_no);
+				request.setAttribute("plan", planList);
+				
+				product = estiList.get(0).gete_destination();
+				ticket = estiList.get(0).gete_detail_thema();
+				
+				ProductSelectDB proddb = ProductSelectDB.seldb(); // 상품 select
+				List<Product> prodList = proddb.selectMth(product);
+				request.setAttribute("product", prodList);
+				
+				TicketSelectDB tickdb = TicketSelectDB.seldb(); // 티켓 select
+				List<Ticket> tickList = tickdb.select_myMth(ticket);
+				request.setAttribute("ticket", tickList);
+				System.out.println("edit끝");
+				
+				request.setAttribute("paging", "my_edit");
+				return "planner_edit_edit.jsp";
 			}
 			else {
 				return "";

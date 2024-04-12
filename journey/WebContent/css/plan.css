@@ -197,11 +197,10 @@ div[class="map_info"]{ /*吏��룄 媛먯떥�뒗 div*/
 	height: 410px;
 	background-color: grey;
 }
-div[class="map"]{/*�긽�꽭�젙蹂� �븞�쓽 吏��룄 div*/
+div[id*="map"]{/*�긽�꽭�젙蹂� �븞�쓽 吏��룄 div*/
 	float: left;
 	width: 450px;
 	height: 400px;
-	background-color: white;
 }
 div[class="place_info"]{/*�긽�꽭�젙蹂� �븞�쓽 �옣�냼 �젙蹂�*/
 	float: right;

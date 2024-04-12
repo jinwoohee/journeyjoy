@@ -191,7 +191,6 @@ div[id="map"]{ /*지도 */
 	width: 500px;
 	height: 600px;
 	float: right;
-	background-color: ivory;
 }
 div[id*="places"]{ /*추가되어있는 여행지 */
 	width: 780px;

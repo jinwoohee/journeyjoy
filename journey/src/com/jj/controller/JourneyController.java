@@ -26,11 +26,13 @@ import com.jj.inter.PlaceReviewSearch;
 import com.jj.inter.PlanDelete;
 import com.jj.inter.PlanInsert;
 import com.jj.inter.PlanSelect;
+import com.jj.inter.PlanUpdate;
 import com.jj.inter.PsInsert;
 import com.jj.inter.PurchaseDelete;
 import com.jj.inter.PurchaseInsert;
 import com.jj.inter.RewardInsert;
 import com.jj.inter.ScheduleInsert;
+import com.jj.inter.ScheduleUpdate;
 import com.jj.inter.SearchPlaceSelect;
 import com.jj.inter.WhClear;
 import com.jj.inter.WhSearch;
@@ -140,8 +142,24 @@ public class JourneyController extends HttpServlet {
 				// TODO: handle exception } }
 			}
 		}else if(page.equals("plan_delete")) {
-			System.out.println("딜리트들어옴");
 			ji = PlanDelete.deletePlan();
+			try {
+				String page_url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(page_url).forward(request, response); 
+			} catch(Exception e) { 
+				// TODO: handle exception } }
+			}
+		}else if(page.equals("plan_update")) { // 미완성
+			ji = PlanUpdate.updatePlan();
+			try {
+				String page_url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(page_url).forward(request, response); 
+			} catch(Exception e) { 
+				// TODO: handle exception } }
+			}
+		}else if(page.equals("schedule_update")) {
+			ji = ScheduleUpdate.updateSchedule();
+			System.out.println("컨트롤러");
 			try {
 				String page_url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(page_url).forward(request, response); 
