@@ -16,7 +16,7 @@ public class BoardDB {
 	PreparedStatement pstmt = null;
 	
 	public BoardDB() throws Exception {
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		Class.forName("com.mysql.jdbc.Driver");
 	}
 	
 	public void connDB() throws Exception {

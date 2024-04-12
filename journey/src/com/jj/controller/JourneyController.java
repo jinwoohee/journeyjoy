@@ -5,8 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.dao.JourneyInterface;
+import com.jj.inter.ClassApply;
+import com.jj.inter.ClassApplyDelete;
 import com.jj.inter.ClassInsert;
 import com.jj.inter.ClassListSelect;
+import com.jj.inter.ClassTabSelect;
 import com.jj.inter.CommInsert;
 import com.jj.inter.EaterySelect;
 import com.jj.inter.EstimateInsert;
@@ -296,11 +299,34 @@ public class JourneyController extends HttpServlet {
 		}else if (page.equals("clist")) { //모임 select
 			ji = ClassListSelect.classlistselect();
 			try {
-				String url = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(url).forward(request, response);
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("--- Controller / 모임 select ---" + e);
+			}
+		}else if(page.equals("classTab")) { //모임 탭
+			ji = ClassTabSelect.classTabSelect();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 모임 탭 select ---" + e);
+			}
+		}else if(page.equals("class_apply")) { //모임 참여하기
+			ji = ClassApply.classApplyInsert();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 모임참여 insert ---" + e);
+			}
+		}else if(page.equals("class_applyDel")) {
+			ji = ClassApplyDelete.classDelete();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 모임참여 delete ---" + e);
 			}
 		}else {
 			System.out.println("--- controller else ---");

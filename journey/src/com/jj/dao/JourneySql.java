@@ -68,11 +68,65 @@ public class JourneySql {
 
 	/* 모임 select */
 	public ArrayList<Class_list> selectClassList() {
-		String sql = "SELECT c.*, u.u_nickname AS u_nickname \r\n" + 
+		String sql = "SELECT DISTINCT c.*, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no\r\n" + 
 						"FROM class_list c\r\n" + 
 						"LEFT JOIN user u\r\n" + 
 						"ON c.u_id = u.u_id \r\n" + 
-						"order by c_date";
+						"LEFT JOIN class_apply a\r\n" + 
+						"ON c.c_no = a.c_no \r\n" +
+						"order by c.c_no";
+		ArrayList<Class_list> classList = new ArrayList<Class_list>();
+		Class_list cl = null;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				cl = new Class_list();
+				cl.setC_no(rs.getInt("c_no"));
+				cl.setU_id(rs.getString("u_id"));
+				cl.setC_nation(rs.getString("c_nation"));
+				cl.setC_city(rs.getString("c_city"));
+				cl.setC_title(rs.getString("c_title"));
+				cl.setC_contents(rs.getString("c_contents"));
+				cl.setC_file1(rs.getString("c_file1"));
+				cl.setC_file2(rs.getString("c_file2"));
+				cl.setC_file3(rs.getString("c_file3"));
+				cl.setC_volume(rs.getInt("c_volume"));
+				cl.setC_charge(rs.getInt("c_charge"));
+				cl.setC_end_date(rs.getString("c_end_date"));
+				cl.setC_date(rs.getString("c_date"));
+				cl.setC_url(rs.getString("c_url"));
+				cl.setU_nickname(rs.getString("u_nickname"));
+				cl.setA_id(rs.getString("a_id"));
+				cl.setA_no(rs.getInt("a_no"));
+				
+				classList.add(cl);
+			}
+		} catch (Exception e) {
+			System.out.println("--- JourneySql/selectClassList---");
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return classList;
+	}
+
+	/* 모임 탭 select */
+	public ArrayList<Class_list> selectTabClass(String tab, String u_id) {
+		String sql = null;
+		
+		if(tab.equals("made")) {
+			sql = "SELECT DISTINCT c.*, u.u_nickname AS u_nickname\r\n" + 
+					"FROM class_list c\r\n" + 
+					"LEFT JOIN user u\r\n" + 
+					"ON c.u_id = u.u_id\r\n" + 
+					"WHERE c.u_id ='"+u_id+"' \r\n" + 
+					"order by c_date";
+		}
+		
 		ArrayList<Class_list> classList = new ArrayList<Class_list>();
 		Class_list cl = null;
 		
@@ -101,12 +155,52 @@ public class JourneySql {
 				classList.add(cl);
 			}
 		} catch (Exception e) {
-			System.out.println("--- JourneySql/selectClassList---");
+			System.out.println("--- JourneySql/selectClassTabList---");
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		
 		return classList;
+	}
+
+	/* 모임 참여하기 */
+	public int insertClassApply(int c_no, String u_id) {
+		String sql = "";
+		int insertCount = 0;
+		
+		try {
+			sql = "INSERT INTO class_apply VALUES(default, ?, ?, now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, c_no);
+			pstmt.setString(2, u_id);
+			
+			insertCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("--- JourneySql/insertClassApply ---" + e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
+
+	/* 모임 참여취소 */
+	public int deleteClassApply(int c_no) {
+		String sql = "";
+		int deleteCount = 0;
+		
+		try {
+			sql = "DELETE FROM class_apply WHERE c_no ="+ c_no;
+			pstmt = con.prepareStatement(sql);
+			
+			deleteCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("--- JourneySql/deleteClassApply ---" + e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return deleteCount;
 	}
 }

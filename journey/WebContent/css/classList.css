@@ -4,10 +4,8 @@ body{
 	color: #646464;
 }
 
-/* 메뉴바 */
-header>iframe {
-	position: fixed;
-	z-index: 100;
+section:last-of-type{
+	margin-bottom : 200px;
 }
 
 /* header이미지 */
@@ -59,13 +57,13 @@ header>iframe {
 }
 
 /* 모임만들기 div */
-section+form{
+section+div{
 	width: 1200px;
 	margin: 50px auto;
 }
 
 /* 모임만들기 버튼 */
-section+form>div>input[type=button] {
+.make_btn {
 	width: 150px;
 	height: 50px;
 	border-radius: 10px;
@@ -77,12 +75,12 @@ section+form>div>input[type=button] {
 	border: none;
 }
 
-section+form>div>button a {
+section>div>button a {
 	text-decoration-line: none;
 	color: #f1f1f3;
 }
 
-section+form>div>button a:hover {
+section>div>button a:hover {
 	text-decoration: underline;
 	color: #f1f1f3;
 }
@@ -186,11 +184,14 @@ article{
 	border-radius: 10px;
 	box-shadow: 3px 3px 3px #CCCCCC;
 	margin-top: 30px;
-	margin-bottom: 200px;
+}
+
+#noClass{
+	margin-top:90px;
 }
 
 /* 프로필 사진 */
-#class_section>div:first-of-type>img{
+.profile{
 	width: 40px;
 	height: 40px;
 	border-radius: 70px;
@@ -279,13 +280,26 @@ td:last-of-type{
 }
 
 /* 참여하기 버튼 */
-#class_section>div>div:last-child>div>button{
+input[name*='join_btn']{
 	width: 120px;
 	height: 50px;
 	background: white;
 	border: 2px solid #6C94B8;
 	font-weight: bold;
 	color: #6C94B8;
+	margin-top: 109px;
+	margin-left: 10px;
+	border-radius: 10px;
+}
+
+/* 참여취소 버튼 */
+input[name *='del_btn']{
+	width: 120px;
+	height: 50px;
+	background: #6C94B8;
+	border: none;
+	font-weight: bold;
+	color: white;
 	margin-top: 109px;
 	margin-left: 10px;
 	border-radius: 10px;
