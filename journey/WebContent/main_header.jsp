@@ -1,6 +1,8 @@
+<%@page import="com.jj.dto.InqNotice"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <!-- session -->
 <%
 	String u_id = (String) session.getAttribute("u_id");
@@ -15,6 +17,7 @@
 		joinChk = "회원가입";
 	}
 %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -56,32 +59,56 @@ $(function(){
 	
 	/*헤더 색상변경*/
 	$(window).scroll(function(){   
-    var scroll = $(window).scrollTop();
-    if (scroll > 1) {
-      $("#top_div, #sub_div").css({"background-color":"rgb(0,0,0,0.8"});
-      $(".sub_menu_a, .head_banner").css({"color":"#f1f1f3"});
-      $("#menu1").attr("src","img/header/mScroll-01.png");
-      $("#menu2").attr("src","img/header/mScroll-02.png");
-      $("#menu3").attr("src","img/header/mScroll-03.png");
-      $("#menu4").attr("src","img/header/mScroll-04.png");
-      $("#menu5").attr("src","img/header/mScroll-05.png");
-      $("#logo").attr("src","img/icon/lo_white.png");
-      $("#mypage_btn").attr("src","img/icon/mypage_btn_scroll.png");
-
-    }
-    else{
-      $("#top_div, #sub_div").css({"background-color":"white"});  
-      $(".sub_menu_a, .head_banner").css({"color":"#646464"});
-      $("#menu1").attr("src","img/header/menu-01.jpg");
-      $("#menu2").attr("src","img/header/menu-02.jpg");
-      $("#menu3").attr("src","img/header/menu-03.jpg");
-      $("#menu4").attr("src","img/header/menu-04.jpg");
-      $("#menu5").attr("src","img/header/menu-05.jpg");
-      $("#logo").attr("src","img/icon/logo.png");
-      $("#mypage_btn").attr("src","img/icon/mypage_btn.png");
-
-    }
-  });
+	   var scroll = $(window).scrollTop();
+	   if (scroll > 1) {
+	     $("#top_div, #sub_div").css({"background-color":"rgb(0,0,0,0.8"});
+	     $(".sub_menu_a, .head_banner").css({"color":"#f1f1f3"});
+	     $("#menu1").attr("src","img/header/mScroll-01.png");
+	     $("#menu2").attr("src","img/header/mScroll-02.png");
+	     $("#menu3").attr("src","img/header/mScroll-03.png");
+	     $("#menu4").attr("src","img/header/mScroll-04.png");
+	     $("#menu5").attr("src","img/header/mScroll-05.png");
+	     $("#logo").attr("src","img/icon/lo_white.png");
+	     $("#mypage_btn").attr("src","img/icon/mypage_btn_scroll.png");
+	
+	   }
+	   else{
+	     $("#top_div, #sub_div").css({"background-color":"white"});  
+	     $(".sub_menu_a, .head_banner").css({"color":"#646464"});
+	     $("#menu1").attr("src","img/header/menu-01.jpg");
+	     $("#menu2").attr("src","img/header/menu-02.jpg");
+	     $("#menu3").attr("src","img/header/menu-03.jpg");
+	     $("#menu4").attr("src","img/header/menu-04.jpg");
+	     $("#menu5").attr("src","img/header/menu-05.jpg");
+	     $("#logo").attr("src","img/icon/logo.png");
+	     $("#mypage_btn").attr("src","img/icon/mypage_btn.png");
+	
+	   }
+	 });
+      
+      $('.alarm').click(function() {
+    	  var uid = $('input[name=uid]').val();
+    	  
+    	  if ($('.notice').css('display') == 'none') {
+    		  $.ajax({
+					type : 'post',
+					data : {'u_id' : uid},
+					url : 'inquiryNotice.jj?page=inquiry_notice',
+					success : function(data) {
+						if (data != null) {
+							$('.notice').html(data);
+							$('.alarm').attr('src', 'img/icon/alarm2.png');
+						}
+						
+					}
+				});
+    		  
+    		  $('.notice').css('display', 'block');
+    	  } else {
+    		  $('.notice').css('display', 'none');
+    		  $('.alarm').attr('src', 'img/icon/alarm.png');
+    	  }
+      });
       
 });
 	
@@ -117,7 +144,8 @@ function hideMenu(){
 					if(loginChk.equals("로그인")){
 						out.println("<a href='login.jsp' class='head_banner'>"+loginChk+"</a> &nbsp;&nbsp;&nbsp;");
 					}else{
-						out.println("<img src='img/icon/bell.png' class='bell' />");
+						out.println("<img src='img/icon/alarm.png' class='alarm' />"); //새로운 알람없을떄
+						//out.println("<img src='img/icon/alarm2.png' class='on_alarm' />"); //새로운 알람있을때
 						out.println("<a href='#' class='head_banner'>"+loginChk+"</a> &nbsp;&nbsp;&nbsp;");
 					}
 
@@ -175,6 +203,7 @@ function hideMenu(){
 			</div>
 		</div>
 
+		<!-- 마이페이지 -->
 		<div id="mypage">
 			<img src="img/icon/lo_white.png" id="logo"/>
 			<ul id="mypage_ul">
@@ -186,6 +215,11 @@ function hideMenu(){
 				<li class="mypage_li">워킹홀리데이 신청목록</li>
 			</ul>
 			<img src="img/icon/mypage_close.png" onclick="hideMenu()"/>
+		</div>
+		
+		<!-- 알림창 -->
+		<input type="hidden" name="uid" value="<%=u_id %>" />
+		<div class="notice">
 		</div>
 	</header>
 </body>

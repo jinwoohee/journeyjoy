@@ -133,12 +133,14 @@
 		$('.inquiry_btn').click(function() {
 			if ($('form[name=inquiryForm] textarea').val() != '') {
 				var no = $('input[name=no]').val();
+				var pid = $('input[name=pid]').val();
+				var title = $('input[name=title]').val();
 				var id = $('input[name=id]').val();
 				var contents = $('form[name=inquiryForm] textarea').val();
 				
 				$.ajax({
 					type : 'post',
-					data : {"no" : no, "id" : id, "contents" : contents},
+					data : {"no" : no, "pid" : pid, "title" : title, "id" : id, "contents" : contents},
 					url : 'inquiryInsert.jj?page=inquiryInsert',
 					success : function(e) {
 						$('#inquiryDiv').css('display', 'none');
@@ -480,6 +482,8 @@
 				<textarea name='inquiryContent' rows="20" cols="20" placeholder="문의내용"></textarea>
 				<%
 					out.println("<input type='hidden' name='no' value='"+pk.getP_no()+"'>");
+					out.println("<input type='hidden' name='pid' value='"+pk.getU_id()+"'>"); //패키지 작성id
+					out.println("<input type='hidden' name='title' value='"+pk.getP_title()+"'>"); //패키지 제목
 					out.println("<input type='hidden' name='id' value='"+(String)session.getAttribute("u_id")+"'>");
 				%>
 			</div>

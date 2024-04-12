@@ -409,9 +409,13 @@
 	
 	<!-- 문의하기 insert -->
 	<insert id="inquiry_insert" parameterType="com.jj.dto.Inquiry">
-		insert into inquiry values(default, #{p_no}, #{u_id}, #{i_contents}, curdate());
+		insert into inquiry values(default, #{p_no}, #{p_uid}, #{p_title}, #{u_id}, #{i_contents}, curdate());
 	</insert>
 	
+	<!-- 문의하기 select -->
+	<select id="inquiry_select" parameterType="int" resultType="com.jj.dto.InqNotice">
+		select u_id, p_no, (select u_id from package p where p.p_no = i.p_no) as p_uid  from inquiry i where p_no = #{p_no};
+	</select>
 	
 	
 </mapper>
