@@ -25,7 +25,7 @@ public class PlanInsert implements JourneyInterface{
 		
 		PlanInsertDB idb = PlanInsertDB.indb();
 		idb.insertMth(e_no, plan_title, plan_product);	
-		request.setAttribute("e_no", "list");
+		request.setAttribute("paging", "list");
 		
 		return "plan_page.jsp";
 	}

@@ -164,7 +164,7 @@ function hideMenu(){
 				<% if (u_id != null) { %>
 				<ul>
 					<li><a href="planner_main.jsp" class="sub_menu_a">일정만들기</a></li>
-					<li><a href="plan.jj?page=select" class="sub_menu_a">여행계획서</a></li>
+					<li><a href="plan_page.jsp?paging=list" class="sub_menu_a">여행계획서</a></li>
 				</ul>
 				<ul>
 					<li><a href="package_list.jj?page=packageSelect" class="sub_menu_a">패키지여행</a></li>
@@ -220,7 +220,7 @@ function hideMenu(){
 		<!-- 알림창 -->
 		<input type="hidden" name="uid" value="<%=u_id %>" />
 		<div class="notice">
-		</div>
+		</div> 
 	</header>
 </body>
 </html>

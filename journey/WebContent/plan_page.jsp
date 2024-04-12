@@ -19,15 +19,27 @@ request.setCharacterEncoding("utf-8");
 	}%>
     
 <% 
+	String paging = request.getParameter("paging");
 	String e_no = (String) request.getAttribute("e_no");
-
-if(e_no.equals("list")){
-	response.addCookie(new Cookie("where", "list"));
-	response.sendRedirect("planner.jj?page=select");
-}else{
-
-	response.addCookie(new Cookie("where", "detail"));
-	response.addCookie(new Cookie("e_no", e_no));
-	response.sendRedirect("planner.jj?page=select");
-}
+	
+	if(paging != null){
+		if(paging.equals("list")){
+		System.out.println("리스트로");
+		response.addCookie(new Cookie("where", "list"));
+		response.sendRedirect("planner.jj?page=select");
+		}
+	}else{	
+		if(e_no == null){
+			e_no = request.getParameter("e_no");
+			System.out.println("디테일");
+			response.addCookie(new Cookie("where", "detail_my"));
+			response.addCookie(new Cookie("e_no", e_no));
+			response.sendRedirect("planner.jj?page=select");
+		}else{
+			response.addCookie(new Cookie("where", "detail"));
+			response.addCookie(new Cookie("e_no", e_no));
+			response.sendRedirect("planner.jj?page=select");
+		}
+		
+	}
 %>

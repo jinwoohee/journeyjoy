@@ -220,13 +220,13 @@
 		insert into plan values(default, #{e_no}, #{plan_title}, #{plan_product}, curdate(), #{plan_url})
 	</insert>
 	
-	<!-- 견적불러오기 -->
+	<!-- u_id로 견적불러오기 -->
 	<select id="estimate_select" parameterType="String" resultType="com.jj.dto.Estimate">
 		select * from estimate where u_id = #{u_id}
 	</select>
 	
 	<!-- 여행계획서 리스트 -->
-	<select id="plan_select" parameterType="String" resultType="com.jj.dto.Plan">
+	<select id="plan_select_id" parameterType="String" resultType="com.jj.dto.Plan">
 		 SELECT * FROM plan p
         LEFT JOIN estimate e
         ON p.e_no = e.e_no
@@ -245,6 +245,11 @@
 	<delete id="estimate_delete" parameterType="int">
 		delete from estimate where e_no = #{e_no};
 	</delete>
+	
+	<!-- e_no로 plan 불러오기 -->
+	<select id="plan_select_eno" parameterType="int" resultType="com.jj.dto.Plan">
+		select * from plan where e_no = #{e_no}
+	</select>
 	
 	
 	

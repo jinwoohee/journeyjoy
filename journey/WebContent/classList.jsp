@@ -39,7 +39,7 @@
 
 
         //내가만든모임/참여한모임 클릭이벤트
-        $("input[type='button']").click(function(){
+        $("#sector_section > input[type=button]").click(function(){
         	if($(this).attr('name') == 'made'){
         		$("input[name='made']").css({'background': '#0D112D', 'color':'#f1f1f3'});
         		$("input[name='participate']").css({'background': 'white', 'color':'#0D112D'});
@@ -57,15 +57,22 @@
         	}
         });
         
-        $('.not_btn').click(function () {
-        	alert("로그인 후 이용가능합니다.");
-			$('form[name="button"]').attr('action', 'login.jsp');
-		});
-        
+        /* 모임만들기 버튼 */
         $('.make_btn').click(function(){
         	$(location).attr('href', 'class_insert.jsp');
         })
-
+        
+        /* 탭 */
+        $('#sector_section > input[type=button]').click(function(){
+        	$.ajax({
+        		url : "class_list.jj?page=classTab",
+        		data : {"tab" : $(this).attr('name'), "u_id" : $("input[name=u_id]").val()},
+        		success : function(re){
+        			$("#class_div").html(re);
+        		}	
+        	});
+        });
+        
         /* 페이징
         $("#paging").twbsPagination({
         	startPage:1,	//시작시 표시되는 현재 페이지
@@ -81,6 +88,29 @@
         	}
         });  */
 	});
+	
+	/* 모임참여 버튼 */
+	function joinClass(no){
+		$.ajax({
+    		url : "class_apply.jj?page=class_apply",
+    		data : {"u_id" : $("input[name=u_id]").val(), "c_no" : no},
+    		success : function(re){
+    			alert("모임에 참여하였습니다.");
+    			location.reload();
+    		}	
+    	});
+	}
+	
+	/* 모임취소 버튼 */
+	function delClass(no){
+		$.ajax({
+    		url : "class_applyDel.jj?page=class_applyDel",
+    		data : {"u_id" : $("input[name=u_id]").val(), "c_no" : no},
+    		success : function(re){
+    			location.reload();
+    		}	
+    	});
+	}
 </script>
 <body>
 	<jsp:include page="main_header.jsp" />
@@ -99,17 +129,9 @@
 	</section>
 
 	<!-- 모임만들기 버튼 -->
-	<form name="button">
-		<div>
-			<%
-				if (u_id != null) {
-					out.println("<input type='button' class='make_btn' value='모임 만들기'>");
-				} else {
-					out.println("<input type='button' class='not_btn' value='모임 만들기'>");
-				}
-			%>
-		</div>
-	</form>
+	<div>
+		<input type='button' class='make_btn' value='모임 만들기'>
+	</div>
 
 	<!-- 내가여행중인 국가 -->
 	<section>
@@ -159,6 +181,7 @@
 	<section>
 		<article>
 			<div id="sector_section">
+				<input type="hidden" name="u_id" value=<%=u_id %>>
 				<input type="button" name="made" value="내가 만든 모임">
 				<input type="button" name="participate" value="참여한 모임">
 			</div>
@@ -166,19 +189,18 @@
 	</section>
 
 	<!-- 리스트 출력 -->
-	<%
-		ArrayList<Class_list> classList = (ArrayList<Class_list>)request.getAttribute("clist");
-							
-		for (Class_list c : classList) {
-	%>
 	<section>
 		<article>
-			<form name="button">
+			<div id="class_div">
+				<%
+					ArrayList<Class_list> classList = (ArrayList<Class_list>)request.getAttribute("clist");		
+					for (Class_list c : classList) {
+				%>
 				<div id="class_section">
 					<!-- 프로필/닉네임 -->
-					<div>
-						<img src="img/profile/d.jpg">
-						<p><%= c.getU_nickname() %></p>	
+					<div >
+						<img class='profile' src="img/profile/d.jpg">
+						<p><%= c.getU_nickname() %></p>		
 					</div>
 					<div>
 						<div>
@@ -211,20 +233,24 @@
 									</tr>
 								</table>
 								<%
-									if (u_id != null) {
-										out.println("<button name='joinClass'><a href=''>모임 참여</a></button>");
-									} else {
-										out.println("<button class='not_btn'>모임 참여</button>");
-									}
+									if(c.getA_id() != null){
+										if(c.getA_id().equals(u_id) && c.getC_no() == c.getA_no()){%>
+											<input type='button' name='del_btn<%=c.getC_no() %>' value='참여취소' onclick='delClass(<%=c.getC_no() %>)'>
+										<%}else{%>
+											<input type='button' name='join_btn<%=c.getC_no() %>' value='모임참여' onclick='joinClass(<%=c.getC_no() %>)'>
+										<%}
+									}else{
 								%>
+								<input type='button' name='join_btn<%=c.getC_no() %>' value='모임참여' onclick='joinClass(<%=c.getC_no() %>)'>
+								<%} %>
 							</div>
 						</div>
 					</div>
 				</div>
-			</form>	
+				<% } %>
+			</div>
 		</article>
 	</section>
-	<% } %>
 	
 	<%-- 
 	<div id="paging">

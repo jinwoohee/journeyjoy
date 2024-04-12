@@ -15,7 +15,24 @@ public class Class_list {
 	private String c_end_date;
 	private String c_date;
 	private String c_url;
+	
 	private String u_nickname;
+	private String a_id; //모임 참여자 id
+	private int a_no; //참여 모임 번호
+	
+	
+	public String getA_id() {
+		return a_id;
+	}
+	public void setA_id(String a_id) {
+		this.a_id = a_id;
+	}
+	public int getA_no() {
+		return a_no;
+	}
+	public void setA_no(int a_no) {
+		this.a_no = a_no;
+	}
 	
 	public int getC_no() {
 		return c_no;
