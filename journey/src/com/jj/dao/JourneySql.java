@@ -3,12 +3,14 @@ package com.jj.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import com.jj.dto.Class_list;
+import com.jj.dto.Inquiry;
 
 import static com.jj.db.JdbcUtil.*;
 
@@ -33,7 +35,40 @@ public class JourneySql {
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
+	
+	//우희 부분
+	public ArrayList<Inquiry> inquirySelect(String u_id) { //문의하기 select
+		String sql = "select * from inquiry where p_uid = '"+u_id+"' order by i_no desc";
+		ArrayList<Inquiry> alist = new ArrayList<Inquiry>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Inquiry iq = new Inquiry();
+				iq.setI_no(rs.getInt("i_no"));
+				iq.setP_no(rs.getInt("p_no"));
+				iq.setP_uid(rs.getString("p_uid"));
+				iq.setP_title(rs.getString("p_title"));
+				iq.setU_id(rs.getString("u_id"));
+				iq.setI_contents(rs.getString("i_contents"));
+				iq.setI_date(rs.getDate("i_date"));
+				
+				alist.add(iq);
+				//System.out.println(iq.getP_no());
+			}
+		} catch (SQLException e) {
+			System.out.println("inquirySelect error------->"+e);
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
 
+	//윤영 부분
 	/* 모임 insert */
 	public int insertClass(Class_list cl) {
 		String sql = "";
