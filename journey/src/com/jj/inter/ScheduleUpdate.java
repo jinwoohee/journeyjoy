@@ -38,7 +38,7 @@ static ScheduleUpdate sche_upd = new ScheduleUpdate();
 		request.setAttribute("paging", "detail_my");
 		return "plan_page.jsp";
 		
-	}
+	} 
 	private String getCookieValue(Cookie[] cookies, String name) {
 		String value = null;
 		if(cookies != null) {
