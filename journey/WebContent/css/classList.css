@@ -39,14 +39,12 @@ section:last-of-type{
 	margin: 0 auto;
 }
 
-#location>p{
-	font-size: 20px;
-	color: #0D112D;
-	display: flex;
-	align-items: center;
-	padding-top: 10px;
-	padding-left: 10px;
-	font-weight: bold;
+#location select{
+	width: 170px;
+	height : 50px;
+	text-align : center;
+	margin-left: 10px;
+	border : none;
 }
 
 /* 아이콘 */
@@ -75,16 +73,6 @@ section+div{
 	border: none;
 }
 
-section>div>button a {
-	text-decoration-line: none;
-	color: #f1f1f3;
-}
-
-section>div>button a:hover {
-	text-decoration: underline;
-	color: #f1f1f3;
-}
-
 /* 검색 버튼 */
 input[type="submit"]{
 	width: 100px;
@@ -93,13 +81,6 @@ input[type="submit"]{
 	background: #0D112D;
 	color: white;
 	border: none;
-}
-
-label{
-	font-size: 15px;
-	font-weight: bold;
-	color: white;
-	margin-right: 20px;
 }
 
 /* 콤보박스 */
@@ -111,51 +92,47 @@ select{
 	border: none;
 }
 
-
 /* 검색구간 */
 #search_section{
 	width: 1200px;
 	height: 100px;
-	margin: 50px auto;
 	display: grid;
-	background: #6C94B8;
-	border-radius: 10px;
-	box-shadow: 3px 3px 3px #CCCCCC;
+	margin : 0 auto;
 }
 
-#search_section > div{
+#search_section  div{
 	display: flex;
-	justify-content: center; 
-	align-items: center;
 }
 
-/* 검색구간 - 콤보박스 */
-#search_section select{
-	width: 100px;
-	height: 40px;
-	border-radius: 10px;
-	margin-right: 20px;
-	border: none;
+#filter div{
+	width : 80px;
+	height : 40px;
+	margin-right: 10px;
+	border-radius: 30px;
+	border : 1px solid #CCCCCC;
 }
 
-#search_section select:last-of-type{width: 180px;}
-
-/* 검색구간 - 여행시작일 */
-#datepicker{
-	width: 180px;
-	height: 40px;
-	border-radius: 10px;
-	text-align: center;
-	margin-right: 20px;
-	border: none;
+#filter img{
+	width: 80px;
+	height : 40px;
+	object-fit : cover;
 }
 
 /* 검색구간 - 검색창 */
 #search_section input[name="searchBox"]{
-	width: 300px;
-	height: 40px;
-	border-radius: 10px;
-	border: none;
+	width: 400px;
+    height: 40px;
+    margin-left: 400px;
+    border: none;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#search img{
+	width : 30px;
+	height: 30px;
+	object-fit : cover;
+	border :none;
+	margin-right: 0;
 }
 
 /* 리스트 article */
@@ -169,11 +146,10 @@ article{
 	width: 597px;
 	height: 50px;
 	border-radius: 10px 10px 0 0;
-	border: 2px solid #0D112D;
+	border: 1px solid #0D112D;
 	box-shadow: 3px 3px 3px #CCCCCC;
 	background: white;
-	color: #646464;
-	font-weight: bold;
+	color: #0D112D;
 }
 
 /* section 1개 */

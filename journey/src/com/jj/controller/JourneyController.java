@@ -330,6 +330,8 @@ public class JourneyController extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("--- Controller / 모임참여 delete ---" + e);
 			}
+		}else if(page.equals("classFilter")) {
+			
 		}else {
 			System.out.println("--- controller else ---");
 		}
