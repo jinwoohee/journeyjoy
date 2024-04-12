@@ -4,10 +4,8 @@ body{
 	color: #646464;
 }
 
-/* 메뉴바 */
-header>iframe {
-	position: fixed;
-	z-index: 100;
+section:last-of-type{
+	margin-bottom : 200px;
 }
 
 /* header이미지 */
@@ -41,14 +39,12 @@ header>iframe {
 	margin: 0 auto;
 }
 
-#location>p{
-	font-size: 20px;
-	color: #0D112D;
-	display: flex;
-	align-items: center;
-	padding-top: 10px;
-	padding-left: 10px;
-	font-weight: bold;
+#location select{
+	width: 170px;
+	height : 50px;
+	text-align : center;
+	margin-left: 10px;
+	border : none;
 }
 
 /* 아이콘 */
@@ -59,13 +55,13 @@ header>iframe {
 }
 
 /* 모임만들기 div */
-section+form{
+section+div{
 	width: 1200px;
 	margin: 50px auto;
 }
 
 /* 모임만들기 버튼 */
-section+form>div>input[type=button] {
+.make_btn {
 	width: 150px;
 	height: 50px;
 	border-radius: 10px;
@@ -75,16 +71,6 @@ section+form>div>input[type=button] {
 	font-weight: bold;
 	float: right;
 	border: none;
-}
-
-section+form>div>button a {
-	text-decoration-line: none;
-	color: #f1f1f3;
-}
-
-section+form>div>button a:hover {
-	text-decoration: underline;
-	color: #f1f1f3;
 }
 
 /* 검색 버튼 */
@@ -97,13 +83,6 @@ input[type="submit"]{
 	border: none;
 }
 
-label{
-	font-size: 15px;
-	font-weight: bold;
-	color: white;
-	margin-right: 20px;
-}
-
 /* 콤보박스 */
 select{
 	width: 100px;
@@ -113,51 +92,47 @@ select{
 	border: none;
 }
 
-
 /* 검색구간 */
 #search_section{
 	width: 1200px;
 	height: 100px;
-	margin: 50px auto;
 	display: grid;
-	background: #6C94B8;
-	border-radius: 10px;
-	box-shadow: 3px 3px 3px #CCCCCC;
+	margin : 0 auto;
 }
 
-#search_section > div{
+#search_section  div{
 	display: flex;
-	justify-content: center; 
-	align-items: center;
 }
 
-/* 검색구간 - 콤보박스 */
-#search_section select{
-	width: 100px;
-	height: 40px;
-	border-radius: 10px;
-	margin-right: 20px;
-	border: none;
+#filter div{
+	width : 80px;
+	height : 40px;
+	margin-right: 10px;
+	border-radius: 30px;
+	border : 1px solid #CCCCCC;
 }
 
-#search_section select:last-of-type{width: 180px;}
-
-/* 검색구간 - 여행시작일 */
-#datepicker{
-	width: 180px;
-	height: 40px;
-	border-radius: 10px;
-	text-align: center;
-	margin-right: 20px;
-	border: none;
+#filter img{
+	width: 80px;
+	height : 40px;
+	object-fit : cover;
 }
 
 /* 검색구간 - 검색창 */
 #search_section input[name="searchBox"]{
-	width: 300px;
-	height: 40px;
-	border-radius: 10px;
-	border: none;
+	width: 400px;
+    height: 40px;
+    margin-left: 400px;
+    border: none;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+#search img{
+	width : 30px;
+	height: 30px;
+	object-fit : cover;
+	border :none;
+	margin-right: 0;
 }
 
 /* 리스트 article */
@@ -171,11 +146,10 @@ article{
 	width: 597px;
 	height: 50px;
 	border-radius: 10px 10px 0 0;
-	border: 2px solid #0D112D;
+	border: 1px solid #0D112D;
 	box-shadow: 3px 3px 3px #CCCCCC;
 	background: white;
-	color: #646464;
-	font-weight: bold;
+	color: #0D112D;
 }
 
 /* section 1개 */
@@ -186,11 +160,14 @@ article{
 	border-radius: 10px;
 	box-shadow: 3px 3px 3px #CCCCCC;
 	margin-top: 30px;
-	margin-bottom: 200px;
+}
+
+#noClass{
+	margin-top:90px;
 }
 
 /* 프로필 사진 */
-#class_section>div:first-of-type>img{
+.profile{
 	width: 40px;
 	height: 40px;
 	border-radius: 70px;
@@ -279,13 +256,26 @@ td:last-of-type{
 }
 
 /* 참여하기 버튼 */
-#class_section>div>div:last-child>div>button{
+input[name*='join_btn']{
 	width: 120px;
 	height: 50px;
 	background: white;
 	border: 2px solid #6C94B8;
 	font-weight: bold;
 	color: #6C94B8;
+	margin-top: 109px;
+	margin-left: 10px;
+	border-radius: 10px;
+}
+
+/* 참여취소 버튼 */
+input[name *='del_btn']{
+	width: 120px;
+	height: 50px;
+	background: #6C94B8;
+	border: none;
+	font-weight: bold;
+	color: white;
 	margin-top: 109px;
 	margin-left: 10px;
 	border-radius: 10px;
