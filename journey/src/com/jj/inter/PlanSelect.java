@@ -27,7 +27,7 @@ public class PlanSelect implements JourneyInterface{
 		String u_id = (String) session.getAttribute("u_id");
 		
 		PlanSelectDB plandb = PlanSelectDB.seldb();
-		List<Plan> planList = plandb.selectMth(u_id);
+		List<Plan> planList = plandb.select_id(u_id);
 		
 		request.setAttribute("estimate", estiList);
 		request.setAttribute("planList", planList);
@@ -35,5 +35,4 @@ public class PlanSelect implements JourneyInterface{
 		return "plan_list.jsp";
 			
 	}
-	
 }

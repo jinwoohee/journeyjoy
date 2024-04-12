@@ -343,7 +343,21 @@ input[name="save_plan"]{ /*���옣 踰꾪듉*/
 	color: rgb(64,64,64);
 	background-color: white;
 	margin-top: 120px;
-	margin-left: 250px;
+	margin-left: 300px;
+	cursor: pointer;
+}
+input[name="edit_plan"]{ /*���옣 踰꾪듉*/
+	width: 300px;
+	height: 50px;
+	border-radius: 5px;
+	float: left;
+	font-size: 16pt;
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-weight: bold;
+	color: rgb(64,64,64);
+	background-color: white;
+	margin-top: 120px;
+	margin-left: 300px;
 	cursor: pointer;
 }
 img[src*="minus"]{ /*異붽��긽�뭹 異붽�踰꾪듉*/

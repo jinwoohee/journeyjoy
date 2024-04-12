@@ -28,7 +28,20 @@ public class TicketSelectDB {
 		param.put("tick_sort", ticket);
 		
 		List<Ticket> tickList = sqls.selectList("ticket_select",param);
-		System.out.println("티켓결과"+tickList.size());
+		System.out.println("티켓결1과"+tickList.size());
+		sqls.close();
+		return tickList ;
+	}
+	public List<Ticket> select_myMth(String thema) {
+		String [] ticket = thema.split(",");
+		
+		SqlSession sqls = sql.openSession();	
+		
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("tick_sort", ticket);
+		
+		List<Ticket> tickList = sqls.selectList("ticket_select",param);
+		System.out.println("티켓결과2"+tickList.size());
 		sqls.close();
 		return tickList ;
 	}

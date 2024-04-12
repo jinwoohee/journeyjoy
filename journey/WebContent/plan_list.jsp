@@ -72,7 +72,7 @@ System.out.println("셀렉트 완료 이스 : "+esti.size()+"플랜 : "+plan.siz
 							for(Plan pl : plan){
 								if(st.gete_no() == pl.getE_no()){
 					%>
-							<a href="plan.html">
+							<a href="plan_page.jsp?e_no=<%=st.gete_no() %>">
 							<div class="plan">
 									<div class="plan_content">
 										<h2><%=pl.getPlan_title()%></h2><span><%=pl.getPlan_date() %></span>
