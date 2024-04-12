@@ -50,6 +50,9 @@
 	<link rel="stylesheet" type="text/css" href="css\planner_add_place.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>	
 	<script type="text/javascript" src="js\planner_add_place.js"></script>
+	<script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initMap">
+	</script>
 </head>
 <body>
 	<!-- menu bar -->
@@ -126,9 +129,7 @@
 				</div>		
 				</div>	
 							
-				<div id="map">
-					지도
-				</div>
+				<div id="map"></div>
 				
 				<%
 				for(int a = 1 ; a <= datecnt ; a++){ 
@@ -197,6 +198,7 @@
 				
 			</div>
 			</div>
+			</div>>
 		</form>
 	</section>
 	<footer>

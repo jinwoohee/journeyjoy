@@ -37,6 +37,9 @@ $(function() {
 	$('input[name=plan], .place').mouseout(function(){
 		$(this).css({"background-color":"white", "color":"#0D112D"});
 	});
+	$("input[name='edit_plan']").click(function(){
+		$("form").attr("action","plan_page.jsp?paging=edit_my");
+	});
 
 });
 }
@@ -45,6 +48,8 @@ function open_div(num){
 	$("img[id='open"+num+"']").css({"display":"none"});
 	$("img[id='close"+num+"']").show();
 	$("div[id='detail_info"+num+"']").slideDown();
+	
+
 }
 function close_div(num){
 	$("img[id='close"+num+"']").css({"display":"none"});
@@ -60,12 +65,15 @@ function add_prod(num){
 	
 	var name = document.createElement("p");
 	name.textContent = product_name;
+	name.id = "product_add_name"+num;
 	
 	var sort = document.createElement("p");
 	sort.textContent = product_sort;
+	sort.id = "product_add_sort"+num;
 	
 	var price = document.createElement("p");
 	price.textContent = product_price;
+	price.id = "product_add_price"+num;
 	
 	var del = document.createElement("img");
 	del.setAttribute("src", "img/icon/minus.png");
@@ -115,3 +123,20 @@ function cancel_prod(num){
 	div.style.display = "block";
 	
 }
+
+function initMap() {
+    var map1 = new google.maps.Map(document.getElementById('map1'), {
+      zoom: 15,
+      center: { lat: 34.6964016465328, lng: 135.4867092276206 }
+    });
+       
+    var map2 = new google.maps.Map(document.getElementById('map2'), {
+        zoom: 15,
+        center: { lat: 34.6964016465328, lng: 135.4867092276206 }
+      });
+
+    google.maps.event.addDomListener(window, "load", initMap);
+  }
+
+
+

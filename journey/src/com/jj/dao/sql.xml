@@ -251,7 +251,9 @@
 		select * from plan where e_no = #{e_no}
 	</select>
 	
-	
+	<update id="schedule_update" parameterType="com.jj.dto.Schedule">
+		update schedule set place = #{place} where e_no = #{e_no} and sche_day = #{sche_day}
+	</update>
 	
 	<!-- 윤영 부분 -->
 	<!-- 패키지 insert -->
