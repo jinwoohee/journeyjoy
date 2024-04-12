@@ -52,7 +52,7 @@ System.out.println("셀렉트 완료 이스 : "+esti.size()+"플랜 : "+plan.siz
 				<select name="date">
 					<option>일정별로 보기</option>
 					<option>1월</option>
-					<option>2월</option>
+					<option>2월</option> 
 					<option>3월</option>
 					<option>4월</option>
 				</select>
