@@ -5,7 +5,9 @@ import java.sql.Date;
 public class Inquiry {
 	private int i_no;
 	private int p_no;
-	private String u_id;
+	private String p_uid; //패키지 작성자 id
+	private String p_title;
+	private String u_id; //로그인한 id
 	private String i_contents;
 	private Date i_date;
 	
@@ -38,6 +40,18 @@ public class Inquiry {
 	}
 	public void setI_no(int i_no) {
 		this.i_no = i_no;
+	}
+	public String getP_uid() {
+		return p_uid;
+	}
+	public void setP_uid(String p_uid) {
+		this.p_uid = p_uid;
+	}
+	public String getP_title() {
+		return p_title;
+	}
+	public void setP_title(String p_title) {
+		this.p_title = p_title;
 	}
 	
 }
