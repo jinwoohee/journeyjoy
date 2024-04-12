@@ -356,9 +356,9 @@ function join(){
 						<input id="emailBox" type="text" name="email" maxlength="15" placeholder=" 이메일 주소 입력" onblur="txt_check(this.name)"> @
 				    	<select name="emailAddr" size="1" onblur="txt_check(this.name)">
 				    		<option value="choice">선택</option>
+				    		<option value="@gmail.com">gmail.com</option>
 							<option value="@naver.com">naver.com</option>
 							<option value="@daum.net">daum.net</option>
-							<option value="@google.com">google.com</option>
 					  	</select>
 					</td>
 				</tr>

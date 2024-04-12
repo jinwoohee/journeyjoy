@@ -20,13 +20,24 @@ public class PlanSelectDB {
 	
 	SqlSessionFactory sql = SqlMapconfig.getSqlSession();
 	
-	public List<Plan> selectMth(String u_id) {
+	public List<Plan> select_id(String u_id) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("u_id", u_id);
 		
 		SqlSession sqls = sql.openSession();	
-		List<Plan> planList = sqls.selectList("plan_select",param);
-
+		List<Plan> planList = sqls.selectList("plan_select_id",param);
+		
+		sqls.close();
+		return planList;
+	}
+	public List<Plan> select_e_no(int e_no) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("e_no", e_no);
+		
+		SqlSession sqls = sql.openSession();	
+		List<Plan> planList = sqls.selectList("plan_select_eno",param);
+		
+		
 		sqls.close();
 		return planList;
 	}
