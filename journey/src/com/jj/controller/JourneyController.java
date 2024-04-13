@@ -14,6 +14,8 @@ import com.jj.inter.CommInsert;
 import com.jj.inter.EaterySelect;
 import com.jj.inter.EstimateInsert;
 import com.jj.inter.EstimateSelect;
+import com.jj.inter.InquiryUpdateFlag;
+import com.jj.inter.InquiryFlag;
 import com.jj.inter.InquiryInsert;
 import com.jj.inter.InquiryNotice;
 import com.jj.inter.LikeDelete;
@@ -287,7 +289,7 @@ public class JourneyController extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("--- Controller / 댓글 insert ---" + e);
 			}
-		}else if(page.equals("inquiryInsert")) {//문의하기
+		} else if (page.equals("inquiryInsert")) {//패키지 문의하기
 			ji = InquiryInsert.inquiryInsert();
 			String result;
 			try {
@@ -297,8 +299,28 @@ public class JourneyController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (page.equals("inquiry_notice")) { //문의하기 알림
+		} else if (page.equals("inquiry_notice")) { //문의하기 알림내용
 			ji = InquiryNotice.inquiryNotice();
+			String result;
+			try {
+				result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("inquiry_flag")) { //문의하기 구분자확인
+			ji = InquiryFlag.inquiryFlag();
+			String result;
+			try {
+				result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("inquiry_updateFlag")) { //문의하기 구분자바꾸기
+			ji = InquiryUpdateFlag.inquiryUpdateFlag();
 			String result;
 			try {
 				result = ji.journeyInterface(request, response);

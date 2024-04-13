@@ -20,7 +20,8 @@
 <body>
 	<%
 		ArrayList<Inquiry> list = (ArrayList<Inquiry>)request.getAttribute("inquiry_list");
-	
+		
+		//out.println("<input type='hidden' name='size' value="+list.size()+" />");
 		for (Inquiry iq : list) {
 			//System.out.println(iq.getP_no());
 	%>

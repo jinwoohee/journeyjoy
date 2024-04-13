@@ -10,6 +10,7 @@ public class Inquiry {
 	private String u_id; //로그인한 id
 	private String i_contents;
 	private Date i_date;
+	private int i_flag; //구분자, 0이면 미확인, 1이면 확인
 	
 	public int getP_no() {
 		return p_no;
@@ -52,6 +53,12 @@ public class Inquiry {
 	}
 	public void setP_title(String p_title) {
 		this.p_title = p_title;
+	}
+	public int getI_flag() {
+		return i_flag;
+	}
+	public void setI_flag(int i_flag) {
+		this.i_flag = i_flag;
 	}
 	
 }

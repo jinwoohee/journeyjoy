@@ -86,23 +86,47 @@ $(function(){
 	   }
 	 });
       
+      $(window).on('load', function() {
+    	  console.log('window ready');
+    	  var uid = $('input[name=uid]').val();
+    	  
+    	  $.ajax({
+				type : 'post',
+				data : {'u_id' : uid},
+				url : 'inquiryNotice.jj?page=inquiry_notice',
+				success : function(data) {
+					if (data != null) {
+						$.ajax({
+							type : 'post',
+							data : {'u_id' : uid},
+							url : 'inquiryNotice.jj?page=inquiry_flag',
+							success : function(e) {
+								if (e > 0) {
+									//새로운 알림 있으면
+									$('.alarm').attr('src', 'img/icon/alarm2.png');
+									
+									/*$.ajax({
+										type : 'post',
+					  					data : {'u_id' : uid},
+					  					url : 'inquiryNotice.jj?page=inquiry_updateFlag'
+									});*/
+								} else {
+									$('.alarm').attr('src', 'img/icon/alarm.png');
+								}
+							}
+						});
+						$('.notice').html(data);
+						
+					}
+					
+				}
+			});
+      });
+      
       $('.alarm').click(function() {
     	  var uid = $('input[name=uid]').val();
     	  
-    	  if ($('.notice').css('display') == 'none') {
-    		  $.ajax({
-					type : 'post',
-					data : {'u_id' : uid},
-					url : 'inquiryNotice.jj?page=inquiry_notice',
-					success : function(data) {
-						if (data != null) {
-							$('.notice').html(data);
-							$('.alarm').attr('src', 'img/icon/alarm2.png');
-						}
-						
-					}
-				});
-    		  
+    	  if ($('.notice').css('display') == 'none') {		  
     		  $('.notice').css('display', 'block');
     	  } else {
     		  $('.notice').css('display', 'none');

@@ -644,6 +644,8 @@
 				$('.items li').remove();
 				$('.lb_tag').css({'font-weight':'unset', 'border':'none', 'border-radius':'0px', 'background-color':'white'});
 				$('.item input').prop('checked', false);
+				//$('.detailBox>dl>dt').css({'background-color':'rgb(241, 241, 243)'});
+				//$('.detailBox>dl>dt').find('p').css({'color':'rgb(100, 100, 100)'});
 				
 				$.ajax({
 					type : 'post',

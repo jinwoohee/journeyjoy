@@ -54,18 +54,34 @@ public class JourneySql {
 				iq.setU_id(rs.getString("u_id"));
 				iq.setI_contents(rs.getString("i_contents"));
 				iq.setI_date(rs.getDate("i_date"));
+				iq.setI_flag(rs.getInt("i_flag"));
 				
 				alist.add(iq);
 				//System.out.println(iq.getP_no());
 			}
 		} catch (SQLException e) {
-			System.out.println("inquirySelect error------->"+e);
+			System.out.println("inquirySelect 에러------->"+e);
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		
 		return alist;
+	}
+	
+	public int inquiryUpdateFlag(String u_id) {
+		String sql = "update inquiry set i_flag = 1 where p_uid = '"+u_id+"'";
+		int row = 0;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			row = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return row;
 	}
 
 	//윤영 부분
