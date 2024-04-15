@@ -316,7 +316,7 @@ public class JourneySql {
 		ArrayList<Class_list> classList = new ArrayList<Class_list>();
 		Class_list cl = null;
 		
-		try {
+		try { 
 			pstmt = con.prepareStatement(sql+condition);
 			rs = pstmt.executeQuery();
 			
