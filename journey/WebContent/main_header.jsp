@@ -108,7 +108,7 @@ $(function(){
       
       $('.alarm').click(function() {
     	  var uid = $('input[name=uid]').val();
-    	  
+    	   
     	  /*$.ajax({
 			  type : 'post',
 			  data : {'u_id' : uid},
