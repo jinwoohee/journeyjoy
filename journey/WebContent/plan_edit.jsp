@@ -81,7 +81,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 				<p id="list_text"></p>
 			</div>
 			<div id="radio_div">
-				<input type="radio" name="plan" value="여행계획서" id="plan_btn">
+				<input type="radio" name="plan" value="여행계획서" id="plan_btn"> 
 				<label for="plan_btn" class="plan_radio">여행계획서</label>
 				<input type="radio" name="plan" value="가계부" id="gagyebu_btn">
 				<label for="gagyebu_btn" class="plan_radio">가계부</label>
