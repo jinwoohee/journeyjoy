@@ -1,4 +1,17 @@
-window.onload = function() {
+
+	   
+$(function() {
+	$('input[name=plan], .place').mouseover(function(){
+		$(this).css({"background-color":"#0D112D", "color":"#f1f1f3"});
+	});
+	$('input[name=plan], .place').mouseout(function(){
+		$(this).css({"background-color":"white", "color":"#0D112D"});
+	});
+	$("input[name='edit_plan']").click(function(){
+		$("form").attr("action","plan_page.jsp?paging=edit_my");
+	});
+	
+
 	  const kindWrap =  document.querySelector('#slide_div');
 	  const slider = kindWrap.querySelector('.slider');
 	  const slideLis = document.getElementById('plan_li');
@@ -29,20 +42,8 @@ window.onload = function() {
 	          currentIdx -= 1;
 		   }
 	   });
-	   
-$(function() {
-	$('input[name=plan], .place').mouseover(function(){
-		$(this).css({"background-color":"#0D112D", "color":"#f1f1f3"});
-	});
-	$('input[name=plan], .place').mouseout(function(){
-		$(this).css({"background-color":"white", "color":"#0D112D"});
-	});
-	$("input[name='edit_plan']").click(function(){
-		$("form").attr("action","plan_page.jsp?paging=edit_my");
-	});
-
 });
-}
+
 
 function open_div(num){
 	$("img[id='open"+num+"']").css({"display":"none"});
@@ -56,6 +57,14 @@ function close_div(num){
 	$("img[id='open"+num+"']").show();
 	$("div[id='detail_info"+num+"']").slideUp();
 }
+function change_main(st){
+	$("div[id*='plandiv_']").hide();
+	$("div[id='plandiv_"+st+"']").show();
+	
+	$("label[id*='plan_radio_']").css({"background-color":"white", "color":"#6C94B8"});
+	$("label[id='plan_radio_"+st+"']").css({"background-color":"#0D112D", "color":"#f1f1f3"});
+}
+
 
 function add_prod(num){
 	var product_name = document.getElementById("product_name"+num).innerText;
@@ -134,9 +143,68 @@ function initMap() {
         zoom: 15,
         center: { lat: 34.6964016465328, lng: 135.4867092276206 }
       });
+    
+    var map3 = new google.maps.Map(document.getElementById('map3'), {
+        zoom: 15,
+        center: { lat: 34.6964016465328, lng: 135.4867092276206 }
+      });
 
+    
     google.maps.event.addDomListener(window, "load", initMap);
   }
 
+function add_acc(num){
+	var add_content = document.getElementById("acc_content"+num);
+	var add_price = document.getElementById("acc_price"+num);
+	var add_pay = document.getElementById("pay_with"+num);
+	
+	var content = document.createElement("input");
+	content.setAttribute("type","text");
+	content.name="content";
+	content.value=add_content.value;
+	
+	var price = document.createElement("input");
+	price.setAttribute("type","text");
+	price.name="price";
+	price.value=add_price.value;
+	
+	var pay = document.createElement("input");
+	pay.setAttribute("type","text");
+	pay.name="pay_with";
+	pay.value=add_pay.value;
+	
+	var del = document.createElement("input");
+	del.setAttribute("type", "button");
+	del.value="삭제";
+	del.name="del_place";
+	
+	del.setAttribute("onclick" , "del_pl(this)")
+	
+	var taList = document.getElementById('acc_table'+num);
+	var row = taList.insertRow(taList.rows.length);
 
+	var td1 = row.insertCell(0);
+	var td2 = row.insertCell(1);
+	var td3 = row.insertCell(2);
+	var td4 = row.insertCell(3);
+	
+	td1.appendChild(content);
+	td2.appendChild(pay);
+	td3.appendChild(price);
+	td4.appendChild(del);
+	
+	add_content.value = "";
+	add_price.value = "";
+	add_pay.value = "결제수단";
+	$("div[id='pay_one_div"+num+"']").slideUp();
+}
+function del_pl(st){
+	var tdd = st.parentNode;
+	var trr = tdd.parentNode;
+	var tbb = trr.parentNode;
+	tbb.removeChild(trr);
+}
+function open_acc_div(num){
+	$("div[id='pay_one_div"+num+"']").slideDown();
+}
 

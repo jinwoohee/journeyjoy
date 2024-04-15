@@ -35,10 +35,11 @@ div[id="radio_div"]{ /*�씪�뵒�삤踰꾪듉 div*/
 	height: 40px;
 	margin: 0 auto;
 }
+
 input[name="plan"]{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄겕由ъ뒪�듃 踰꾪듉*/
 	display: none;
 }
-.plan_radio{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄겕由ъ뒪�듃 �씪�뵒�삤踰꾪듉 */
+label[id*="plan_radio"]{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄겕由ъ뒪�듃 �씪�뵒�삤踰꾪듉 */
 	float: left;
 	padding: 5px 20px;
 	background-color: white;
@@ -52,13 +53,17 @@ input[name="plan"]{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄겕由
 	color:  #6C94B8;
 	cursor: pointer;
 }
-div[id="plan"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
+div[id*="plandiv_"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
 	width: 900px;
 	background-color: white;
 	margin: 20px auto;	
 	border-radius: 10px;
 	border: 2px solid #0D112D;
 	box-shadow: 3px 3px 3px #CCCCCC;
+	display : none;
+}
+div[id="plandiv_1"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
+	display : block;
 }
 input[name="plan_subject"]{ /*�젣紐� text*/
 	width: 700px;
@@ -439,6 +444,11 @@ label{
 img[src*="left"], img[src*="right"]{
 	cursor: pointer;
 }
+/*가계부  */
+div[id*="pay_one_div"]{
+	display : none;
+}
+
 
 footer {
 	margin-top: 100px;

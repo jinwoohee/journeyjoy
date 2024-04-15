@@ -91,16 +91,13 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 				<p id="list_text"></p>
 			</div>
 			<div id="radio_div">
-				<input type="radio" name="plan" value="여행계획서" id="plan_btn">
-				<label for="plan_btn" class="plan_radio">여행계획서</label>
-				<input type="radio" name="plan" value="가계부" id="gagyebu_btn">
-				<label for="gagyebu_btn" class="plan_radio">가계부</label>
-				<input type="radio" name="plan" value="체크리스트" id="checklist_btn">
-				<label for="checklist_btn" class="plan_radio">체크리스트</label>
+				<label for="plan_btn" id="plan_radio_1" onclick="change_main('1')">여행계획서</label>			
+				<label for="gagyebu_btn" id="plan_radio_2" onclick="change_main('2')">가계부</label>
+				<label for="checklist_btn" id="plan_radio_3" onclick="change_main('3')">체크리스트</label>
 			</div>
 			
 			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">
-			<div id="plan">
+			<div id="plandiv_1">
 				<input type="text" name="plan_subject" placeholder="계획서 제목(최대50자)" maxlength="50" value="<%=esti.get(0).getu_id()%>의 <%=esti.get(0).gete_destination() %>여행계획서"/>
 				<div id="plan_info">
 					<p id="city"><%=e_destination %></p>
@@ -377,9 +374,55 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 					<input type="submit" name="save_plan" value="저장">
 					</div>
 		</div>
+		<%} %>
 		</div>
 		
-		<%} %>
+		<div id="plandiv_2">
+			<p class="plan_sub">※가계부</p>
+			<p><%=e_destination %>여행</p>
+				<div id="air_hotel_div">숙박ㆍ항공권</div>
+				<% 
+					for(int a = 1 ; a <= datecnt ; a++){
+						
+				%>
+				<div id="acc_div<%=a%>">Day <%=a %></div>
+				<table id="acc_table<%=a%>">
+					<tr>
+					<td>내용</td>
+					<td>결제수단</td>
+					<td>금액</td>
+					<td>삭제</td>
+					</tr>
+				</table>
+				
+				<div id="pay_one_div<%=a%>">
+					<div id="price">
+						<input type="text" name="acc_price<%=a%>" id = "acc_price<%=a%>"placeholder="금액입력">
+					</div>
+					 <select name="pay_with<%=a%>" id= "pay_with<%=a%>" >
+					 	<option>결제수단</option>
+                        <option>현금</option>
+                        <option>카드</option>
+                     </select>
+                     <input type="text" name="acc_content<%=a%>" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
+                     <p>카테고리</p>
+                      <select name="reason<%=a%>">
+                         <option>숙소</option>
+                         <option>항공</option>
+                         <option>교통</option>
+                         <option>관광</option>
+                         <option>식비</option>
+                         <option>쇼핑</option>                   
+                     </select>
+  					<input type="button" name="add_acc_one<%=a%>" value="추가하기" onclick="add_acc(<%=a%>)">
+				</div>
+				<input type="button" name="add_acc<%=a%>" value="비용 추가" onclick="open_acc_div(<%=a%>)">
+				<%} %>
+				<p>총 지출 : 100000000원</p>
+		</div>
+		<div id="plandiv_3">
+			<p>체크리스트</p>
+		</div>
 		</div>
 		</form>
 	</section>
