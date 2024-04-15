@@ -9,6 +9,6 @@
 <body>
 	프로필 사진 <img src="img/profile/profile.png" />
 	아이디
-	비밀번호 
+	비밀번호
 </body>
 </html>
