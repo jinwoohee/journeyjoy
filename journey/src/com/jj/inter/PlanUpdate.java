@@ -23,7 +23,7 @@ public class PlanUpdate implements JourneyInterface{
 		idb.insertMth(e_no, plan_title, plan_product);	
 		request.setAttribute("paging", "list");
 		
-		return ;
+		return "plan_page.jsp";
 	}
 
 }

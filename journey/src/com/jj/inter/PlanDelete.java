@@ -15,13 +15,13 @@ public class PlanDelete implements JourneyInterface{
 	}
 
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("hi");
+		System.out.println("hi delete");
 		int e_no = Integer.parseInt(request.getParameter("e_no"));
 		System.out.println("hi"+e_no);
 		PlanDeleteDB idb = PlanDeleteDB.deldb();
 		idb.deleteMtd(e_no);	
 		
-		request.setAttribute("e_no", "list");
+		request.setAttribute("paging", "list");
 		return "plan_page.jsp";
 	}
 

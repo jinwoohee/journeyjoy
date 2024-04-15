@@ -19,7 +19,7 @@ $(document).ready(function() {
 	$("button[name='search_btn']").click(function(){
 		$("form").attr("action","planner.jj?page=place_search");
 	});
-	
+
 });
 function day_select(num){
 	var day = "#day"+num;

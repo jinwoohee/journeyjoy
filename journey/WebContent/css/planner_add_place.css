@@ -218,13 +218,14 @@ input[id*="plan_add"]{ /*여행지 추가 버튼 */
 input[id="plan_add1"]{ /*여행지 추가 버튼 */
 	display : block;
 }
-input[name="save_plan"]{ /*저장 버튼 */
+input[name*="save_plan"]{ /*저장 버튼 */
 	margin: 0 310px;
 	width: 180px;
 	height: 45px;
 	margin-top: 130px;
 	cursor: pointer;
 }
+
 div[id="side_menu"]{ /*사이드 메뉴 div*/
 	position: fixed;
 	width: 120px;

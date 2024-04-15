@@ -207,7 +207,7 @@ input[name="add_place"]{ /* 일정추가하기 버튼 */
 	margin-top: 20px;
 	border-radius: 10px;
 }
-input[name="save_plan"]{ /*저장 버튼 */
+input[name*="save_plan"]{ /*저장 버튼 */
 	margin: 0 310px;
 	width: 180px;
 	height: 45px;

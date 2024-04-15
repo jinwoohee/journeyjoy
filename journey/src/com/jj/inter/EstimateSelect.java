@@ -42,15 +42,15 @@ public class EstimateSelect implements JourneyInterface{
 		EstimateSelectDB estidb = EstimateSelectDB.seldb();
 		
 		System.out.println(wh);
-		if(wh != null) { //list불러올때
-			if(wh.equals("list")) {		
-				System.out.println("");
+		if(wh != null) { 
+			if(wh.equals("list")) {		//나의 여행계획서 목록 불러올때
+				System.out.println("이스티 셀렉트"+wh);
 				List<Estimate> estiList = estidb.selectMth(u_id);
 				request.setAttribute("estimate", estiList);
 				return "plan.jj?page=plan_select";
 			}
-			else if(wh.equals("detail")){ // detail 불러올때
-				System.out.println("notlist");
+			else if(wh.equals("detail")){ // 여행계획서 처음 저장시에 detail부분으로 넘어갈때
+				System.out.println("이스티 셀렉트"+wh);
 				int e_no = Integer.parseInt(num);
 				List<Estimate> estiList = estidb.selmtd(e_no); // 견적 select
 				request.setAttribute("estimate", estiList);
@@ -67,9 +67,10 @@ public class EstimateSelect implements JourneyInterface{
 				List<Ticket> tickList = tickdb.selectMth(ticket);
 				request.setAttribute("ticket", tickList);
 			
-				return "plan.jsp"; // 가지고 온 데이터를 가지고 원래는 plan_select로 가서 list출력인지 detail출력인지 정한다. 가 위의 if num == null
-			}else if(wh.equals("detail_my")) {
-				System.out.println("my");
+				return "plan.jsp"; 
+				
+			}else if(wh.equals("detail_my")) { // 내 계획서목록에서 눌렀을때 나오는거
+				System.out.println("이스티 셀렉트"+wh);
 				int e_no = Integer.parseInt(num);
 				List<Estimate> estiList = estidb.selmtd(e_no); // 견적 select
 				request.setAttribute("estimate", estiList);
@@ -97,8 +98,8 @@ public class EstimateSelect implements JourneyInterface{
 				request.setAttribute("paging", "my_detail");
 				return "plan.jsp";
 				
-			}else if(wh.equals("edit_my")) {
-				System.out.println("my_edit");
+			}else if(wh.equals("edit_my")) { // 수정눌렀을때
+				System.out.println("이스티 셀렉트"+wh);
 				int e_no = Integer.parseInt(num);
 				List<Estimate> estiList = estidb.selmtd(e_no); // 견적 select
 				request.setAttribute("estimate", estiList);

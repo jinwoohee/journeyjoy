@@ -40,8 +40,12 @@
 	List<Eatery> da = (List<Eatery>) request.getAttribute("eat");
 	List<Place> pe = (List<Place>) request.getAttribute("place");
 	
+	String e_no = request.getParameter("e_no");
+	
 	String edit0 = request.getParameter("edit_plan0");
-	System.out.println(edit0+"0번");
+	System.out.println("edit로 왔다"+e_no);
+
+	String day = datecnt+"";
 %>
 <html>
 <head>
@@ -58,6 +62,8 @@
 	<!-- 페이지 섹션 -->
 	<section>
 	<form action="planner.jj?page=insert" method="post">
+	<input type="hidden" name="e_no" value="<%=e_no%>">	
+	<input type="hidden" name="day" value="<%=day%>">
 		<div id="content">
 			<div id="list_text">
 				<p id="list_text">여행일정</p>
@@ -97,7 +103,7 @@
 						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place.split(",");
 						
-						System.out.println("1번"+place_list);
+		
 			%>
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
@@ -128,16 +134,10 @@
 						
 			<%
 					}else if(edit0.equals("1")){
-						System.out.println("1일때 -1");
 						String place = request.getParameter("edit_plan"+a);
-						System.out.println(place);
 						
 						if(place != ""){
 						String place_list = place.replaceAll("#", "").replaceAll(" ","_");
-						
-						System.out.println("1일때 -3");
-						System.out.println("2-1-"+a+"번"+place);
-						System.out.println("2-2-"+a+"번"+place_list);
 						
 						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place_list.split("_");
@@ -186,7 +186,12 @@
 			}
 			%>
 					<input type="submit" name="add_place" value="여행지 추가하기" class="button">
-					<input type="submit" name="save_plan" value="저장" class="button"/>
+			
+				<%if(e_no.equals("null")) {%>
+					<input type="submit" name="save_plan" value="저장" class="button"/>		
+				<%}else{ %>
+					<input type="submit" name="save_plan_edit" value="수정" class="button"/>	 
+				<%} %>
 			</div>
 			</div>
 		<div id="side_menu">

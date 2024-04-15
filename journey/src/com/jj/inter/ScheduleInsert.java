@@ -32,6 +32,7 @@ public class ScheduleInsert implements JourneyInterface{
 		
 		String num = e_no+"";
 		request.setAttribute("e_no", num);
+		request.setAttribute("paging", "detail_my");
 		
 		return "plan_page.jsp";
 		
