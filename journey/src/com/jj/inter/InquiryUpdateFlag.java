@@ -17,11 +17,12 @@ public class InquiryUpdateFlag implements JourneyInterface {
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String u_id = request.getParameter("u_id");
+		System.out.println(u_id);
+		//int num = Integer.parseInt(request.getParameter("num")); //미확인 알림 개수
 		
 		InquiryUpdateFlagDB iuFlagDB = new InquiryUpdateFlagDB();
-		iuFlagDB.inquiryUpdateFlag(u_id);
+		int row = iuFlagDB.inquiryUpdateFlag(u_id);
 		
-		
-		return "main_header.jsp";
+		return "mflag.jsp?num="+row;
 	}
 }

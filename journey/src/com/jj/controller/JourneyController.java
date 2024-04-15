@@ -327,7 +327,8 @@ public class JourneyController extends HttpServlet {
 				request.getRequestDispatcher(result).forward(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("controller updatFlag 에러---------->"+e);
+				
 			}
 		}else if(page.equals("placeReviewSearch")) {//장소리뷰 검색
 			ji = PlaceReviewSearch.placeReviewSearchInter();

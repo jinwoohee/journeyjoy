@@ -8,12 +8,14 @@ import com.jj.dao.JourneySql;
 
 public class InquiryUpdateFlagDB {
 	
-	public void inquiryUpdateFlag(String u_id) {
+	public int inquiryUpdateFlag(String u_id) {
 		Connection con = getConnection();
 		JourneySql sql = JourneySql.getInstance();
 		sql.setConnection(con);
 		int row = sql.inquiryUpdateFlag(u_id);
 		
 		System.out.println("inquiry update row----->"+row);
+		
+		return row;
 	}
 }
