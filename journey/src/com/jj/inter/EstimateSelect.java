@@ -59,6 +59,10 @@ public class EstimateSelect implements JourneyInterface{
 				List<Schedule> scheList = schedb.selmtd(e_no);
 				request.setAttribute("schedule", scheList);
 				
+				PlanSelectDB plandb = PlanSelectDB.seldb();
+				List<Plan> planList = plandb.select_e_no(e_no);
+				request.setAttribute("plan", planList);
+				
 				ProductSelectDB proddb = ProductSelectDB.seldb(); // 상품 select
 				List<Product> prodList = proddb.selectMth(product);
 				request.setAttribute("product", prodList);
@@ -126,6 +130,31 @@ public class EstimateSelect implements JourneyInterface{
 				
 				request.setAttribute("paging", "my_edit");
 				return "planner_edit_edit.jsp";
+			}
+			else if(wh.equals("detail_my_edit")){ // 여행계획서 처음 저장시에 detail부분으로 넘어갈때
+				System.out.println("이스티 셀렉트"+wh);
+				int e_no = Integer.parseInt(num);
+				List<Estimate> estiList = estidb.selmtd(e_no); // 견적 select
+				request.setAttribute("estimate", estiList);
+				
+				ScheduleSelectDB schedb = ScheduleSelectDB.seldb(); // 일정 select
+				List<Schedule> scheList = schedb.selmtd(e_no);
+				request.setAttribute("schedule", scheList);
+				
+				PlanSelectDB plandb = PlanSelectDB.seldb();
+				List<Plan> planList = plandb.select_e_no(e_no);
+				request.setAttribute("plan", planList);
+				
+				ProductSelectDB proddb = ProductSelectDB.seldb(); // 상품 select
+				List<Product> prodList = proddb.selectMth(product);
+				request.setAttribute("product", prodList);
+				
+				TicketSelectDB tickdb = TicketSelectDB.seldb(); // 티켓 select
+				List<Ticket> tickList = tickdb.selectMth(ticket);
+				request.setAttribute("ticket", tickList);
+			
+				return "plan_edit.jsp"; 
+				
 			}
 			else {
 				return "";

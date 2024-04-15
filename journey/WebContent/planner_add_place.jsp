@@ -7,6 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date" %>
+<%@page import="com.jj.dto.Plan"%>
 <!DOCTYPE html>
 <%	request.setCharacterEncoding("utf-8");
 	Cookie[] cookies = request.getCookies();
@@ -33,6 +34,9 @@
 	String e_detail_thema = d_thema.replaceAll("_", ", ");
 	String e_food_taste = food_st.replaceAll("_", ", ");	
 	
+	List<Plan> planList = (List<Plan>)request.getAttribute("plan");
+	request.setAttribute("plan", planList);
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	Date sdate = sdf.parse(e_start_date);
 	Date edate = sdf.parse(e_end_date);
@@ -41,6 +45,10 @@
 	
 	String e_no = request.getParameter("e_no");
 	System.out.println(e_no+" : add플레이스 e_no");
+	
+	if(e_no == null){
+		e_no = "null";	
+	}
 %>
 <html>
 <head>

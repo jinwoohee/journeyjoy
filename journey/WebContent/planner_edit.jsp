@@ -5,7 +5,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date" %>
-
+<%@page import="com.jj.dto.Plan"%>
 <!DOCTYPE html>
 <%	request.setCharacterEncoding("utf-8");
 	Cookie[] cookies = request.getCookies();
@@ -40,11 +40,19 @@
 	List<Eatery> da = (List<Eatery>) request.getAttribute("eat");
 	List<Place> pe = (List<Place>) request.getAttribute("place");
 	
+	List<Plan> planList = (List<Plan>)request.getAttribute("plan");
+	request.setAttribute("plan", planList);
+	
 	String e_no = request.getParameter("e_no");
 	
 	String edit0 = request.getParameter("edit_plan0");
 	System.out.println("edit로 왔다"+e_no);
-
+	String pa="";
+	if(e_no == null){
+		pa = "null";
+	}else{
+		pa = e_no;
+	}
 	String day = datecnt+"";
 %>
 <html>
@@ -187,7 +195,7 @@
 			%>
 					<input type="submit" name="add_place" value="여행지 추가하기" class="button">
 			
-				<%if(e_no.equals("null")) {%>
+				<%if(pa.equals("null")) {%>
 					<input type="submit" name="save_plan" value="저장" class="button"/>		
 				<%}else{ %>
 					<input type="submit" name="save_plan_edit" value="수정" class="button"/>	 

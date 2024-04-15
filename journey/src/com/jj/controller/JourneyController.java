@@ -151,7 +151,7 @@ public class JourneyController extends HttpServlet {
 			} catch(Exception e) { 
 				// TODO: handle exception } }
 			}
-		}else if(page.equals("plan_update")) { // 미완성
+		}else if(page.equals("plan_update")) { 
 			ji = PlanUpdate.updatePlan();
 			try {
 				String page_url = ji.journeyInterface(request, response);

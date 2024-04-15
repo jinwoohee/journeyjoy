@@ -35,7 +35,7 @@ static ScheduleUpdate sche_upd = new ScheduleUpdate();
 		
 		String num = e_no+"";
 		request.setAttribute("e_no", num);
-		request.setAttribute("paging", "detail_my");
+		request.setAttribute("paging", "detail_my_edit");
 		return "plan_page.jsp";
 		
 	} 

@@ -33,7 +33,7 @@ List<Product> prod = (List<Product>) request.getAttribute("product");
 String paging = (String) request.getAttribute("paging");
 int items = (int) Math.ceil((double) (tick.size()+prod.size())/3);
 List<Plan> plan = (List<Plan>) request.getAttribute("plan");
-System.out.println("플랜jsp"+paging);
+System.out.println("플랜editjsp"+paging);
 
 
 String e_destination = esti.get(0).gete_destination();
@@ -74,7 +74,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 	<jsp:include page="main_header.jsp"></jsp:include>
 	<!-- 페이지 섹션 -->
 	<section>
-	<form action="planner.jj?page=save_plan" method="post">
+	<form action="planner.jj?page=plan_update" method="post">
 	<div id="content">
 	<input type="hidden" id="item" value="<%= items%>">
 			<div id="list_text">

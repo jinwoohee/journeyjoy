@@ -39,11 +39,13 @@ request.setCharacterEncoding("utf-8");
 			response.addCookie(new Cookie("where", "detail_my"));
 			response.addCookie(new Cookie("e_no", e_no));
 			response.sendRedirect("planner.jj?page=select");
+			
 		}else if(paging.equals("list")){
 			System.out.println("리스트로");
 			response.addCookie(new Cookie("where", "list"));
 			response.sendRedirect("planner.jj?page=select");
 		}
+		
 	}else{
 		paging = (String) request.getAttribute("paging");
 		if(paging.equals("list")){
@@ -51,7 +53,15 @@ request.setCharacterEncoding("utf-8");
 		response.addCookie(new Cookie("where", "list"));
 		response.sendRedirect("planner.jj?page=select");
 		
-		}else{
+		}else if(paging.equals("detail_my_edit")){
+			e_no = request.getParameter("e_no");
+			System.out.println("디테일");
+			response.addCookie(new Cookie("where", "detail_my_edit"));
+			response.addCookie(new Cookie("e_no", e_no));
+			response.sendRedirect("planner.jj?page=select");
+			
+		}
+		else{
 			response.addCookie(new Cookie("where", "detail"));
 			response.addCookie(new Cookie("e_no", e_no));
 			response.sendRedirect("planner.jj?page=select");
