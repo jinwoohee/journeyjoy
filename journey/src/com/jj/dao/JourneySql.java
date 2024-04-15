@@ -80,7 +80,6 @@ public class JourneySql {
 			// TODO Auto-generated catch block
 			System.out.println("sql inquiryUpdateFlag 에러-------->"+e);
 		} finally {
-			close(rs);
 			close(pstmt);
 		}
 		

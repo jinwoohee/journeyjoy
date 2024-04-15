@@ -28,12 +28,12 @@ public class InquiryFlag implements JourneyInterface {
 		ArrayList<Inquiry> inquiry_list = iNoticeDB.inquirySelect(u_id);
 		
 		for (Inquiry iq : inquiry_list) {
-			if (iq.getI_flag() == 0) {
+			if (iq.getI_flag() == 0) { //새로운 알림이 있으면
 				num++;
 			}
 		}
-		System.out.println("InquiryFlag----->"+num);
+		System.out.println("InquiryFlag num----->"+num);
 		
-		return "inquiryNotice.jj?page=inquiry_updateFlag&u_id="+u_id+"&num="+num;
+		return "mflag.jsp?num="+num;
 	}
 }

@@ -426,7 +426,7 @@
 	
 	<!-- 문의하기 insert -->
 	<insert id="inquiry_insert" parameterType="com.jj.dto.Inquiry">
-		insert into inquiry values(default, #{p_no}, #{p_uid}, #{p_title}, #{u_id}, #{i_contents}, curdate());
+		insert into inquiry values(default, #{p_no}, #{p_uid}, #{p_title}, #{u_id}, #{i_contents}, curdate(), 0);
 	</insert>
 	
 	<!-- 문의하기 select -->
