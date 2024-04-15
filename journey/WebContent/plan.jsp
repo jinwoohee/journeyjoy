@@ -35,10 +35,7 @@ String paging = (String) request.getAttribute("paging");
 int items = (int) Math.ceil((double) (tick.size()+prod.size())/3);
 System.out.println("플랜jsp"+paging);
 
-List<Plan> planList = (List<Plan>)request.getAttribute("plan");
-String my_prod = planList.get(0).getPlan_product();
-System.out.println(my_prod);
-String [] mp = my_prod.split(",");
+
 
 String e_destination = esti.get(0).gete_destination();
 String e_start_date = esti.get(0).gete_start_date();
@@ -84,6 +81,10 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 	if(paging != null){
 		System.out.println("saas");
 		List<Plan> plan = (List<Plan>) request.getAttribute("plan");
+		List<Plan> planList = (List<Plan>)request.getAttribute("plan");
+		String my_prod = planList.get(0).getPlan_product();
+		System.out.println(my_prod);
+		String [] mp = my_prod.split(",");
 		%>
 		<input type="hidden" id="item" value="<%= items%>">
 			<div id="list_text">

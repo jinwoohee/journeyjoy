@@ -19,8 +19,7 @@ public class InquiryUpdateFlag implements JourneyInterface {
 		String u_id = request.getParameter("u_id");
 		
 		InquiryUpdateFlagDB iuFlagDB = new InquiryUpdateFlagDB();
-		iuFlagDB.inquiryUpdateFlag(u_id);
-		
+		int row = iuFlagDB.inquiryUpdateFlag(u_id);
 		
 		return "main_header.jsp";
 	}

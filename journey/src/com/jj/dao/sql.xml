@@ -250,10 +250,20 @@
 	<select id="plan_select_eno" parameterType="int" resultType="com.jj.dto.Plan">
 		select * from plan where e_no = #{e_no}
 	</select>
-	
+	<!-- 일정 수정 -->
 	<update id="schedule_update" parameterType="com.jj.dto.Schedule">
 		update schedule set place = #{place} where e_no = #{e_no} and sche_day = #{sche_day}
 	</update>
+	<!-- 일정수정 -->
+	<update id="plan_update" parameterType="com.jj.dto.Plan">
+		UPDATE plan 
+		SET plan_title = #{plan_title}, 
+		plan_product = #{plan_product} 
+		where e_no = #{e_no} 
+	</update>
+	
+	
+	
 	
 	<!-- 윤영 부분 -->
 	<!-- 패키지 insert -->
@@ -416,7 +426,7 @@
 	
 	<!-- 문의하기 insert -->
 	<insert id="inquiry_insert" parameterType="com.jj.dto.Inquiry">
-		insert into inquiry values(default, #{p_no}, #{p_uid}, #{p_title}, #{u_id}, #{i_contents}, curdate());
+		insert into inquiry values(default, #{p_no}, #{p_uid}, #{p_title}, #{u_id}, #{i_contents}, curdate(), 0);
 	</insert>
 	
 	<!-- 문의하기 select -->

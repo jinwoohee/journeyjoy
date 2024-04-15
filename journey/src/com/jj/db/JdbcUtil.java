@@ -17,7 +17,7 @@ public class JdbcUtil {
 			con = ds.getConnection();
 			con.setAutoCommit(false);
 		} catch (Exception e) {
-			System.out.print(e);
+			System.out.print("getconn------>"+e);
 		}
 		
 		return con;
@@ -28,7 +28,7 @@ public class JdbcUtil {
 		try {
 			con.close();
 		} catch (Exception e) {
-			System.out.print(e);
+			System.out.print("close con------>"+e);
 		}
 		
 	}
@@ -38,7 +38,7 @@ public class JdbcUtil {
 		try {
 			stmt.close();
 		} catch (Exception e) {
-			System.out.print(e);
+			System.out.print("close stmt------>"+e);
 		}
 		
 	}
@@ -48,7 +48,7 @@ public class JdbcUtil {
 		try {
 			rs.close();
 		} catch (Exception e) {
-			System.out.print(e);
+			System.out.print("close rs------>"+e);
 		}
 		
 	}
@@ -59,7 +59,7 @@ public class JdbcUtil {
 			con.commit();
 			System.out.println("commit success");
 		} catch (Exception e) {
-			System.out.print(e);
+			System.out.print("commit con------>"+e);
 		}
 		
 	}
@@ -70,7 +70,7 @@ public class JdbcUtil {
 			con.rollback();
 			System.out.println("rollback success");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.print("rollback con------>"+e);
 		}
 		
 	}

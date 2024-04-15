@@ -70,7 +70,7 @@ public class JourneySql {
 		return alist;
 	}
 	
-	public int inquiryUpdateFlag(String u_id) {
+	public int inquiryUpdateFlag(String u_id) { //문의하기 구분자 update
 		String sql = "update inquiry set i_flag = 1 where p_uid = '"+u_id+"'";
 		int row = 0;
 		
@@ -79,9 +79,12 @@ public class JourneySql {
 			row = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("sql inquiryUpdateFlag 에러-------->"+e);
+		} finally {
+			close(pstmt);
 		}
 		
+		//System.out.println("inquiryUpdateFlag------>"+row);
 		return row;
 	}
 
