@@ -32,7 +32,7 @@ public class InquiryFlag implements JourneyInterface {
 				num++;
 			}
 		}
-		System.out.println("InquiryFlag num----->"+num);
+		System.out.println("InquiryFlag 새로운알림----->"+num);
 		
 		return "mflag.jsp?num="+num;
 	}

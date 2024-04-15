@@ -101,6 +101,14 @@ div[id="login"]{ /*아이디,회원가입,알림창,마이페이지 div*/
     align-items: center;
 }
 
+.adiv { /* 알림창 div */
+	width: 33px;
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+    object-fit: cover;
+}
+
 .alarm { /* 알림창 img */
 	width: 33px;
     height: 30px;

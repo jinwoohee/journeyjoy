@@ -53,8 +53,7 @@ $(function(){
 		$(this).css({"font-weight":"normal"});
 	});
 	
-	//id 없을때 메뉴바 클릭시
-	$('.empty').click(function() {
+	$('.empty').click(function() { //로그인 없이 메뉴바 클릭시
 		alert('로그인 후 이용해주세요');
 	});
 	
@@ -88,7 +87,7 @@ $(function(){
 	 });
       
 	 
-      $(window).on('load', function() {
+      $(window).on('load', function() { //page 띄우자마자 새알림 체크
     	  console.log('window ready');
     	  var uid = $('input[name=uid]').val();
     	  
@@ -106,27 +105,26 @@ $(function(){
 		  });
       });
       
-      $('.alarm').click(function() {
+      $('.alarm').click(function() { //알람 버튼 클릭시
     	  var uid = $('input[name=uid]').val();
     	  
-    	  $.ajax({
+    	  $.ajax({ //문의하기 내용
 			  type : 'post',
 			  data : {'u_id' : uid},
 			  url : 'inquiryNotice.jj?page=inquiry_notice',
 			  success : function(data) {
 				  if (data != null) {
 					  $('.notice').html(data);
-					  $.ajax({
+					  $.ajax({ //문의하기 알람 확인 update
 		    			  type : 'post',
 		    			  data : {'u_id' : uid},
 		    			  url : 'inquiryNotice.jj?page=inquiry_updateFlag',
-		    			  success : function (data) {
+		    			  success : function(e) {
 							console.log("flag update success!");
 						  }
 		        	  });
 				  } else {
 					  console.log("data null!");
-					  $('.notice').html("<p>문의사항이 없습니다.</p>");
 				  }
 			  }
 		  });
@@ -140,18 +138,26 @@ $(function(){
     	  }
       });
       
+      $('.adiv').blur(function() {
+    	  $('.notice').css('display', 'none');
+		  $('.alarm').attr('src', 'img/icon/alarm.png');
+	  });
+      
 });
 	
 /*마이페이지 가로 슬라이드부분*/
 function showMenu(){
 	$('#mypage' ).css( { 'display' : 'block' } );
 	$('#mypage' ).css( { 'left' : '100%' } );
+	//$('#mypage').css({'overflow' : 'hidden'});
 	$('#mypage' ).animate( { "left": '0px' }, { duration: "200" },{ "animation-timing-function" : "ease"} );
 }
 
 function hideMenu(){
+	//$('#mypage').css({'overflow' : 'visible'});
 	$('#mypage' ).animate( { left: '100%' }, { duration: "200", complete:function(){ $('#mypage' ).css( { 'display' : 'none' } ); } } );
 }
+
 </script>
 <body>
 <header>
@@ -174,8 +180,7 @@ function hideMenu(){
 					if(loginChk.equals("로그인")){
 						out.println("<a href='login.jsp' class='head_banner'>"+loginChk+"</a> &nbsp;&nbsp;&nbsp;");
 					}else{
-						out.println("<img src='img/icon/alarm.png' class='alarm' />"); //새로운 알람없을떄
-						//out.println("<img src='img/icon/alarm2.png' class='on_alarm' />"); //새로운 알람있을때
+						out.println("<div tabindex='0' class='adiv'><img src='img/icon/alarm.png' class='alarm' /></div>"); //새로운 알람없을떄
 						out.println("<a href='#' class='head_banner'>"+loginChk+"</a> &nbsp;&nbsp;&nbsp;");
 					}
 
@@ -185,7 +190,11 @@ function hideMenu(){
 						out.println("<a href='logout_session.jsp' class='head_banner'>"+joinChk+"</a>"); //로그아웃
 					}
 				%>
-				<img src="img/icon/mypage_btn.png" onclick="showMenu()" id="mypage_btn"/>
+				<% if (u_id != null) { %>
+					<img src="img/icon/mypage_btn.png" onclick="showMenu()" id="mypage_btn"/>
+				<% } else { %>
+					<a href="login.jsp"><img src="img/icon/mypage_btn.png" class="empty" id="mypage_btn"/></a>
+				<% } %>
 			</div>
 		</div>
 
