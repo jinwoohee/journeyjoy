@@ -73,7 +73,7 @@
 
         		$.ajax({
         			url : "class_list.jj?page=classFilter",
-        			data : {"param" : $(this).attr('id')},
+        			data : {"city": $('select[name=city]').val(), "param" : $(this).attr('id')},
         			success : function(re){
         				$("#class_div").html(re);
         			}
@@ -97,7 +97,7 @@
 
         	$.ajax({
         		url : "class_list.jj?page=classFilter",
-    			data : {"param" : filter, "search" : $('input[name=searchBox]').val()},
+    			data : {"city": $('select[name=city]').val(), "param" : filter, "search" : $('input[name=searchBox]').val()},
     			success : function(re){
     				$("#class_div").html(re);
     			}

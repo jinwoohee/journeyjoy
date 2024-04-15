@@ -287,9 +287,33 @@ public class JourneySql {
 				"LEFT JOIN class_apply a \r\n" + 
 				"ON c.c_no = a.c_no \r\n";
 		
-		if(city != null) {
-			condition = "WHERE c.c_city = '"+city+"'";
-		}else {
+		if(!city.equals("여행중인 도시")) {
+			if(param == null && search == null) {
+				condition = "WHERE c.c_city = '"+city+"'";
+			}else if(param != null && search == null) {
+				if(param.equals("recent")) {
+					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date > now() ORDER BY c.c_no";
+				}else if(param.equals("closing")) {
+					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date > now() ORDER BY c.c_end_date";
+				}else if(param.equals("ing")) {
+					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date > now() ORDER BY c.c_no";
+				}else if(param.equals("end")){
+					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
+				}
+			}else if(param != null && search != null) {
+				if(param.equals("recent")) {
+					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
+				}else if(param.equals("closing")) {
+					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_end_date";
+				}else if(param.equals("ing")) {
+					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
+				}else if(param.equals("end")){
+					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%'and c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
+				}
+			}else if(param == null && search != null) {
+				condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE %"+search+"%' ORDER BY c.c_no";
+			}
+		}else if(city.equals("여행중인 도시")){
 			if(search  == null) { //검색창 값 없을때
 				if(param.equals("recent")) {
 					condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
