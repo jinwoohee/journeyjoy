@@ -18,6 +18,9 @@ $(document).ready(function() {
 	$("input[name='add_place']").click(function(){
 		$("form").attr("action","planner_add_place.jsp");
 	});
+	$("input[name='save_plan_edit']").click(function(){
+		$("form").attr("action","planner.jj?page=schedule_update");
+	});
 });
 function day_select(num){
 	var day = "#day"+num;

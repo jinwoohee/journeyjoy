@@ -19,8 +19,8 @@ static ScheduleUpdate sche_upd = new ScheduleUpdate();
 		Cookie[] ck = request.getCookies();
 		System.out.println("hi");
 		
-		int e_no = (int) request.getAttribute("e_no");	
-		int day = Integer.parseInt(getCookieValue(ck, "datecnt"));
+		int e_no = Integer.parseInt(request.getParameter("e_no"));	
+		int day = Integer.parseInt(request.getParameter("day"));
 		
 		System.out.println("e_no : "+e_no);
 		System.out.println("day : "+day);
@@ -35,7 +35,7 @@ static ScheduleUpdate sche_upd = new ScheduleUpdate();
 		
 		String num = e_no+"";
 		request.setAttribute("e_no", num);
-		request.setAttribute("paging", "detail_my");
+		request.setAttribute("paging", "detail_my_edit");
 		return "plan_page.jsp";
 		
 	} 

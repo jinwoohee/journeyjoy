@@ -1,5 +1,4 @@
-<%@page import="com.jj.dto.Product"%>
-<%@page import="com.jj.dto.Ticket"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Estimate"%>
@@ -13,10 +12,11 @@
 request.setCharacterEncoding("utf-8");
 List<Estimate> esti = (List<Estimate>) request.getAttribute("estimate");
 List<Schedule> sche = (List<Schedule>) request.getAttribute("schedule");
-List<Ticket> tick = (List<Ticket>) request.getAttribute("ticket");
-List<Product> prod = (List<Product>) request.getAttribute("product");
+List<Plan> planList = (List<Plan>)request.getAttribute("plan");
+request.setAttribute("plan", planList);
+
 String paging = (String) request.getAttribute("paging");
-int items = (int) Math.ceil((double) (tick.size()+prod.size())/3);
+
 System.out.println("플랜editx2"+paging);
 
 String e_destination = esti.get(0).gete_destination();
@@ -29,6 +29,19 @@ String food_st = esti.get(0).gete_food_taste();
 System.out.println("플랜editx21"+paging);
 String [] e_detail_thema = d_thema.split(",");
 String [] e_food_taste = food_st.split(",");
+String e_no = esti.get(0).gete_no()+"";
+
+String food_arr = food_st.replaceAll(",", "_");
+String thema_arr = d_thema.replaceAll(",", "_");
+
+
+response.addCookie(new Cookie("e_destination", e_destination));
+response.addCookie(new Cookie("e_start_date", e_start_date));
+response.addCookie(new Cookie("e_end_date", e_end_date));
+response.addCookie(new Cookie("e_thema", thema));
+response.addCookie(new Cookie("e_detail_thema", thema_arr));
+response.addCookie(new Cookie("e_volume", volume));
+response.addCookie(new Cookie("e_food_taste", food_arr));
 
 String sdt = e_start_date.replaceAll("-", ".");
 String edt = e_end_date.replaceAll("-", ".");
@@ -40,6 +53,7 @@ System.out.println("플랜editx22"+paging);
 
 String day = datecnt+"";
 response.addCookie(new Cookie("datecnt",day));
+System.out.println("edit_edit로 왔다 e_no : "+e_no);
 %>
 <html>
 <head>
@@ -85,7 +99,8 @@ response.addCookie(new Cookie("datecnt",day));
 					<input type="button" name="edit_thema" value="수정하기" class="button" />
 				</a>						
 			</div>
-			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">		
+			<input type="hidden" name="e_no" value="<%=e_no%>">		
+			<input type="hidden" name="day" value="<%=day%>">	
 			<div id="plan_list">
 			<%
 				for(int a = 1 ; a <= datecnt ; a++){
@@ -128,7 +143,7 @@ response.addCookie(new Cookie("datecnt",day));
 			<%	System.out.println("플랜editx23"+paging);}
 			%>
 					<input type="submit" name="add_place" value="여행지 추가하기" class="button">
-					<input type="submit" name="save_plan" value="저장" class="button"/>
+					<input type="submit" name="save_plan" value="수정" class="button"/>
 			</div>
 			</div>
 		<div id="side_menu">

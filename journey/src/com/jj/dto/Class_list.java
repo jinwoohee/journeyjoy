@@ -19,8 +19,15 @@ public class Class_list {
 	private String u_nickname;
 	private String a_id; //모임 참여자 id
 	private int a_no; //참여 모임 번호
+	private String u_profile;
 	
 	
+	public String getU_profile() {
+		return u_profile;
+	}
+	public void setU_profile(String u_profile) {
+		this.u_profile = u_profile;
+	}
 	public String getA_id() {
 		return a_id;
 	}

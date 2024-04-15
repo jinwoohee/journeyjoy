@@ -9,6 +9,7 @@ import com.jj.inter.ClassApply;
 import com.jj.inter.ClassApplyDelete;
 import com.jj.inter.ClassInsert;
 import com.jj.inter.ClassListSelect;
+import com.jj.inter.ClassSearch;
 import com.jj.inter.ClassTabSelect;
 import com.jj.inter.CommInsert;
 import com.jj.inter.EaterySelect;
@@ -151,7 +152,7 @@ public class JourneyController extends HttpServlet {
 			} catch(Exception e) { 
 				// TODO: handle exception } }
 			}
-		}else if(page.equals("plan_update")) { // 미완성
+		}else if(page.equals("plan_update")) { 
 			ji = PlanUpdate.updatePlan();
 			try {
 				String page_url = ji.journeyInterface(request, response);
@@ -372,7 +373,7 @@ public class JourneyController extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("--- Controller / 모임참여 insert ---" + e);
 			}
-		}else if(page.equals("class_applyDel")) {
+		}else if(page.equals("class_applyDel")) { //모임 참여취소
 			ji = ClassApplyDelete.classDelete();
 			try {
 				String result = ji.journeyInterface(request, response);
@@ -380,8 +381,14 @@ public class JourneyController extends HttpServlet {
 			} catch (Exception e) {
 				System.out.println("--- Controller / 모임참여 delete ---" + e);
 			}
-		}else if(page.equals("classFilter")) {
-			
+		}else if(page.equals("classFilter")) { //모임 검색
+			ji = ClassSearch.classSearchSelect();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 모임검색 select ---" + e);
+			}
 		}else {
 			System.out.println("--- controller else ---");
 		}

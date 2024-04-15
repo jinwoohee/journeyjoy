@@ -123,7 +123,7 @@ public class JourneySql {
 
 	/* 모임 select */
 	public ArrayList<Class_list> selectClassList() {
-		String sql = "SELECT DISTINCT c.*, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no\r\n" + 
+		String sql = "SELECT DISTINCT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no\r\n" + 
 						"FROM class_list c\r\n" + 
 						"LEFT JOIN user u\r\n" + 
 						"ON c.u_id = u.u_id \r\n" + 
@@ -141,6 +141,7 @@ public class JourneySql {
 				cl = new Class_list();
 				cl.setC_no(rs.getInt("c_no"));
 				cl.setU_id(rs.getString("u_id"));
+				cl.setU_profile(rs.getString("u_profile"));
 				cl.setC_nation(rs.getString("c_nation"));
 				cl.setC_city(rs.getString("c_city"));
 				cl.setC_title(rs.getString("c_title"));
@@ -175,7 +176,7 @@ public class JourneySql {
 		String sql = null;
 		
 		if(tab.equals("made")) {
-			sql = "SELECT c.*, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no \r\n" + 
+			sql = "SELECT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no \r\n" + 
 					"FROM class_list c \r\n" + 
 					"LEFT JOIN user u \r\n" + 
 					"ON c.u_id = u.u_id \r\n" + 
@@ -205,6 +206,7 @@ public class JourneySql {
 				cl = new Class_list();
 				cl.setC_no(rs.getInt("c_no"));
 				cl.setU_id(rs.getString("u_id"));
+				cl.setU_profile(rs.getString("u_profile"));
 				cl.setC_nation(rs.getString("c_nation"));
 				cl.setC_city(rs.getString("c_city"));
 				cl.setC_title(rs.getString("c_title"));
@@ -274,38 +276,51 @@ public class JourneySql {
 	}
 
 	/* 모임 검색 */
-	public ArrayList<Class_list> selectSearchClass(String param) {
+	public ArrayList<Class_list> selectSearchClass(String param, String search) {
 		String sql = null;
 		String condition = null;
 		
-		sql = "SELECT c.*, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no \r\n" + 
+		sql = "SELECT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no \r\n" + 
 				"FROM class_list c \r\n" + 
 				"LEFT JOIN user u \r\n" + 
 				"ON c.u_id = u.u_id \r\n" + 
 				"LEFT JOIN class_apply a \r\n" + 
 				"ON c.c_no = a.c_no \r\n";
 		
-		if(param.equals("recent")) {
-			condition = "ORDER BY c.c_no";
-		}else if(param.equals("closing")) {
-			condition = "ORDER BY c.c_end_date";
-		}else if(param.equals("ing")) {
-			condition = "WHERE c.c_end_date < now() ORDER BY c.c_no";
-		}else {
-			condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
+		if(search  == null) { //검색창 값 없을때
+			if(param.equals("recent")) {
+				condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
+			}else if(param.equals("closing")) {
+				condition = "WHERE c.c_end_date > now() ORDER BY c.c_end_date";
+			}else if(param.equals("ing")) {
+				condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
+			}else if(param.equals("end")){
+				condition = "WHERE c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
+			}
+		}else { //검색창 값 있을때 
+			if(param.equals("recent")) {
+				condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
+			}else if(param.equals("closing")) {
+				condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_end_date";
+			}else if(param.equals("ing")) {
+				condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
+			}else if(param.equals("end")){
+				condition = "WHERE c.c_title LIKE '%"+search+"%'and c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
+			}
 		}
-		
+
 		ArrayList<Class_list> classList = new ArrayList<Class_list>();
 		Class_list cl = null;
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql+condition);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				cl = new Class_list();
 				cl.setC_no(rs.getInt("c_no"));
 				cl.setU_id(rs.getString("u_id"));
+				cl.setU_profile(rs.getString("u_profile"));
 				cl.setC_nation(rs.getString("c_nation"));
 				cl.setC_city(rs.getString("c_city"));
 				cl.setC_title(rs.getString("c_title"));

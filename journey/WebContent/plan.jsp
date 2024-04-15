@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date" %>
+
 <%
 request.setCharacterEncoding("utf-8");
 	Cookie[] cookies = request.getCookies(); 
@@ -33,6 +34,7 @@ List<Product> prod = (List<Product>) request.getAttribute("product");
 String paging = (String) request.getAttribute("paging");
 int items = (int) Math.ceil((double) (tick.size()+prod.size())/3);
 System.out.println("플랜jsp"+paging);
+
 
 
 String e_destination = esti.get(0).gete_destination();
@@ -79,6 +81,10 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 	if(paging != null){
 		System.out.println("saas");
 		List<Plan> plan = (List<Plan>) request.getAttribute("plan");
+		List<Plan> planList = (List<Plan>)request.getAttribute("plan");
+		String my_prod = planList.get(0).getPlan_product();
+		System.out.println(my_prod);
+		String [] mp = my_prod.split(",");
 		%>
 		<input type="hidden" id="item" value="<%= items%>">
 			<div id="list_text">
@@ -274,7 +280,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 					
 					<div id="detail_info<%=a%>">
 						<div class="map_info">
-							<div id="map<%=a%>">					
+							<div id="map<%=a%>">
 							</div>
 							<div class="place_info">	
 							장소								

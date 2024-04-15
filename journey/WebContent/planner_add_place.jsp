@@ -7,6 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date" %>
+<%@page import="com.jj.dto.Plan"%>
 <!DOCTYPE html>
 <%	request.setCharacterEncoding("utf-8");
 	Cookie[] cookies = request.getCookies();
@@ -31,7 +32,10 @@
 	String food_st = getCookieValue(cookies, "e_food_taste");
 	
 	String e_detail_thema = d_thema.replaceAll("_", ", ");
-	String e_food_taste = food_st.replaceAll("_", ", ");
+	String e_food_taste = food_st.replaceAll("_", ", ");	
+	
+	List<Plan> planList = (List<Plan>)request.getAttribute("plan");
+	request.setAttribute("plan", planList);
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	Date sdate = sdf.parse(e_start_date);
@@ -39,7 +43,12 @@
 	long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 	
 	
-
+	String e_no = request.getParameter("e_no");
+	System.out.println(e_no+" : add플레이스 e_no");
+	
+	if(e_no == null){
+		e_no = "null";	
+	}
 %>
 <html>
 <head>
@@ -60,10 +69,11 @@
 	<!-- 페이지 섹션 -->
 	<section>
 	<form action="planner_edit.jsp" method="post">
+		<input type="hidden" name="e_no" value=<%=e_no %>>
 		<div id="content">
 			<div id="list_text">
 				<p id="list_text">여행일정</p>
-				<div id="day_div">				
+				<div id="day_div">	
 					<%
 						for(int a = 1 ; a <= datecnt ; a++){
 									out.println("<p id='day"+a+"' onclick='day_select("+a+")'>Day"+a+"</p>");
@@ -187,7 +197,8 @@
 				}
 				%>	
 				<input type="hidden" name="edit_plan0" value="1">  
-				<input type="submit" name="save_plan" value="저장" class="button">				
+				<input type="submit" name="save_plan" value="저장" class="button">		
+
 			</div>
 		</div>
 		<div id="side_menu">
