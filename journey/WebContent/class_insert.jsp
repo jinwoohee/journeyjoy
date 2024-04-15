@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
  <% 
 	request.setCharacterEncoding("utf-8");
@@ -9,7 +9,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>JOURNEY JOY::¿©ÇàÅå::</title>
+	<title>JOURNEY JOY::ì—¬í–‰í†¡::</title>
 
 	<!-- css -->
 	<link rel="stylesheet" type="text/css" href="css/class_insert.css">
@@ -20,27 +20,27 @@
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-	<!-- ³¯Â¥ -->
+	<!-- ë‚ ì§œ -->
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <script>
 	$(function(){
-		/* ³¯Â¥ */
+		/* ë‚ ì§œ */
 		$("#endDt").datepicker({
-			dateFormat: 'yy-mm-dd' //´Ş·Â ³¯Â¥ ÇüÅÂ
+			dateFormat: 'yy-mm-dd' //ë‹¬ë ¥ ë‚ ì§œ í˜•íƒœ
 			,minDate:0
 			,nextText : ">"
 			,prevText : "<"
-			,showOtherMonths: true //ºó °ø°£¿¡ ÇöÀç¿ùÀÇ ¾ÕµÚ¿ùÀÇ ³¯Â¥¸¦ Ç¥½Ã
-			,showMonthAfterYear:true //³âµµ - ¿ù ¼ø¼­
-			,changeYear: true //³â ¼±ÅÃ °¡´É
-            ,changeMonth: true //¿ù ¼±ÅÃ °¡´É
-            ,monthNamesShort: ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'] //´Ş·ÂÀÇ ¿ù ºÎºĞ ÅØ½ºÆ®
-            ,dayNamesMin: ['ÀÏ','¿ù','È­','¼ö','¸ñ','±İ','Åä'] //´Ş·ÂÀÇ ¿äÀÏ ÅØ½ºÆ®
+			,showOtherMonths: true //ë¹ˆ ê³µê°„ì— í˜„ì¬ì›”ì˜ ì•ë’¤ì›”ì˜ ë‚ ì§œë¥¼ í‘œì‹œ
+			,showMonthAfterYear:true //ë…„ë„ - ì›” ìˆœì„œ
+			,changeYear: true //ë…„ ì„ íƒ ê°€ëŠ¥
+            ,changeMonth: true //ì›” ì„ íƒ ê°€ëŠ¥
+            ,monthNamesShort: ['1ì›”','2ì›”','3ì›”','4ì›”','5ì›”','6ì›”','7ì›”','8ì›”','9ì›”','10ì›”','11ì›”','12ì›”'] //ë‹¬ë ¥ì˜ ì›” ë¶€ë¶„ í…ìŠ¤íŠ¸
+            ,dayNamesMin: ['ì¼','ì›”','í™”','ìˆ˜','ëª©','ê¸ˆ','í† '] //ë‹¬ë ¥ì˜ ìš”ì¼ í…ìŠ¤íŠ¸
 		});
 
-		/* ½æ³×ÀÏ ¹öÆ°Å¬¸¯->ÆÄÀÏ¾÷·Îµå */
+		/* ì¸ë„¤ì¼ ë²„íŠ¼í´ë¦­->íŒŒì¼ì—…ë¡œë“œ */
 		$("#fileBtn").click(function (e) {
 			$('input[type=file]').click();
 		});
@@ -49,7 +49,7 @@
 			$(this).css({'box-shadow':'none'});
 		});
 
-		/* ½æ³×ÀÏ µî·Ï ÈÄ ÀÌ¹ÌÁö ¹Ì¸®º¸±â */
+		/* ì¸ë„¤ì¼ ë“±ë¡ í›„ ì´ë¯¸ì§€ ë¯¸ë¦¬ë³´ê¸° */
 		var img = new Image();
 		img.src = '';
 
@@ -62,12 +62,12 @@
 			$('div[name=preview]').append(img);
 		});
 		
-		//Ãµ´ÜÀ§ ÄŞ¸¶ 
+		//ì²œë‹¨ìœ„ ì½¤ë§ˆ 
 		$("input[name=guide]").keyup(function(){
 			$(this).val($(this).val().replace(/[^0-9.]/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		});
 		
-		//¼ıÀÚÀÔ·Â°ª È®ÀÎ
+		//ìˆ«ìì…ë ¥ê°’ í™•ì¸
 		$("input[name=volumn]").keyup(function(){
 			$(this).val($(this).val().replace(/[^0-9.]/g,''));
 		});
@@ -79,49 +79,49 @@
 		<div>
 			<form id="classMade" action='classInsert.jj?page=classInsert' method='post'>
 				<table id="classTable">
-					<tr><td>µµ½Ã</td></tr>
+					<tr><td>ë„ì‹œ</td></tr>
 					<tr>
 						<td>
 							<select name="city" size="1">
-					    		<option value="choice">µµ½Ã</option>
-					    		<option value="tokyo">µµÄì</option>
-					    		<option value="osaka">¿À»çÄ«</option>
-					    		<option value="toronto">Åä·ĞÅä</option>
-					    		<option value="vancouver">º¥Äí¹ö</option>
+					    		<option value="choice">ë„ì‹œ</option>
+					    		<option value="tokyo">ë„ì¿„</option>
+					    		<option value="osaka">ì˜¤ì‚¬ì¹´</option>
+					    		<option value="toronto">í† ë¡ í† </option>
+					    		<option value="vancouver">ë²¤ì¿ ë²„</option>
 						  	</select>
 						</td>
 					</tr>
-					<tr><td>Á¦¸ñ</td></tr>
+					<tr><td>ì œëª©</td></tr>
 					<tr>
 						<td>
 							<input type="text" name="title" size="20" maxlength="50">
 						</td>
 					</tr>
-					<tr><td>³»¿ë</td></tr>
+					<tr><td>ë‚´ìš©</td></tr>
 					<tr>
 						<td>
 							<textarea name="contents" cols="7" maxlength="300"></textarea>
 						</td>
 					</tr>
-					<tr><td>¸ğÁıÀÎ¿ø</td></tr>
+					<tr><td>ëª¨ì§‘ì¸ì›</td></tr>
 					<tr>
 						<td>
-							<input type="text" name="volumn" size="20" maxlength="3" placeholder=" (ÃÖ¼Ò 3¸íÀÌ»ó)">
+							<input type="text" name="volumn" size="20" maxlength="3" placeholder=" (ìµœì†Œ 3ëª…ì´ìƒ)">
 						</td>
 					</tr>
-					<tr><td>¿¹»ê</td></tr>
+					<tr><td>ì˜ˆì‚°</td></tr>
 					<tr>
 						<td>
-							<input type="text" name="charge" size="20" placeholder=" ¿¹»ê ÀÔ·Â">
+							<input type="text" name="charge" size="20" placeholder=" ì˜ˆì‚° ì…ë ¥">
 						</td>
 					</tr>
-					<tr><td>¸ğÁı¸¶°¨³¯Â¥</td></tr>
+					<tr><td>ëª¨ì§‘ë§ˆê°ë‚ ì§œ</td></tr>
 					<tr>
 						<td>
-							<input type="text" name='endDt' id="endDt" placeholder="¿©ÇàµµÂøÀÏ">
+							<input type="text" name='endDt' id="endDt" placeholder="ì—¬í–‰ë„ì°©ì¼">
 						</td>
 					</tr>
-					<tr><td>Ã·ºÎÆÄÀÏ</td></tr>
+					<tr><td>ì²¨ë¶€íŒŒì¼</td></tr>
 					<tr>
 						<td>
 							<div id="thumnail">
@@ -129,14 +129,14 @@
 							</div>
 							<div>
 								<input type="file" name="file" accept=".jpg, .png, .gif" />
-								<input type="button" id="fileBtn" value="Ãß°¡">
+								<input type="button" id="fileBtn" value="ì¶”ê°€">
 							</div>
 						</td>
 					</tr>
 				</table>
 				<div id="buttonArea">
 					<input type="hidden" name="u_id" value="<%=(String)session.getAttribute("u_id")%>">
-					<input type="submit" value="µî·ÏÇÏ±â">
+					<input type="submit" value="ë“±ë¡í•˜ê¸°">
 				</div>
 			</form>
 		</div>

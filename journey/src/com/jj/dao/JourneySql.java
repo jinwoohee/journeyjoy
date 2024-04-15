@@ -10,6 +10,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.jj.dto.Class_list;
+import com.jj.dto.Estimate;
 import com.jj.dto.Inquiry;
 
 import static com.jj.db.JdbcUtil.*;
@@ -272,7 +273,7 @@ public class JourneySql {
 	}
 
 	/* 모임 검색 */
-	public ArrayList<Class_list> selectSearchClass(String param, String search) {
+	public ArrayList<Class_list> selectSearchClass(String param, String search, String city) {
 		String sql = null;
 		String condition = null;
 		
@@ -283,25 +284,29 @@ public class JourneySql {
 				"LEFT JOIN class_apply a \r\n" + 
 				"ON c.c_no = a.c_no \r\n";
 		
-		if(search  == null) { //검색창 값 없을때
-			if(param.equals("recent")) {
-				condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
-			}else if(param.equals("closing")) {
-				condition = "WHERE c.c_end_date > now() ORDER BY c.c_end_date";
-			}else if(param.equals("ing")) {
-				condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
-			}else if(param.equals("end")){
-				condition = "WHERE c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
-			}
-		}else { //검색창 값 있을때 
-			if(param.equals("recent")) {
-				condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
-			}else if(param.equals("closing")) {
-				condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_end_date";
-			}else if(param.equals("ing")) {
-				condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
-			}else if(param.equals("end")){
-				condition = "WHERE c.c_title LIKE '%"+search+"%'and c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
+		if(city != null) {
+			condition = "WHERE c.c_city = '"+city+"'";
+		}else {
+			if(search  == null) { //검색창 값 없을때
+				if(param.equals("recent")) {
+					condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
+				}else if(param.equals("closing")) {
+					condition = "WHERE c.c_end_date > now() ORDER BY c.c_end_date";
+				}else if(param.equals("ing")) {
+					condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
+				}else if(param.equals("end")){
+					condition = "WHERE c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
+				}
+			}else { //검색창 값 있을때 
+				if(param.equals("recent")) {
+					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
+				}else if(param.equals("closing")) {
+					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_end_date";
+				}else if(param.equals("ing")) {
+					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
+				}else if(param.equals("end")){
+					condition = "WHERE c.c_title LIKE '%"+search+"%'and c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
+				}
 			}
 		}
 
@@ -343,5 +348,41 @@ public class JourneySql {
 		}
 		
 		return classList;
+	}
+
+	/* 여행계획서 select */
+	public ArrayList<Estimate> selectEstimateList(String u_id) {
+		String sql = null;
+		
+		sql = "SELECT DISTINCT p.e_no, e.e_destination, e.e_start_date, e.e_end_date\r\n" + 
+				"FROM plan p\r\n" + 
+				"LEFT JOIN estimate e\r\n" + 
+				"ON p.e_no = e.e_no\r\n" + 
+				"WHERE u_id = '"+u_id+"' and now() between e.e_start_date and e.e_end_date";
+		
+		ArrayList<Estimate> estimateList = new ArrayList<Estimate>();
+		Estimate e = null;
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				e = new Estimate();
+				e.sete_no(rs.getInt("e_no"));
+				e.sete_destination(rs.getString("e_destination"));
+				e.sete_start_date(rs.getString("e_start_date"));
+				e.sete_end_date(rs.getString("e_end_date"));
+				
+				estimateList.add(e);
+			}
+		} catch (Exception e2) {
+			System.out.println("--- JourneySql/selectEstimate ---");
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return estimateList;
 	}
 }

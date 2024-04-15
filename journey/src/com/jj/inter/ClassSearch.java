@@ -22,10 +22,11 @@ public class ClassSearch implements JourneyInterface{
 		
 		String param = request.getParameter("param");
 		String search  = request.getParameter("search");
+		String city = request.getParameter("city");
 
 		ClassSearchDB selectDB = new ClassSearchDB();
 		
-		ArrayList<Class_list> clist = selectDB.searchClass(param, search);
+		ArrayList<Class_list> clist = selectDB.searchClass(param, search, city);
 		request.setAttribute("clist", clist);
 		
 		return "classTabAjax.jsp";
