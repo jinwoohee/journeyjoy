@@ -21,13 +21,16 @@ public class ClassInsert implements JourneyInterface{
 		
 		ClassInsertDB insertDB = new ClassInsertDB();
 		
+		String title = new String(request.getParameter("title").getBytes("8859_1"),"UTF-8");
+		String contents = new String(request.getParameter("contents").getBytes("8859_1"),"UTF-8");
+		
 		Class_list cl = new Class_list();
 		cl.setU_id(request.getParameter("u_id"));
 		cl.setC_nation("tokyo");
 		//cl.setC_nation(request.getParameter("")); > plan에서 내가 여행중인 국가 값 가져오기
 		cl.setC_city(request.getParameter("city"));
-		cl.setC_title(request.getParameter("title"));
-		cl.setC_contents(request.getParameter("contents"));
+		cl.setC_title(title);
+		cl.setC_contents(contents);
 		cl.setC_file1("");
 		cl.setC_file2("");
 		cl.setC_file3("");

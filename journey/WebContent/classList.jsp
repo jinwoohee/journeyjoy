@@ -1,14 +1,17 @@
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Class_list"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DecimalFormat"%>
+<%@page import="com.jj.dto.Estimate"%>
+
 
 <%
+	request.setCharacterEncoding("utf-8");
 	String u_id = (String)session.getAttribute("u_id");
+	ArrayList<Estimate> estimateList = (ArrayList<Estimate>)request.getAttribute("elist");
 %>
 <!DOCTYPE html>
 <html>
@@ -62,7 +65,7 @@
         	});
         });
 
-        /* 검색 */
+        /* 검색필터 */
         $('#filter div').click(function(){
         	if($(this).css('background-color') != 'rgb(241, 241, 243)'){
         		$(this).css({"background":"#f1f1f3"});
@@ -70,7 +73,7 @@
 
         		$.ajax({
         			url : "class_list.jj?page=classFilter",
-        			data : {"param" : $(this).attr('id')},
+        			data : {"city": $('select[name=city]').val(), "param" : $(this).attr('id')},
         			success : function(re){
         				$("#class_div").html(re);
         			}
@@ -78,6 +81,7 @@
         	}
         });
 
+        /* 검색창 */
         $('#search img').click(function(){
         	var filter;
         	
@@ -93,12 +97,22 @@
 
         	$.ajax({
         		url : "class_list.jj?page=classFilter",
-    			data : {"param" : filter, "search" : $('input[name=searchBox]').val()},
+    			data : {"city": $('select[name=city]').val(), "param" : filter, "search" : $('input[name=searchBox]').val()},
     			success : function(re){
     				$("#class_div").html(re);
     			}
         	});
         })
+        
+        $('#location select').change(function(){
+        	$.ajax({
+        		url : "class_list.jj?page=classFilter",
+    			data : {"city": $('select[name=city]').val()},
+    			success : function(re){
+    				$("#class_div").html(re);
+    			}
+        	});
+        });
         
         /* 페이징
         $("#paging").twbsPagination({
@@ -157,7 +171,9 @@
 
 	<!-- 모임만들기 버튼 -->
 	<div>
-		<input type='button' class='make_btn' value='모임 만들기'>
+	<% if(estimateList.size() > 0){%>
+			<input type='button' class='make_btn' value='모임 만들기'>
+	<%}%>
 	</div>
 
 	<!-- 내가여행중인 국가 -->
@@ -165,15 +181,12 @@
 		<div id="location">
 			<img id="icon" src="img/icon/plane.png">
 			<div>
-				<select>
-					<option>여행중인 국가</option>
-					<option>일본</option>
-					<option>캐나다</option>
-					<option>태국</option>
-				</select>
-				
-				<select>
-					<option>도시</option>
+				<select name='city'>
+					<option>여행중인 도시</option>
+				<%
+					for(Estimate e : estimateList){%>
+						<option><%=e.gete_destination() %></option>
+				<%	} %>
 				</select>
 			</div>
 			<hr>

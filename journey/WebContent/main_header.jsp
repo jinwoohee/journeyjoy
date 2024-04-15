@@ -209,7 +209,7 @@ function hideMenu(){
 					<li><a href="package_list.jj?page=packageSelect" class="sub_menu_a">패키지여행</a></li>
 				</ul>
 				<ul>
-					<li><a href="classList.jj?page=clist" class="sub_menu_a">모임</a></li>
+					<li><a href="classList.jj?page=clist&u_id=<%=u_id %>" class="sub_menu_a">모임</a></li>
 					<li><a href="board.jsp" class="sub_menu_a">자유게시판</a></li>
 				</ul>
 				<ul>
