@@ -3,6 +3,10 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Class_list"%>
 <%@page import="java.util.List"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DecimalFormat"%>
+
 <%
 	String u_id = (String)session.getAttribute("u_id");
 %>
@@ -57,7 +61,8 @@
         		}	
         	});
         });
-        
+
+        /* 검색 */
         $('#filter div').click(function(){
         	if($(this).css('background-color') != 'rgb(241, 241, 243)'){
         		$(this).css({"background":"#f1f1f3"});
@@ -72,6 +77,28 @@
         		});
         	}
         });
+
+        $('#search img').click(function(){
+        	var filter;
+        	
+        	if($('#recent').css('background-color') == 'rgb(241, 241, 243)'){
+        		filter = "recent";
+        	}else if($('#closing').css('background-color') == 'rgb(241, 241, 243)'){
+        		filter = "closing";
+        	}else if($('#ing').css('background-color') == 'rgb(241, 241, 243)'){
+        		filter = "ing";
+        	}else{
+        		filter = "end";
+        	}
+
+        	$.ajax({
+        		url : "class_list.jj?page=classFilter",
+    			data : {"param" : filter, "search" : $('input[name=searchBox]').val()},
+    			success : function(re){
+    				$("#class_div").html(re);
+    			}
+        	});
+        })
         
         /* 페이징
         $("#paging").twbsPagination({
@@ -193,12 +220,12 @@
 				<div id="class_section">
 					<!-- 프로필/닉네임 -->
 					<div >
-						<img class='profile' src="img/profile/d.jpg">
+						<img class='profile' src="<%=c.getU_profile() %>">
 						<p><%= c.getU_nickname() %></p>		
 					</div>
 					<div>
 						<div>
-							<img src="img/canada/toronto1.jpg">
+							<img src="<%=c.getC_file1()%>">
 						</div>
 						<div>
 							<img src="img/icon/location.png">
@@ -227,6 +254,7 @@
 									</tr>
 								</table>
 								<%
+									//참여 하기, 취소하기
 									if(c.getA_id() != null){
 										if(c.getA_id().equals(u_id) && c.getC_no() == c.getA_no()){%>
 											<input type='button' name='del_btn<%=c.getC_no() %>' value='참여취소' onclick='delClass(<%=c.getC_no() %>)'>
@@ -235,8 +263,22 @@
 										<%}
 									}else{
 								%>
+								
+								<%
+									//모집마감된 경우 참여버튼 안되게
+									Date now = new Date();
+									SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+									String today = sf.format(now);
+
+									int date = Integer.parseInt(today.replaceAll("-", ""));
+									int getDate = Integer.parseInt(c.getC_end_date().replaceAll("-", ""));
+								
+									if(getDate < date){
+										out.println("<input type='button' name='end_btn' value='참여마감'>");
+									}else{
+								%>
 								<input type='button' name='join_btn<%=c.getC_no() %>' value='모임참여' onclick='joinClass(<%=c.getC_no() %>)'>
-								<%} %>
+								<%} } %>
 							</div>
 						</div>
 					</div>

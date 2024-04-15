@@ -11,13 +11,13 @@ import com.jj.dto.Class_list;
 
 public class ClassSearchDB {
 	
-	public ArrayList<Class_list> searchClass(String param){
+	public ArrayList<Class_list> searchClass(String param, String search){
 		
 		ArrayList<Class_list> classList = null;
 		Connection con = getConnection();
 		JourneySql sql = JourneySql.getInstance();
 		sql.setConnection(con);
-		classList = sql.selectSearchClass(param);
+		classList = sql.selectSearchClass(param, search);
 		
 		close(con);
 

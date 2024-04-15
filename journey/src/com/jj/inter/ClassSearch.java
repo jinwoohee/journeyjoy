@@ -21,10 +21,11 @@ public class ClassSearch implements JourneyInterface{
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String param = request.getParameter("param");
-		
+		String search  = request.getParameter("search");
+
 		ClassSearchDB selectDB = new ClassSearchDB();
 		
-		ArrayList<Class_list> clist = selectDB.searchClass(param);
+		ArrayList<Class_list> clist = selectDB.searchClass(param, search);
 		request.setAttribute("clist", clist);
 		
 		return "classTabAjax.jsp";

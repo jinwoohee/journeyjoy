@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
     
 <%@page import="com.jj.dto.Class_list"%>
-<%@page import="java.util.ArrayList"%>    
+<%@page import="java.util.ArrayList"%>   
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DecimalFormat"%>
+ 
 <%
 	String u_id = (String)session.getAttribute("u_id");
 %>
@@ -31,12 +35,12 @@
 	<div id="class_section">
 		<!-- 프로필/닉네임 -->
 		<div >
-			<img class='profile' src="img/profile/d.jpg">
-			<p><%= c.getU_nickname() %></p>	
+			<img class='profile' src="<%=c.getU_profile() %>">
+			<p><%= c.getU_nickname() %></p>		
 		</div>
 		<div>
 			<div>
-				<img src="img/canada/toronto1.jpg">
+				<img src="<%=c.getC_file1()%>">
 			</div>
 			<div>
 				<img src="img/icon/location.png">
@@ -73,8 +77,22 @@
 							<%}
 						}else{
 					%>
-					<input type='button' name='join_btn<%=c.getC_no() %>' value='모임참여' onclick='joinClass(<%=c.getC_no() %>)'>
-					<%} %>
+					
+					<%
+									//모집마감된 경우 참여버튼 안되게
+									Date now = new Date();
+									SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+									String today = sf.format(now);
+
+									int date = Integer.parseInt(today.replaceAll("-", ""));
+									int getDate = Integer.parseInt(c.getC_end_date().replaceAll("-", ""));
+								
+									if(getDate < date){
+										out.println("<input type='button' name='end_btn' value='참여마감'>");
+									}else{
+								%>
+								<input type='button' name='join_btn<%=c.getC_no() %>' value='모임참여' onclick='joinClass(<%=c.getC_no() %>)'>
+								<%} }%>
 				</div>
 			</div>
 		</div>
