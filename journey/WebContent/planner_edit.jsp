@@ -145,7 +145,7 @@
 						String place = request.getParameter("edit_plan"+a);
 						
 						if(place != ""){
-						String place_list = place.replaceAll("#", "").replaceAll(" ","_");
+						String place_list = place.replaceAll("#", "").replaceAll(" ","_").replaceAll("new", "").replaceAll("\\(", "").replaceAll("\\)", "");
 						
 						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place_list.split("_");

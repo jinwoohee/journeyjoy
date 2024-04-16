@@ -36,24 +36,26 @@ div[id="day_div"]{ /* day1,day2,day3,day4... 들어갈div*/
 }
 p[id*="day"]{ /*day 글자 */
 	float : left;
-	padding-top: 6px;
-	font-size: 15px;
+	font-size: 17px;
 	font-weight: bold;
-	margin-right : 10px;
-	margin-top : 0px;
+	padding-top : 3px;
+	margin-top : 14px;
 	cursor : pointer;
+	padding : 0 10px;
 }
 p[id="day1"]{ /*day 글자 */
-	font-size: 20px;
-	margin-top : -7px;
+	border : 1px solid gray ;
+	border-bottom :3px solid white;
+	border-top :3px solid #fed293;
+	margin-top : 11px;
 	cursor : auto;
 }
+
 
 div[id="thema_div"]{ /*내가 선택한 테마부분 전체 div(도시부터 수정하기 버튼까지)*/
 	width: 200px;
 	height: 300px;
 	float: left;
-	margin-right: 20px;
 	margin-top: 10px;
 }
 div[id="detail_div"]{ /*화살표 누르면 사라지는 부분(선택한 테마~음식취향)div  */
@@ -116,9 +118,9 @@ input[name="edit_thema"]{ /*테마 수정하기 버튼 */
 	cursor: pointer;
 }
 div[id="plan_list"]{ /* 장소검색,추가 화면 전체 div */
-	width: 800px;
+	width: 960px;
 	float: left;
-	margin-left: 5px;
+	margin-left: 30px;
 	overflow: hidden;
 }
 div[id="search"]{ /*검색창 */
@@ -190,12 +192,18 @@ div[id="search_result"]{
 }
 
 div[id="map"]{ /*지도 */
-	width: 500px;
+	width: 650px;
 	height: 600px;
-	float: right;
+	float: left;
+	margin : 0 auto;
+	margin-left : 20px;
+}
+.my_place{
+	font-size : 20px;
+	margin-bottom : 15px;
 }
 div[id*="places"]{ /*추가되어있는 여행지 */
-	width: 780px;
+	width: 1000px;
 	height: 140px;
 	margin-top: 10px;
 	border-bottom: 2px solid;
@@ -232,7 +240,7 @@ div[id="side_menu"]{ /*사이드 메뉴 div*/
 	width: 120px;
 	height: 60px;
 	top: 260px;
-	right: 350px;
+	right: 240px;
 	border-radius: 10px;
 	border: 2px solid rgb(64,64,64);
 }
@@ -243,7 +251,7 @@ div[id="side_menu"]{ /*사이드 메뉴 div*/
 div[id="side_inner"]{ /*side menu 글자 아래의 사이드메뉴 내부 div */
 	position: fixed;
 	top: 295px;
-	right: 350px;
+	right: 240px;
 	width: 120px;
 	border: 2px solid #0D112D;
 	border-radius: 0px 0px 10px 10px;

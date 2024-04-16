@@ -221,6 +221,7 @@ window.initAutocomplete = initAutocomplete;
 					String place_attr = (String) request.getAttribute("planList"+a);
 					System.out.println(place_attr+"1번");
 					out.println("<div id='places"+a+"'>");
+					out.println("<p class='my_place'>나의 여행지</p>");
 					if(place_name == null ){
 						if(place_cookie.equals("")){
 							out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");

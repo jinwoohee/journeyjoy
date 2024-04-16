@@ -22,12 +22,13 @@ $(document).ready(function() {
 		$("form").attr("action","planner.jj?page=schedule_update");
 	});
 });
+
 function day_select(num){
 	var day = "#day"+num;
 	var list_no = "#plan_list_day"+num;
 	
-	$("p[id*='day']").css({'font-size':'15px', 'margin-top':'0px', 'cursor':'pointer'});
-	$(day).css({'font-size':'20px', 'margin-top':'-7px', 'cursor':'auto'});
+	$("p[id*='day']").css({'border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px'});
+	$(day).css({'border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #fed293','margin-top':'11px'});
 	$("div[id*='plan_list_day']").css({'display':'none'});
 	$(list_no).css({'display':'block'});
 	
