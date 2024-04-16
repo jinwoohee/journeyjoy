@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+body {
+	font-family: "Noto Sans KR", sans-serif;
+	/* color: #646464; */
+	margin: 0px auto;
+}
+
+.all_wrap { /* 전체 div */
+	
+	width: 1200px;
+    margin: 0px auto;
+	padding-top: 180px;
+	background-color: #f1f1f3;
+}
+
+.notification_wrap > h1 { /* 회원 이름 */
+	color: black;
+}
+
+.tab { /* 마이페이지 메뉴바 */
+	
+}
+
+.tab ul {
+	height: 50px;
+	font-size: 14px;
+	list-style-type: none;
+	padding-inline-start: 0px;
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.tab li {
+	font-size: 20px;
+    font-weight: 600;
+    width: fit-content;
+    float: left;
+	padding-bottom: 5px;
+    margin-right: 45px;
+    cursor: pointer;
+}
+
+.cards ul { /* 마이페이지 메뉴바 상세내용 */
+	height: 120px;
+	list-style-type: none;
+	padding-inline-start: 0px;
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.cards li {
+	color: white;
+	font-size: 17px;
+	font-weight: 600;
+	border: 1px solid;
+    border-radius: 10px;
+    width: 200px;
+    height: 50px;
+    padding: 25px;
+    float: left;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.package li:first-of-type, .review li:first-of-type, .userInfo li:first-of-type {
+	border-color: #12245c;
+    background-color: #12245c;
+}
+
+.package li:nth-of-type(2) {
+	border-color: #1e427f;
+    background-color: #1e427f;
+}
+
+.package li:last-of-type, .review li:last-of-type, .userInfo li:last-of-type {
+	border-color: #6c94b8;
+	background-color: #6c94b8;
+}
+
+.package li:first-of-type:hover, .review li:first-of-type:hover, .userInfo li:first-of-type:hover {
+	color: #646464;
+	background-color: white;
+}
+
+.package li:nth-of-type(2):hover {
+	color: #646464;
+	background-color: white;
+}
+
+.package li:last-of-type:hover, .review li:last-of-type:hover, .userInfo li:last-of-type:hover {
+	color: #646464;
+	background-color: white;
+}
+
+
+.mypage { /* 회원정보 수정 */
+	color: black;
+	width: 970px;
+	height: 750px;
+    margin-left: 230px;
+}
+
+.tbl {
+	
+}
+
+.profile {
+	margin-left: 10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.pf_img {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.txt {
+	width: 250px;
+    height: 20px;
+    padding: 7px;
+}
+
+.addr {
+	display: block;
+    padding-top: 15px;
+}
+
+#sample4_postcode {
+	width: 60px;
+    height: 20px;
+    padding: 7px;
+    margin-bottom: 5px;
+}
+
+#sample4_roadAddress {
+	margin-bottom: 5px;
+}
+
+.tbl input[type="button"], .tbl button {
+	width: 98px;
+    height: 34px;
+    padding: 7px;
+    /* border-radius: 10px; */
+    border: none;
+    background-color: #6C98BC;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn_wrap {
+	margin-top: 40px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.save_btn {
+	width: 150px;
+	height: 50px;
+	/* border-radius: 10px; */
+	border:none;
+	background-color: #2C609C;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+
+

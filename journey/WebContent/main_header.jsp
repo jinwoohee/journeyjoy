@@ -247,11 +247,12 @@ function hideMenu(){
 			<img src="img/icon/lo_white.png" id="logo"/>
 			<ul id="mypage_ul">
 				<li class="mypage_li"><h2>마이페이지</h2></li>
-				<li class="mypage_li">회원정보</li>
 				<li class="mypage_li">나의 여행계획서</li>
-				<li class="mypage_li">패키지여행 목록</li>
-				<li class="mypage_li">모임 참여 내역</li>
-				<li class="mypage_li">워킹홀리데이 신청목록</li>
+				<li class="mypage_li">패키지 기획내역</li>
+				<li class="mypage_li">패키지 참여내역</li>
+				<li class="mypage_li">찜한 패키지</li>
+				<li class="mypage_li">나의 리뷰보기</li>
+				<li class="mypage_li">회원정보</li>
 			</ul>
 			<img src="img/icon/mypage_close.png" onclick="hideMenu()"/>
 		</div>
