@@ -11,7 +11,7 @@ p{
 	margin: 0;
 }
 div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
-	padding-top: 200px;
+	padding-top: 150px;
 	width: 1200px;
 	height: 1500px;
 	margin: 0 auto;
@@ -146,7 +146,9 @@ button[name="search_btn"]{
 img[id="search_btn"]{
 	width : 20px;
 	height:20px;
-	margin-top:17px;
+	margin-top:16px;
+	float:right;
+	margin-right : 0px;
 	cursor : pointer;
 }
 div[id="result_list"]{
@@ -195,7 +197,6 @@ div[id="map"]{ /*지도 */
 div[id*="places"]{ /*추가되어있는 여행지 */
 	width: 780px;
 	height: 140px;
-	background-color: violet;
 	margin-top: 10px;
 	border-bottom: 2px solid;
 	border-top: 2px solid;
@@ -222,7 +223,7 @@ input[name*="save_plan"]{ /*저장 버튼 */
 	margin: 0 310px;
 	width: 180px;
 	height: 45px;
-	margin-top: 130px;
+	margin-top: 50px;
 	cursor: pointer;
 }
 
@@ -253,4 +254,7 @@ input[name="plan_sel"]{ /*일정선택목록으로, 일정추가하기 버튼 */
 	height: 70px;
 	margin: 5px 10px;
 	cursor: pointer;
+}
+footer {
+	margin-top: -530px;
 }

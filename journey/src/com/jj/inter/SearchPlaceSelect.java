@@ -22,19 +22,22 @@ public class SearchPlaceSelect implements JourneyInterface{
 		// TODO Auto-generated method stub
 		Cookie[] ck = request.getCookies();
 		
-		String text = new String(request.getParameter("search_place").getBytes("8859_1"),"UTF-8");
-		int day = Integer.parseInt(getCookieValue(ck, "datecnt"));
-		for(int a = 1 ; a <= day ; a++) {
-			String plan = new String(request.getParameter("edit_plan"+a).getBytes("8859_1"),"UTF-8");
-			request.setAttribute("planList"+a, plan);
-		}
+		String text = request.getParameter("search_place");
+		/* int day = Integer.parseInt(getCookieValue(ck, "datecnt")); */
+		System.out.println(text);
+		/*
+		 * for(int a = 1 ; a <= day ; a++) { String plan = new
+		 * String(request.getParameter("edit_plan"+a).getBytes("8859_1"),"UTF-8");
+		 * request.setAttribute("planList"+a, plan); }
+		 */
 		
 		SearchPlaceSelectDB spsdb = SearchPlaceSelectDB.seldb();
 		List<Place> plaList = spsdb.searchmtd(text);		
 		request.setAttribute("search_place", plaList);
+		request.setAttribute("search", text);
 		System.out.println("sel"+plaList.size());
 		
-		return "planner_add_place.jsp";
+		return "planner_add_place_search.jsp";
 	}
 	private String getCookieValue(Cookie[] cookies, String name) {
 		String value = null;

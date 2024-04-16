@@ -16,11 +16,38 @@ $(document).ready(function() {
 	$(".button").mouseout(function(){
 		$(this).css({'box-shadow':''});
 	});
-	$("button[name='search_btn']").click(function(){
-		$("form").attr("action","planner.jj?page=place_search");
+	$("input[name='save_plan']").click(function(){
+		$("form").submit();	
 	});
-
+	$("input[name='plan_sel']").click(function(){
+		$("form").submit();	
+	});
+	
+	
+	 $('#search_btn').click(function(){
+     	$.ajax({
+     		url : "planner.jj?page=place_search",
+ 			data : {"search_place": $('input[name=search_place]').val()},
+ 			success : function(re){
+ 				$("#search_result").html(re);
+ 				
+ 			}
+     	});
+     });
+	 
+	 
+	 
+	 
+	 $('input[name=search_place]').keypress(function(e){
+			//검색어 입력 후 엔터키 입력하면 조회버튼 클릭
+			if(e.keyCode && e.keyCode == 13){
+				$("#search_btn").trigger("click");
+				return false;
+			}
+		});
 });
+
+
 function day_select(num){
 	var day = "#day"+num;
 	var places = "#places"+num;
@@ -52,10 +79,13 @@ function plan_add_btn(num){
 	if(empty !=null){
 		empty.remove();
 	}
+	
+	
 	$("input[name='place_one']").each(function(){
 	    if( $(this).is(":checked") == true ){	    	
 	      var id = $(this).attr('id');
-	      var checkVal = " #"+$(this).val();
+	      var checkVal = " #"+$(this).val();     
+	      
 	      document.getElementById("places_text"+num).textContent = before+checkVal ;
 	      
 	      $(this).prop("checked", false);
@@ -63,16 +93,9 @@ function plan_add_btn(num){
 	      
 	      var after = document.getElementById("places_text"+num).innerText;
 	  	  edit.setAttribute('value',after);
+	  	  
 	    }
 	});
 	
 }
-
-window.initMap = function () {
-	const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 34.6964016465328, lng: 135.4867092276206 }, 
-    zoom: 9,
-  });
-}
-
 

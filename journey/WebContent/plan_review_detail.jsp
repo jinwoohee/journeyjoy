@@ -24,6 +24,40 @@
 <title>Insert title here</title>
 </head>
 <script>
+
+
+$(function() {
+	  const kindWrap =  document.querySelector('#img_div');
+	  const slider = kindWrap.querySelector('.slider');
+	  const slideLis = slider.querySelectorAll('li');
+	  
+	  /* ul 넓이 계산해 주기 */
+	  const liWidth = slideLis[0].clientWidth;
+	  const sliderWidth =  liWidth * slideLis.length;
+	  slider.style.width = sliderWidth+"px" ;
+
+	  /* 리스너 설치하기 */
+	  var currentIdx = 0; // 슬라이드 현재 번호
+	  var translate = 0; // 슬라이드 위치 값
+	  
+	  
+
+	  $("#right").click(function(){   //오른쪽화살표 눌렀을때 슬라이드
+		  if (currentIdx !== slideLis.length -1) {
+		        translate -= liWidth;
+		        slider.style.transform = `translateX(${translate}px)`;
+		        currentIdx += 1;
+		      }
+	  });
+	  $("#left").click(function(){  //왼쪽 화살표 눌렀을 때 슬라이드
+	        if (currentIdx !== 0) {
+	          translate += liWidth;
+	          slider.style.transform = `translateX(${translate}px)`;
+	          currentIdx -= 1;
+	        }
+	   });
+});
+
 	function tab(num){
 		var day_plan = "#day_plan"+num;
 		var day_sel = "#day_sel"+num;
@@ -68,9 +102,9 @@
 					out.println("<p>"+pr.getpr_title()+"</p>");
 					//out.println("<p id='pr_date'>"+pr.getpr_date()+"</p>");
 					
-					out.println("<div id='img_div'><ul id='slider'><li class='li_sli'><img src='img/japan/"+pr.getpr_file()+"'/></li>");
+					out.println("<div id='img_div'><div id = 'kind_slider'><ul class='slider'><li class='li_sli'><img src='img/japan/"+pr.getpr_file()+"'/></li>");
 					out.println("<li class='li_sli'><img src='img/japan/"+pr.getpr_file2()+"'/></li>");
-					out.println("<li class='li_sli'><img src='img/japan/"+pr.getpr_file3()+"'/></li></ul></div>");
+					out.println("<li class='li_sli'><img src='img/japan/"+pr.getpr_file3()+"'/></li></ul></div></div>");
 					
 					out.println("<input type='button' value='left' id='left'><input type='button' value='right' id='right'>");
 					out.println("<div id='content'>"+pr.getpr_contents()+"</div>");

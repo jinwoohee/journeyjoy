@@ -7,7 +7,7 @@ p{
 	margin: 0;
 }
 div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
-	padding-top: 200px;
+	padding-top: 150px;
 	width: 1200px;
 	height: 1500px;
 	margin: 0 auto;
@@ -211,7 +211,7 @@ input[name*="save_plan"]{ /*저장 버튼 */
 	margin: 0 310px;
 	width: 180px;
 	height: 45px;
-	margin-top: 130px;
+	margin-top: 50px;
 	cursor: pointer;
 }
 div[id="side_menu"]{ /*사이드 메뉴 div*/
@@ -244,5 +244,5 @@ input[name*="plan_sel"]{ /*일정선택목록으로, 일정추가하기 버튼 *
 }
 
 footer {
-	margin-top: 100px;
+	margin-top: -200px;
 }

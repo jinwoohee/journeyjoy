@@ -72,16 +72,37 @@ table + p{
 
 /*첨부파일 div*/
 div[id="img_div"]{ 
-	width: 400px;
+	width:100%; 
+	max-width:400px;
 	height: 300px;
 	margin: 50px auto;
-	over-flow : hidden;
+	position: relative;
+ 	padding: 0;
 }
 
 div[id="img_div"] img{
 	width: 400px;
 	height: 300px;
 	object-fit : cover;
+}
+li{
+	list-style: none;
+	float : left;
+}
+#kind_slider{
+	overflow:hidden;
+}
+#img_div > #kind_slider .slider { 
+  position: relative; 
+  transition: 0.5s;
+   margin: 0;
+  padding: 0;
+}
+.kind_wrap > #kind_slider{
+  float:left;
+}
+#plan_li{
+	flaot:left
 }
 
 div[id="content"]{ /*리뷰 내용 div*/

@@ -59,10 +59,84 @@
 	<link rel="stylesheet" type="text/css" href="css\planner_add_place.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>	
 	<script type="text/javascript" src="js\planner_add_place.js"></script>
-	<script defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initMap">
-	</script>
+	<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initAutocomplete&libraries=places&v=weekly"
+      defer
+    ></script>
 </head>
+<script type="text/javascript">
+
+function initAutocomplete() {
+	  const map = new google.maps.Map(document.getElementById("map"), {
+	    center: { lat: -33.8688, lng: 151.2195 },
+	    zoom: 13,
+	    mapTypeId: "roadmap",
+	  });
+	  // Create the search box and link it to the UI element.
+	  const input = document.getElementById("pac-input");
+	  const searchBox = new google.maps.places.SearchBox(input);
+
+	  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+	  // Bias the SearchBox results towards current map's viewport.
+	  map.addListener("bounds_changed", () => {
+	    searchBox.setBounds(map.getBounds());
+	  });
+
+	  let markers = [];
+
+	  // Listen for the event fired when the user selects a prediction and retrieve
+	  // more details for that place.
+	  searchBox.addListener("places_changed", () => {
+	    const places = searchBox.getPlaces();
+
+	    if (places.length == 0) {
+	      return;
+	    }
+
+	    // Clear out the old markers.
+	    markers.forEach((marker) => {
+	      marker.setMap(null);
+	    });
+	    markers = [];
+
+	    // For each place, get the icon, name and location.
+	    const bounds = new google.maps.LatLngBounds();
+
+	    places.forEach((place) => {
+	      if (!place.geometry || !place.geometry.location) {
+	        console.log("Returned place contains no geometry");
+	        return;
+	      }
+
+	      const icon = {
+	        url: place.icon,
+	        size: new google.maps.Size(71, 71),
+	        origin: new google.maps.Point(0, 0),
+	        anchor: new google.maps.Point(17, 34),
+	        scaledSize: new google.maps.Size(25, 25),
+	      };
+
+	      // Create a marker for each place.
+	      markers.push(
+	        new google.maps.Marker({
+	          map,
+	          icon,
+	          title: place.name,
+	          position: place.geometry.location,
+	        }),
+	      );
+	      if (place.geometry.viewport) {
+	        // Only geocodes have viewport.
+	        bounds.union(place.geometry.viewport);
+	      } else {
+	        bounds.extend(place.geometry.location);
+	      }
+	    });
+	    map.fitBounds(bounds);
+	  });
+	}
+window.initAutocomplete = initAutocomplete;
+</script>
 <body>
 	<!-- menu bar -->
 	<jsp:include page="main_header.jsp"></jsp:include>
@@ -100,12 +174,11 @@
 			<div id="plan_list">
 						
 				<div id="search">
-					<input type="text" name ="search_place" placeholder ="이름, 테마로 검색" />
-					<button type="submit" name="search_btn">
+					
+					<input type="text" name ="search_place" placeholder ="이름, 테마로 검색"  />
 					<img src="img/icon/search_btn.png" id="search_btn" />
-					</button>
 					<div id="search_result">
-					<div id="result_list">
+						<div id="result_list">
 					
 					<%
 					
@@ -136,9 +209,9 @@
 					%>
 										
 
-				</div>		
-				</div>	
-							
+							</div>		
+						</div>	
+				<input id="pac-input" class="controls" type="text" />
 				<div id="map"></div>
 				
 				<%
@@ -197,7 +270,7 @@
 				}
 				%>	
 				<input type="hidden" name="edit_plan0" value="1">  
-				<input type="submit" name="save_plan" value="저장" class="button">		
+				<input type="button" name="save_plan" value="저장" class="button">		
 
 			</div>
 		</div>
@@ -205,7 +278,7 @@
 			<p id="side_menu_p" align="center">side menu</p>
 			<div id= "side_inner">
 				
-				<input type="submit" name="plan_sel" value="뒤로가기" class="button">
+				<input type="button" name="plan_sel" value="뒤로가기" class="button">
 				
 			</div>
 			</div>

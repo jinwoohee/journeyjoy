@@ -160,17 +160,17 @@ function add_acc(num){
 	
 	var content = document.createElement("input");
 	content.setAttribute("type","text");
-	content.name="content";
+	content.name="content"+num;
 	content.value=add_content.value;
 	
 	var price = document.createElement("input");
 	price.setAttribute("type","text");
-	price.name="price";
+	price.name="price"+num;
 	price.value=add_price.value;
 	
 	var pay = document.createElement("input");
 	pay.setAttribute("type","text");
-	pay.name="pay_with";
+	pay.name="pay_with"+num;
 	pay.value=add_pay.value;
 	
 	var del = document.createElement("input");
