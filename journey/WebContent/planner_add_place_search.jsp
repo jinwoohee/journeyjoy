@@ -85,6 +85,7 @@ $(document).ready(function() {
 	$(".button").mouseout(function(){
 		$(this).css({'box-shadow':''});
 	});
+	
 });
 
 

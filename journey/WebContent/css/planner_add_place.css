@@ -244,7 +244,7 @@ div[id="side_menu"]{ /*사이드 메뉴 div*/
 	width: 120px;
 	height: 60px;
 	top: 260px;
-	right: 240px;
+	right: 225px;
 	border-radius: 10px;
 	border: 2px solid rgb(64,64,64);
 }
@@ -255,7 +255,7 @@ div[id="side_menu"]{ /*사이드 메뉴 div*/
 div[id="side_inner"]{ /*side menu 글자 아래의 사이드메뉴 내부 div */
 	position: fixed;
 	top: 295px;
-	right: 240px;
+	right: 225px;
 	width: 120px;
 	border: 2px solid #0D112D;
 	border-radius: 0px 0px 10px 10px;

@@ -81,16 +81,13 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 				<p id="list_text"></p>
 			</div>
 			<div id="radio_div">
-				<input type="radio" name="plan" value="여행계획서" id="plan_btn"> 
-				<label for="plan_btn" class="plan_radio">여행계획서</label>
-				<input type="radio" name="plan" value="가계부" id="gagyebu_btn">
-				<label for="gagyebu_btn" class="plan_radio">가계부</label>
-				<input type="radio" name="plan" value="체크리스트" id="checklist_btn">
-				<label for="checklist_btn" class="plan_radio">체크리스트</label>
+				<label for="plan_btn" id="plan_radio_1" onclick="change_main('1')">여행계획서</label>			
+				<label for="gagyebu_btn" id="plan_radio_2" onclick="change_main('2')">가계부</label>
+				<label for="checklist_btn" id="plan_radio_3" onclick="change_main('3')">체크리스트</label>
 			</div>
 			
 			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">
-			<div id="plan">
+			<div id="plandiv_1">
 				<input type="text" name="plan_subject" placeholder="계획서 제목(최대50자)" maxlength="50" value="<%=esti.get(0).getu_id()%>의 <%=esti.get(0).gete_destination() %>여행계획서"/>
 				<div id="plan_info">
 					<p id="city"><%=e_destination %></p>
