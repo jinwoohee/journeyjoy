@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.jj.dto.Eatery;
 import com.jj.dto.Location_review;
+import com.jj.dto.Place;
 
 public class Review {
 	Connection conn = null;
@@ -58,20 +60,40 @@ public class Review {
 		
 		try{
 			dbConn();
+			
 			if(lr_no == 0) {
-				rs = stmt.executeQuery("select * , (select u_nickname from user u where l.u_id = u.u_id) as u_nickname from location_review l;");
+				rs = stmt.executeQuery("SELECT DISTINCT l.*, u.u_nickname, u.u_profile, p.plac_name AS plac_name, e.eat_name as eat_name\r\n" + 
+						"FROM location_review l \r\n" + 
+						"LEFT JOIN user u \r\n" + 
+						"ON l.u_id = u.u_id \r\n" + 
+						"LEFT JOIN place p \r\n" + 
+						"ON l.pl_eat_no = p.plac_no \r\n" + 
+						"LEFT JOIN eatery e \r\n" + 
+						"ON l.pl_eat_no = e.eat_no ORDER BY l.lr_no;");
 			}else {
-				rs = stmt.executeQuery("select * , (select u_nickname from user u where l.u_id = u.u_id) as u_nickname from location_review l where lr_no="+ lr_no+";");
+				rs = stmt.executeQuery("SELECT DISTINCT l.*, u.u_nickname, u.u_profile, p.plac_name AS plac_name, e.eat_name as eat_name\r\n" + 
+						"FROM location_review l \r\n" + 
+						"LEFT JOIN user u \r\n" + 
+						"ON l.u_id = u.u_id \r\n" + 
+						"LEFT JOIN place p \r\n" + 
+						"ON l.pl_eat_no = p.plac_no \r\n" + 
+						"LEFT JOIN eatery e \r\n" + 
+						"ON l.pl_eat_no = e.eat_no \r\n" +
+						"WHERE lr_no="+ lr_no+" ORDER BY l.lr_no;");
 			}
 			
-			//ResultSet rs = stmt.executeQuery("select * from location_review");
+			
+			
 			while(rs.next()){
 				Location_review lr = new Location_review();
 				
 				lr.setU_id(rs.getString("u_id"));
 				lr.setU_nickname(rs.getString("u_nickname"));
+				lr.setU_profile(rs.getString("u_profile"));
 				lr.setLr_no(Integer.parseInt(rs.getString("lr_no")));
-				//lr.setPl_eat_no(Integer.parseInt(rs.getString("pl_eat_no")));
+				lr.setPl_eat_no(Integer.parseInt(rs.getString("pl_eat_no")));
+				lr.setEat_name(rs.getString("eat_name"));
+				lr.setPlac_name(rs.getString("plac_name"));
 				lr.setLr_contents(rs.getString("lr_contents"));
 				lr.setLr_file1(rs.getString("lr_file1"));
 				lr.setLr_file2(rs.getString("lr_file2"));
@@ -89,42 +111,111 @@ public class Review {
 		
 	}
 	
-	/* 검색창 select*/
-	public ArrayList<Location_review> search_placeReview(String search) throws Exception{
-		ArrayList<Location_review> lrList = new ArrayList<Location_review>();
+	/* 장소검색 */
+	public ArrayList<Place> select_place(String search) throws Exception{
+		ArrayList<Place> placeList = new ArrayList<Place>();
 		ResultSet rs = null;
 		
-		try{
+		try {
 			dbConn();
-			if(search != null) {
-				rs = stmt.executeQuery("select * , (select u_nickname from user u where l.u_id = u.u_id) as u_nickname from location_review l where pl_eat_no like '%"+search+"%' or lr_contents like '%"+ search +"';");
+			
+			if(search == null) {
+				rs = stmt.executeQuery("SELECT plac_no, plac_name FROM place;");
 			}else {
-				rs = stmt.executeQuery("select * , (select u_nickname from user u where l.u_id = u.u_id) as u_nickname from location_review l;");
+				rs = stmt.executeQuery("SELECT DISTINCT plac_no, plac_name \r\n" + 
+						"FROM place \r\n" + 
+						"WHERE plac_name like '%"+search+"%';");
 			}
 			
-			//ResultSet rs = stmt.executeQuery("select * from location_review");
-			while(rs.next()){
-				Location_review lr = new Location_review();
+			while(rs.next()) {
+				Place place = new Place();
+
+				place.setPlac_no(rs.getInt("plac_no"));
+				place.setPlac_name(rs.getString("plac_name"));
 				
-				lr.setU_id(rs.getString("u_id"));
-				lr.setU_nickname(rs.getString("u_nickname"));
-				lr.setLr_no(Integer.parseInt(rs.getString("lr_no")));
-				//lr.setPl_eat_no(Integer.parseInt(rs.getString("pl_eat_no")));
-				lr.setLr_contents(rs.getString("lr_contents"));
-				lr.setLr_file1(rs.getString("lr_file1"));
-				lr.setLr_file2(rs.getString("lr_file2"));
-				lr.setLr_file3(rs.getString("lr_file3"));
-				lr.setLr_date(rs.getDate("lr_date"));
-				lr.setLr_star(Integer.parseInt(rs.getString("lr_star")));
-				
-				lrList.add(lr);
-				
+				placeList.add(place);
 			}
-		}finally{
+			
+		} finally {
 			dbClose();
 		}
-		return lrList;
+		return placeList;
+		
 	}
+	
+	public ArrayList<Eatery> select_eat(String search) throws Exception{
+		ArrayList<Eatery> eatList = new ArrayList<Eatery>();
+		ResultSet rs = null;
+		
+		try {
+			dbConn();
+			
+			if(search == null) {
+				rs = stmt.executeQuery("SELECT eat_no, eat_name FROM eatery;");
+			}else {
+				rs = stmt.executeQuery("SELECT DISTINCT eat_no, eat_name\r\n" + 
+						"FROM eatery\r\n" + 
+						"WHERE eat_name like '%"+search+"%';");
+			}
+			
+			while(rs.next()) {
+				Eatery eat = new Eatery();
+				
+				eat.setEat_no(rs.getInt("eat_no"));
+				eat.setEat_name(rs.getString("eat_name"));
+				
+				eatList.add(eat);
+			}
+			
+		} finally {
+			dbClose();
+		}
+		return eatList;
+		
+	}
+	
+	
+	
+	/* 검색창 select*/
+	/*
+	 * public ArrayList<Location_review> search_placeReview(String search) throws
+	 * Exception{ ArrayList<Location_review> lrList = new
+	 * ArrayList<Location_review>(); ResultSet rs = null;
+	 * 
+	 * try{ dbConn(); if(search != null) { rs = stmt.
+	 * executeQuery("SELECT DISTINCT l.*, u.u_nickname, u.u_profile, p.plac_name AS plac_name, e.eat_name as eat_name\r\n"
+	 * + "FROM location_review l\r\n" + "LEFT JOIN user u\r\n" +
+	 * "ON l.u_id = u.u_id\r\n" + "LEFT JOIN place p\r\n" +
+	 * "ON l.pl_eat_no = p.plac_no\r\n" + "LEFT JOIN eatery e\r\n" +
+	 * "ON l.pl_eat_no = e.eat_no" +
+	 * "WHERE plac_name like '%"+search+"%' or eat_name like '%"+ search
+	 * +"%' or lr_contents like '%"+search+"%' ;"); }else { rs = stmt.
+	 * executeQuery("SELECT DISTINCT l.*, u.u_nickname, u.u_profile, p.plac_name AS plac_name, e.eat_name as eat_name\r\n"
+	 * + "FROM location_review l \r\n" + "LEFT JOIN user u \r\n" +
+	 * "ON l.u_id = u.u_id \r\n" + "LEFT JOIN place p \r\n" +
+	 * "ON l.pl_eat_no = p.plac_no \r\n" + "LEFT JOIN eatery e \r\n" +
+	 * "ON l.pl_eat_no = e.eat_no ORDER BY l.lr_no;"); }
+	 * 
+	 * while(rs.next()){ Location_review lr = new Location_review();
+	 * 
+	 * lr.setU_id(rs.getString("u_id"));
+	 * lr.setU_nickname(rs.getString("u_nickname"));
+	 * lr.setU_profile(rs.getString("u_profile"));
+	 * lr.setLr_no(Integer.parseInt(rs.getString("lr_no")));
+	 * lr.setPl_eat_no(Integer.parseInt(rs.getString("pl_eat_no")));
+	 * lr.setEat_name(rs.getString("eat_name"));
+	 * lr.setPlac_name(rs.getString("plac_name"));
+	 * lr.setLr_contents(rs.getString("lr_contents"));
+	 * lr.setLr_file1(rs.getString("lr_file1"));
+	 * lr.setLr_file2(rs.getString("lr_file2"));
+	 * lr.setLr_file3(rs.getString("lr_file3"));
+	 * lr.setLr_date(rs.getDate("lr_date"));
+	 * lr.setLr_star(Integer.parseInt(rs.getString("lr_star")));
+	 * 
+	 * lrList.add(lr);
+	 * 
+	 * } }finally{ dbClose(); } return lrList; }
+	 */
 	
 	
 	

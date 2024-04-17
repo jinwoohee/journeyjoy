@@ -7,6 +7,7 @@
 	request.setCharacterEncoding("utf-8");
 	String u_id = (String) session.getAttribute("u_id");
 	int lr_no = Integer.parseInt(request.getParameter("lr_no"));
+	System.out.println(lr_no);
 %>
 
 <!DOCTYPE html>

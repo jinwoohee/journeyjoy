@@ -33,11 +33,11 @@
         //내가만든모임/참여한모임 클릭이벤트
         $("#sector_section > input[type=button]").click(function(){
         	if($(this).attr('name') == 'made'){
-        		$("input[name='made']").css({'background': '#0D112D', 'color':'#f1f1f3'});
-        		$("input[name='participate']").css({'background': 'white', 'color':'#0D112D'});
+        		$("input[name='made']").css({'color':'#FFE400', 'font-weight':'bold'});
+        		$("input[name='participate']").css({'color': 'white', 'font-weight':'none'});
         	}else{
-        		$("input[name='participate']").css({'background': '#0D112D', 'color':'#f1f1f3'});
-        		$("input[name='made']").css({'background': 'white', 'color':'#0D112D'});
+        		$("input[name='participate']").css({'color':'#FFE400', 'font-weight':'bold'});
+        		$("input[name='made']").css({'color': 'white', 'font-weight':'none'});
         	}
         });
 
@@ -255,7 +255,7 @@
 									</tr>
 									<tr>
 										<td>모집 인원</td>
-										<td>1/<%= c.getC_volume() %>명</td>
+										<td><%=c.getCount() %>/<%= c.getC_volume() %>명</td>
 									</tr>
 									<tr>
 										<td>예상 경비</td>
@@ -286,7 +286,7 @@
 									int date = Integer.parseInt(today.replaceAll("-", ""));
 									int getDate = Integer.parseInt(c.getC_end_date().replaceAll("-", ""));
 								
-									if(getDate < date){
+									if(getDate < date || c.getCount()<c.getC_volume()){
 										out.println("<input type='button' name='end_btn' value='참여마감'>");
 									}else{
 								%>

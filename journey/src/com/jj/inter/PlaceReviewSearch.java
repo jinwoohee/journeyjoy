@@ -23,7 +23,7 @@ public class PlaceReviewSearch implements JourneyInterface{
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("param", request.getParameter("param"));
 		map.put("search", request.getParameter("txt"));
-		//map.put("city", request.getParameter("city"));
+		map.put("city", request.getParameter("city"));
 
 		PlaceReviewSearchDB searchReview = PlaceReviewSearchDB.select();
 		List<Location_review> lrList = searchReview.selectPlaceReview(map);

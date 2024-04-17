@@ -79,20 +79,20 @@
 					%>
 					
 					<%
-									//모집마감된 경우 참여버튼 안되게
-									Date now = new Date();
-									SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-									String today = sf.format(now);
+						//모집마감된 경우 참여버튼 안되게
+						Date now = new Date();
+						SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+						String today = sf.format(now);
 
-									int date = Integer.parseInt(today.replaceAll("-", ""));
-									int getDate = Integer.parseInt(c.getC_end_date().replaceAll("-", ""));
-								
-									if(getDate < date){
-										out.println("<input type='button' name='end_btn' value='참여마감'>");
-									}else{
-								%>
-								<input type='button' name='join_btn<%=c.getC_no() %>' value='모임참여' onclick='joinClass(<%=c.getC_no() %>)'>
-								<%} }%>
+						int date = Integer.parseInt(today.replaceAll("-", ""));
+						int getDate = Integer.parseInt(c.getC_end_date().replaceAll("-", ""));
+					
+						if(getDate < date){
+							out.println("<input type='button' name='end_btn' value='참여마감'>");
+						}else{
+					%>
+					<input type='button' name='join_btn<%=c.getC_no() %>' value='모임참여' onclick='joinClass(<%=c.getC_no() %>)'>
+					<%} }%>
 				</div>
 			</div>
 		</div>

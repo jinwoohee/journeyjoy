@@ -20,8 +20,15 @@ public class Class_list {
 	private String a_id; //모임 참여자 id
 	private int a_no; //참여 모임 번호
 	private String u_profile;
+	private int count; //참여자 수
 	
 	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public String getU_profile() {
 		return u_profile;
 	}

@@ -141,15 +141,15 @@ article{
 	margin: 10px auto;
 }
 
-/* 버튼 */
+/* 탭 */
 #sector_section>input[type="button"]{
 	width: 597px;
 	height: 50px;
 	border-radius: 10px 10px 0 0;
-	border: 1px solid #0D112D;
+	border: none;
 	box-shadow: 3px 3px 3px #CCCCCC;
-	background: white;
-	color: #0D112D;
+	background: #0D112D;
+	color: white;
 }
 
 /* section 1개 */

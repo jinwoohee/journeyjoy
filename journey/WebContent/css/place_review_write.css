@@ -32,20 +32,39 @@ p{
 	margin-bottom: 20px;
 }
 
+/* 장소 선택/검색 */
 .place_select{
 	width: 500px;
     display: flex;
     justify-content: center;
 }
 
-select{
-	width: 200px;
-	height: 50px;
-	border-radius: 10px;
-	display: flex;
-	margin-left: 10px;
+input[name='search_place']{
+	width : 180px;
+	height : 30px;
+	margin-top : 10px;
+	margin-left: 20px;
+	border : none;
+	border-bottom : 1px solid #CCCCCC;
 }
 
+.place_select img{
+	width: 28px;
+    height: 28px;
+    margin-top: 10px;
+    object-fit: cover;
+}
+
+.place_list{
+	width: 180px;
+	height: 100px;
+	border : 1px solid #CCCCCC;
+	margin-left: 222px;
+	margin-bottom: 30px;
+	overflow: auto;
+}
+
+/* 별점 */
 .star_area{
 	width: 500px;
     display: flex;

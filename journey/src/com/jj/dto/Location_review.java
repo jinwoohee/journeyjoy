@@ -13,7 +13,29 @@ public class Location_review {
 	private String lr_file3;	//첨부파일3
 	private Date lr_date;		//작성일시
 	private int lr_star;		//별점
+	
 	private String u_nickname;
+	private String u_profile;	//프로필이미지
+	public String getU_profile() {
+		return u_profile;
+	}
+	public void setU_profile(String u_profile) {
+		this.u_profile = u_profile;
+	}
+	public String getPlac_name() {
+		return plac_name;
+	}
+	public void setPlac_name(String plac_name) {
+		this.plac_name = plac_name;
+	}
+	public String getEat_name() {
+		return eat_name;
+	}
+	public void setEat_name(String eat_name) {
+		this.eat_name = eat_name;
+	}
+	private String plac_name;	//관광지명
+	private String eat_name;	//음식점명
 	
 	public int getLr_no() {
 		return lr_no;

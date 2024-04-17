@@ -1,10 +1,15 @@
 package com.jj.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.dao.JourneyInterface;
+import com.jj.dao.Review;
+import com.jj.dto.Eatery;
+import com.jj.dto.Place;
 import com.jj.inter.ClassApply;
 import com.jj.inter.ClassApplyDelete;
 import com.jj.inter.ClassInsert;
@@ -26,6 +31,7 @@ import com.jj.inter.PackageInsert;
 import com.jj.inter.PackageSearch;
 import com.jj.inter.PackageSelect;
 import com.jj.inter.PlaceReviewSearch;
+import com.jj.inter.PlaceSearch;
 import com.jj.inter.PlanDelete;
 import com.jj.inter.PlanInsert;
 import com.jj.inter.PlanSelect;
@@ -388,6 +394,15 @@ public class JourneyController extends HttpServlet {
 				request.getRequestDispatcher(result).forward(request, response);
 			} catch (Exception e) {
 				System.out.println("--- Controller / 모임검색 select ---" + e);
+			}
+		}else if(page.equals("lr_place_search")) { //일정리뷰>장소검색
+			ji = PlaceSearch.placeSearchInter();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 일정리뷰>장소검색 ---" + e);
+				e.printStackTrace();
 			}
 		}else {
 			System.out.println("--- controller else ---");

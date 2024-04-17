@@ -1,3 +1,6 @@
+<%@page import="com.jj.dto.Eatery"%>
+<%@page import="com.jj.dto.Place"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -35,6 +38,18 @@
 	function cancel(){
 		history.back();
 	}
+	
+ 	function search(){
+		var search = $('input[name=search_place]').val();
+		
+		$.ajax({
+			url : "place_search.jj?page=lr_place_search",
+			data :{"search": search},
+			success : function(re){
+				$(".place_list").html(re);
+			}
+		});
+	}
 
 	
 </script>
@@ -45,10 +60,30 @@
 			<form name="lrForm" action="placeReview_insert.jsp" method="post" onsubmit="return regist()">
 				<div class="place_select">
 					<p>어디를 다녀오셨나요?</p>
-					<select>
-						<option value='1'>카시라 다이칸야마점</option>
-						<option value='2'>오나리도리</option>
-					</select>
+					<input type="text" name="search_place" placeholder="장소 검색">
+					<img src='img/icon/search_btn.png' onclick="search()">
+				</div>
+				<div class="place_list">
+					<jsp:useBean id="selectPlace" class="com.jj.dao.Review">
+						<%
+							ArrayList<Place> placeList;
+							ArrayList<Eatery> eatList;
+							
+							String search = "";
+
+							placeList = selectPlace.select_place(search);
+							eatList = selectPlace.select_eat(search);
+							
+							for(Place p : placeList){%>
+								<p><%=p.getPlac_name() %></p>
+								<hr>
+							<%}
+							
+							for(Eatery e : eatList){%>
+								<p><%=e.getEat_name() %></p>
+								<hr>
+							<%}%> 
+					</jsp:useBean>
 				</div>
 				<div class ="star_area">
 					<p>별점을 선택해주세요!</p>

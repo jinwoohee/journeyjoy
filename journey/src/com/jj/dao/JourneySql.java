@@ -10,8 +10,10 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.jj.dto.Class_list;
+import com.jj.dto.Eatery;
 import com.jj.dto.Estimate;
 import com.jj.dto.Inquiry;
+import com.jj.dto.Place;
 
 import static com.jj.db.JdbcUtil.*;
 
@@ -123,7 +125,7 @@ public class JourneySql {
 
 	/* 모임 select */
 	public ArrayList<Class_list> selectClassList() {
-		String sql = "SELECT DISTINCT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no\r\n" + 
+		String sql = "SELECT DISTINCT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no, (SELECT COUNT(*) FROM class_apply a WHERE c.c_no=a.c_no GROUP BY c_no) AS count \r\n" + 
 						"FROM class_list c\r\n" + 
 						"LEFT JOIN user u\r\n" + 
 						"ON c.u_id = u.u_id \r\n" + 
@@ -157,6 +159,7 @@ public class JourneySql {
 				cl.setU_nickname(rs.getString("u_nickname"));
 				cl.setA_id(rs.getString("a_id"));
 				cl.setA_no(rs.getInt("a_no"));
+				cl.setCount(rs.getInt("count"));
 				
 				classList.add(cl);
 			}
@@ -176,7 +179,7 @@ public class JourneySql {
 		String sql = null;
 		
 		if(tab.equals("made")) {
-			sql = "SELECT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no \r\n" + 
+			sql = "SELECT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no, (SELECT COUNT(*) FROM class_apply a WHERE c.c_no=a.c_no GROUP BY c_no) AS count \r\n" + 
 					"FROM class_list c \r\n" + 
 					"LEFT JOIN user u \r\n" + 
 					"ON c.u_id = u.u_id \r\n" + 
@@ -185,7 +188,7 @@ public class JourneySql {
 					"WHERE c.u_id ='"+u_id+"' \r\n" + 
 					"order by c.c_no";
 		}else {
-			sql = "SELECT c.*, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no\r\n" + 
+			sql = "SELECT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no, (SELECT COUNT(*) FROM class_apply a WHERE c.c_no=a.c_no GROUP BY c_no) AS count \r\n" + 
 					"FROM class_list c \r\n" + 
 					"LEFT JOIN user u \r\n" + 
 					"ON c.u_id = u.u_id \r\n" + 
@@ -222,6 +225,7 @@ public class JourneySql {
 				cl.setU_nickname(rs.getString("u_nickname"));
 				cl.setA_id(rs.getString("a_id"));
 				cl.setA_no(rs.getInt("a_no"));
+				cl.setCount(rs.getInt("count"));
 				
 				classList.add(cl);
 			}
@@ -280,7 +284,7 @@ public class JourneySql {
 		String sql = null;
 		String condition = null;
 		
-		sql = "SELECT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no \r\n" + 
+		sql = "SELECT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no, (SELECT COUNT(*) FROM class_apply a WHERE c.c_no=a.c_no GROUP BY c_no) AS count \r\n" + 
 				"FROM class_list c \r\n" + 
 				"LEFT JOIN user u \r\n" + 
 				"ON c.u_id = u.u_id \r\n" + 
@@ -364,6 +368,7 @@ public class JourneySql {
 				cl.setU_nickname(rs.getString("u_nickname"));
 				cl.setA_id(rs.getString("a_id"));
 				cl.setA_no(rs.getInt("a_no"));
+				cl.setCount(rs.getInt("count"));
 				
 				classList.add(cl);
 			}
@@ -412,4 +417,5 @@ public class JourneySql {
 		
 		return estimateList;
 	}
+
 }

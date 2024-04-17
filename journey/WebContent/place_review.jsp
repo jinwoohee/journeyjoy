@@ -57,7 +57,7 @@
 		 $("input[name='search']").click(function(){
 			 $.ajax({ //검색버튼 
          		url : "placeReview_list.jj?page=placeReviewSearch",
-         		data : {"txt" : $("input[name='searchBox']").val()},
+         		data : {"txt" : $("input[name='searchBox']").val(), "city" : $("select[name='city']").val()},
          		success : function(re){
          			$("#review_section").html(re);
          		}
@@ -82,20 +82,20 @@
 				$('select[name=city]').append('<option>도시</option>');
 			} else if ($(this).find('option:selected').text() == '일본') {
 				$('select[name=city]').find('option').remove();
-				$('select[name=city]').append('<option>도시</option>');
-				$('select[name=city]').append('<option>도쿄</option>');
-				$('select[name=city]').append('<option>오사카</option>');
-				$('select[name=city]').append('<option>후쿠오카</option>');
-				$('select[name=city]').append('<option>교토</option>');
-				$('select[name=city]').append('<option>나리타</option>');
+				$('select[name=city]').append("<option value=''>도시</option>");
+				$('select[name=city]').append("<option value='tokyo'>도쿄</option>");
+				$('select[name=city]').append("<option value='osaka'>오사카</option>");
+				$('select[name=city]').append("<option value='fukuoka'>후쿠오카</option>");
+				$('select[name=city]').append("<option value='kyoto'>교토</option>");
+				$('select[name=city]').append("<option value='narita'>나리타</option>");
 			} else if ($(this).find('option:selected').text() == '캐나다') {
 				$('select[name=city]').find('option').remove();
-				$('select[name=city]').append('<option>도시</option>');
-				$('select[name=city]').append('<option>벤쿠버</option>');
-				$('select[name=city]').append('<option>토론토</option>');
-				$('select[name=city]').append('<option>캘거리</option>');
-				$('select[name=city]').append('<option>빅토리아</option>');
-				$('select[name=city]').append('<option>몬트리올</option>');
+				$('select[name=city]').append("<option value=''>도시</option>");
+				$('select[name=city]').append("<option value='vancouver'>벤쿠버</option>");
+				$('select[name=city]').append("<option value='toronto'>토론토</option>");
+				$('select[name=city]').append("<option value='calgary'>캘거리</option>");
+				$('select[name=city]').append("<option value='victoria'>빅토리아</option>");
+				$('select[name=city]').append("<option value='montreal'>몬트리올</option>");
 			}
 		});
 	});
@@ -145,31 +145,26 @@
        					//select
        					ArrayList<Location_review> lrList;
        					int lr_no=0;
-       					String search = request.getParameter("searchBox");
+       					//String search = request.getParameter("searchBox");
        					
        					lrList = place.select_placeReview(lr_no);
-       					
-       					//검색창select
-       					
-       					/*if(search != null){
-       						lrList = place.search_placeReview(search);
-       					}else{
-       					//기본select
-           					lrList = place.select_placeReview(lr_no);
-       					}*/
 
        					for(Location_review lr : lrList){
        						out.println("<div class='review'>"); //전체
        						out.println("<div>"); //프로필, 닉네임, 버튼
-       						out.println("<img class='profile' src='img/profile/profile.png'/>"); //select한 id의 프로필/닉네임 가져오기
+       						out.println("<img class='profile' src='"+lr.getU_profile()+"'/>");
        						out.println("<p>"+lr.getU_nickname()+"</p>");
        						if(u_id !=null && u_id.equals(lr.getU_id())){
        							out.println("<button class='modify' value='"+ lr.getLr_no()+"'>수정</button>");
            						out.println("<button class='delete' value='"+ lr.getLr_no()+"'>삭제</button>");
        						}
        						out.println("</div><div>");
-       						out.println("<p>"+lr.getPl_eat_no()+"</p>"); //select한 pl_no의 관광지 이름 가져오기
-       						//out.println("<input type='hidden' name='star' value='"+lr.getLr_star()+"'>"); //별점
+       						if(lr.getEat_name() == null){
+       							out.println("<p>"+lr.getPlac_name()+"</p>");
+       						}else{
+       							out.println("<p>"+lr.getEat_name()+"</p>");
+       						}
+       						
        						for(int i=1; i<6; i++){
        							if(i<=lr.getLr_star()){
        								out.println("<input type='radio' class='star' value='"+ i +"'><label>★</label>");

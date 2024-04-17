@@ -400,7 +400,7 @@
 	
 	<!-- 장소리뷰 검색필터  -->
 	<select id="placeReviewSearch" resultType="com.jj.dto.Location_review" parameterType="java.util.HashMap">
-		SELECT DISTINCT l.*, u.u_nickname
+		SELECT DISTINCT l.*, u.u_nickname, u.u_profile, p.plac_name AS plac_name, e.eat_name as eat_name
 		FROM location_review l
 		LEFT JOIN user u
 		ON l.u_id = u.u_id
@@ -409,8 +409,14 @@
 		LEFT JOIN eatery e
 		ON l.pl_eat_no = e.eat_no
 		<where>
-			<if test="search!= null">
-				l.lr_contents like concat('%', #{search}, '%')
+			<if test="city!= '' and search == ''">
+				p.plac_city = #{city} or e.eat_city = #{city}
+			</if>
+			<if test="search!= '' and city == ''">
+				l.lr_contents like concat('%', #{search}, '%') ORDER BY l.lr_no
+			</if>
+			<if test="city !='' and search != ''">
+				p.plac_city = #{city} or e.eat_city = #{city} and l.lr_contents like concat('%', #{search}, '%') ORDER BY l.lr_no
 			</if>
 		</where>
 		<if test="param != null">
@@ -421,7 +427,6 @@
 				ORDER BY l.lr_star DESC;		
 			</if>
 		</if>
-		
 	</select>
 	
 	<!-- 문의하기 insert -->
