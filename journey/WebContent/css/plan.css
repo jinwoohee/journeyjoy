@@ -8,10 +8,6 @@ body {
 *{
 	margin: 0;
 }
-/* 硫붾돱諛� */
-header>iframe {
-	z-index: 100;
-}
 div[id="content"]{ /*�뿤�뜑, �뫖�꽣瑜� �젣�쇅�븳 �꽮�뀡 �쟾泥� div*/
 	padding-top: 150px;
 	width: 1200px;

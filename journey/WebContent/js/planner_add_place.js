@@ -33,6 +33,17 @@ $(document).ready(function() {
  				
  			}
      	});
+     	
+     	var search_val = $('input[name=search_place]').val();
+     	$("#pac-input").val(search_val);
+     	
+     	$("#pac-input").focus();
+     	$("#pac-input").submit();
+     	
+     	var e = jQuery.Event( "keydown", { keyCode: 13 } );
+     	$("#pac-input").trigger(e);
+     	console.log(e);
+     
      });
 	 
 	 

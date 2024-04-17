@@ -60,13 +60,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>	
 	<script type="text/javascript" src="js\planner_add_place.js"></script>
 	<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initAutocomplete&libraries=places&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initMap&libraries=places&v=weekly"
       defer
     ></script>
 </head>
 <script type="text/javascript">
 
-function initAutocomplete() {
+function initMap() {
 	  const map = new google.maps.Map(document.getElementById("map"), {
 	    center: { lat: -33.8688, lng: 151.2195 },
 	    zoom: 13,
@@ -134,8 +134,12 @@ function initAutocomplete() {
 	    });
 	    map.fitBounds(bounds);
 	  });
+	  
+
 	}
-window.initAutocomplete = initAutocomplete;
+window.initMap = initMap;
+
+
 </script>
 <body>
 	<!-- menu bar -->
@@ -213,7 +217,7 @@ window.initAutocomplete = initAutocomplete;
 						</div>	
 				<input id="pac-input" class="controls" type="text" />
 				<div id="map"></div>
-				
+				<div id="infowindow-content"></div>
 				<%
 				for(int a = 1 ; a <= datecnt ; a++){ 
 					String place_name = request.getParameter("place_name"+a);
@@ -272,7 +276,7 @@ window.initAutocomplete = initAutocomplete;
 				%>	
 				<input type="hidden" name="edit_plan0" value="1">  
 				<input type="button" name="save_plan" value="저장" class="button">		
-
+			<div id="infowindow-content"></div>
 			</div>
 		</div>
 		<div id="side_menu">

@@ -273,7 +273,7 @@
 		</article>
 	</section>
 	  <div id="paging"></div>
-	<jsp:include page="main_footer.html" />	
+	<jsp:include page="main_footer.jsp" />	
 	
 </body>
 </html>

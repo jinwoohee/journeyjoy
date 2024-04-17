@@ -13,7 +13,7 @@ p{
 div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
 	padding-top: 150px;
 	width: 1200px;
-	height: 1500px;
+	height: 1000px;
 	margin: 0 auto;
 	margin-bottom: 20px;
 }
@@ -118,7 +118,7 @@ input[name="edit_thema"]{ /*테마 수정하기 버튼 */
 	cursor: pointer;
 }
 div[id="plan_list"]{ /* 장소검색,추가 화면 전체 div */
-	width: 960px;
+	width: 970px;
 	float: left;
 	margin-left: 30px;
 	overflow: hidden;
@@ -192,11 +192,15 @@ div[id="search_result"]{
 }
 
 div[id="map"]{ /*지도 */
-	width: 650px;
+	width: 685px;
 	height: 600px;
 	float: left;
 	margin : 0 auto;
-	margin-left : 20px;
+	margin-left : 5px;
+}
+div[id="infowindow-content"]{
+	width: 685px;
+	height: 600px;
 }
 .my_place{
 	font-size : 20px;
@@ -264,5 +268,5 @@ input[name="plan_sel"]{ /*일정선택목록으로, 일정추가하기 버튼 */
 	cursor: pointer;
 }
 footer {
-	margin-top: -530px;
+	margin-top: -30px;
 }
