@@ -54,33 +54,37 @@
 			<%
 				ArrayList<Location_review> lrList = place.select_placeReview(lr_no);
 				for(Location_review lr : lrList){
-					/* 별점 */
-					out.println("<div class='star-rating'>");
-					for(int i=1; i<6; i++){
-						
-						out.println("<input type='radio' class='star' name='starRating' value='"+i+"'>");
-						/* if(i<=lr.getLr_star()){
-							out.println("<input type='radio' class='getStar' name='starRating' value='"+i+"'>");
-						}else{
-							out.println("<input type='radio' class='star' name='starRating' value='"+i+"'>");
-						}
-						out.println("<input type='hidden' name='hiddenVal' value='"+ lr.getLr_star() +"'>");
-						 */
-					}
-					out.println("</div><div>");
-					out.println("<p>별점을 선택해주세요!</p>");
-					out.println("</div>");
-					out.println("<div>");
-					out.println("<textarea name='contents' maxlength=1000 cols=70 placeholder='솔직한 리뷰를 남겨주세요. (500자 이내)'>"+ lr.getLr_contents() +"</textarea></div>");
-					out.println("<div id='file'>");
-					out.println("<div><img src='"+lr.getLr_file1()+"'></div>");
-					out.println("<div><img src='"+lr.getLr_file2()+"'></div>");
-					out.println("<div><img src='"+lr.getLr_file3()+"'></div>");
-					out.println("</div>");
 					
-					out.println("<input type='hidden' name='lr_no' value="+lr_no+">");
-				}
-			%>
+					if(lr.getEat_name() == null){
+						out.println("<p>"+lr.getPlac_name()+"</p>");
+					}else{
+						out.println("<p>"+lr.getEat_name()+"</p>");
+					}%>
+					
+					<div class='star-rating'>
+					<p>별점을 선택해주세요!</p>
+					
+				<%	for(int i=1; i<6; i++){
+						out.println("<input type='radio' class='star' name='starRating' value='"+i+"'>");
+					}%>
+					</div>
+					
+					<hr>
+					
+					<div>
+						<textarea name='contents' maxlength=1000 cols=70 placeholder='솔직한 리뷰를 남겨주세요. (500자 이내)'><%= lr.getLr_contents() %></textarea>
+					</div>
+					
+					<div id='file'>
+						<div>
+							<div class='thumnail'><img id="preview" src='<%=lr.getLr_file1()%>'></div>
+							<div class='thumnail'><img id="preview" src='<%=lr.getLr_file2()%>'></div>
+							<div class='thumnail'><img id="preview" src='<%=lr.getLr_file3()%>'></div>
+						</div>
+					</div>
+					
+					<input type='hidden' name='lr_no' value="<%=lr_no%>">
+				<%}%>
 				<div id="buttonArea">
 					<input type='button' value='취소' onclick="cancel()">
 					<input type='submit' value='등록'>

@@ -58,10 +58,16 @@ input[name='search_place']{
 .place_list{
 	width: 180px;
 	height: 100px;
-	border : 1px solid #CCCCCC;
+
 	margin-left: 222px;
 	margin-bottom: 30px;
 	overflow: auto;
+}
+
+.place_list select{
+	width: 180px;
+	height: 50px;
+	border : 1px solid #CCCCCC;
 }
 
 /* 별점 */
@@ -96,26 +102,80 @@ textarea{
 
 /* 첨부파일 */
 #file{
-	margin-top : 20px;
-	margin-bottom: 50px;
-	display : flex;
+	margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    width: 500px;
+    height: 190px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
 }
 
-#file div{
+#file > div{
+	margin : 0 auto;
+	display: flex;
+    align-items: center;
+}
+
+.thumnail{
+	width: 120px;
+	height: 120px;
+	overflow: hidden;
+	object-fit : cover;
+	border-radius: 10px;
+	background: #f1f1f3;
+	margin-right: 10px;
+}
+
+.btn_area > input[type=button]{
+	width : 55px;
+	height: 30px;
+	border: none;
+	background : #0D112D;
+    border-radius: 5px;
+    color : white;
+	margin-top: 10px;
+}
+
+.btn_area > input[name=upload_del]{
+	background: #CCCCCC;
+	margin-left : 10px;
+}
+
+input[type=file]{
+	display: none;
+}
+
+#preview{
+	width: 120px;
+	height: 120px;
+	object-fit : cover;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+/* #file div{
 	width: 100px;
     height: 100px;
     background: #f1f1f3;
     border-radius: 10px;
     margin-right: 10px;
-}
+} */
 
-#file div img{
-	width: 100px;
-	height: 100px;
-	object-fit : cover;
-	overflow: hidden;
-	border-radius: 10px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #buttonArea{
 	display: flex;
@@ -123,7 +183,7 @@ textarea{
 }
 
 /* 등록버튼 */
-input[type='submit']{
+#buttonArea > input[type='submit']{
 	width: 100px;
     height: 50px;
     background: #0D112D;
@@ -133,7 +193,7 @@ input[type='submit']{
 }
 
 /* 취소버튼 */
-input[type='button']{
+#buttonArea >input[type='button']{
 	width: 100px;
     height: 50px;
     background : #f1f1f3;

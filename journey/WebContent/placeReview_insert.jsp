@@ -19,14 +19,14 @@
 			Location_review lr = new Location_review();
 		
 			lr.setU_id(u_id);
-			//lr.setPl_eat_no(Integer.parseInt(request.getParameter("plac_no")));
+			lr.setPl_eat_no(Integer.parseInt(request.getParameter("place_select")));
 			lr.setLr_contents(request.getParameter("contents"));
 			lr.setLr_file1("img/canada/toronto1.jpg");
 			lr.setLr_file2("img/canada/toronto2.jpg");
 			lr.setLr_file3("img/canada/toronto3.jpg");
 			lr.setLr_star(Integer.parseInt(request.getParameter("starRating")));
 			
-			place.insert_placeReview(lr.getU_id(), lr.getLr_contents(), lr.getLr_file1(), lr.getLr_file2(), lr.getLr_file3(), lr.getLr_star());
+			place.insert_placeReview(lr.getU_id(), lr.getPl_eat_no(), lr.getLr_contents(), lr.getLr_file1(), lr.getLr_file2(), lr.getLr_file3(), lr.getLr_star());
 			
 			response.sendRedirect("place_review.jsp");
 		%>

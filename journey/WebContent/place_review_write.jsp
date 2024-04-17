@@ -23,7 +23,10 @@
 </head>
 <script>
 	function regist(){
-		if(lrForm.starRating.value == ''){
+		if(lrForm.place_select.value ==''){
+			alert("장소를 선택해주세요.");
+			return false;
+		}else if(lrForm.starRating.value == ''){
 			alert("별점을 선택해주세요.");
 			return false;
 		}else if(lrForm.contents.value == ''){
@@ -51,6 +54,26 @@
 		});
 	}
 
+ 	function upload(){
+ 		$('input[type=file]').click();
+ 	}
+ 	
+ 	function readURL(input){
+ 		if(input.files && input.files[0]){
+ 			var reader = new FileReader();
+ 			reader.onload = function(e){
+ 				document.getElementById("preview").src = e.target.result;
+ 			};
+ 			reader.readAsDataURL(input.files[0]);
+ 		}else{
+ 			document.getElementById("preview").src = "";
+ 		}
+ 	}
+ 	
+ 	function img_del(){
+ 		$('input[name=file_btn]').val("");
+ 		document.getElementById("preview").src = "";
+ 	}
 	
 </script>
 <body>
@@ -65,6 +88,8 @@
 				</div>
 				<div class="place_list">
 					<jsp:useBean id="selectPlace" class="com.jj.dao.Review">
+						<select name='place_select'>
+							<option value=''>장소 선택</option>
 						<%
 							ArrayList<Place> placeList;
 							ArrayList<Eatery> eatList;
@@ -75,14 +100,13 @@
 							eatList = selectPlace.select_eat(search);
 							
 							for(Place p : placeList){%>
-								<p><%=p.getPlac_name() %></p>
-								<hr>
+								<option value="<%=p.getPlac_no()%>"><%=p.getPlac_name() %></option>
 							<%}
 							
 							for(Eatery e : eatList){%>
-								<p><%=e.getEat_name() %></p>
-								<hr>
+								<option value="<%=e.getEat_no() %>"><%=e.getEat_name() %></option>
 							<%}%> 
+							</select>
 					</jsp:useBean>
 				</div>
 				<div class ="star_area">
@@ -102,7 +126,16 @@
 				</div>
 			
 				<div id="file">
-					<div></div>
+					<div>
+						<div class='thumnail'>
+							<img id="preview">
+						</div>
+						<div class="btn_area">
+							<input type="button" name="upload_btn" value="첨부" onclick="upload()">
+							<input type="button" name="upload_del" value="삭제" onclick="img_del()">
+							<input type="file" name="file_btn" accept=".jpg, .png, .gif" onchange="readURL(this)">
+						</div>
+					</div>
 				</div>
 				
 				<div id="buttonArea">

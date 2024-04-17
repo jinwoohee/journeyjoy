@@ -39,11 +39,11 @@ public class Review {
 	}
 	
 	/* 장소리뷰 insert */
-	public void insert_placeReview(String u_id, String contents, String lr_file1, String lr_file2, String lr_file3, int lr_star) throws Exception {
+	public void insert_placeReview(String u_id, int pl_eat_no, String contents, String lr_file1, String lr_file2, String lr_file3, int lr_star) throws Exception {
 		try{
 			dbConn();
 			
-			int success = stmt.executeUpdate("insert into location_review values(default,'"+ u_id +"', null, '"+contents+"','"+lr_file1+"','"+lr_file2+"','"+lr_file3+"', curdate(),"+lr_star+");");
+			int success = stmt.executeUpdate("insert into location_review values(default,'"+ u_id +"',"+pl_eat_no+", '"+contents+"','"+lr_file1+"','"+lr_file2+"','"+lr_file3+"', curdate(),"+lr_star+");");
 			if(success != 0) {
 				System.out.println("insert location_review");
 			}
