@@ -15,6 +15,8 @@ import com.jj.dto.Estimate;
 import com.jj.dto.Inquiry;
 import com.jj.dto.Place;
 import com.jj.dto.Plan;
+import com.jj.dto.Package;
+import com.jj.dto.Package_schedule;
 
 import static com.jj.db.JdbcUtil.*;
 
@@ -90,6 +92,106 @@ public class JourneySql {
 		//System.out.println("inquiryUpdateFlag------>"+row);
 		return row;
 	}
+	
+	public ArrayList<Package> mypagePackageSelect(String u_id) { //패키지 상세내용 select
+		String sql = "select * from package where u_id = '" + u_id + "'";
+		ArrayList<Package> alist = new ArrayList<Package>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Package pk = new Package();
+				pk.setP_no(rs.getInt("p_no"));
+				pk.setU_id(rs.getString("u_id"));
+				pk.setP_nation(rs.getString("p_nation"));
+				pk.setP_city(rs.getString("p_city"));
+				pk.setP_theme(rs.getString("p_theme"));
+				pk.setP_title(rs.getString("p_title"));
+				pk.setP_start_date(rs.getString("p_start_date"));
+				pk.setP_end_date(rs.getString("p_end_date"));
+				pk.setP_volume(rs.getInt("p_volume"));
+				pk.setP_due_date(rs.getString("p_due_date"));
+				pk.setP_guide_pay(rs.getInt("p_guide_pay"));
+				pk.setP_date(rs.getString("p_date"));
+				pk.setP_file(rs.getString("p_file"));
+				pk.setP_notification(rs.getString("p_notification"));
+				pk.setP_url(rs.getString("p_url"));
+				
+				alist.add(pk);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("sql mypagePackageSelect 에러----->"+e);
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	public ArrayList<Package_schedule> mypagePackageScheSelect(String p_no) { //패키지 일정 select
+		String sql = "select * from package_schedule where p_no = " + p_no;
+		ArrayList<Package_schedule> alist = new ArrayList<Package_schedule>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Package_schedule ps = new Package_schedule();
+				ps.setP_no(rs.getInt("p_no"));
+				ps.setPs_schedule(rs.getString("ps_schedule"));
+				ps.setPs_day(rs.getString("ps_day"));
+				ps.setPs_title(rs.getString("ps_title"));
+				ps.setPs_contents(rs.getString("ps_contents"));
+				ps.setPs_notification(rs.getString("ps_notification"));
+				
+				alist.add(ps);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("sql mypagePackageScheSelect 에러----->"+e);
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	public ArrayList<Package> mypageRewardSelect(String p_no) { //패키지 리워드 select
+		String sql = "select * from reward where p_no = " + p_no;
+		ArrayList<Package> alist = new ArrayList<Package>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				Package pk = new Package();
+				pk.setP_no(rs.getInt("p_no"));
+				pk.setAdult_fee(rs.getInt("adult_fee"));
+				pk.setStd_fee(rs.getInt("std_fee"));
+				pk.setChild_fee(rs.getInt("child_fee"));
+				
+				alist.add(pk);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("sql mypageRewardSelect 에러----->"+e);
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	
+	
 
 	//윤영 부분
 	/* 모임 insert */

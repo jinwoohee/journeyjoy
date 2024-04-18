@@ -2,8 +2,12 @@
 
 body {
 	font-family: "Noto Sans KR", sans-serif;
-	/* color: #646464; */
+	color: #646464;
 	margin: 0px auto;
+}
+
+button, input[type="button"], .notification_wrap li {
+	cursor: pointer;
 }
 
 .all_wrap { /* 전체 div */
@@ -14,8 +18,8 @@ body {
 	background-color: #f1f1f3;
 }
 
-.notification_wrap {
-	border-bottom: 1px solid #2b2b2b;
+.notification_wrap { /* 마이페이지 메뉴바 전체div */
+	
 }
 
 .notification_wrap > h1 { /* 회원 이름 */
@@ -42,7 +46,6 @@ body {
     float: left;
 	padding-bottom: 5px;
     margin-right: 45px;
-    cursor: pointer;
 }
 
 .click_li { /* tab에서 클릭된 li */
@@ -69,11 +72,14 @@ body {
     padding: 25px;
     float: left;
     margin-right: 15px;
-    cursor: pointer;
 }
 
 .no_active {
 	display: none;
+}
+
+.package, .review, .userInfo {
+	border-bottom: 1px solid #2b2b2b;
 }
 
 .package li:first-of-type, .review li:first-of-type, .userInfo li:first-of-type {
@@ -141,13 +147,12 @@ body {
 }
 
 .pk_cont {
-	float: left;
-	width: 800px;
+	width: 850px;
 	margin-bottom: 20px;
 }
 
 .pk_cont div {
-	display: flex;
+	display: flow-root;
 	margin-bottom: 15px;
 }
 
@@ -161,11 +166,12 @@ body {
 }
 
 .pk_cont table {
+	width: 400px;
 	border: 1px #0D112D solid;
     font-size: .9em;
     box-shadow: 0 2px 5px rgba(0,0,0,.25);
     border-collapse: collapse;
-    border-radius: 10px;
+    border-radius: 4px;
     overflow: hidden;
     text-align: center;
 }
@@ -206,10 +212,51 @@ body {
 }
 
 .pk_btn {
+	height: 200px;
 	display: flex;
     align-items: center;
 }
 
+.pk_btn button {
+	width: 110px;
+    height: 46px;
+	color: #6C94B8;
+	font-size: 15px;
+	font-weight: 600;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: white;
+	border: 1px solid #6C94B8;
+	border-radius: 4px;
+}
+
+.pk_detail_btn {
+	position: absolute;
+    top: 700px;
+    right: 83px;
+    display: inline-grid;
+    z-index: 5;
+    border: 1px solid #6c94b8;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    padding: 10px 1px;
+    width: 130px;
+    background-color: white;
+}
+
+.pk_detail_btn button {
+	width: 100%;
+    height: 40px;
+    font-size: 13px;
+    letter-spacing: -1px;
+    background-color: white;
+    border: none;
+    box-sizing: border-box;
+}
+
+.pk_detail_btn button:hover {
+	background-color: #f4f6fa;
+    color: #6c94b8;
+}
 
 
 
@@ -277,7 +324,6 @@ input[name="id"] {
     background-color: #6C98BC;
     color: white;
     font-weight: bold;
-    cursor: pointer;
 }
 
 .btn_wrap {
@@ -295,7 +341,6 @@ input[name="id"] {
 	background-color: #2C609C;
 	color: white;
 	font-weight: bold;
-	cursor: pointer;
 }
 
 

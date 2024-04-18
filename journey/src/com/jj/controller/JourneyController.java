@@ -26,6 +26,7 @@ import com.jj.inter.InquiryInsert;
 import com.jj.inter.InquiryNotice;
 import com.jj.inter.LikeDelete;
 import com.jj.inter.LikeInsert;
+import com.jj.inter.MypageSelect;
 import com.jj.inter.PackageDetail;
 import com.jj.inter.PackageInsert;
 import com.jj.inter.PackageSearch;
@@ -81,8 +82,17 @@ public class JourneyController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (page.equals("whclear")) {
+		} else if (page.equals("whclear")) { //검색창 초기화
 			ji = WhClear.whclear();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("mypage")) { //마이페이지
+			ji = MypageSelect.mypageSelect();
 			try {
 				String url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(url).forward(request, response);
