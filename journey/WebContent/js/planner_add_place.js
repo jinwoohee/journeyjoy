@@ -37,17 +37,13 @@ $(document).ready(function() {
      	var search_val = $('input[name=search_place]').val();
      	$("#pac-input").val(search_val);
      	
-     	$("#pac-input").focus();
-     	$("#pac-input").submit();
-     	
-     	var e = jQuery.Event( "keydown", { keyCode: 13 } );
-     	$("#pac-input").trigger(e);
-     	console.log(e);
-     
+     	var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
+        searchBox.set('query', search_val);
+        // 이벤트 트리거
+        google.maps.event.trigger(searchBox, 'places_changed');
      });
 	 
-	 
-	 
+	
 	 
 	 $('input[name=search_place]').keypress(function(e){
 			//검색어 입력 후 엔터키 입력하면 조회버튼 클릭

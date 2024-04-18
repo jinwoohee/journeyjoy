@@ -9,6 +9,7 @@
 	String list = "a";
 	ArrayList<com.jj.dto.Plan_review> reviewList = dao.select_plan_review(list);
 	String u_id = (String) session.getAttribute("u_id");
+	response.addCookie(new Cookie("u_id", u_id));
 %>
 
 <html>
@@ -89,10 +90,9 @@
 						<div>
 					  <%
 					  	if(u_id == null){
-					                  			 out.println("<img src='img/icon/write.png' name='write'/>");
-					                  		}else{
-					                  			out.println("<input type='submit' value='리뷰쓰기'>");
-					  %><%-- out.println("<a href='write_plan_review.jsp?page_no=write'><button type='button'><img src='img/icon/write.png' /></button></a>");--%><%
+		                  			 out.println("<img src='img/icon/write.png' name='write'/>");
+		                  		}else{
+		                			out.println("<a href='plan_review.jj?page=plan_reviewTab'><img src='img/icon/write.png' /></a>");
 					  	}
 					  %>
 						</div>
@@ -121,8 +121,8 @@
     <!--
     <div id="paging"></div>
     -->
-    <footer>
-		<iframe src="main_footer.html" width="100%" height="200px" scrolling="no" frameborder=0 ></iframe>
+<footer>
+		<jsp:include page="main_footer.jsp" />	
 	</footer>
 </body>
 </html>

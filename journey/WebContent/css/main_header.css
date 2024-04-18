@@ -135,10 +135,17 @@ ul[id="mypage_ul"]{ /*마이페이지 리스트 */
 	float: left;
 	margin-left: 360px;
 	margin-top: 140px;
-
 }
-li[class="mypage_li"]{/*마이페이지 리스트 */
+
+#mypage_ul h2, #mypage_ul a {
 	color: #ffffff;
+}
+
+#mypage_ul label {
+	cursor: pointer;
+}
+
+li[class="mypage_li"]{/*마이페이지 리스트 */
 	list-style-type: none;
 	font-size: 26pt;
 	margin-bottom: 60px;

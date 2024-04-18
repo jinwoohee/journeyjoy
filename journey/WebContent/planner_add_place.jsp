@@ -64,6 +64,7 @@
       defer
     ></script>
 </head>
+
 <script type="text/javascript">
 
 function initMap() {
@@ -92,7 +93,6 @@ function initMap() {
 	    if (places.length == 0) {
 	      return;
 	    }
-
 	    // Clear out the old markers.
 	    markers.forEach((marker) => {
 	      marker.setMap(null);
@@ -140,7 +140,9 @@ function initMap() {
 window.initMap = initMap;
 
 
+
 </script>
+
 <body>
 	<!-- menu bar -->
 	<jsp:include page="main_header.jsp"></jsp:include>
@@ -179,7 +181,7 @@ window.initMap = initMap;
 						
 				<div id="search">
 					
-					<input type="text" name ="search_place" placeholder ="이름, 테마로 검색"  />
+					<input type="text" name ="search_place" id="search_place" placeholder ="이름, 테마로 검색"  />
 					<img src="img/icon/search_btn.png" id="search_btn" />
 					<div id="search_result">
 						<div id="result_list">
@@ -212,7 +214,7 @@ window.initMap = initMap;
 					}
 					%>
 										
-
+				
 							</div>		
 						</div>	
 				<input id="pac-input" class="controls" type="text" />

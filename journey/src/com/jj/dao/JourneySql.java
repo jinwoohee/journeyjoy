@@ -14,6 +14,7 @@ import com.jj.dto.Eatery;
 import com.jj.dto.Estimate;
 import com.jj.dto.Inquiry;
 import com.jj.dto.Place;
+import com.jj.dto.Plan;
 
 import static com.jj.db.JdbcUtil.*;
 
@@ -416,6 +417,40 @@ public class JourneySql {
 		}
 		
 		return estimateList;
+	}
+	public ArrayList<Estimate> selectPlanList(String u_id) {
+		String sql = null;
+	
+		sql = 	" SELECT * FROM estimate WHERE u_id ='"+u_id+"'";
+		
+		ArrayList<Estimate> estiList = new ArrayList<Estimate>();
+		Estimate e = null;
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				e = new Estimate();
+				e.sete_no(rs.getInt("e_no"));
+				e.sete_destination(rs.getString("e_destination"));
+				e.sete_start_date(rs.getString("e_start_date"));
+				e.sete_end_date(rs.getString("e_end_date"));
+				e.sete_thema(rs.getString("e_thema"));
+				e.sete_detail_thema(rs.getString("e_detail_thema"));
+				e.sete_volume(rs.getString("e_volume"));
+				e.sete_food_taste(rs.getString("e_food_taste"));
+					
+				estiList.add(e);
+			}
+		} catch (Exception e2) {
+			System.out.println("--- JourneySql/selectEstimate ---"+e2);
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return estiList;
 	}
 
 }

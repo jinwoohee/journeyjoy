@@ -9,6 +9,8 @@
 	request.setCharacterEncoding("utf-8"); 
 	String pr_no = request.getParameter("page_no");
 	String u_id = (String) session.getAttribute("u_id");
+	String e_no = request.getParameter("e_no");
+	System.out.println("번호 : "+e_no);
 %>
 <!DOCTYPE html>
 <html>
@@ -143,7 +145,7 @@
 		</div>
 	</section>
 	<footer>
-		<iframe src="main_footer.html" width="100%" height="200px" scrolling="no" frameborder=0 ></iframe>
+		<jsp:include page="main_footer.jsp" />	
 	</footer>
 </body>
 </html>

@@ -14,6 +14,10 @@ body {
 	background-color: #f1f1f3;
 }
 
+.notification_wrap {
+	border-bottom: 1px solid #2b2b2b;
+}
+
 .notification_wrap > h1 { /* 회원 이름 */
 	color: black;
 }
@@ -41,8 +45,13 @@ body {
     cursor: pointer;
 }
 
+.click_li { /* tab에서 클릭된 li */
+	color: black;
+	border-bottom: 3px solid black;
+}
+
 .cards ul { /* 마이페이지 메뉴바 상세내용 */
-	height: 120px;
+	height: 150px;
 	list-style-type: none;
 	padding-inline-start: 0px;
 	margin-top: 0px;
@@ -61,6 +70,10 @@ body {
     float: left;
     margin-right: 15px;
     cursor: pointer;
+}
+
+.no_active {
+	display: none;
 }
 
 .package li:first-of-type, .review li:first-of-type, .userInfo li:first-of-type {
@@ -93,22 +106,120 @@ body {
 	background-color: white;
 }
 
-
-.mypage { /* 회원정보 수정 */
-	color: black;
-	width: 970px;
-	height: 750px;
-    margin-left: 230px;
+.content_wrap { /* 정보출력 전체 div */
+	padding-bottom: 100px;
+	margin-top: 30px;
 }
 
-.tbl {
+.package_making ul {
+	list-style: none;
+	padding-inline-start: 0px;
+	margin-top: 50px;
+    margin-bottom: 0px;
+}
+
+.package_making li {
+	display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.pk_list {
+	width: 1200px;
+	display: flex;
+}
+
+.pk_img {
+	width: 200px;
+	height: 200px;
+	margin-right: 40px;
+}
+
+.pk_img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover
+}
+
+.pk_cont {
+	float: left;
+	width: 800px;
+	margin-bottom: 20px;
+}
+
+.pk_cont div {
+	display: flex;
+	margin-bottom: 15px;
+}
+
+.pk_cont div:last-of-type {
+	display: block;
+}
+
+.pk_cont p {
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.pk_cont table {
+	border: 1px #0D112D solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.pk_cont table td {
+	border-right: 0.1em solid #f1f1f3;
+	width: fit-content;
+	background: white;
+}
+
+.pk_cont table tr:first-of-type td {
+	background: #6C94B8;
+    color: #f1f1f3;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.pk_cont table tr:last-of-type td {
 	
 }
 
-.profile {
-	margin-left: 10px;
-	margin-top: 0px;
-	margin-bottom: 0px;
+.pk_tag {
+	float: left;
+    border: 1px solid #6C94B8;
+    /* border-radius: 20px; */
+    width: fit-content;
+    height: fit-content;
+    color: #6C94B8;
+    font-weight: 600;
+    text-align: center;
+    margin-right: 10px;
+    padding: 1px 7px;
+    background-color: white;
+}
+
+.pk_title {
+	font-size: 18px;
+}
+
+.pk_btn {
+	display: flex;
+    align-items: center;
+}
+
+
+
+
+.user_wrap { /* 회원정보 수정div */
+	color: black;
+}
+
+.profile { /* 회원정보-프로필div */
+	width: 200px;
+    float: left;
 }
 
 .pf_img {
@@ -116,10 +227,29 @@ body {
 	margin-bottom: 0px;
 }
 
+.pf_edit {
+	margin-bottom: 5px;
+}
+
+.user_field { /* 회원정보-내용div */
+	width: 800px;
+    display: flex;
+    justify-content: center;
+}
+
+.tbl {
+	
+}
+
 .txt {
-	width: 250px;
+	width: 350px;
     height: 20px;
     padding: 7px;
+}
+
+input[name="id"] {
+	background-color: #cccccc;
+    border-color: #cccccc;
 }
 
 .addr {
@@ -138,7 +268,7 @@ body {
 	margin-bottom: 5px;
 }
 
-.tbl input[type="button"], .tbl button {
+.profile button, .tbl input[type="button"] {
 	width: 98px;
     height: 34px;
     padding: 7px;

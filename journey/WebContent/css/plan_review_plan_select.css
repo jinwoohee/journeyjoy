@@ -1,0 +1,37 @@
+@charset "UTF-8";
+body{
+	margin: 0;
+	font-family: "Noto Sans KR", sans-serif;
+	color: #646464;
+	font-size: 15px;
+	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover;
+	
+}
+*{
+	margin: 0;
+}
+
+/* 메뉴바 */
+section{
+	width : 1200px;
+	margin : 0 auto;
+	padding-top : 170px; 
+	padding-bottom: 210px;
+}
+div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
+	width: 500px;
+    border: 2px solid #cccccc;
+    padding: 50px 50px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px #cccccc	;
+	margin: 0 auto;
+	background : white;
+}
+.plan_div{
+	width : 450px;
+	height : 100px;
+	border : 1px solid #cccccc;
+	margin: 20px auto;
+	background-color : violet;
+}
