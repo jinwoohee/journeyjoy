@@ -104,6 +104,12 @@
 			$('#preview').append(img);
 		});
 		
+		/* 썸네일 삭제버튼 */
+		$('#delBtn').click(function(){
+			$('input[type=file]').val("");
+			$('#preview > img').remove();
+		});
+		
 		//천단위 콤마 
 		$("input[name=guide]").keyup(function(){
 			$(this).val($(this).val().replace(/[^0-9.]/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ","));
@@ -150,7 +156,7 @@
 	
 	<section id="main_section">
 		<div>
-			<form name="pForm" action="packageInsert.jj?page=packageInsert" method="post" onsubmit="return regist()">
+			<form name="pForm" action="packageInsert.jj?page=packageInsert" method="post" onsubmit="return regist()" enctype="multipart/form-data">
 				<table id="packageTable">
 					<tr><td>국가 및 도시</td></tr>
 					<tr>

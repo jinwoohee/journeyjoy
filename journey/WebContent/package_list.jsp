@@ -188,7 +188,7 @@
 							out.println("<input type='hidden' name='p_no' value='"+list.getP_no()+"'>");
 							out.println("<div class='thumnail'>");
 							out.println("<a href='packageDetail.jj?page=package_detail&p_no="+list.getP_no()+"&u_id="+u_id+"'>");
-							out.println("<img src='"+list.getP_file()+"'/></a></div>");
+							out.println("<img src='uploadFile/"+list.getP_file()+"'/></a></div>");
 							int flag=1;
 							for(int idx = 0 ; idx < likeList.size() ; idx++){
 								if(list.getP_no() == likeList.get(idx).getP_no() && likeList.get(idx).getU_id().equals(session.getAttribute("u_id"))){

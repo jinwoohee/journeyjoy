@@ -117,15 +117,30 @@ textarea{
     align-items: center;
 }
 
-.thumnail{
+div[id*=thumnail]{
 	width: 120px;
 	height: 120px;
 	overflow: hidden;
 	object-fit : cover;
 	border-radius: 10px;
 	background: #f1f1f3;
-	margin-right: 10px;
+	margin-right: 20px;
 }
+
+div[id*=thumnail] input[type=button]{
+	width : 40px;
+	height : 40px;
+	font-size: 20px;
+    color: #CCCCCC;
+    margin-top: 45px;
+    border : none;
+}
+
+#thumnail3{
+	margin-right: 0;
+}
+
+
 
 .btn_area > input[type=button]{
 	width : 55px;
@@ -161,21 +176,6 @@ input[type=file]{
     border-radius: 10px;
     margin-right: 10px;
 } */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #buttonArea{
 	display: flex;

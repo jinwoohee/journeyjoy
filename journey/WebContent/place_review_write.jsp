@@ -20,6 +20,10 @@
 
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	
+	<!-- jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	
 </head>
 <script>
 	function regist(){
@@ -54,9 +58,9 @@
 		});
 	}
 
- 	function upload(){
+ 	/* function upload(){
  		$('input[type=file]').click();
- 	}
+ 	} */
  	
  	function readURL(input){
  		if(input.files && input.files[0]){
@@ -74,6 +78,12 @@
  		$('input[name=file_btn]').val("");
  		document.getElementById("preview").src = "";
  	}
+ 	
+ 	$(function(){
+ 		$('div[id*=thumnail]').click(function(){
+ 			
+ 		});
+ 	});
 	
 </script>
 <body>
@@ -127,14 +137,17 @@
 			
 				<div id="file">
 					<div>
-						<div class='thumnail'>
-							<img id="preview">
+						<div id='thumnail1'>
+							<input type="button" name="upload_btn" value="+">
+							<input type="file" name="file_btn1" accept=".jpg, .png, .gif" onchange="readURL(this)">
 						</div>
-						<div class="btn_area">
+						<div id='thumnail2'><p>+</p></div>
+						<div id='thumnail3'><p>+</p></div>
+						<!-- <div class="btn_area">
 							<input type="button" name="upload_btn" value="첨부" onclick="upload()">
 							<input type="button" name="upload_del" value="삭제" onclick="img_del()">
 							<input type="file" name="file_btn" accept=".jpg, .png, .gif" onchange="readURL(this)">
-						</div>
+						</div> -->
 					</div>
 				</div>
 				
