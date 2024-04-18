@@ -32,13 +32,14 @@ p{
 	margin-bottom: 20px;
 }
 
-/* 장소 선택/검색 */
+/* 장소 선택,검색 */
 .place_select{
 	width: 500px;
     display: flex;
     justify-content: center;
 }
 
+/* 장소 검색창 */
 input[name='search_place']{
 	width : 180px;
 	height : 30px;
@@ -48,6 +49,7 @@ input[name='search_place']{
 	border-bottom : 1px solid #CCCCCC;
 }
 
+/* 검색이미지 */
 .place_select img{
 	width: 28px;
     height: 28px;
@@ -55,30 +57,13 @@ input[name='search_place']{
     object-fit: cover;
 }
 
-.place_list{
-	width: 180px;
-	height: 100px;
-
-	margin-left: 222px;
-	margin-bottom: 30px;
-	overflow: auto;
-}
-
 .place_list select{
 	width: 180px;
 	height: 50px;
+	margin-left: 222px;
+	margin-bottom: 30px;
+	overflow: auto;
 	border : 1px solid #CCCCCC;
-}
-
-/* 별점 */
-.star_area{
-	width: 500px;
-    display: flex;
-    justify-content: center;
-}
-
-.star_area p{
-	margin-right: 7px;
 }
 
 hr{
@@ -91,6 +76,7 @@ hr+div{
 	justify-content: center;
 }
 
+/* 리뷰작성 */
 textarea{
 	width: 480px;
 	height: 350px;
@@ -120,44 +106,52 @@ textarea{
 div[id*=thumnail]{
 	width: 120px;
 	height: 120px;
-	overflow: hidden;
-	object-fit : cover;
 	border-radius: 10px;
 	background: #f1f1f3;
 	margin-right: 20px;
 }
 
-div[id*=thumnail] input[type=button]{
-	width : 40px;
-	height : 40px;
-	font-size: 20px;
+input[type=file]{
+	display: none;
+}
+
+/* 추가버튼 */
+input[name *=upload_btn]{
+	width: 40px;
+    height: 40px;
+    font-size: 30px;
     color: #CCCCCC;
-    margin-top: 45px;
-    border : none;
+    margin-top: 43px;
+    border: none;
+    margin-left: 40px;
+}
+
+/* 삭제버튼 */
+input[name *=del_btn]{
+	    width: 20px;
+    height: 20px;
+    background: #FF2424;
+    color: white;
+    border: none;
+    position: absolute;
+    margin-left: 102px;
+    margin-top: -127px;
+    display : none;
 }
 
 #thumnail3{
 	margin-right: 0;
 }
 
-
-.btn_area > input[type=button]{
-	width : 55px;
-	height: 30px;
-	border: none;
-	background : #0D112D;
-    border-radius: 5px;
-    color : white;
-	margin-top: 10px;
-}
-
-.btn_area > input[name=upload_del]{
-	background: #CCCCCC;
-	margin-left : 10px;
-}
-
-input[type=file]{
-	display: none;
+/* 썸네일 추가시 미리보기 이미지 */
+div[id *= preview] img{
+	width: 120px;
+	height : 120px;
+	overflow: hidden;
+	object-fit : cover;
+	border-radius: 10px;
+	background : white;
+	border : 1px solid #CCCCCC;
 }
 
 #preview{
@@ -167,14 +161,6 @@ input[type=file]{
 	overflow: hidden;
 	border-radius: 10px;
 }
-
-/* #file div{
-	width: 100px;
-    height: 100px;
-    background: #f1f1f3;
-    border-radius: 10px;
-    margin-right: 10px;
-} */
 
 #buttonArea{
 	display: flex;
@@ -204,6 +190,15 @@ input[type=file]{
 
 
 /* 별점 */
+.star_area{
+	width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.star_area p{
+	margin-right: 7px;
+}
 .star-rating{
 	display: flex;
 	justify-content: center;

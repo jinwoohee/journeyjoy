@@ -21,11 +21,10 @@
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	
-	<!-- jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	
 </head>
 <script>
+	
+	/* 필수입력 값 검사 */
 	function regist(){
 		if(lrForm.place_select.value ==''){
 			alert("장소를 선택해주세요.");
@@ -42,10 +41,12 @@
 		}
 	}
 	
+	/* 취소버튼 */
 	function cancel(){
 		history.back();
 	}
 	
+	/* 장소검색 */
  	function search(){
 		var search = $('input[name=search_place]').val();
 		
@@ -57,40 +58,40 @@
 			}
 		});
 	}
-
- 	/* function upload(){
- 		$('input[type=file]').click();
- 	} */
  	
- 	function readURL(input){
- 		if(input.files && input.files[0]){
- 			var reader = new FileReader();
- 			reader.onload = function(e){
- 				document.getElementById("preview").src = e.target.result;
- 			};
- 			reader.readAsDataURL(input.files[0]);
- 		}else{
- 			document.getElementById("preview").src = "";
- 		}
- 	}
- 	
- 	function img_del(){
- 		$('input[name=file_btn]').val("");
- 		document.getElementById("preview").src = "";
- 	}
- 	
- 	$(function(){
- 		$('div[id*=thumnail]').click(function(){
- 			
- 		});
- 	});
+	/* 첨부파일 */
+	function upload(num){ //버튼 클릭시 input type=file 실행
+ 		$('input[name=file'+num+']').click();
+ 	}	
 	
+	/* 이미지 등록 후 미리보기 */
+	function readURL(num){
+		var img = new Image();
+		img.src = '';
+		
+		const file = event.target.files;
+		var imgTempUrl = window.URL.createObjectURL(file[0]);
+		
+		img.src = imgTempUrl;
+		$('#preview'+num+'').append(img);
+		$('input[name=upload_btn'+num+']').hide();
+		$('input[name=del_btn'+num+']').show();
+	}
+	
+	/* 첨부파일 삭제 버튼 */
+	function del(num){
+		$('input[name=file'+num+']').val("");
+		$('#preview'+num+' > img').remove();
+		$('input[name=upload_btn'+num+']').show();
+		$('input[name=del_btn'+num+']').hide();
+	}
+
 </script>
 <body>
 	<jsp:include page="main_header.jsp" />
 	<section>
 		<div id="write_div">
-			<form name="lrForm" action="placeReview_insert.jsp" method="post" onsubmit="return regist()">
+			<form name="lrForm" action="placeReview_insert.jsp" method="post" onsubmit="return regist()" enctype="multipart/form-data">
 				<div class="place_select">
 					<p>어디를 다녀오셨나요?</p>
 					<input type="text" name="search_place" placeholder="장소 검색">
@@ -138,16 +139,23 @@
 				<div id="file">
 					<div>
 						<div id='thumnail1'>
-							<input type="button" name="upload_btn" value="+">
-							<input type="file" name="file_btn1" accept=".jpg, .png, .gif" onchange="readURL(this)">
+							<div id='preview1'></div>
+							<input type="button" name="upload_btn1" value="+" onclick="upload(1)">
+							<input type="file" name="file1" accept=".jpg, .png, .gif" onchange="readURL(1)">
+							<input type="button" name="del_btn1" value="-" onclick="del(1)">
 						</div>
-						<div id='thumnail2'><p>+</p></div>
-						<div id='thumnail3'><p>+</p></div>
-						<!-- <div class="btn_area">
-							<input type="button" name="upload_btn" value="첨부" onclick="upload()">
-							<input type="button" name="upload_del" value="삭제" onclick="img_del()">
-							<input type="file" name="file_btn" accept=".jpg, .png, .gif" onchange="readURL(this)">
-						</div> -->
+						<div id='thumnail2'>
+							<div id='preview2'></div>
+							<input type="button" name="upload_btn2" value="+" onclick="upload(2)">
+							<input type="file" name="file2" accept=".jpg, .png, .gif" onchange="readURL(2)">
+							<input type="button" name="del_btn2" value="-" onclick="del(2)">
+						</div>
+						<div id='thumnail3'>
+							<div id='preview3'></div>
+							<input type="button" name="upload_btn3" value="+" onclick="upload(3)">
+							<input type="file" name="file3" accept=".jpg, .png, .gif" onchange="readURL(3)">	
+							<input type="button" name="del_btn3" value="-" onclick="del(3)">	
+						</div>
 					</div>
 				</div>
 				

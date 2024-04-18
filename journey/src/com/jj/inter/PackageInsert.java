@@ -32,8 +32,6 @@ public class PackageInsert implements JourneyInterface {
 		realFolder=context.getRealPath(saveFolder);   		
 		MultipartRequest multi=new MultipartRequest(request,realFolder,fileSize,"UTF-8",new DefaultFileRenamePolicy());
 		
-		
-		/* 한글안깨지게 */
 		com.jj.dto.Package pk = new com.jj.dto.Package();
 		pk.setU_id(multi.getParameter("u_id"));
 		pk.setP_nation(multi.getParameter("nation"));
