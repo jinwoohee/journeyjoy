@@ -51,7 +51,7 @@ header>iframe {
 
 /* 태그 */
 #mainInfo > hr+div div{
-	width: 95px;
+	width: 125px;
 	height: 30px;
 	border: 1px solid #6C94B8;
 	border-radius: 20px;
@@ -295,6 +295,7 @@ div[class *= day_detail]{width: 880px; border: 1px solid #CCCCCC; display: none;
 
 .place_detail div{
 	margin-left: 20px;
+	display : flex;
 }
 
 .place_detail > div:first-of-type{
@@ -304,7 +305,7 @@ div[class *= day_detail]{width: 880px; border: 1px solid #CCCCCC; display: none;
 }
 
 /* 장소이름 */
-.place_detail > div:first-of-type> p{
+.place_name{
 	font-size: 24px;
 	font-weight: bold;
 	margin-bottom: 0;
@@ -313,28 +314,34 @@ div[class *= day_detail]{width: 880px; border: 1px solid #CCCCCC; display: none;
 }
 
 /* 주소 */
-.place_detail > div:nth-of-type(2){
-	border-left: 2px solid #CCCCCC;
-	padding-left: 10px;
-}
-.place_detail > div:nth-of-type(2) > p{
+.place_addr{
 	color : #CCCCCC;
 	font-size: 15px;
+	border-left: 2px solid #CCCCCC;
+	padding-left: 10px;
 }
 
 .place_detail hr{
 	width: 840px;
-	margin-top : 20px;
 	margin-bottom : 20px;
 	margin-left: 20px;
 }
 
 /* 장소정보 */
-.place_detail > div:nth-of-type(3){
+.place_explan{
 	width : 840px;
 	line-height : 2;
 	font-size : 18px;
+	margin-bottom: 80px;
 }
+
+/* 대표사진 */
+.place_detail img{
+	width: 520px;
+    height: 400px;
+    object-fit: cover;
+}
+
 
 /* 일정내용 */
 .contents{width:840px; margin-left: 20px; margin-top: 80px;}

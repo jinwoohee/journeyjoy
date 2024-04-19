@@ -1,3 +1,5 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.jj.dto.Purchase"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -209,7 +211,7 @@
 		<div id="mainImg">
 			<%
 				Package pk = (Package)request.getAttribute("pkDetail");
-				out.println("<img src='"+pk.getP_file()+"'>");
+				out.println("<img src='uploadFile/"+pk.getP_file()+"'>");
 				out.println("<input type='hidden' name='no' value='"+pk.getP_no()+"'>");
 				out.println("<input type='hidden' name='id' value='"+(String) session.getAttribute("u_id")+"'>");
 			%>
@@ -306,6 +308,7 @@
 				<p>※일정안내</p>
 				<%
 					List<Package_schedule> ps = (List<Package_schedule>)request.getAttribute("ps");
+					List<Package_schedule> place = (List<Package_schedule>)request.getAttribute("placeList");
 					
 					for(Package_schedule psList : ps){
 						out.println("<div>");
@@ -319,19 +322,20 @@
 				%>
 				<div class="day_detail<%=psList.getPs_day()%>">
 					<div class="place_detail">
-						<%
-							out.println("<div><p>"+psList.getPlac_name()+"</p></div>");
-							out.println("<div><p>"+psList.getPlac_addr()+"</p></div><hr>");
+						<%	
+							String str = "";
+							String schedule = psList.getPs_schedule().replaceAll(" ", "");
+							String[] arr = schedule.split(",");
 							
-							if(psList.getPlac_file1() != null){
-								out.println("<div><img src='"+psList.getPlac_file1()+"'></div>");
-							}else if(psList.getPlac_file2() != null){
-								out.println("<div><img src='"+psList.getPlac_file2()+"'></div>");
-							}else if(psList.getPlac_file3() != null){
-								out.println("<div><img src='"+psList.getPlac_file3()+"'></div>");
-							}
-							out.println("<div><p>"+psList.getPlac_explan()+"</p></div>");
-						%>	
+							for(Package_schedule pList : place){
+								if(Arrays.asList(arr).contains(Integer.toString(pList.getPlac_no()))){%>
+									<div><p class='place_name'><%= pList.getPlac_name()%></p></div>
+									<div><p class='place_addr'><%= pList.getPlac_addr()%></p></div>
+									<hr>
+									<div><img src='<%= pList.getPlac_file1()%>'></div>
+									<div><p class="place_explan"><%= pList.getPlac_explan() %></div>
+								<% } 
+							}%>	
 					</div>
 					<div class="contents">
 						<div><p>※ 일정 내용</p></div>

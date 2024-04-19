@@ -96,7 +96,6 @@
     	/* 검색 */
         $('#search_section div').click(function(){
         	if($(this).css('background-color') != 'rgb(241, 241, 243)'){
-        		console.log($(this).attr('id'));
         		$(this).css({"background":"#f1f1f3", "border-radius":"10px"});
         		$(this).siblings('div').css({"background":"white"});
         		
