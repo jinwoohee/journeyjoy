@@ -10,6 +10,9 @@ input{
 p{
 	margin: 0;
 }
+a{
+	color : blue;
+}
 div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
 	padding-top: 150px;
 	width: 1200px;

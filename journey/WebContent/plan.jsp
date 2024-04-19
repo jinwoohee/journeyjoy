@@ -128,7 +128,8 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						<div class="place_name_div">
 							<% 
 							int num = a-1;
-							String places = sche.get(num).getPlace();
+							String places = sche.get(num).getPlace().replaceAll("-", " ");
+							System.out.println("ddd"+places);
 							String [] place_arr = places.split(",");	
 							out.println("<p class='place_name'>");
 							for(String st : place_arr){
@@ -258,8 +259,9 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						<div class="place_name_div">
 							<% 
 							int num = a-1;
-							String places = sche.get(num).getPlace();
-							String [] place_arr = places.split(",");	
+							String places = sche.get(num).getPlace().replaceAll("-", " ");
+							String [] place_arr = places.split(",");
+							System.out.println("ddd3"+places);
 							out.println("<p class='place_name'>");
 							for(String st : place_arr){
 								out.println("#"+st+" ");

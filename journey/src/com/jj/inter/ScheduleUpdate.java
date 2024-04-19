@@ -28,7 +28,8 @@ static ScheduleUpdate sche_upd = new ScheduleUpdate();
 		for(int a = 1 ; a <= day ; a++) {		
 			String place_arr= new String(request.getParameter("place_name"+a).getBytes("8859_1"),"UTF-8");
 			System.out.println(place_arr);
-			String place = place_arr.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(" ", "").replaceAll("empty", "");
+			String place = place_arr.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("empty", "");
+			System.out.println("스케쥴업데이트"+place);
 			ScheduleUpdateDB upsc = ScheduleUpdateDB.updatedb();
 			int i = upsc.updateMtd(e_no, a, place);
 		}

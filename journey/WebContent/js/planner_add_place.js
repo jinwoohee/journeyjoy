@@ -24,6 +24,8 @@ $(document).ready(function() {
 	});
 	
 	
+	// 검색버튼 클릭 시 발생//
+	
 	 $('#search_btn').click(function(){
      	$.ajax({
      		url : "planner.jj?page=place_search",
@@ -33,14 +35,8 @@ $(document).ready(function() {
  				
  			}
      	});
-     	
-     	var search_val = $('input[name=search_place]').val();
-     	$("#pac-input").val(search_val);
-     	
-     	var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
-        searchBox.set('query', search_val);
-        // 이벤트 트리거
-        google.maps.event.trigger(searchBox, 'places_changed');
+    	initMap();
+        
      });
 	 
 	
@@ -75,6 +71,10 @@ function checking(id){ /*테마 체크 여부 */
 	  
 	if($("input[id="+id+"]").is(":checked")){  
 	    $("label[for="+id+"]").css({"background-color":"#1E427F", "color":"#f1f1f3"});
+	    createMarker(place);
+	    
+	    
+	    
 	  }else{
 	    $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
 	  }
@@ -93,16 +93,44 @@ function plan_add_btn(num){
 	      var id = $(this).attr('id');
 	      var checkVal = " #"+$(this).val();     
 	     
+	    
 	      document.getElementById("places_text"+num).textContent = before+checkVal ;
 	      
 	      $(this).prop("checked", false);
 	      $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
 	      
+	      var after = edit.value+checkVal+"_";
 	      var after = document.getElementById("places_text"+num).innerText;
-	  	  edit.setAttribute('value',after);
+	  	  edit.setAttribute('value',aaa);
 	  	  
 	    }
 	});
+	
+}
+function selectMarker(num) {
+	  const infowindow = new google.maps.InfoWindow();
+	  
+	  var id = document.getElementById("place_num"+num)
+	  
+	  google.maps.event.addListener(id, "click", () => {
+	    infowindow.setContent(place.name+"<br>"+place.formatted_address+"<br>리뷰점수 : "+place.rating+"<br>");   
+	    infowindow.open(map, marker);
+	  });
+	  
+	}
+	
+function checking(id){ /*테마 체크 여부 */
+	$("input[type='checkbox']").prop("checked", false);
+	$("label").css({"background-color":"white", "color":"rgb(64,64,64)"});
+	$("input[id="+id+"]").prop("checked",true);	
+	  
+	if($("input[id="+id+"]").is(":checked")){  
+	    $("label[for="+id+"]").css({"background-color":"#1E427F", "color":"#f1f1f3"});
+	  }else{
+	    $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
+	  }
+	
+	selectMarker(id);
 	
 }
 

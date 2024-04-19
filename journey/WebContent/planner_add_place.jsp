@@ -49,6 +49,7 @@
 	if(e_no == null){
 		e_no = "null";	
 	}
+	System.out.println("");
 %>
 <html>
 <head>
@@ -67,80 +68,87 @@
 
 <script type="text/javascript">
 
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+let map;
+let service;
+let re;
+let pla_url;
 function initMap() {
-	  const map = new google.maps.Map(document.getElementById("map"), {
-	    center: { lat: -33.8688, lng: 151.2195 },
-	    zoom: 13,
-	    mapTypeId: "roadmap",
-	  });
-	  // Create the search box and link it to the UI element.
-	  const input = document.getElementById("pac-input");
-	  const searchBox = new google.maps.places.SearchBox(input);
+	var loc= "";
+	var wh = document.getElementById("city").innerText;
+	
+	if(wh === "도쿄"){
+		loc =  {lat : 35.68111, lng : 139.76667};
+	}else if (wh === "오사카"){
+		loc = {lat : 34.6937378, lng : 135.5021651};
+	}
 
-	  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-	  // Bias the SearchBox results towards current map's viewport.
-	  map.addListener("bounds_changed", () => {
-	    searchBox.setBounds(map.getBounds());
-	  });
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: loc,
+    zoom: 12,
+  });
 
-	  let markers = [];
+  var que = document.getElementById("search_place");
+  
+  var request = {
+    location : loc,
+    radius: '500',
+    query: que.value
+  };
+  
+  service = new google.maps.places.PlacesService(map);
+  service.textSearch(request, callback);
 
-	  // Listen for the event fired when the user selects a prediction and retrieve
-	  // more details for that place.
-	  searchBox.addListener("places_changed", () => {
-	    const places = searchBox.getPlaces();
+}
 
-	    if (places.length == 0) {
-	      return;
-	    }
-	    // Clear out the old markers.
-	    markers.forEach((marker) => {
-	      marker.setMap(null);
-	    });
-	    markers = [];
+function callbackz(place, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
+	pla_url = place.url; 
+  }
+}
 
-	    // For each place, get the icon, name and location.
-	    const bounds = new google.maps.LatLngBounds();
+function callback(results, status) {
+  if (status == google.maps.places.PlacesServiceStatus.OK) {
 
-	    places.forEach((place) => {
-	      if (!place.geometry || !place.geometry.location) {
-	        console.log("Returned place contains no geometry");
-	        return;
-	      }
+    for (var i = 0; i < results.length; i++) {
+      var place = results[i];
+      createMarker(results[i]);
+    } map.setCenter(results[0].geometry.location);
+  }
+}
 
-	      const icon = {
-	        url: place.icon,
-	        size: new google.maps.Size(71, 71),
-	        origin: new google.maps.Point(0, 0),
-	        anchor: new google.maps.Point(17, 34),
-	        scaledSize: new google.maps.Size(25, 25),
-	      };
 
-	      // Create a marker for each place.
-	      markers.push(
-	        new google.maps.Marker({
-	          map,
-	          icon,
-	          title: place.name,
-	          position: place.geometry.location,
-	        }),
-	      );
-	      if (place.geometry.viewport) {
-	        // Only geocodes have viewport.
-	        bounds.union(place.geometry.viewport);
-	      } else {
-	        bounds.extend(place.geometry.location);
-	      }
-	    });
-	    map.fitBounds(bounds);
-	  });
+function createMarker(place) {
+  const infowindow = new google.maps.InfoWindow();
+  if (!place.geometry || !place.geometry.location) return;
+
+  const marker = new google.maps.Marker({
+    map,
+    position: place.geometry.location,
+  });
+  
+  const re_request = {
+	      placeId : place.place_id,
+	      fields : ["price_level", "opening_hours","photos","url"]
+	    };
+  
+  service.getDetails(re_request, callbackz);
+	
+  google.maps.event.addListener(marker, "click", () => {
+    infowindow.setContent(place.name+"<br>"+place.formatted_address+"<br>리뷰점수 : "+place.rating+"<br>"+"<a href='"+pla_url+"'  style='color:blue;' target='_blank'>구글지도에서 정보보기</a>");
+    
+    infowindow.open(map, marker);
+  });
+			  
 	  
 
-	}
+}
+
 window.initMap = initMap;
-
-
-
 </script>
 
 <body>
@@ -203,8 +211,9 @@ window.initMap = initMap;
 						for(Place plalist : pla){
 							z++;
 											
-							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_name()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
-							out.println("<label for='pone"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");									
+							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_id()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
+							out.println("<label for='pone"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");		
+							out.println("<input type='hidden' id='place_num"+z+"' value='"+plalist.getPlac_id()+"'>");
 								System.out.println(plalist.getPlac_name());
 						}
 						out.println("</div>");		
@@ -217,19 +226,19 @@ window.initMap = initMap;
 				
 							</div>		
 						</div>	
-				<input id="pac-input" class="controls" type="text" />
 				<div id="map"></div>
-				<div id="infowindow-content"></div>
 				<%
 				for(int a = 1 ; a <= datecnt ; a++){ 
 					String place_name = request.getParameter("place_name"+a);
 					String place_cookie = getCookieValue(cookies, "pla"+a);
+					System.out.println("쿠키값"+place_cookie);
 					String place_attr = (String) request.getAttribute("planList"+a);
 					System.out.println(place_attr+"1번");
 					out.println("<div id='places"+a+"'>");
 					out.println("<p class='my_place'>나의 여행지</p>");
 					if(place_name == null ){
 						if(place_cookie.equals("")){
+							
 							out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
 							out.println("<p id='places_text"+a+"'></p>");
 							out.println("<input type='hidden' name='edit_plan"+a+"' value='1' id='edited"+a+"'>");
@@ -238,9 +247,10 @@ window.initMap = initMap;
 							out.println("<input type='hidden' name='edit_plan"+a+"' value='"+place_attr+"' id='edited"+a+"'>");
 						}else{
 							out.println("<p id='places_text"+a+"'>");
-							
+							System.out.println("1번");
 							String pa_list ="";						
-							String place_edit = place_cookie.replaceAll("empty", "");
+							String place_edit = place_cookie.replaceAll("empty", "").replaceAll("-", " ");
+							System.out.println("aaa"+place_edit);
 							String [] pla_ck = place_edit.split("_");
 							for(String pa : pla_ck){
 								out.println("#"+pa);
@@ -248,7 +258,7 @@ window.initMap = initMap;
 							}
 						out.println("</p>");
 				%>		
-				<input type="hidden" name="edit_plan<%=a %>" value="<%=pa_list %>" id="edited<%=a%>">	
+				<input type="hidden" name="edit_plan<%=a %>" value="<%=pa_list%>" id="edited<%=a%>">
 				<% 	
 						}
 					}else if(place_name.equals("empty") || place_cookie.equals("")){
@@ -257,20 +267,23 @@ window.initMap = initMap;
 						out.println("<p id='places_text"+a+"'></p>");
 						out.println("<input type='hidden' name='edit_plan"+a+"'value='3' id='edited"+a+"'>");
 					}
-					else{
-						String place_ck = place_name.replaceAll(",", "_").replaceAll("empty","");
+					else{System.out.println("2번");
+						String place_ck = place_name.replaceAll(",", "_").replaceAll("empty","").replaceAll("-", " ");
 						String []place = place_ck.split("_");
 						String st_list = "";
+						System.out.println("2번="+place_ck);
 						out.println("<p id='places_text"+a+"'>");
 							for(String st : place){
 								out.println("#"+st);
-								st_list += "#"+st+" ";
+								st_list += "#"+st+"_";
 							}
 						out.println("</p>");
-						String st_list_arr = st_list.replaceAll("#", "").replaceAll(" ", "_");
+						String st_list_arr = st_list.replaceAll("#", "").replaceAll(",", "_").replaceAll(" ", "-");
+						System.out.println("2-2:"+st_list_arr);
 						response.addCookie(new Cookie("pla"+a, st_list_arr));
+						System.out.println("2-3:"+st_list);
 				%>	
-				<input type="hidden" name="edit_plan<%=a %>" value="<%=st_list %>" id="edited<%=a%>">
+				<input type="hidden" name="edit_plan<%=a%>" value="<%=st_list%>" id="edited<%=a%>">
 				<% 
 					}			
 					out.println("</div>");

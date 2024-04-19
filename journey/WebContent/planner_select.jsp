@@ -82,8 +82,8 @@ request.setCharacterEncoding("utf-8");
 				for(int a = 1 ; a <= datecnt*3 ; a++){
 				%>
 					<div class="list_content">
-					<img src="img\japan\tokyo<%=a %>.jpg" id="place_pic<%=a %>" />
-					<div class="content_fdiv">
+					<img src="<%= pla.get(a).getPlac_file1()%>" id="place_pic<%=a %>" />
+					<div class="content_fdiv"> 
 						<div class="list_place">
 							<p class="list_place">
 							<%

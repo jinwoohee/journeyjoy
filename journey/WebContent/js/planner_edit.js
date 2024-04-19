@@ -15,7 +15,7 @@ $(document).ready(function() {
 	$(".button").mouseout(function(){
 		$(this).css({'box-shadow':''});
 	});
-	$("input[name='add_place']").click(function(){
+	$("input[name='add_place'], input[name='plan_sel_add']").click(function(){
 		$("form").attr("action","planner_add_place.jsp");
 	});
 	$("input[name='save_plan_edit']").click(function(){
