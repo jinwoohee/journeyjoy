@@ -106,7 +106,7 @@ public class JourneySql {
 				Package pk = new Package();
 				pk.setP_no(rs.getInt("p_no"));
 				pk.setU_id(rs.getString("u_id"));
-				pk.setP_nation(rs.getString("p_nation"));
+				pk.setP_nation(rs.getString("p_nation")); 
 				pk.setP_city(rs.getString("p_city"));
 				pk.setP_theme(rs.getString("p_theme"));
 				pk.setP_title(rs.getString("p_title"));
