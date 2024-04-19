@@ -107,8 +107,9 @@
 					String st_list = "";
 					if(edit0 == null){
 						String place =request.getParameter("selected"+a);
-						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_");
+						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_").replaceAll(" ", "-");
 						response.addCookie(new Cookie("pla"+a, place_list));
+						System.out.println("1번째:"+place_list);
 						String [] list_place = place.split(",");
 						
 		
@@ -143,12 +144,16 @@
 			<%
 					}else if(edit0.equals("1")){
 						String place = request.getParameter("edit_plan"+a);
-						
+						System.out.println("애드플레이스에서 온 값"+place);
 						if(place != ""){
-						String place_list = place.replaceAll("#", "").replaceAll(" ","_").replaceAll("new", "").replaceAll("\\(", "").replaceAll("\\)", "");
+						String place_list = place.replaceAll("#", "").replaceAll(",","_").replaceAll("new", "").replaceAll("\\(", "").replaceAll("\\)", "").replaceAll(" ", "-");
+						String place_list_sp = place_list.replaceAll("-", " ").replaceAll("_",",");
+						System.out.println("dsadsa"+place_list_sp);
+						System.out.println("dsadsa2"+place_list);
 						
 						response.addCookie(new Cookie("pla"+a, place_list));
-						String [] list_place = place_list.split("_");
+						String [] list_place = place_list_sp.split(",");
+						System.out.println(list_place[0]+list_place[1]+list_place[2]);
 			%>
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;

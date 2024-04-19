@@ -11,10 +11,12 @@ import com.jj.conn.LikeSelectDB;
 import com.jj.conn.PackageDetailDB;
 import com.jj.conn.PsSelectDB;
 import com.jj.conn.PurchaseSelectDB;
+import com.jj.conn.SelectPlaceInfoDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Community;
 import com.jj.dto.Package_like;
 import com.jj.dto.Package_schedule;
+import com.jj.dto.Place;
 import com.jj.dto.Purchase;
 
 
@@ -47,6 +49,11 @@ public class PackageDetail implements JourneyInterface{
 		PsSelectDB selectPackageSchedule = PsSelectDB.select();
 		List<Package_schedule>psList = selectPackageSchedule.selectPackageSc(p_no);
 		request.setAttribute("ps", psList);
+		
+		//select한 일정의 장소 정보 select
+		SelectPlaceInfoDB selectPlaceInfo = new SelectPlaceInfoDB();
+		List<Package_schedule> placeList = selectPlaceInfo.selectPlaceInfo(psList);
+		request.setAttribute("placeList", placeList);
 		
 		//댓글 select
 		CommSelectDB selectCommunity = CommSelectDB.select();

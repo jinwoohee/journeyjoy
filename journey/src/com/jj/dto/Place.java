@@ -17,6 +17,8 @@ public class Place {
 	String plac_file3;
 	String plac_day_night;
 	String plac_schedule;
+	String plac_id;
+	int plac_rating;
 	
 	public int getPlac_no() {
 		return plac_no;
@@ -113,6 +115,18 @@ public class Place {
 	}
 	public void setPlac_schedule(String plac_schedule) {
 		this.plac_schedule = plac_schedule;
+	}
+	public String getPlac_id() {
+		return plac_id;
+	}
+	public void setPlac_id(String plac_id) {
+		this.plac_id = plac_id;
+	}
+	public int getPlac_rating() {
+		return plac_rating;
+	}
+	public void setPlac_rating(int plac_rating) {
+		this.plac_rating = plac_rating;
 	}
 	
 	

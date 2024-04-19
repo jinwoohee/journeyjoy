@@ -87,8 +87,7 @@ $(document).ready(function() {
 	});
 	
 });
-
-
+	
 function checking(id){ /*테마 체크 여부 */
 	$("input[type='checkbox']").prop("checked", false);
 	$("label").css({"background-color":"white", "color":"rgb(64,64,64)"});
@@ -114,17 +113,16 @@ function plan_add_btn(num){
 	    if( $(this).is(":checked") == true ){	    	
 	      var id = $(this).attr('id');
 	      var checkVal = " #"+$(this).val()+"(new)";
-	      
+	      var checkvalue = "#"+$(this).val()+"(new)"; 
 	      document.getElementById("places_text"+num).textContent = before+checkVal ;
 	      
 	      $(this).prop("checked", false);
 	      $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
 	      
-	      var after = document.getElementById("places_text"+num).innerText;
+	      var after = edit.value+checkvalue+"_";
 	  	  edit.setAttribute('value',after);
 	    }
 	});
-	
 }
 </script>
 <title>Insert title here</title>
@@ -154,8 +152,9 @@ function plan_add_btn(num){
 						for(Place plalist : pla){
 							z++;
 											
-							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_name()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
-							out.println("<label for='pone"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");									
+							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_name()+"' id= '"+z+"' onclick='checking(this.id)'>");
+							out.println("<label for='"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");
+							out.println("<input type='hidden' id='place_num"+z+"' value='"+plalist.getPlac_id()+"'>");
 								System.out.println(plalist.getPlac_name());
 						}
 						out.println("</div>");

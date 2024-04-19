@@ -203,6 +203,9 @@ public class JourneySql {
 				Package_schedule ps = new Package_schedule();
 				ps.setPlac_no(rs.getInt("plac_no"));
 				ps.setPlac_name(rs.getString("plac_name"));
+				ps.setPlac_addr(rs.getString("plac_addr"));
+				ps.setPlac_explan(rs.getString("plac_explan"));
+				ps.setPlac_file1(rs.getString("plac_file1"));
 				
 				alist.add(ps);
 			}

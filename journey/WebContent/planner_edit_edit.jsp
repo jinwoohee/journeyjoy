@@ -106,8 +106,9 @@ System.out.println("edit_edit로 왔다 e_no : "+e_no);
 				for(int a = 1 ; a <= datecnt ; a++){
 					int j = a-1;
 					String st_list = "";
-						String place =sche.get(j).getPlace();
-						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_");
+						String place =sche.get(j).getPlace().replaceAll("-"," ");
+						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_").replaceAll(" ","-");
+						System.out.println("dsadsa"+place);
 						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place.split(",");
 						
@@ -140,7 +141,7 @@ System.out.println("edit_edit로 왔다 e_no : "+e_no);
 				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" id = "place_name<%=a%>" />
 				</div>		
 						
-			<%	System.out.println("플랜editx23"+paging);}
+			<%	System.out.println("플랜editx23"+st_list);}
 			%>
 					<input type="submit" name="add_place" value="여행지 추가하기" class="button">
 					<input type="submit" name="save_plan" value="수정" class="button"/>

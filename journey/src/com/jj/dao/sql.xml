@@ -287,7 +287,8 @@
 	
 	<!-- 패키지 검색 -->
 	<select id="packageSearch" resultType="com.jj.dto.Package" parameterType="String">
-		SELECT DISTINCT p.p_no, p.p_file, p.p_nation, p.p_city, p.p_title, u.u_nickname, r.child_fee, p.p_due_date
+		SELECT DISTINCT p.p_no, p.p_file, p.p_nation, p.p_city, p.p_title, u.u_nickname, r.child_fee, p.p_due_date,
+			(SELECT COUNT(*) FROM package_like pl GROUP BY p_no HAVING p.p_no = pl.p_no) AS count
 		FROM package p 
 		LEFT JOIN user u
 		ON p.u_id = u.u_id
@@ -305,8 +306,12 @@
 			</if>
 			</trim>
 		</where>
+		
 		<if test="param.equals('recent')">
 			ORDER BY p.p_no DESC;
+		</if>
+		<if test="param.equals('popular')">
+			ORDER BY count DESC;
 		</if>
 		<if test="param.equals('closing')">
 			ORDER BY p.p_due_date DESC;		

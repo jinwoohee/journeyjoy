@@ -25,7 +25,8 @@ public class ScheduleInsert implements JourneyInterface{
 		for(int a = 1 ; a <= day ; a++) {		
 			String place_arr= new String(request.getParameter("place_name"+a).getBytes("8859_1"),"UTF-8");
 			System.out.println(place_arr);
-			String place = place_arr.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(" ", "").replaceAll("empty", "");
+			String place = place_arr.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(" ", "-").replaceAll("empty", "");
+			System.out.println("스케쥴인서트"+place);
 			ScheduleInsertDB isc = ScheduleInsertDB.insertdb();
 			int i = isc.insertMtd(e_no, a, place);
 		}

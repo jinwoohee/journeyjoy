@@ -119,6 +119,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 							<% 
 							int num = a-1;
 							String places = sche.get(num).getPlace();
+							System.out.println("dd4d"+places);
 							String [] place_arr = places.split(",");	
 							out.println("<p class='place_name'>");
 							for(String st : place_arr){

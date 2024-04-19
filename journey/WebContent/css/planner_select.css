@@ -188,6 +188,7 @@ input[name="finish_btn"]{ /*선택완료 버튼 */
 	width: 180px;
 	height: 45px;
 	margin-top: 130px;
+	margin-bottom: 70px;
 	cursor: pointer;
 }
 div[id="select_div"]{ /*페이지 하단의 가장 큰 div (선택한 일정 div)*/
