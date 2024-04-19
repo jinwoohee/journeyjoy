@@ -1,11 +1,14 @@
 package com.jj.inter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.conn.ClassInsertDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Class_list;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class ClassInsert implements JourneyInterface{
 	
@@ -21,22 +24,39 @@ public class ClassInsert implements JourneyInterface{
 		
 		ClassInsertDB insertDB = new ClassInsertDB();
 		
-		String title = new String(request.getParameter("title").getBytes("8859_1"),"UTF-8");
-		String contents = new String(request.getParameter("contents").getBytes("8859_1"),"UTF-8");
+		/*첨부파일*/
+		String realFolder="";
+		String saveFolder="/uploadFile";
+		int fileSize=10*1024*1024;
+		ServletContext context = request.getServletContext();
+		realFolder=context.getRealPath(saveFolder);   		
+		MultipartRequest multi=new MultipartRequest(request,realFolder,fileSize,"UTF-8",new DefaultFileRenamePolicy());
 		
 		Class_list cl = new Class_list();
-		cl.setU_id(request.getParameter("u_id"));
-		cl.setC_nation("tokyo");
+		cl.setU_id(multi.getParameter("u_id"));
+		cl.setC_nation("canada");
 		//cl.setC_nation(request.getParameter("")); > plan에서 내가 여행중인 국가 값 가져오기
-		cl.setC_city(request.getParameter("city"));
-		cl.setC_title(title);
-		cl.setC_contents(contents);
-		cl.setC_file1("");
-		cl.setC_file2("");
-		cl.setC_file3("");
-		cl.setC_volume(Integer.parseInt(request.getParameter("volumn")));
-		cl.setC_charge(Integer.parseInt(request.getParameter("charge")));
-		cl.setC_end_date(request.getParameter("endDt"));
+		
+		cl.setC_city(multi.getParameter("city"));
+		cl.setC_title(multi.getParameter("title"));
+		cl.setC_contents(multi.getParameter("contents"));
+		
+		/* 첨부파일 */
+		if(multi.getParameter("file") == "") {
+			cl.setC_file1("img/travel/travel18.jpg"); //썸네일 기본이미지 넣기
+		}else {
+			cl.setC_file1(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
+		}
+		
+		cl.setC_volume(Integer.parseInt(multi.getParameter("volumn")));
+		
+		
+		/*금액 ,*/
+		String fee = multi.getParameter("charge");
+		String classFee = fee.replaceAll(",", "");
+		
+		cl.setC_charge(Integer.parseInt(classFee));
+		cl.setC_end_date(multi.getParameter("endDt"));
 		cl.setC_url(request.getRequestURI());
 		
 		insertDB.insertClass(cl);

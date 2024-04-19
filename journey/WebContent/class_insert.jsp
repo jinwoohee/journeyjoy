@@ -4,6 +4,7 @@
  <% 
 	request.setCharacterEncoding("utf-8");
 	String u_id = (String) session.getAttribute("u_id");	
+	String city = request.getParameter("city");
 %> 
 <!DOCTYPE html>
 <html>
@@ -58,12 +59,17 @@
 			var imgTempUrl = window.URL.createObjectURL(file[0]);
 
 			img.src = imgTempUrl;
-			
-			$('div[name=preview]').append(img);
+			$('#preview').append(img);
+		});
+		
+		/* 썸네일 삭제버튼 */
+		$('#delBtn').click(function(){
+			$('input[type=file]').val("");
+			$('#preview > img').remove();
 		});
 		
 		//천단위 콤마 
-		$("input[name=guide]").keyup(function(){
+		$("input[name=charge]").keyup(function(){
 			$(this).val($(this).val().replace(/[^0-9.]/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		});
 		
@@ -72,23 +78,38 @@
 			$(this).val($(this).val().replace(/[^0-9.]/g,''));
 		});
 	});
+	
+	function regist(){
+		if(classMade.title.value == '' ){
+			alert("제목을 입력해주세요.");
+			return false;
+		}else if(classMade.contents.value == ''){
+			alert("내용을 입력해주세요.");
+			return false;
+		}else if(classMade.volumn.value == '' || classMade.volumn.value < 3){
+			alert("모임 최소인원을 입력해주세요.(3명이상)");
+			return false;
+		}else if(classMade.charge.value == ''){
+			alert("예산을 입력해주세요.");
+			return false;
+		}else if(classMade.endDt.value == ''){
+			alert("모집 마감날짜를 선택해주세요.");
+			return false;
+		}else{
+			alert("모임이 등록되었습니다.");
+		}
+	}
 </script>
 <body>
 	<jsp:include page="main_header.jsp" />
 	<section id="main_section">
 		<div>
-			<form id="classMade" action='classInsert.jj?page=classInsert' method='post'>
+			<form name="classMade" action='classInsert.jj?page=classInsert' method='post' onsubmit="return regist()" enctype="multipart/form-data">
 				<table id="classTable">
-					<tr><td>도시</td></tr>
+					<tr><td>여행중인 도시</td></tr>
 					<tr>
 						<td>
-							<select name="city" size="1">
-					    		<option value="choice">도시</option>
-					    		<option value="tokyo">도쿄</option>
-					    		<option value="osaka">오사카</option>
-					    		<option value="toronto">토론토</option>
-					    		<option value="vancouver">벤쿠버</option>
-						  	</select>
+							<input type="text" name="city" value="<%=city%>" readonly>
 						</td>
 					</tr>
 					<tr><td>제목</td></tr>
@@ -125,11 +146,12 @@
 					<tr>
 						<td>
 							<div id="thumnail">
-								<div name="preview"></div>
-							</div>
+								<div id="preview"></div>
 							<div>
 								<input type="file" name="file" accept=".jpg, .png, .gif" />
 								<input type="button" id="fileBtn" value="추가">
+								<input type="button" id="delBtn" value="삭제">
+							</div>
 							</div>
 						</td>
 					</tr>

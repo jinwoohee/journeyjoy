@@ -51,7 +51,7 @@
         
         /* 모임만들기 버튼 */
         $('.make_btn').click(function(){
-        	$(location).attr('href', 'class_insert.jsp');
+        	$(location).attr('href', 'class_insert.jsp?city='+$("select[name=city]").val()+'');
         })
         
         /* 탭 */
@@ -227,8 +227,18 @@
 		<article>
 			<div id="class_div">
 				<%
-					ArrayList<Class_list> classList = (ArrayList<Class_list>)request.getAttribute("clist");		
+					ArrayList<Class_list> classList = (ArrayList<Class_list>)request.getAttribute("clist");	
+					
+					int flag = 0;
+
 					for (Class_list c : classList) {
+						for(Estimate e : estimateList){ //내가 여행중인 도시만 참여하기 버튼 생성
+							if(c.getC_city().equals(e.gete_destination())){
+								flag = 1;
+							}else{
+								flag = 0;
+							}
+						}
 				%>
 				<div id="class_section">
 					<!-- 프로필/닉네임 -->
@@ -238,7 +248,7 @@
 					</div>
 					<div>
 						<div>
-							<img src="<%=c.getC_file1()%>">
+							<img src="uploadFile/<%=c.getC_file1()%>">
 						</div>
 						<div>
 							<img src="img/icon/location.png">
@@ -259,7 +269,8 @@
 									</tr>
 									<tr>
 										<td>예상 경비</td>
-										<td><%= c.getC_charge() %></td>
+										<% DecimalFormat f = new DecimalFormat("###,###,###"); %>
+										<td><%= f.format(c.getC_charge())+"원" %></td>
 									</tr>
 									<tr>
 										<td>모집 종료</td>
@@ -267,9 +278,11 @@
 									</tr>
 								</table>
 								<%
+								  if(flag == 1){
+									  
 									//참여 하기, 취소하기
-									if(c.getA_id() != null){
-										if(c.getA_id().equals(u_id) && c.getC_no() == c.getA_no()){%>
+									if(c.getA_id() != null && c.getA_id().equals(u_id)){ //참여여부(a_id : 참여한 사람 아이디)
+										if(c.getC_no() == c.getA_no()){%>
 											<input type='button' name='del_btn<%=c.getC_no() %>' value='참여취소' onclick='delClass(<%=c.getC_no() %>)'>
 										<%}else{%>
 											<input type='button' name='join_btn<%=c.getC_no() %>' value='모임참여' onclick='joinClass(<%=c.getC_no() %>)'>
@@ -285,13 +298,13 @@
 
 									int date = Integer.parseInt(today.replaceAll("-", ""));
 									int getDate = Integer.parseInt(c.getC_end_date().replaceAll("-", ""));
-								
-									if(getDate < date || c.getCount()<c.getC_volume()){
+									
+									if(date > getDate || c.getCount() == c.getC_volume()){ //모집마감날짜
 										out.println("<input type='button' name='end_btn' value='참여마감'>");
 									}else{
 								%>
 								<input type='button' name='join_btn<%=c.getC_no() %>' value='모임참여' onclick='joinClass(<%=c.getC_no() %>)'>
-								<%} } %>
+								<%} }  }%>
 							</div>
 						</div>
 					</div>
