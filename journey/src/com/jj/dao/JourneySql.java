@@ -15,6 +15,7 @@ import com.jj.dto.Estimate;
 import com.jj.dto.Inquiry;
 import com.jj.dto.Place;
 import com.jj.dto.Plan;
+import com.jj.dto.Purchase;
 import com.jj.dto.Package;
 import com.jj.dto.Package_schedule;
 
@@ -93,7 +94,7 @@ public class JourneySql {
 		return row;
 	}
 	
-	public ArrayList<Package> mypagePackageSelect(String u_id) { //패키지 상세내용 select
+	public ArrayList<Package> mypagePackageSelect(String u_id) { //패키지 기획내역(패키지 상세내용 select)
 		String sql = "select * from package where u_id = '" + u_id + "'";
 		ArrayList<Package> alist = new ArrayList<Package>();
 		
@@ -215,6 +216,74 @@ public class JourneySql {
 		
 		return alist;
 	}
+	
+	public ArrayList<Purchase> mypagePurchaseSelect(String u_id) { //패키지 참여내역 select
+		String sql = "select * from purchase where u_id = '" + u_id + "'";
+		ArrayList<Purchase> alist = new ArrayList<Purchase>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Purchase pc = new Purchase();
+				pc.setU_id(rs.getString("u_id"));
+				pc.setP_no(rs.getInt("p_no"));
+				
+				alist.add(pc);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	public ArrayList<Package> mypagePackageSelect2(String p_no) { //패키지 참여내역(패키지 상세내용 select)
+		String sql = "select * from package where p_no = " + p_no;
+		ArrayList<Package> alist = new ArrayList<Package>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Package pk = new Package();
+				pk.setP_no(rs.getInt("p_no"));
+				pk.setU_id(rs.getString("u_id"));
+				pk.setP_nation(rs.getString("p_nation"));
+				pk.setP_city(rs.getString("p_city"));
+				pk.setP_theme(rs.getString("p_theme"));
+				pk.setP_title(rs.getString("p_title"));
+				pk.setP_start_date(rs.getString("p_start_date"));
+				pk.setP_end_date(rs.getString("p_end_date"));
+				pk.setP_volume(rs.getInt("p_volume"));
+				pk.setP_due_date(rs.getString("p_due_date"));
+				pk.setP_guide_pay(rs.getInt("p_guide_pay"));
+				pk.setP_date(rs.getString("p_date"));
+				pk.setP_file(rs.getString("p_file"));
+				pk.setP_notification(rs.getString("p_notification"));
+				pk.setP_url(rs.getString("p_url"));
+				
+				alist.add(pk);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("sql mypagePackageSelect 에러----->"+e);
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	
+	
 	
 	
 	

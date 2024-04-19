@@ -7,18 +7,17 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.jj.dao.JourneySql;
-import com.jj.dto.Package;
+import com.jj.dto.Purchase;
 
-public class MypageRewardSelectDB {
+public class MypagePurchaseSelectDB {
 	
-	public ArrayList<Package> mypageRewardSelectDB(String p_no) {
+	public ArrayList<Purchase> mypagePurchaseSelect(String u_id) {
 		Connection con = getConnection();
 		JourneySql sql = JourneySql.getInstance();
 		sql.setConnection(con);
-		ArrayList<Package> rlist = sql.mypageRewardSelect(p_no); //패키지 리워드
-		//System.out.println("MypageRewardSelectDB list----->"+rlist.size());
+		ArrayList<Purchase> alist = sql.mypagePurchaseSelect(u_id);
 		
 		close(con);
-		return rlist;
+		return alist;
 	}
 }

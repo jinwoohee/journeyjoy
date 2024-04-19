@@ -20,10 +20,6 @@
 		    margin-bottom: 10px;
 			background-color: white;
 		}
-		
-		p {
-			text-align-last: center;
-		}
 	</style>
 </head>
 <body>

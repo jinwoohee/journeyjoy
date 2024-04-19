@@ -6,6 +6,8 @@
 <%@page import="com.jj.dto.Package_schedule"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map.Entry"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String u_id = (String) session.getAttribute("u_id");
 	String mpg = request.getParameter("tab");	
@@ -332,9 +334,9 @@
 				HashMap<String, ArrayList<Package_schedule>> map3 = (HashMap<String, ArrayList<Package_schedule>>)request.getAttribute("place"); //패키지 일정-장소
 				HashMap<String, ArrayList<Package>> map2 = (HashMap<String, ArrayList<Package>>)request.getAttribute("reward");
 				
-				if (plist != null) {
+				if (plist.size() != 0) {
 				%>
-				<p>패키지 기획내역 <%= plist.size() %>개</p>
+				<p>패키지 기획내역 <strong><%= plist.size() %></strong>개</p>
 				<% for (Package p : plist) { %>
 				<ul>
 					<li>
@@ -350,6 +352,19 @@
 								</div>
 								<div>
 									<p>▶ 요금</p>
+									<%
+									for (Entry<String, ArrayList<Package>> e2 : map2.entrySet()) {
+										if (p.getP_no() == Integer.parseInt(e2.getKey())) {
+											ArrayList<Package> rlist = e2.getValue();
+											for (Package r : rlist) {
+									%>
+									<c:set var="f1" value="<%= r.getAdult_fee() %>" />
+									<c:set var="f2" value="<%= r.getStd_fee() %>" />
+									<c:set var="f3" value="<%= r.getChild_fee() %>" />
+									<fmt:formatNumber var="adult" value="${ f1 }" />
+									<fmt:formatNumber var="std" value="${ f2 }" />
+									<fmt:formatNumber var="child" value="${ f3 }" />
+									
 									<table cellpadding="10px">
 										<tr>
 											<td>구분</td>
@@ -359,11 +374,16 @@
 										</tr>
 										<tr>
 											<td>기본상품</td>
-											<td>750,000원</td>
-											<td>550,000원</td>
-											<td>400,000원</td>
+											<td>${ adult }원</td>
+											<td>${ std }원</td>
+											<td>${ child }원</td>
 										</tr>
 									</table>
+									<%
+											}
+										} 
+									}
+									%>
 								</div>
 								<div>
 									<p>▶ 여행일정</p>
@@ -380,19 +400,16 @@
 											if (p.getP_no() == Integer.parseInt(e3.getKey())) {
 												ArrayList<Package_schedule> pclist = e3.getValue();
 												String str = "";
-												System.out.println("1----------"+str);
-												System.out.println(ps.getPs_schedule());
 												String schedule = ps.getPs_schedule().replaceAll(" ", ""); //공백제거
 												String[] arr = schedule.split(",");
-												System.out.println(Arrays.toString(arr));
 												for (Package_schedule pc : pclist) {
-													if (Arrays.asList(arr).contains(Integer.toString(pc.getPlac_no()))) {
-														System.out.println(pc.getPlac_no());
-														str += pc.getPlac_name() + ", "; }
+													if (Arrays.asList(arr).contains(Integer.toString(pc.getPlac_no())))
+														str += pc.getPlac_name() + ", ";
 												}
-												System.out.println("2----------"+str);
-												str = str.substring(0, str.length() - 2);
-												out.println(str);
+												if (str != "") {
+													str = str.substring(0, str.length() - 2);
+													out.println(str);
+												}
 											}
 										}
 										%>
@@ -417,10 +434,45 @@
 					<button class="pk_update_reward">패키지 리워드</button>
 				</div>
 				<% } else { %>
-				<div>
+				<div class="pk_blank">
 					패키지가 존재하지 않습니다.
 				</div>
 				<% } %>
+			</div>
+
+			<!-- 패키지(참여내역) -->
+			<div class="package_attending">
+				<%
+				if (plist.size() != 0) {
+					for (Package p : plist) {
+				%>
+				<p>패키지 참여내역 <strong><%= plist.size() %></strong>개</p>
+				<ul>
+					<li>
+						<div class="pk_list">
+							<div class="pk_img"><img src="<%= p.getP_file() %>" /></div>
+							<div class="pk_cont">
+								<div>
+									<p class="pk_tag"><%= p.getP_nation() %></p>
+									<p class="pk_tag"><%= p.getP_city() %></p>
+								</div>
+								<div>
+									<p class="pk_title"><strong><%= p.getP_title() %></strong></p>
+								</div>
+							</div>
+							
+						</div>
+					</li>
+				</ul>
+				<%
+					}
+				}
+				%>
+			</div>
+			
+			<!-- 찜한 패키지  -->
+			<div>
+				
 			</div>
 			
 			<!-- 회원정보 수정 -->
