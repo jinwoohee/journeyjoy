@@ -1,3 +1,4 @@
+<%@page import="java.util.Arrays"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
@@ -327,7 +328,9 @@
 			<div class="package_making">
 				<%
 				ArrayList<Package> plist = (ArrayList<Package>)request.getAttribute("package");
-				HashMap<String, ArrayList<Package_schedule>> map = (HashMap<String, ArrayList<Package_schedule>>)request.getAttribute("packagesche");
+				HashMap<String, ArrayList<Package_schedule>> map = (HashMap<String, ArrayList<Package_schedule>>)request.getAttribute("packagesche"); //패키지 일정
+				HashMap<String, ArrayList<Package_schedule>> map3 = (HashMap<String, ArrayList<Package_schedule>>)request.getAttribute("place"); //패키지 일정-장소
+				HashMap<String, ArrayList<Package>> map2 = (HashMap<String, ArrayList<Package>>)request.getAttribute("reward");
 				
 				if (plist != null) {
 				%>
@@ -370,7 +373,30 @@
 										ArrayList<Package_schedule> alist = e.getValue();
 										for (Package_schedule ps : alist) {
 								%>
-									<p class="pk_plan"><%= ps.getPs_day() %>일차 - 서울랜드</p>
+									<p class="pk_plan">
+										<%= ps.getPs_day() %>일차 - 
+										<%
+										for (Entry<String, ArrayList<Package_schedule>> e3 : map3.entrySet()) {
+											if (p.getP_no() == Integer.parseInt(e3.getKey())) {
+												ArrayList<Package_schedule> pclist = e3.getValue();
+												String str = "";
+												System.out.println("1----------"+str);
+												System.out.println(ps.getPs_schedule());
+												String schedule = ps.getPs_schedule().replaceAll(" ", ""); //공백제거
+												String[] arr = schedule.split(",");
+												System.out.println(Arrays.toString(arr));
+												for (Package_schedule pc : pclist) {
+													if (Arrays.asList(arr).contains(Integer.toString(pc.getPlac_no()))) {
+														System.out.println(pc.getPlac_no());
+														str += pc.getPlac_name() + ", "; }
+												}
+												System.out.println("2----------"+str);
+												str = str.substring(0, str.length() - 2);
+												out.println(str);
+											}
+										}
+										%>
+									</p>
 								<% 
 										}
 									} 

@@ -190,6 +190,32 @@ public class JourneySql {
 		return alist;
 	}
 	
+	public ArrayList<Package_schedule> mypagePsPlaceSelect(String schedule) { //패키지 장소 select
+		String sql = "select * from place where plac_no in (" + schedule + ")";
+		ArrayList<Package_schedule> alist = new ArrayList<Package_schedule>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Package_schedule ps = new Package_schedule();
+				ps.setPlac_no(rs.getInt("plac_no"));
+				ps.setPlac_name(rs.getString("plac_name"));
+				
+				alist.add(ps);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
 	
 	
 

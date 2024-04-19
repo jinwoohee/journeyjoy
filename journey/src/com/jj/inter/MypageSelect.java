@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jj.conn.MypagePackageScheSelectDB;
 import com.jj.conn.MypagePackageSelectDB;
+import com.jj.conn.MypagePsPlaceSelectDB;
 import com.jj.conn.MypageRewardSelectDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Package;
@@ -42,20 +43,28 @@ public class MypageSelect implements JourneyInterface {
 		ArrayList<Package> rlist;
 		HashMap<String, ArrayList<Package>> map2 = new HashMap<String, ArrayList<Package>>();
 		
+		MypagePsPlaceSelectDB mppSelectDB = new MypagePsPlaceSelectDB(); //패키지 장소
+		ArrayList<Package_schedule> pclist;
+		HashMap<String, ArrayList<Package_schedule>> map3 = new HashMap<String, ArrayList<Package_schedule>>();
+		
 		String[] p_no = no.split("/");
 		for (String s : p_no) {
 			pslist = msSelectDB.mypagePackageScheSelectDB(s);
 			map.put(s, pslist);
 			
+			pclist = mppSelectDB.mypagePsPlaceSelect(pslist);
+			map3.put(s, pclist);
+			
 			rlist = mrSelectDB.mypageRewardSelectDB(s);
 			map2.put(s, rlist);
 		}
 		
-		System.out.println("MypageSelect-------->" + plist + " / " + map + " / " + map2);
+		//System.out.println("MypageSelect-------->" + plist + " / " + map + " / " + map2);
 		
 		request.setAttribute("package", plist);
 		request.setAttribute("packagesche", map);
 		request.setAttribute("reward", map2);
+		request.setAttribute("place", map3);
 		
 		return "mypage.jsp?tab="+tab;
 	}
