@@ -29,6 +29,7 @@ public class PackageInsertDB {
 		
 		param.put("p_no", pk.getP_no());
 		param.put("p_period", pk.getP_period());
+		param.put("p_city", Integer.parseInt(pk.getP_city()));
 		
 		return param;
 	}

@@ -268,8 +268,8 @@
 	<!-- 윤영 부분 -->
 	<!-- 패키지 insert -->
 	<insert id="packageInsert" parameterType="com.jj.dto.Package">
-		<selectKey resultType="com.jj.dto.Package" keyColumn="p_no,p_period" keyProperty="p_no,p_period" order="AFTER">
-			SELECT LAST_INSERT_ID() AS p_no, (SELECT datediff(p_end_date, p_start_date) FROM package WHERE p_no=LAST_INSERT_ID()) AS p_period
+		<selectKey resultType="com.jj.dto.Package" keyColumn="p_no,p_period,p_city" keyProperty="p_no,p_period,p_city" order="AFTER">
+			SELECT LAST_INSERT_ID() AS p_no , (SELECT datediff(p_end_date, p_start_date) FROM package WHERE p_no=LAST_INSERT_ID()) AS p_period, p_city
 		</selectKey>
 		INSERT INTO package VALUES(default, #{u_id}, #{p_nation}, #{p_city}, #{p_theme}, #{p_title}, #{p_start_date}, #{p_end_date}, ${p_volume}, #{p_due_date}, ${p_guide_pay}, curdate(), #{p_file}, #{p_notification}, #{p_url});
 	</insert>

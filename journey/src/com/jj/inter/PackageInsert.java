@@ -58,6 +58,6 @@ public class PackageInsert implements JourneyInterface {
 		
 		HashMap<String, Integer> param = insertDB.insertPackage(pk);
 		
-		return "package_schedule.jsp?p_no="+param.get("p_no")+"&p_period="+param.get("p_period");
+		return "package_schedule.jsp?p_no="+param.get("p_no")+"&p_period="+param.get("p_period")+"&p_city="+param.get("p_city");
 	}
 }
