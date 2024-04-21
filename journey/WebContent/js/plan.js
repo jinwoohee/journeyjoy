@@ -1,12 +1,6 @@
 
 	   
 $(function() {
-	$('input[name=plan], .place').mouseover(function(){
-		$(this).css({"background-color":"#0D112D", "color":"#f1f1f3"});
-	});
-	$('input[name=plan], .place').mouseout(function(){
-		$(this).css({"background-color":"white", "color":"#0D112D"});
-	});
 	$("input[name='edit_plan']").click(function(){
 		$("form").attr("action","plan_page.jsp?paging=edit_my");
 	});

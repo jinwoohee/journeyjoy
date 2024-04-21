@@ -147,7 +147,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						<div class="map_info">
 							<div id="map<%=a%>">				
 							</div>
-							<div class="place_info">	
+							<div id="place_info<%=a%>">		
 							장소								
 							</div>
 						</div>
@@ -278,7 +278,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						<div class="map_info">
 							<div id="map<%=a%>">
 							</div>
-							<div class="place_info">	
+							<div id="place_info<%=a%>">	
 							장소								
 							</div>
 						</div>

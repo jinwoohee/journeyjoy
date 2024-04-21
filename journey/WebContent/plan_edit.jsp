@@ -136,7 +136,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 					<div id="detail_info<%=a%>">
 						<div class="map_info">
 							<div id="map<%=a%>"></div>
-							<div class="place_info">	
+							<div id="place_info<%=a%>">	
 							장소								
 							</div>
 						</div>
@@ -145,7 +145,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						<%int i = 0;
 							for(String st : place_arr){
 								i++;
-								out.println("<div class='place'><div class='no'>"+i+"</div>"+st+"</div>");
+								out.println("<div class='place'><div class='no'>"+i+"</div><div id='name"+i+"'>"+st+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up'><img src='img/icon/arrow_down.png' class='down'></div></div>");
 							}
 						%>
 						</div>

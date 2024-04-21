@@ -176,38 +176,59 @@ div[class="plan_detail"]{ /*�긽�꽭�젙蹂� div*/
     overflow: hidden;
 }
 
-img[src*="arrow"]{
+img[id*="close"]{
 	float: left;
     margin-left: 20px;
 	width: 25px;
 	height: 25px;
 	cursor: pointer;
 }
-img[src*="up"]{
+img[id*="open"]{
+	float: left;
+    margin-left: 20px;
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+img[id*="close"]{
 	display: none;
 }
 
 div[id*="detail_info"]{ /*�긽�꽭�젙蹂� �뿴�뿀�쓣�븣 div*/
 	width: 750px;
-	height: 100%;
+	height: 430px;
 	margin: 30px auto;
 	display: none;
 }
 div[class="map_info"]{ /*吏��룄 媛먯떥�뒗 div*/
 	width: 750px;
 	height: 410px;
-	background-color: grey;
 }
 div[id*="map"]{/*�긽�꽭�젙蹂� �븞�쓽 吏��룄 div*/
 	float: left;
 	width: 450px;
 	height: 400px;
+	margin-top : 15px;
 }
-div[class="place_info"]{/*�긽�꽭�젙蹂� �븞�쓽 �옣�냼 �젙蹂�*/
+div[id*="map1"]{/*�긽�꽭�젙蹂� �븞�쓽 吏��룄 div*/
+	float: left;
+	width: 450px;
+	height: 400px;
+	margin-top : 0px;
+}
+div[id*="place_info"]{/*�긽�꽭�젙蹂� �븞�쓽 �옣�냼 �젙蹂�*/
 	float: right;
 	width: 280px;
 	height: 400px;
 	background-color: white;
+	margin-top : 15px;
+}
+div[id="place_info1"]{/*�긽�꽭�젙蹂� �븞�쓽 �옣�냼 �젙蹂�*/
+	float: right;
+	width: 280px;
+	height: 400px;
+	background-color: white;
+	margin-top : 0px;
 }
 div[class="place"]{ /*�옣�냼 由ъ뒪�듃 div*/
 	height: 30px;
@@ -246,6 +267,22 @@ h4[class="place_thema"]{ /*�옣�냼 �뀒留�*/
 	margin-right: 10px;
 	margin-top: 10px;
 }
+.up_down_btn{
+	width: 20px;
+    height: 30px;
+    float: right;
+}
+.up{
+	width : 17px;
+	height : 15px;
+	float : left;
+}
+.down{
+	width : 17px;
+	height : 15px;
+	float : left;
+}
+
 div[id="product"]{ /*異붽��긽�뭹,異붿쿇�긽�뭹 �쟾泥� div*/
 	width: 800px;
 	margin: 40px auto;

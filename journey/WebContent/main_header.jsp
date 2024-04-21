@@ -87,7 +87,7 @@ $(function(){
 	 });
       
 	 
-      $(window).on('load', function() { //page 띄우자마자 새알림 체크
+       $(window).on('load', function() { //page 띄우자마자 새알림 체크
     	  //console.log('window ready');
     	  var uid = $('input[name=uid]').val();
     	  
@@ -141,7 +141,7 @@ $(function(){
       $('.adiv').blur(function() {
     	  $('.notice').css('display', 'none');
 		  $('.alarm').attr('src', 'img/icon/alarm.png');
-	  });
+	  }); 
       
 });
 	

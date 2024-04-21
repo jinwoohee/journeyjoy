@@ -215,6 +215,7 @@ input[name*="save_plan"]{ /*저장 버튼 */
 	height: 45px;
 	margin-top: 50px;
 	cursor: pointer;
+	margin-bottom : 70px;
 }
 div[id="side_menu"]{ /*사이드 메뉴 div*/
 	position: fixed;
@@ -246,5 +247,5 @@ input[name*="plan_sel"]{ /*일정선택목록으로, 일정추가하기 버튼 *
 }
 
 footer {
-	margin-top: -200px;
+	margin-top: 0px;
 }
