@@ -18,6 +18,6 @@ public class MypageUserInfoSelectDB {
 		ArrayList<User> alist = sql.mypageUserInfoSelect(u_id);
 		
 		close(con);
-		return alist;
+		return alist; 
 	}
 }
