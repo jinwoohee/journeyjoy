@@ -63,6 +63,7 @@ function add_plan(num){
 		}
 		else {
 			img[j].setAttribute('src', img_value);
+			img[j].setAttribute('value', "1");		
 			save_value[j].setAttribute('value',selected_value);
 			pick.setAttribute('value',img_value);
 			console.log("3성공");
@@ -113,4 +114,20 @@ function del_plan(num){
 	var next = document.getElementById("next_a"+num);
 	img.setAttribute('src', "img/icon/select_plz.png");
 	next.setAttribute('value','none');
+}
+function check_plan(){
+	var img = document.getElementsByClassName("sel_picture");
+
+	for(var j = 0 ; j < img.length ; j++){
+		var day = j+1;
+		var pick = document.getElementById("next_a"+day);
+		if(pick.value === "none"){
+			alert("일정을 선택해주세요.");
+			return false;
+		}else{
+			$("form").submit();
+		}
+		
+	}
+	
 }

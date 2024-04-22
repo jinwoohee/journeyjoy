@@ -51,6 +51,7 @@ request.setCharacterEncoding("utf-8");
 	<link rel="stylesheet" type="text/css" href="css\planner_select.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="js\planner_select.js"></script>	
+	
 </head>
 <body>
 	<!-- menu bar -->
@@ -123,7 +124,7 @@ request.setCharacterEncoding("utf-8");
 					}				
 				%>
 				
-				<input type="submit" name="finish_btn" value="선택완료" class="button" />										
+				<input type="button" name="finish_btn" value="선택완료" class="button" onclick="check_plan()"/>										
 			</div>
 		</div>
 		<div id="select_div">
@@ -142,7 +143,7 @@ request.setCharacterEncoding("utf-8");
 				<%}%>
 				</div>
 				<input type="button" name="close" value="목록닫기" class="button" />
-					<input type="button" name="finish" value="선택완료" class="button" />			
+					<input type="button" name="finish" value="선택완료" class="button" onclick="check_plan()" />			
 			</div>
 		</div>
 			<div id="side_menu">

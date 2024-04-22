@@ -230,7 +230,7 @@ div[id="place_info1"]{/*�긽�꽭�젙蹂� �븞�쓽 �옣�냼 ��
 	background-color: white;
 	margin-top : 0px;
 }
-div[class="place"]{ /*�옣�냼 由ъ뒪�듃 div*/
+div[class*="places_"]{ /*�옣�냼 由ъ뒪�듃 div*/
 	height: 30px;
 	margin: 10px 0;
 }
@@ -267,20 +267,27 @@ h4[class="place_thema"]{ /*�옣�냼 �뀒留�*/
 	margin-right: 10px;
 	margin-top: 10px;
 }
+div[id*="plac_name"]{
+	height : 30px;
+	width : 700px;
+}
 .up_down_btn{
 	width: 20px;
     height: 30px;
     float: right;
+    margin-top : -30px;
 }
 .up{
 	width : 17px;
 	height : 15px;
 	float : left;
+	cursor : pointer;
 }
 .down{
 	width : 17px;
 	height : 15px;
 	float : left;
+	cursor : pointer;
 }
 
 div[id="product"]{ /*異붽��긽�뭹,異붿쿇�긽�뭹 �쟾泥� div*/
