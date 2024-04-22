@@ -26,7 +26,10 @@ import com.jj.inter.InquiryInsert;
 import com.jj.inter.InquiryNotice;
 import com.jj.inter.LikeDelete;
 import com.jj.inter.LikeInsert;
-import com.jj.inter.MypageSelect;
+import com.jj.inter.MypageLikeSelect;
+import com.jj.inter.MypagePackageSelect;
+import com.jj.inter.MypagePurchaseSelect;
+import com.jj.inter.MypageUserInfoSelect;
 import com.jj.inter.PackageDetail;
 import com.jj.inter.PackageInsert;
 import com.jj.inter.PackageSearch;
@@ -73,7 +76,7 @@ public class JourneyController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (page.equals("whsearch")) { //검색창 조건에 따른 select
+		} else if (page.equals("whsearch")) { //워홀 검색창 조건에 따른 select
 			ji = WhSearch.whsearch();
 			try {
 				String url = ji.journeyInterface(request, response);
@@ -82,7 +85,7 @@ public class JourneyController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (page.equals("whclear")) { //검색창 초기화
+		} else if (page.equals("whclear")) { //워홀 검색창 초기화
 			ji = WhClear.whclear();
 			try {
 				String url = ji.journeyInterface(request, response);
@@ -91,8 +94,35 @@ public class JourneyController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (page.equals("mypage")) { //마이페이지
-			ji = MypageSelect.mypageSelect();
+		} else if (page.equals("mypagePackageMaking")) { //마이페이지-패키지 기획내역
+			ji = MypagePackageSelect.mypagePackageSelect();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("mypagePackageAttending")) { //마이페이지-패키지 참여내역
+			ji = MypagePurchaseSelect.mypagePurchaseSelect();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("mypagePackageLike")) { //마이페이지-찜한 패키지
+			ji = MypageLikeSelect.mypageLikeSelect();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("mypageUserInfo")) { //마이페이지-회원정보수정
+			ji = MypageUserInfoSelect.mypageUserInfoSelect();
 			try {
 				String url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(url).forward(request, response);

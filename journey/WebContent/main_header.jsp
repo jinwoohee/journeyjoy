@@ -247,10 +247,10 @@ function hideMenu(){
 			<img src="img/icon/lo_white.png" id="logo"/>
 			<ul id="mypage_ul">
 				<li class="mypage_li"><h2>마이페이지</h2></li>
-				<li class="mypage_li"><a href="journeyjoy.jj?page=mypage&u_id=<%= u_id %>&tab=myplan"><label>나의 여행계획서</label></a></li>
-				<li class="mypage_li"><a href="journeyjoy.jj?page=mypage&u_id=<%= u_id %>&tab=mypackage"><label>패키지</label></a></li>
-				<li class="mypage_li"><a href="journeyjoy.jj?page=mypage&u_id=<%= u_id %>&tab=myreview"><label>나의 리뷰보기</label></a></li>
-				<li class="mypage_li"><a href="journeyjoy.jj?page=mypage&u_id=<%= u_id %>&tab=myinfo"><label>회원정보</label></a></li>
+				<li class="mypage_li"><a href="mypage.jsp?tab=myplan"><label>나의 여행계획서</label></a></li>
+				<li class="mypage_li"><a href="mypage.jsp?tab=mypackage"><label>패키지</label></a></li>
+				<li class="mypage_li"><a href="mypage.jsp?tab=myreview"><label>나의 리뷰보기</label></a></li>
+				<li class="mypage_li"><a href="mypage.jj?page=mypageUserInfo&u_id=<%= u_id %>&tab=myinfo"><label>회원정보</label></a></li>
 			</ul>
 			<img src="img/icon/mypage_close.png" onclick="hideMenu()"/>
 		</div>
