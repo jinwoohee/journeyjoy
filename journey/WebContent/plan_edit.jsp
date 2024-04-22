@@ -53,7 +53,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 Date sdate = sdf.parse(e_start_date);
 Date edate = sdf.parse(e_end_date);
 long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
-
+String aaaa = datecnt+"";
 %>
 <!DOCTYPE html>
 <html>
@@ -77,6 +77,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 	<form action="planner.jj?page=plan_update" method="post">
 	<div id="content">
 	<input type="hidden" id="item" value="<%= items%>">
+	<input type="hidden" name="day" value="<%=aaaa %>">
 			<div id="list_text">
 				<p id="list_text"></p>
 			</div>
@@ -143,9 +144,12 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						
 						<div class="pl_eat_div">
 						<%int i = 0;
+							int number;
 							for(String st : place_arr){
 								i++;
-								out.println("<div class='place'><div class='no'>"+i+"</div><div id='name"+i+"'>"+st+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up'><img src='img/icon/arrow_down.png' class='down'></div></div>");
+								number = a*100+i;
+								out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name"+number+"'>"+st+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up' onclick='up_pla("+number+")'><img src='img/icon/arrow_down.png' class='down' onclick='down_pla("+number+")'></div></div>");
+								out.println("<input type='hidden' name = 'change_value"+a+"' id='change_name"+number+"' value='"+st+"'>");
 							}
 						%>
 						</div>

@@ -201,4 +201,39 @@ function del_pl(st){
 function open_acc_div(num){
 	$("div[id='pay_one_div"+num+"']").slideDown();
 }
+function up_pla(num){
 
+	var ch_num = num-1 ;
+	var me = document.getElementById("plac_name"+num);
+	var change = document.getElementById("plac_name"+ch_num);
+	var save_me = document.getElementById("change_name"+num);
+	var save_change = document.getElementById("change_name"+ch_num);
+	
+	var me_val = me.innerText;
+	var change_val = change.innerText;
+	
+	save_me.setAttribute('value',change_val);
+	save_change.setAttribute('value',me_val);
+	
+	me.textContent = save_me.value;
+	change.textContent = save_change.value;
+
+}
+function down_pla(num){
+
+	var ch_num = num+1 ;
+	var me = document.getElementById("plac_name"+num);
+	var change = document.getElementById("plac_name"+ch_num);
+	var save_me = document.getElementById("change_name"+num);
+	var save_change = document.getElementById("change_name"+ch_num);
+	
+	var me_val = me.innerText;
+	var change_val = change.innerText;
+	
+	save_me.setAttribute('value',change_val);
+	save_change.setAttribute('value',me_val);
+
+	me.textContent = save_me.value;
+	change.textContent = save_change.value;
+	
+}

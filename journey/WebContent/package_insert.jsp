@@ -23,7 +23,7 @@
 <script>
 	$(function(){
 		/* 선택한 나라에 따라서 도시선택*/
-		$('select[name=city]').hide();
+		$('select[name*=city]').hide();
 		
 		$('select[name=nation]').change(function(){
 			
@@ -32,7 +32,7 @@
 			for(var i=0; i<cities.length; i++){
 				if($('select[name=nation]').val() == cities[i]){
 					$('#'+$('select[name=nation]').val()+'').show();
-					$('select[name=city]').not($('#'+$('select[name=nation]').val()+'')).hide();
+					$('select[name*=city]').not($('#'+$('select[name=nation]').val()+'')).hide();
 				}
 			}
 		});
@@ -171,7 +171,7 @@
 					    		<option value="newzealand">뉴질랜드</option>
 					    		<option value="china">중국</option>
 						  	</select>
-						  	<select name="city" id="japan">
+						  	<select name="city_japan" id="japan">
 					    		<option value="choice">도시</option>
 					    		<option value="tokyo">도쿄</option>
 					    		<option value="osaka">오사카</option>
@@ -180,7 +180,7 @@
 					    		<option value="okinawa">오키나와</option>
 					    		<option value="kyoto">교토</option>
 						  	</select>
-						  	<select name="city" id="canada">
+						  	<select name="city_canada" id="canada">
 					    		<option value="choice">도시</option>
 					    		<option value="vancouver">벤쿠버</option>
 					    		<option value="toronto">토론토</option>
@@ -189,7 +189,7 @@
 					    		<option value="quebec">퀘벡</option>
 					    		<option value="whitehorse">화이트호스</option>
 						  	</select>
-						  	<select name="city" id="philippines">
+						  	<select name="city_philippines" id="philippines">
 					    		<option value="choice">도시</option>
 					    		<option value="manila">마닐라</option>
 					    		<option value="boracay">보라카이</option>
@@ -198,7 +198,7 @@
 					    		<option value="palawan">팔라완</option>
 					    		<option value="clark">클락</option>
 						  	</select>
-						  	<select name="city" id="america">
+						  	<select name="city_america" id="america">
 					    		<option value="choice">도시</option>
 					    		<option value="hawaii">하와이</option>
 					    		<option value="maui">마우이</option>
@@ -208,22 +208,21 @@
 					    		<option value="lasVegas">라스베이거스</option>
 					    		<option value="guam">괌</option>
 						  	</select>
-						  	
-						  	<select name="city" id="australia">
+						  	<select name="city_australia" id="australia">
 					    		<option value="choice">도시</option>
 					    		<option value="sydney">시드니</option>
 					    		<option value="melbourne">멜버른</option>
 					    		<option value="goldCoast">골드코스트</option>
 					    		<option value="brisbane">브리즈번</option>
 						  	</select>
-						  	<select name="city" id="newzealand">
+						  	<select name="city_newzealand" id="newzealand">
 					    		<option value="choice">도시</option>
 					    		<option value="auckland">오클랜드</option>
 					    		<option value="queenstown">퀸스타운</option>
 					    		<option value="christchurch">크라이스트처치</option>
 					    		<option value="rotorua">로토루아</option>
 						  	</select>
-						  	<select name="city" id="china">
+						  	<select name="city_china" id="china">
 					    		<option value="choice">도시</option>
 					    		<option value="shanghai">상하이</option>
 					    		<option value="harbin">하얼빈</option>

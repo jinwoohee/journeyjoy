@@ -1,3 +1,6 @@
+<%@page import="com.jj.dto.Eatery"%>
+<%@page import="com.jj.dto.Place"%>
+<%@page import="java.util.List"%>
 <%@page import="com.jj.dto.Package"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -7,6 +10,7 @@
 	
 	int p_no;
 	int p_period;
+	
 	if(request.getParameter("p_no") == null){
 		p_no = (int)session.getAttribute("p_no");
 		p_period = (int) session.getAttribute("p_period");
@@ -36,7 +40,6 @@
 </head>
 <script>
 	$(function(){
-		
 		$("div[id*='sc']").hide();
 		$('#day1').css({'background':'#6C94B8', 'color':'white'});
 		$('#sc1').show();
@@ -104,10 +107,16 @@
 		<div>
 			<p>일정 등록</p>
 			<form name='sForm' method='post' action='aa.jsp'  onsubmit="return regist()">
+			<input type='hidden' name='p_city' value='<%=request.getParameter("p_city")%>'>
+			
 			<%
+				List<Place> placeList = (List<Place>)request.getAttribute("placeList");
+				List<Eatery> eatList = (List<Eatery>)request.getAttribute("eatList");
+				
 				for(int i=1; i<p_period+1; i++){
 					out.println("<div id='day"+i+"'>DAY"+i+"</div><div></div>");
 					out.println("<input type='hidden' name='ps_day' value='"+i+"'>");
+					
 			%>
 				<div id='sc<%=i%>'>
 					<table id='scheduleTable'>
@@ -121,9 +130,18 @@
 						<tr>
 							<td>
 								<select name='schedule<%=i%>'>
-									<option value=''>선택</option>
-									<option value=1>디즈니랜드</option>
-									<option value=2>카페</option>
+									<%if(placeList.size()>0 || eatList.size()>0){
+										for(Place p : placeList){%>
+										<%
+											String city = (String)request.getParameter("p_city");
+
+											if(p.getPlac_city() != null){
+												if(p.getPlac_city().equals(city)){%>
+												<option value=<%=p.getPlac_no() %>><%=p.getPlac_name() %></option>
+											<%}
+											}%>
+										<%}
+									  }%>
 								</select>
 							</td>
 						</tr>
@@ -131,9 +149,17 @@
 						<tr>
 							<td>
 								<select name='schedule<%=i%>'>
-									<option value=''>선택</option>
-									<option value=1>디즈니랜드</option>
-									<option value=2>카페</option>
+									<%if(placeList.size()>0 || eatList.size()>0){
+										for(Place p : placeList){%>
+										<%
+											String city = (String)request.getParameter("p_city");
+											if(p.getPlac_city() != null){
+												if(p.getPlac_city().equals(city)){%>
+												<option value=<%=p.getPlac_no() %>><%=p.getPlac_name() %></option>
+											<%}
+											}%>
+										<%}
+									  }%>
 								</select>
 							</td>
 						</tr>
@@ -141,9 +167,17 @@
 						<tr>
 							<td>
 								<select name='schedule<%=i%>'>
-									<option value=''>선택</option>
-									<option value=1>디즈니랜드</option>
-									<option value=2>카페</option>
+									<%if(placeList.size()>0 || eatList.size()>0){
+										for(Place p : placeList){%>
+										<%
+											String city = (String)request.getParameter("p_city");
+											if(p.getPlac_city() != null){
+												if(p.getPlac_city().equals(city)){%>
+												<option value=<%=p.getPlac_no() %>><%=p.getPlac_name() %></option>
+											<%}
+											}%>
+										<%}
+									  }%>
 								</select>
 							</td>
 						</tr>
@@ -151,9 +185,17 @@
 						<tr>
 							<td>
 								<select name='schedule<%=i%>'>
-									<option value=''>선택</option>
-									<option value=1>디즈니랜드</option>
-									<option value=2>카페</option>
+									<%if(placeList.size()>0 || eatList.size()>0){
+										for(Place p : placeList){%>
+										<%
+											String city = (String)request.getParameter("p_city");
+											if(p.getPlac_city() != null){
+												if(p.getPlac_city().equals(city)){%>
+												<option value=<%=p.getPlac_no() %>><%=p.getPlac_name() %></option>
+											<%}
+											}%>
+										<%}
+									  }%>
 								</select>
 							</td>
 						</tr>

@@ -10,11 +10,10 @@ body {
 /* 메뉴바 */
 
 div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
-	padding-top: 200px;
+	padding-top: 150px;
 	width: 1200px;
-	height: 1500px;
 	margin: 0 auto;
-	margin-bottom: 20px;
+	margin-bottom: 120px;
 }
 div[id="list_text"]{ /* "여행계획서" 글자 div 와 아래의 선 */
 	width: 1200px;
@@ -122,5 +121,5 @@ input[name="make_plan"]{/*일정 만들기*/
 }
 
 footer{
-	margin-top: 100px;
+	margin-top: 0px;
 }

@@ -269,7 +269,7 @@
 	<!-- 패키지 insert -->
 	<insert id="packageInsert" parameterType="com.jj.dto.Package">
 		<selectKey resultType="com.jj.dto.Package" keyColumn="p_no,p_period,p_city" keyProperty="p_no,p_period,p_city" order="AFTER">
-			SELECT LAST_INSERT_ID() AS p_no , (SELECT datediff(p_end_date, p_start_date) FROM package WHERE p_no=LAST_INSERT_ID()) AS p_period, p_city
+			SELECT LAST_INSERT_ID() AS p_no, (SELECT datediff(p_end_date, p_start_date) FROM package WHERE p_no=LAST_INSERT_ID()) AS p_period, (SELECT p_city FROM package WHERE p_no=LAST_INSERT_ID())AS p_city
 		</selectKey>
 		INSERT INTO package VALUES(default, #{u_id}, #{p_nation}, #{p_city}, #{p_theme}, #{p_title}, #{p_start_date}, #{p_end_date}, ${p_volume}, #{p_due_date}, ${p_guide_pay}, curdate(), #{p_file}, #{p_notification}, #{p_url});
 	</insert>
@@ -321,6 +321,16 @@
 	<!-- 좋아요 select --> 
 	<select id="likeSelect" resultType="com.jj.dto.Package_like">
 		SELECT * FROM package_like;
+	</select>
+	
+	<!-- 일정 리스트/장소 select -->
+	<select id="packagePlaceSelect" resultType="com.jj.dto.Place">
+		SELECT * FROM place WHERE plac_addr
+	</select>
+	
+	<!-- 일정 리스트/식당 select -->
+	<select id="packageEatSelect" resultType="com.jj.dto.Eatery">
+		SELECT * FROM eatery WHERE eat_addr
 	</select>
 	
 	<!-- 일정 insert -->
