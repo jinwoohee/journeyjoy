@@ -21,11 +21,9 @@
 	
 	for(int i=0; i<p_period; i++){
 		Package_schedule ps = new Package_schedule();
-	
+
 		String placeArr = Arrays.toString(request.getParameterValues("schedule"+(i+1)));
 		String place = placeArr.replaceAll("\\[", "").replaceAll("\\]", "");
-		
-		out.println(place);
 		
 		ps.setP_no(p_no);
 		ps.setPs_schedule(place);

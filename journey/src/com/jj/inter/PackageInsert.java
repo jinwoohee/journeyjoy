@@ -1,6 +1,7 @@
 package com.jj.inter;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.jj.conn.PackageInsertDB;
+import com.jj.conn.PackagePlaceSelectDB;
 import com.jj.dao.JourneyInterface;
+import com.jj.dto.Eatery;
+import com.jj.dto.Place;
 
 public class PackageInsert implements JourneyInterface {
 
@@ -35,7 +39,31 @@ public class PackageInsert implements JourneyInterface {
 		com.jj.dto.Package pk = new com.jj.dto.Package();
 		pk.setU_id(multi.getParameter("u_id"));
 		pk.setP_nation(multi.getParameter("nation"));
-		pk.setP_city(multi.getParameter("city"));
+		
+		String city1 = multi.getParameter("city_japan");
+		String city2 = multi.getParameter("city_canada");
+		String city3 = multi.getParameter("city_philippines");
+		String city4 = multi.getParameter("city_america");
+		String city5 = multi.getParameter("city_australia");
+		String city6 = multi.getParameter("city_newzealand");
+		String city7 = multi.getParameter("city_china");
+		
+		if(!city1.equals("choice")) {
+			pk.setP_city(multi.getParameter("city_japan"));
+		}else if(!city2.equals("choice")){
+			pk.setP_city(multi.getParameter("city_canada"));
+		}else if(!city3.equals("choice")) {
+			pk.setP_city(multi.getParameter("city_philippines"));
+		}else if(!city4.equals("choice")) {
+			pk.setP_city(multi.getParameter("city_america"));
+		}else if(!city5.equals("choice")) {
+			pk.setP_city(multi.getParameter("city_australia"));
+		}else if(!city6.equals("choice")) {
+			pk.setP_city(multi.getParameter("city_newzealand"));
+		}else if(!city7.equals("choice")) {
+			pk.setP_city(multi.getParameter("city_china"));
+		}
+		
 		pk.setP_theme(multi.getParameter("theme"));
 		pk.setP_title(multi.getParameter("title"));
 		pk.setP_start_date(multi.getParameter("startDt"));
@@ -56,7 +84,16 @@ public class PackageInsert implements JourneyInterface {
 		pk.setP_notification(multi.getParameter("notice"));
 		pk.setP_url("aa"); // 현재페이지 URL > 나중에 뒤에 ?페이지번호 붙이기
 		
-		HashMap<String, Integer> param = insertDB.insertPackage(pk);
+		HashMap<String, Object> param = insertDB.insertPackage(pk);
+		
+		//장소select
+		PackagePlaceSelectDB selectPlace = PackagePlaceSelectDB.select();
+		
+		List<Place> placeList = selectPlace.selectPlace();
+		List<Eatery> eatList = selectPlace.selectEatery();
+		
+		request.setAttribute("placeList", placeList);
+		request.setAttribute("eatList", eatList);
 		
 		return "package_schedule.jsp?p_no="+param.get("p_no")+"&p_period="+param.get("p_period")+"&p_city="+param.get("p_city");
 	}

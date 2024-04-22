@@ -17,8 +17,8 @@ public class PackageInsertDB {
 	
 	SqlSessionFactory sql = SqlMapconfig.getSqlSession();
 	
-	public HashMap<String, Integer> insertPackage(com.jj.dto.Package pk) {
-		HashMap<String, Integer> param = new HashMap<String, Integer>();
+	public HashMap<String, Object> insertPackage(com.jj.dto.Package pk) {
+		HashMap<String, Object> param = new HashMap<String, Object>();
 		
 		System.out.println("--- conn/packageInsertDB ---");
 		SqlSession ss = sql.openSession();
@@ -29,7 +29,7 @@ public class PackageInsertDB {
 		
 		param.put("p_no", pk.getP_no());
 		param.put("p_period", pk.getP_period());
-		param.put("p_city", Integer.parseInt(pk.getP_city()));
+		param.put("p_city", pk.getP_city());
 		
 		return param;
 	}
