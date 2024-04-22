@@ -391,9 +391,10 @@ String aaaa = datecnt+"";
 				<div id="acc_div<%=a%>">Day <%=a %></div>
 				<table id="acc_table<%=a%>">
 					<tr>
+					<td>종류</td>
 					<td>내용</td>
 					<td>결제수단</td>
-					<td>금액</td>
+					<td>금액</td>					
 					<td>삭제</td>
 					</tr>
 				</table>
@@ -409,7 +410,7 @@ String aaaa = datecnt+"";
                      </select>
                      <input type="text" name="acc_content<%=a%>" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
                      <p>카테고리</p>
-                      <select name="reason<%=a%>">
+                      <select name="acc_sort<%=a%>" id ="acc_sort<%=a%>">
                          <option>숙소</option>
                          <option>항공</option>
                          <option>교통</option>

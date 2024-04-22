@@ -131,6 +131,7 @@ function createMarker(place) {
     position: place.geometry.location,
   });
   
+
   const re_request = {
 	      placeId : place.place_id,
 	      fields : ["price_level", "opening_hours","photos","url"]
@@ -143,9 +144,30 @@ function createMarker(place) {
     
     infowindow.open(map, marker);
   });
+  
+  const button = document.getElementsByClassName("pl_label");
+  
+  for(var i = 0; i < button.length ; i++){
+	  var j = i+1;
+	  var pick_id = document.getElementById("place_num"+j);
+	  button[i].addEventListener('click', function(){
+	
+		  if(pick_id.value == place.place_id){
+			  var marker_pick = new google.maps.Marker({
+				  map,
+				  position : place.geometry.location,
+			  });
+			  infowindow.setContent(place.name+"<br>"+place.formatted_address+"<br>리뷰점수 : "+place.rating+"<br>"+"<a href='"+pla_url+"'  style='color:blue;' target='_blank'>구글지도에서 정보보기</a>");
+			  infowindow.open(map, marker_pick);
+			  map.setCenter(place.geometry.location);
+			  map.setZoom(15);
 			  
-	  
-
+			  return false
+		  }else{
+			  return false
+		  }
+	  });
+	}
 }
 
 window.initMap = initMap;

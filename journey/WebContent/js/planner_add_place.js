@@ -36,7 +36,13 @@ $(document).ready(function() {
  			}
      	});
     	initMap();
-        
+    	
+    	$("p[id*='day']").css({'border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px'});
+    	$("p[id='day1']").css({'border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #fed293','margin-top':'11px'});
+    	$("div[id*='places']").css({'display':'none'});
+    	$("div[id='places1']").css({'display':'block'});
+    	$("input[id*='plan_add']").css({'display':'none'});
+    	$("input[id='plan_add1']").css({'display':'block'});
      });
 	 
 	
