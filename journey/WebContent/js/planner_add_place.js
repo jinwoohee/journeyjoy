@@ -113,18 +113,7 @@ function plan_add_btn(num){
 	});
 	
 }
-function selectMarker(num) {
-	  const infowindow = new google.maps.InfoWindow();
-	  
-	  var id = document.getElementById("place_num"+num)
-	  
-	  google.maps.event.addListener(id, "click", () => {
-	    infowindow.setContent(place.name+"<br>"+place.formatted_address+"<br>리뷰점수 : "+place.rating+"<br>");   
-	    infowindow.open(map, marker);
-	  });
-	  
-	}
-	
+
 function checking(id){ /*테마 체크 여부 */
 	$("input[type='checkbox']").prop("checked", false);
 	$("label").css({"background-color":"white", "color":"rgb(64,64,64)"});

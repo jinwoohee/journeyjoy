@@ -192,25 +192,25 @@ function add_acc(num){
 	var sort = document.createElement("input");
 	sort.setAttribute("type","text");
 	sort.name="sort"+num;
-	sort.value=add_sort.value;
+	sort.setAttribute("value", add_sort.value);
 	sort.readOnly = true;
 	
 	var content = document.createElement("input");
 	content.setAttribute("type","text");
 	content.name="content"+num;
-	content.value=add_content.value;
+	content.setAttribute("value",add_content.value);
 	content.readOnly = true;
 	
 	var price = document.createElement("input");
 	price.setAttribute("type","text");
-	price.name="price"+num;
-	price.value=add_price.value;
+	price.name="prices"+num;
+	price.setAttribute("value", add_price.value);
 	price.readOnly = true;
 	
 	var pay = document.createElement("input");
 	pay.setAttribute("type","text");
 	pay.name="pay_with"+num;
-	pay.value=add_pay.value;
+	pay.setAttribute("value",add_pay.value);
 	pay.readOnly = true;
 	
 	var del = document.createElement("input");
@@ -218,7 +218,7 @@ function add_acc(num){
 	del.value="삭제";
 	del.name="del_place";
 	
-	del.setAttribute("onclick" , "del_pl(this)")
+	del.setAttribute("onclick" , "del_pl(this,"+add_price.value+")")
 	
 	var taList = document.getElementById('acc_table'+num);
 	var row = taList.insertRow(taList.rows.length);
@@ -235,16 +235,36 @@ function add_acc(num){
 	td4.appendChild(price);
 	td5.appendChild(del);
 	
+
+	
+	var result_price = document.getElementById("result_price");
+	var before = parseInt(result_price.value);
+	var bb = parseInt(add_price.value);
+	var after = before + bb;
+
+	var text = document.getElementById("result_price_text");
+	text.textContent = after;
+	result_price.setAttribute("value", after);
+	
 	add_content.value = "";
 	add_price.value = "";
 	add_pay.value = "결제수단";
 	$("div[id='pay_one_div"+num+"']").slideUp();
 }
-function del_pl(st){
+function del_pl(st, i){
 	var tdd = st.parentNode;
 	var trr = tdd.parentNode;
 	var tbb = trr.parentNode;
 	tbb.removeChild(trr);
+	
+	var result_price = document.getElementById("result_price");
+	var before = parseInt(result_price.value);
+	var bb = parseInt(i);
+	var after = before - bb;
+	
+	var text = document.getElementById("result_price_text");
+	text.textContent = after;
+	result_price.setAttribute("value", after);
 }
 function open_acc_div(num){
 	$("div[id='pay_one_div"+num+"']").slideDown();
