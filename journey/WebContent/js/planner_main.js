@@ -30,19 +30,19 @@ window.onload = function() {
 
   $("#air").change(function(){ /*항공권 여부 체크박스 */
       if($("#air").is(":checked")){``
-        $("#airplane").css({"border-color":"#1E427F", "color":"#2C609C"});
+        $("#airplane").css({"border":"1px solid black", "color":"black"});
         $("#air_check").attr("src","img/icon/airplane_checked.png");
       }else{
-        $("#airplane").css({"border-color":"#f1f1f3", "color":"rgb(64,64,64)"});
+        $("#airplane").css({"border":"1px solid gray", "color":"gray"});
         $("#air_check").attr("src","img/icon/airplane_check.png");
       }
     });
    $("#ho").change(function(){ /*숙소 여부 체크박스 */
       if($("#ho").is(":checked")){
-        $("#hotel").css({"border-color":"#1E427F", "color":"#2C609C"});
+        $("#hotel").css({"border":"1px solid black", "color":"black"});
         $("#hotel_check").attr("src","img/icon/hotel_checked.png");
       }else{
-        $("#hotel").css({"border-color":"#f1f1f3", "color":"rgb(64,64,64)"});
+        $("#hotel").css({"border":"1px solid gray", "color":"gray"});
         $("#hotel_check").attr("src","img/icon/hotel_check.png");
       }
     });
@@ -59,5 +59,19 @@ window.onload = function() {
 function login_check(){
 	alert("로그인을 해주세요.");
 }
- 
+function select_check(){
+	if(document.getElementById("city").value == "1"){
+		alert("목적지를 선택해주세요.");
+		return false;
+	}else if(document.getElementById("startDt").value == ''){
+		alert("여행 시작일을 입력해주세요.");
+		return false;
+	}else if(document.getElementById("endDt").value == ''){
+		alert("여행 종료일을 입력해주세요.");
+		return false;
+	}else{
+		
+	}
+	
+}
 

@@ -12,7 +12,7 @@ div[id="content"]{ /*�뿤�뜑, �뫖�꽣瑜� �젣�쇅�븳 �꽮�
 	padding-top: 150px;
 	width: 1200px;
 	margin: 0 auto;
-	margin-bottom: 20px;
+	margin-bottom: 140px;
 }
 div[id="list_text"]{ /* "�뿬�뻾怨꾪쉷�꽌" 湲��옄 div �� �븘�옒�쓽 �꽑 */
 	width: 1200px;
@@ -488,8 +488,14 @@ img[src*="left"], img[src*="right"]{
 div[id*="pay_one_div"]{
 	display : none;
 }
+input[name*="content"]{
+	width : 150px;
+	background-color : blue;
+}
+
+
 
 
 footer {
-	margin-top: 100px;
+	margin-top: 0px;
 }

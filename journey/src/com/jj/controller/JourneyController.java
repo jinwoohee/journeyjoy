@@ -216,9 +216,9 @@ public class JourneyController extends HttpServlet {
 			} catch(Exception e) { 
 				// TODO: handle exception } }
 			}
-		}else if(page.equals("plan_reviewTab")) {
+		}
+		else if(page.equals("plan_reviewTab")) {
 			ji = Plan_reviewTabSelect.plan_reviewTabSelect();
-			System.out.println("일정리뷰컨트롤러");
 			try {
 				String page_url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(page_url).forward(request, response); 

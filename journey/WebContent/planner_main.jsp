@@ -67,7 +67,7 @@ String u_id = (String) session.getAttribute("u_id");
 				<div id="content">
 					<div class="kind_wrap">
   						<div class="kind_slider">
-  							<form action="planner_cookie.jsp" method="post">
+  							<form action="planner_cookie.jsp" method="post" onsubmit="return select_check()">
   							    <ul class="slider">
 				        		    <li>
 				        			    <article>       
@@ -88,8 +88,8 @@ String u_id = (String) session.getAttribute("u_id");
 						                                <option>일본</option>
 						                                <option>태국</option>
 						                            </select>
-						                            <select name="city">
-						                                <option>목적지(도시)</option>
+						                            <select name="city" id="city">
+						                                <option value="1">목적지(도시)</option>
 						                                <option>도쿄</option>
 						                                <option>오사카</option>
 						                                <option>후쿠오카</option>
@@ -108,7 +108,7 @@ String u_id = (String) session.getAttribute("u_id");
 				                        			</label>
 				                         			<input type="checkbox" name="hotel" id ="ho" value="1">
 				                        			<label for="ho" id="hotel">
-				                        				<img src="img\icon\hotel_check.png" name="check_img" id="hotel_check">
+				                        				<img src="img\icon\hotel_check.png" name="check_img" id="hotel_check" >
 						                        		숙소는 있어요				     
 						                        	</label>
 						                        	<br><br>
@@ -230,17 +230,17 @@ String u_id = (String) session.getAttribute("u_id");
 					</div>
 				</div>
 				<%if(u_id == null) {%>
-				<a id="left_login" onclick="login_check()"><img src="img\icon\arrow_left.png" /></a><%}else{ %>
-				<a id="left" ><img src="img\icon\arrow_left.png" /></a>
+				<a id="left_login" onclick="login_check()"><img src="img\icon\arrow_left.png" width="45px" height="45px"/></a><%}else{ %>
+				<a id="left" ><img src="img\icon\arrow_left.png" width="45px" height="45px"/></a>
 				<%} %>
 
 				<%if(u_id == null) {%>
-				<a id="right_login" onclick="login_check()"><img src="img\icon\arrow_right.png" /></a><%}else{ %>
-				<a id="right"><img src="img\icon\arrow_right.png" /></a>
+				<a id="right_login" onclick="login_check()"><img src="img\icon\arrow_right.png" width="45px" height="45px"/></a><%}else{ %>
+				<a id="right"><img src="img\icon\arrow_right.png" width="45px" height="45px"/></a>
 				<%} %>					
 			</div>
 			<div id="img_div">
-				<img src="img\japan\tokyo1.jpg" width="650px" height="650px" />
+			
 			</div>
 		</div>
 	</section>

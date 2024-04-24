@@ -267,8 +267,13 @@
 	</insert>
 	<!-- 가계부 불러오기 -->
 	<select id="account_select" parameterType="int" resultType="com.jj.dto.Account">
-		select * from account where e_no = #{e_no}
+		select * from account where e_no = #{e_no} and acc_order > 0
 	</select>
+	<!-- 가계부삭제 -->
+	<delete id="account_delete" parameterType="int">
+		delete from account where e_no = #{e_no}
+	</delete>
+	
 	
 	
 	<!-- 윤영 부분 -->

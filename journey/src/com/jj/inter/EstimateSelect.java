@@ -159,6 +159,10 @@ public class EstimateSelect implements JourneyInterface{
 				TicketSelectDB tickdb = TicketSelectDB.seldb(); // 티켓 select
 				List<Ticket> tickList = tickdb.selectMth(ticket);
 				request.setAttribute("ticket", tickList);
+				
+				AccountSelectDB accdb = AccountSelectDB.seldb(); //가계부 select
+				List<Account> accList = accdb.selmtd(e_no);
+				request.setAttribute("account", accList);
 			
 				return "plan_edit.jsp"; 
 				

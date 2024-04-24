@@ -46,7 +46,7 @@
 	String e_no = request.getParameter("e_no");
 	
 	String edit0 = request.getParameter("edit_plan0");
-	System.out.println("edit로 왔다"+e_no);
+	System.out.println("edit로 왔다"+e_no+"edit0:"+edit0);
 	String pa="";
 	if(e_no == null){
 		pa = "null";
@@ -153,7 +153,6 @@
 						
 						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place_list_sp.split(",");
-						System.out.println(list_place[0]+list_place[1]+list_place[2]);
 			%>
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
