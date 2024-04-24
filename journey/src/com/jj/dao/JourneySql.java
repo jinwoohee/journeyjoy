@@ -16,6 +16,7 @@ import com.jj.dto.Inquiry;
 import com.jj.dto.Place;
 import com.jj.dto.Plan;
 import com.jj.dto.Purchase;
+import com.jj.dto.Schedule;
 import com.jj.dto.Package;
 import com.jj.dto.Package_schedule;
 

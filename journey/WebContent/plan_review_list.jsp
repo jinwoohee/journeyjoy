@@ -43,28 +43,9 @@
     <div>
         <section>
             <article>
-            <form action="plan_review_write.jsp" method='post'>
-            <input type="hidden" name="start_date" value="2024-03-12">
-						<input type="hidden" name="end_date" value="2024-03-14">
-						<input type="hidden" name="city" value="서울">
-						<input type="hidden" name="thema" value="힐링">
-						<input type="hidden" name="detale_them" value="먹방">
-						<input type="hidden" name="detale_them" value="유원지">
-						<input type="hidden" name="detale_them" value="관광">
-						<input type="hidden" name="with" value="친구와">
-						<input type="hidden" name="eat" value="기타">
-                   		<input type="hidden" name="page_no" value="write">
-                   		<input type="hidden" name="place1" value="장소1" >
-                   		<input type="hidden" name="place1" value="장소1" >
-                   		<input type="hidden" name="place1" value="장소1" >
-                   		<input type="hidden" name="place2" value="장소2" >
-                   		<input type="hidden" name="place2" value="장소2" >
-                   		<input type="hidden" name="place2" value="장소2" >
-                   		<input type="hidden" name="place3" value="장소3" >
-                   		<input type="hidden" name="place3" value="장소3" >
+            	<!-- 검색필터 -->
 				<div id="search_section">
-					<div>
-		            	
+					<div>	
 						<select name='nation'>
 		                    <option value='-'>국가</option>
 		                    <option value='japan'>일본</option>
@@ -90,30 +71,34 @@
 						<div>
 					  <%
 					  	if(u_id == null){
-		                  			 out.println("<img src='img/icon/write.png' name='write'/>");
-		                  		}else{
-		                			out.println("<a href='plan_review.jj?page=plan_reviewTab'><img src='img/icon/write.png' /></a>");
+                  			 out.println("<img src='img/icon/write.png' name='write'/>");
+                  		}else{
+                			out.println("<a href='plan_review.jj?page=plan_reviewTab'><img src='img/icon/write.png' /></a>");
 					  	}
 					  %>
 						</div>
 					</div>
 				</div>
-			</form>
             </article>
             <article>
            		<div id="list_div">         		
 	            	<%
-         			            		for(com.jj.dto.Plan_review pr : reviewList){
-         			            						out.println("<a href='plan_review_detail.jsp?page_no="+pr.getpr_no()+"'>");
-         			            						out.println("<div class='review_div'>");
-         			            						out.println("<img src='img/profile/d.jpg' />");
-         			            						out.println("<p>"+pr.getu_id()+"</p>");
-         			            						out.println("<p class='nation'>여행도시</p>");
-         			            						out.println("<img src='img/japan/"+pr.getpr_file()+"' />");
-         			            						out.println("<p><div>"+pr.getpr_title()+"</div><div>"+pr.getpr_date()+"</div></p>");
-         			            						out.println("<p>"+pr.getpr_contents()+"</p></div></a>");
-         			            					}
-         			            	%>			
+		            	for(com.jj.dto.Plan_review pr : reviewList){ %>
+		            	
+    						<a href='plan_review_detail.jsp?page_no=<%=pr.getPr_no()%>&e_no=<%=pr.getE_no() %>'>
+    						<div class='review_div'>
+    							<img src='img/profile/d.jpg'/>
+    							<p><%= pr.getU_nickname()%></p>
+    							<p class='nation'>여행도시</p>
+    							<img src='uploadFile/<%=pr.getPr_file() %>' />
+    							<p>
+    								<div><%=pr.getPr_title() %></div>
+    								<div><%=pr.getPr_date() %></div>
+    							</p>
+    							<p><%=pr.getPr_contents() %></p>
+    						</div>
+    						</a>
+    				<%	}%>			
                 </div>
             </article>
         </section>

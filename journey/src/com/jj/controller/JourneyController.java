@@ -1,15 +1,10 @@
 package com.jj.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.dao.JourneyInterface;
-import com.jj.dao.Review;
-import com.jj.dto.Eatery;
-import com.jj.dto.Place;
 import com.jj.inter.ClassApply;
 import com.jj.inter.ClassApplyDelete;
 import com.jj.inter.ClassInsert;
@@ -188,7 +183,6 @@ public class JourneyController extends HttpServlet {
 			}
 		}else if(page.equals("plan_reviewTab")) {
 			ji = Plan_reviewTabSelect.plan_reviewTabSelect();
-			System.out.println("일정리뷰컨트롤러");
 			try {
 				String page_url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(page_url).forward(request, response); 

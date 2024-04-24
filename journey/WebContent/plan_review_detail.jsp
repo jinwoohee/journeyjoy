@@ -1,15 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.jj.dto.Schedule"%>
 <%@page import="com.jj.dto.Plan_review"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date" %>
 <%@page import="java.util.ArrayList"%>
 <jsp:useBean id="dao" class="com.jj.dao.Plan_review" />
 <jsp:useBean id="dto" class="com.jj.dto.Plan_review" />
 <%
 	request.setCharacterEncoding("utf-8"); 
-	String list = request.getParameter("page_no");
-	ArrayList<com.jj.dto.Plan_review> reviewList = dao.select_plan_review(list);
+	String pr_no = request.getParameter("page_no");
+	String list = request.getParameter("e_no"); 
+	ArrayList<com.jj.dto.Plan_review> reviewList = dao.select_plan_review(pr_no);
 	String u_id = (String) session.getAttribute("u_id");
 %>
 <!DOCTYPE html>
@@ -31,17 +30,15 @@ $(function() {
 	  const slider = kindWrap.querySelector('.slider');
 	  const slideLis = slider.querySelectorAll('li');
 	  
-	  /* ul 넓이 계산해 주기 */
+	  //ul 넓이 계산해 주기 
 	  const liWidth = slideLis[0].clientWidth;
 	  const sliderWidth =  liWidth * slideLis.length;
 	  slider.style.width = sliderWidth+"px" ;
 
-	  /* 리스너 설치하기 */
+	  //리스너 설치하기 
 	  var currentIdx = 0; // 슬라이드 현재 번호
 	  var translate = 0; // 슬라이드 위치 값
 	  
-	  
-
 	  $("#right").click(function(){   //오른쪽화살표 눌렀을때 슬라이드
 		  if (currentIdx !== slideLis.length -1) {
 		        translate -= liWidth;
@@ -58,17 +55,17 @@ $(function() {
 	   });
 });
 
-	function tab(num){
-		var day_plan = "#day_plan"+num;
-		var day_sel = "#day_sel"+num;
-		var plan = "#plan_sel"+num;
-		$("div[id*='day_plan']").hide();
-		$(day_plan).show();
-		$("p[id*=day_sel]").css({"color":"white"});
-		$(day_sel).css({"color":"black"});	
-		$("div[id*='plan_sel']").css({"background-color":"#0D112D"});
-		$(plan).css({"background-color":"#6C94B8"});
-	}
+function tab(num){
+	var day_plan = "#day_plan"+num;
+	var day_sel = "#day_sel"+num;
+	var plan = "#plan_sel"+num;
+	$("div[id*='day_plan']").hide();
+	$(day_plan).show();
+	$("p[id*=day_sel]").css({"color":"white"});
+	$(day_sel).css({"color":"black"});	
+	$("div[id*='plan_sel']").css({"background-color":"#0D112D"});
+	$(plan).css({"background-color":"#6C94B8"});
+}
 	
 </script>
 <body>
@@ -78,66 +75,71 @@ $(function() {
 	<section>		
 		<div id='main_div'>
 			<%
-				for(com.jj.dto.Plan_review pr : reviewList){
-					String start = "2024-03-12";
-					String end = "2024-03-15";
-					String city = "서울(한국)";
-					String thema = "힐링";
-					String with = "친구와";
-					String eat = "기타";
-					String [] place1 = {"장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소","장소장소"};
-					
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					Date sdate = sdf.parse(start);
-					Date edate = sdf.parse(end);
-					long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
+				int e_no = Integer.parseInt(list);
+				ArrayList<Schedule> scList = (ArrayList<Schedule>)dao.select_planReview_pick(e_no);
 				
-					out.println("<table>");
-					out.println("<tr><td class='review_info'><p>작성자</p></td>");
-					out.println("<td class='user_info'><p>"+pr.getu_id()+"</p></td></tr>");
-					out.println("<tr><td class='review_info'><p>여행도시</p></td>");
-					out.println("<td class='user_info'><p>"+city+"</p></td></tr>");
-					out.println("<tr id='theme'><td class='review_info'><p>여행테마</p></td>");
-					out.println("<td class='user_info'>"+thema+"</td></tr></table>");
-					out.println("<p>"+pr.getpr_title()+"</p>");
-					//out.println("<p id='pr_date'>"+pr.getpr_date()+"</p>");
+				for(com.jj.dto.Plan_review pr : reviewList){%>
 					
-					out.println("<div id='img_div'><div id = 'kind_slider'><ul class='slider'><li class='li_sli'><img src='img/japan/"+pr.getpr_file()+"'/></li>");
-					out.println("<li class='li_sli'><img src='img/japan/"+pr.getpr_file2()+"'/></li>");
-					out.println("<li class='li_sli'><img src='img/japan/"+pr.getpr_file3()+"'/></li></ul></div></div>");
+					<table>
+						<tr><td class='review_info'><p>작성자</p></td>
+						<td class='user_info'><p><%=pr.getU_id() %></p></td></tr>
+						<tr><td class='review_info'><p>여행도시</p></td>
+						<td class='user_info'><p>여행도시값 불러오기</p></td></tr>
+						<tr id='theme'><td class='review_info'><p>여행테마</p></td>
+						<td class='user_info'>여행테마값 불러오기</td></tr></table>
+						<p><%=pr.getPr_title() %></p>
 					
-					out.println("<input type='button' value='left' id='left'><input type='button' value='right' id='right'>");
-					out.println("<div id='content'>"+pr.getpr_contents()+"</div>");
-					out.println("<div id='day_select'>");
-					for(int a = 1 ; a <= datecnt ; a++){
-						out.println("<div id='plan_sel"+a+"' onclick='tab("+a+")'><p id='day_sel"+a+"' >Day"+a+"</p></div>");
-						}
-					out.println("</div>");
-					
-					for(int a= 1 ; a <= datecnt ; a++){
-						out.println("<div id='day_plan"+a+"'>");
-						out.println("<p class='day'>Day "+a+"ㅣ2000.00.01</p>");
-						out.println("<div class='map'>day"+a+"지도 들어갈 자리</div>");
-						out.println("<div class='day_review'>day"+a+" 여행후기</div>");
-						out.println("<div class='pl_eat_div'>");
-						for(int i = 0; i < place1.length ; i ++){
-							out.println("<p class='place'><div class='no'>"+(i+1)+"</div>"+place1[i]+"</p>");
-						}
-						out.println("</div></div>");
-					}
-					out.println("<div id='btn_div'>");
-					if(u_id != null && u_id.equals(pr.getu_id())){
-						out.println("<a href='plan_review_write.jsp?page_no="+pr.getpr_no()+"'><input type='button' name='edit' value='수정하기' /></a>");
-						out.println("<a href='plan_review_delete.jsp?page_no="+pr.getpr_no()+"'><input type='button' name='delete' value='삭제' /></a>");
-					}else{
-						out.println("<input type='hidden' name='hidden' />");
-					}
-					out.println("<a href='plan_review_list.jsp'><input type='button' name='list' value='목록으로'/></a>");
-					out.println("</div");
-				}
-			%>
+						<div id='img_div'>
+							<div id = 'kind_slider'>
+								<ul class='slider'>
+									<li class='li_sli'><img src='uploadFile/<%= pr.getPr_file()%>'/></li> 
+									<li class='li_sli'><img src='uploadFile/<%= pr.getPr_file2()%>'/></li>
+									<li class='li_sli'><img src='uploadFile/<%= pr.getPr_file3()%>'/></li>
+								</ul>
+							</div>
+						</div>
+					<input type='button' value='left' id='left'><input type='button' value='right' id='right'>
+					<div id='content'><%=pr.getPr_contents() %></div>
+
+				<div id='day_select'>
+					<%
+						for(Schedule sc : scList){%>
+							<div id='plan_sel<%= sc.getSche_day()%>'onclick='tab(<%= sc.getSche_day()%>)'>
+								<p id='day_sel<%= sc.getSche_day()%>' >Day<%= sc.getSche_day()%></p>
+							</div>
+					<%}%>
+				</div>
+				
+				<%
+					for(Schedule sc : scList){%>
+						<div id='day_plan<%= sc.getSche_day()%>'>
+							<p class='day'>Day<%= sc.getSche_day()%></p>
+							<div class='map'>day<%= sc.getSche_day()%>지도 들어갈 자리</div>
+							<div class='day_review'>day<%= sc.getSche_day()%>여행후기</div>
+							<div class='pl_eat_div'>
+								<%
+								String schedule_place = sc.getPlace();
+								schedule_place = schedule_place.replaceAll(",", " ");
+								String [] place = schedule_place.split(" ");
+								
+								for(int i = 0; i < place.length ; i ++){%>
+									<p class='place'><div class='no'><%=i+1 %></div><%=place[i] %></p>
+								<%}%>
+							</div>
+						</div>
+					<%}%>	
+				<div id='btn_div'>
+					<%
+						if(u_id != null && u_id.equals(pr.getU_id())){%>
+						<a href='plan_review_write.jsp?page_no=<%=pr.getPr_no()%>&e_no=<%=e_no%>'><input type='button' name='edit' value='수정' /></a>
+						<a href='plan_review_delete.jsp?page_no=<%=pr.getPr_no()%>&e_no=<%=e_no%>'><input type='button' name='delete' value='삭제' /></a>	
+					<%	}else{%>
+						<input type='hidden' name='hidden' />
+					<%} %>	
+					<a href='plan_review_list.jsp'><input type='button' name='list' value='목록으로'/></a>	
+				</div>
+			<%}%>
 		</div>
 	</section>
-
 </body>
 </html>

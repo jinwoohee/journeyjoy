@@ -1,35 +1,82 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="java.util.Arrays"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.jj.dto.Day_review"%>
+<%@page import="java.util.Enumeration"%>
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="com.jj.dto.Plan_review"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date" %>
-<jsp:useBean id="dao" class="com.jj.dao.Plan_review" />
-<jsp:useBean id="dto" class="com.jj.dto.Plan_review" />
+
+<jsp:useBean id="dao" class="com.jj.dao.Plan_review">
 <%
 	request.setCharacterEncoding("utf-8");
+	Plan_review pr = new Plan_review();
+	Day_review dr = null;
 
-	dto.setu_id((String) session.getAttribute("u_id")); 
-	dto.setpr_title(request.getParameter("title"));
-	dto.setpr_contents(request.getParameter("content"));
-	//String [] h = (request.getParameterValues("place"));
-	//String place = "";
-	//for(String st : h){
-	//	place+=st+", ";
-	//}
-	//place = place.substring(0, place.lastIndexOf(","));
+	/* 첨부파일 */
+	String uploadPath=request.getRealPath("/uploadFile");
 	
-	dao.insert_plan_review(dto.getu_id(), dto.getpr_title(), dto.getpr_contents());
-	response.sendRedirect("plan_review_list.jsp");
+	int size = 10*1024*1024;
+	String name="";
+	String subject="";
+	String file_name="";
+	String ori_file_name="";
+	
+	HashMap map = new HashMap();
+	HashMap map2 = new HashMap();
+	
+	try{
+		MultipartRequest multi=new MultipartRequest(request, uploadPath, size, "UTF-8", new DefaultFileRenamePolicy());
+		
+		//일정리뷰
+		pr.setU_id((String) session.getAttribute("u_id"));
+		pr.setE_no(Integer.parseInt(multi.getParameter("e_no")));
+		pr.setPr_title(multi.getParameter("title"));
+		pr.setPr_contents(multi.getParameter("content"));
+		
+		System.out.println(Integer.parseInt(multi.getParameter("e_no")));
+		
+		/* 첨부파일 */
+		Enumeration files=multi.getFileNames();
+		
+		while(files.hasMoreElements()){
+			String file1 =(String)files.nextElement();  //파일을 문자열로 바꿈
+			file_name=multi.getFilesystemName(file1); //사용자가 인식하는 파일명 
+			ori_file_name= multi.getOriginalFileName(file1); //실제 서버안에 들어간 파일명(저장되는파일명)
+			
+			if(file_name == null){
+				map.put(file1, "bg1.jpg"); //기본이미지
+			}else{
+				map.put(file1, ori_file_name);
+			}
+		}
+		
+		pr.setPr_file(map.get("file1").toString());
+		pr.setPr_file2(map.get("file2").toString());
+		pr.setPr_file3(map.get("file3").toString());
+		
+		/* 일정리뷰 등록 */
+		dao.insert_plan_review(pr.getU_id(), pr.getE_no(), pr.getPr_title(), pr.getPr_contents(), pr.getPr_file(), pr.getPr_file2(), pr.getPr_file3());
+		
+		
+		
+		//일정리뷰 > day_review
+		int sche = Integer.parseInt(multi.getParameter("sche_day"));
+		for(int i=0; i<sche; i++){
+			dr = new Day_review();
+			
+			dr.setPr_no(Integer.parseInt(multi.getParameter("e_no")));
+			dr.setDr_day(i+1);
+			dr.setDr_contents(multi.getParameter("day_review"+(i+1)));
+			
+			/* 데이리뷰 등록*/
+			dao.insert_day_review(dr.getPr_no(), dr.getDr_day(), dr.getDr_contents());
+		}
+
+		response.sendRedirect("plan_review_list.jsp");
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 %>
-<%-- <%
-	String start = "2024-03-12";
-	String end = "2024-03-15";
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	Date sdate = sdf.parse(start);
-	Date edate = sdf.parse(end);
-	long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
-	for(int day = 1 ; day <= datecnt ; day++){
-		String dr = request.getParameter("day_review"+day);
-		dao.insert_day_review(day, dr);
-}
-%> --%>
+</jsp:useBean>
