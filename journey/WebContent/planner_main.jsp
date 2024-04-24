@@ -220,7 +220,7 @@ String u_id = (String) session.getAttribute("u_id");
 				                	                <input type="submit" value="일정 만들기" id="save" />
 				                	                <%} %>
 			            	                               
-						    	                </div>                              
+						    	                </div>                               
 							                </div>			       
 							            </article>
 								    </li>
