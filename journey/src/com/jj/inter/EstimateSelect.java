@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jj.conn.AccountSelectDB;
 import com.jj.conn.EstimateSelectDB;
 import com.jj.conn.PlanSelectDB;
 import com.jj.conn.ProductSelectDB;
 import com.jj.conn.ScheduleSelectDB;
 import com.jj.conn.TicketSelectDB;
 import com.jj.dao.JourneyInterface;
+import com.jj.dto.Account;
 import com.jj.dto.Estimate;
 import com.jj.dto.Plan;
 import com.jj.dto.Product;
@@ -83,20 +85,25 @@ public class EstimateSelect implements JourneyInterface{
 				List<Schedule> scheList = schedb.selmtd(e_no);
 				request.setAttribute("schedule", scheList);
 				
-				PlanSelectDB plandb = PlanSelectDB.seldb();
+				PlanSelectDB plandb = PlanSelectDB.seldb(); // 계획서 select
 				List<Plan> planList = plandb.select_e_no(e_no);
 				request.setAttribute("plan", planList);
 				
-				ticket = estiList.get(0).gete_detail_thema();
+				ticket = estiList.get(0).gete_detail_thema(); 
 				product = estiList.get(0).gete_destination();
 				
-				ProductSelectDB proddb = ProductSelectDB.seldb(); // 상품 select
+				ProductSelectDB proddb = ProductSelectDB.seldb(); // 내가 담은 상품 select
 				List<Product> prodList = proddb.selectMth(product);
 				request.setAttribute("product", prodList);
 				
-				TicketSelectDB tickdb = TicketSelectDB.seldb(); // 티켓 select
+				TicketSelectDB tickdb = TicketSelectDB.seldb(); // 내가 담은 티켓 select
 				List<Ticket> tickList = tickdb.select_myMth(ticket);
 				request.setAttribute("ticket", tickList);
+				
+				AccountSelectDB accdb = AccountSelectDB.seldb(); //가계부 select
+				List<Account> accList = accdb.selmtd(e_no);
+				request.setAttribute("account", accList);
+				
 				System.out.println("my끝");
 				
 				request.setAttribute("paging", "my_detail");

@@ -16,10 +16,10 @@ import com.jj.dto.Package;
 import com.jj.dto.Package_schedule;
 import com.jj.dto.Purchase;
 
-public class MypageSelect implements JourneyInterface {
-	static MypageSelect mSelect = new MypageSelect();
+public class MypagePackageSelect implements JourneyInterface {
+	static MypagePackageSelect mSelect = new MypagePackageSelect();
 	
-	public static MypageSelect mypageSelect() {
+	public static MypagePackageSelect mypagePackageSelect() {
 		return mSelect;
 	}
 
@@ -27,7 +27,6 @@ public class MypageSelect implements JourneyInterface {
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String u_id = request.getParameter("u_id");
-		String tab = request.getParameter("tab"); //마이페이지 메뉴바
 		
 		/* 패키지(기획내역) */
 		MypagePackageSelectDB mSelectDB = new MypagePackageSelectDB(); //패키지 상세내용
@@ -69,26 +68,6 @@ public class MypageSelect implements JourneyInterface {
 		request.setAttribute("reward", map2);
 		request.setAttribute("place", map3);
 		
-		/* 패키지(참여내역) */
-		MypagePurchaseSelectDB mpSelectDB = new MypagePurchaseSelectDB();
-		ArrayList<Purchase> pchlist = mpSelectDB.mypagePurchaseSelect(u_id);
-		
-		String num = "";
-		for (Purchase p : pchlist) {
-			num += p.getP_no() + "/";
-		}
-		
-		p_no = num.split("/");
-		for (String s : p_no) {
-			mSelectDB.mypagePackageSelectDB2(s);
-		}
-		
-		
-		
-		
-		
-		
-		
-		return "mypage.jsp?tab="+tab;
+		return "mypage_packageMaking.jsp";
 	}
 }

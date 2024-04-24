@@ -97,7 +97,7 @@ function tab(num){
 									<li class='li_sli'><img src='uploadFile/<%= pr.getPr_file3()%>'/></li>
 								</ul>
 							</div>
-						</div>
+						</div> 
 					<input type='button' value='left' id='left'><input type='button' value='right' id='right'>
 					<div id='content'><%=pr.getPr_contents() %></div>
 

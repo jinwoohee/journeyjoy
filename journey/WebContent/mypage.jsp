@@ -80,7 +80,7 @@
 	}
 	
 	$(function() {
-		$('.package_making, .pk_update_btn').hide(); //패키지, 수정버튼 상세
+		$('.package_making').hide(); //패키지
 		$('.user_wrap').hide(); //회원수정
 		
 		$('.tab li').click(function() {
@@ -90,41 +90,71 @@
 			$(this).siblings('li').css({'color' : '#646464', 'border-bottom' : 'none'});
 			
 			if (txt == "패키지") {
-				$('.plan_wrap').hide();
 				$('.package').show();
-				$('.review').hide();
-				$('.userInfo').hide();
-				$('.user_wrap, .package_making').hide();
+				$('.package').siblings('div').hide();
+				$('.plan_wrap').hide(); //여행계획서 상세내용
+				$('.user_wrap').hide(); //회원수정 상세내용
+				$('.package_makingm, .package_attending, .package_like').hide(); //패키지 상세내용
 			} else if (txt == "나의 리뷰") {
-				$('.plan_wrap').hide();
-				$('.package').hide();
 				$('.review').show();
-				$('.userInfo').hide();
-				$('.user_wrap, .package_making').hide();
+				$('.review').siblings('div').hide();
+				$('.plan_wrap').hide(); //여행계획서 상세내용
+				$('.user_wrap').hide(); //회원수정 상세내용
+				$('.package_makingm, .package_attending, .package_like').hide(); //패키지 상세내용
 			} else if (txt == "회원정보") {
-				$('.plan_wrap').hide();
-				$('.package').hide();
-				$('.review').hide();
 				$('.userInfo').show();
-				$('.user_wrap, .package_making').hide();
+				$('.userInfo').siblings('div').hide();
+				$('.plan_wrap').hide(); //여행계획서 상세내용
+				$('.user_wrap').hide(); //회원수정 상세내용
+				$('.package_makingm, .package_attending, .package_like').hide(); //패키지 상세내용
 			} else {
 				$('.plan_wrap').show();
-				$('.package').hide();
-				$('.review').hide();
-				$('.userInfo').hide();
-				$('.user_wrap, .package_making').hide();
+				$('.cards').children('div').hide();
+				$('.user_wrap').hide(); //회원수정 상세내용
+				$('.package_makingm, .package_attending, .package_like').hide(); //패키지 상세내용
 			}
 		});
 		
 		$('.package li').click(function() { //패키지 메뉴바 세부레이어 클릭시
 			var txt = $(this).text();
+			var uid = $('input[name=uid]').val();
 			
 			if (txt == '패키지 기획내역') {
+				$.ajax({
+					type : 'post',
+					data : {'u_id' : uid},
+					url : 'mypage.jj?page=mypagePackageMaking',
+					success : function(data) {
+						$('.package_making').html(data);
+					}
+				});
+				
 				$('.package_making').show();
-			} else if (txt == '') {
-				$('.package_making').hide();
-			} else {
-				$('.package_making').hide();
+				$('.package_making').siblings('div').hide();
+			} else if (txt == '패키지 참여내역') {
+				$.ajax({
+					type : 'post',
+					data : {'u_id' : uid},
+					url : 'mypage.jj?page=mypagePackageAttending',
+					success : function(data) {
+						$('.package_attending').html(data);
+					}
+				});
+				
+				$('.package_attending').show();
+				$('.package_attending').siblings('div').hide();
+			} else if (txt == '찜한 패키지') {
+				$.ajax({
+					type : 'post',
+					data : {'u_id' : uid},
+					url : 'mypage.jj?page=mypagePackageLike',
+					success : function(data) {
+						$('.package_like').html(data);
+					}
+				});
+				
+				$('.package_like').show();
+				$('.package_like').siblings('div').hide();
 			}
 		});
 		
@@ -133,41 +163,15 @@
 			
 			if (txt == '회원정보 수정') {
 				$('.user_wrap').show();
+				$('.user_wrap').siblings('div').hide();
 			} else {
 				$('.user_wrap').hide();
+				$('.user_wrap').siblings('div').hide();
 			}
 		});
 		
-		$('.pk_btn button').click(function() { //수정하기 버튼 클릭시
-			if ($('.pk_update_btn').css('display') == 'none') {
-				$('.pk_update_btn').show();
-			} else {
-				$('.pk_update_btn').hide();
-			}
-		});
 		
-		$('.pk_btn button').blur(function() { //수정하기 버튼 blur
-			$('.pk_update_btn').hide();
-		});
 		
-		$('.pk_update_cont').click(function() { //수정하기 버튼 세부-패키지 상세내용
-			/*$.ajax({
-				type : 'post',
-				data : {'' : },
-				url : '',
-				success : function(data) {
-					
-				}
-			});*/
-		});
-		
-		$('.pk_update_plan').click(function() { //수정하기 버튼 세부-패키지 일정
-			
-		});
-		
-		$('.pk_update_reward').click(function() { //수정하기 버튼 세부-패키지 리워드
-			
-		});
 		
 	});
 	</script>
@@ -176,6 +180,7 @@
 	<jsp:include page="main_header.jsp" />
 	
 	<div class="all_wrap">
+		<input type="hidden" name="uid" value="<%= u_id %>" />
 		<div class="notification_wrap">
 			<h1>홍길동님</h1>
 			<% if (mpg.equals("myplan")) { %>
@@ -328,151 +333,14 @@
 			
 			<!-- 패키지(기획내역) -->
 			<div class="package_making">
-				<%
-				ArrayList<Package> plist = (ArrayList<Package>)request.getAttribute("package");
-				HashMap<String, ArrayList<Package_schedule>> map = (HashMap<String, ArrayList<Package_schedule>>)request.getAttribute("packagesche"); //패키지 일정
-				HashMap<String, ArrayList<Package_schedule>> map3 = (HashMap<String, ArrayList<Package_schedule>>)request.getAttribute("place"); //패키지 일정-장소
-				HashMap<String, ArrayList<Package>> map2 = (HashMap<String, ArrayList<Package>>)request.getAttribute("reward");
-				
-				if (plist.size() != 0) {
-				%>
-				<p>패키지 기획내역 <strong><%= plist.size() %></strong>개</p>
-				<% for (Package p : plist) { %>
-				<ul>
-					<li>
-						<div class="pk_list">
-							<div class="pk_img"><img src="<%= p.getP_file() %>" /></div>
-							<div class="pk_cont">
-								<div>
-									<p class="pk_tag"><%= p.getP_nation() %></p>
-									<p class="pk_tag"><%= p.getP_city() %></p>
-								</div>
-								<div>
-									<p class="pk_title"><strong><%= p.getP_title() %></strong></p>
-								</div>
-								<div>
-									<p>▶ 요금</p>
-									<%
-									for (Entry<String, ArrayList<Package>> e2 : map2.entrySet()) {
-										if (p.getP_no() == Integer.parseInt(e2.getKey())) {
-											ArrayList<Package> rlist = e2.getValue();
-											for (Package r : rlist) {
-									%>
-									<c:set var="f1" value="<%= r.getAdult_fee() %>" />
-									<c:set var="f2" value="<%= r.getStd_fee() %>" />
-									<c:set var="f3" value="<%= r.getChild_fee() %>" />
-									<fmt:formatNumber var="adult" value="${ f1 }" />
-									<fmt:formatNumber var="std" value="${ f2 }" />
-									<fmt:formatNumber var="child" value="${ f3 }" />
-									
-									<table cellpadding="10px">
-										<tr>
-											<td>구분</td>
-											<td>성인<p>만 12세이상</p></td>
-											<td>아동<p>만 12세미만</p></td>
-											<td>유아<p>만 2세미만</p></td>
-										</tr>
-										<tr>
-											<td>기본상품</td>
-											<td>${ adult }원</td>
-											<td>${ std }원</td>
-											<td>${ child }원</td>
-										</tr>
-									</table>
-									<%
-											}
-										} 
-									}
-									%>
-								</div>
-								<div>
-									<p>▶ 여행일정</p>
-								<% 
-								for (Entry<String, ArrayList<Package_schedule>> e : map.entrySet()) {
-									if (p.getP_no() == Integer.parseInt(e.getKey())) {
-										ArrayList<Package_schedule> alist = e.getValue();
-										for (Package_schedule ps : alist) {
-								%>
-									<p class="pk_plan">
-										<%= ps.getPs_day() %>일차 - 
-										<%
-										for (Entry<String, ArrayList<Package_schedule>> e3 : map3.entrySet()) {
-											if (p.getP_no() == Integer.parseInt(e3.getKey())) {
-												ArrayList<Package_schedule> pclist = e3.getValue();
-												String str = "";
-												String schedule = ps.getPs_schedule().replaceAll(" ", ""); //공백제거
-												String[] arr = schedule.split(",");
-												for (Package_schedule pc : pclist) {
-													if (Arrays.asList(arr).contains(Integer.toString(pc.getPlac_no())))
-														str += pc.getPlac_name() + ", ";
-												}
-												if (str != "") {
-													str = str.substring(0, str.length() - 2);
-													out.println(str);
-												}
-											}
-										}
-										%>
-									</p>
-								<% 
-										}
-									} 
-								}
-								%>
-								</div>
-							</div>
-							<div class="pk_btn">
-								<button>수정하기</button>
-							</div>
-						</div>
-					</li>
-				</ul>
-				<% } %>
-				<div tabindex='0' class="pk_update_btn">
-					<button class="pk_update_cont">패키지 상세내용</button>
-					<button class="pk_update_plan">패키지 일정</button>
-					<button class="pk_update_reward">패키지 리워드</button>
-				</div>
-				<% } else { %>
-				<div class="pk_blank">
-					패키지가 존재하지 않습니다.
-				</div>
-				<% } %>
 			</div>
 
 			<!-- 패키지(참여내역) -->
 			<div class="package_attending">
-				<%
-				if (plist.size() != 0) {
-					for (Package p : plist) {
-				%>
-				<p>패키지 참여내역 <strong><%= plist.size() %></strong>개</p>
-				<ul>
-					<li>
-						<div class="pk_list">
-							<div class="pk_img"><img src="<%= p.getP_file() %>" /></div>
-							<div class="pk_cont">
-								<div>
-									<p class="pk_tag"><%= p.getP_nation() %></p>
-									<p class="pk_tag"><%= p.getP_city() %></p>
-								</div>
-								<div>
-									<p class="pk_title"><strong><%= p.getP_title() %></strong></p>
-								</div>
-							</div>
-							
-						</div>
-					</li>
-				</ul>
-				<%
-					}
-				}
-				%>
 			</div>
 			
 			<!-- 찜한 패키지  -->
-			<div>
-				
+			<div class="package_like">
 			</div>
 			
 			<!-- 회원정보 수정 -->

@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Estimate"%>
 <%@page import="com.jj.dto.Schedule"%>
+<%@page import="com.jj.dto.Account"%>
 <%@page import="com.jj.dto.Plan"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -54,7 +55,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 Date sdate = sdf.parse(e_start_date);
 Date edate = sdf.parse(e_end_date);
 long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
-
+String aaaa = datecnt+"";
 %>
 <!DOCTYPE html>
 <html>
@@ -85,6 +86,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 		String my_prod = planList.get(0).getPlan_product();
 		System.out.println(my_prod);
 		String [] mp = my_prod.split(",");
+		List<Account> accList = (List<Account>)request.getAttribute("account");
 		%>
 		<input type="hidden" id="item" value="<%= items%>">
 			<div id="list_text">
@@ -156,7 +158,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						<%int i = 0;
 							for(String st : place_arr){
 								i++;
-								out.println("<div class='place'><div class='no'>"+i+"</div>"+st+"</div>");
+								out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name'>"+st+"</div></div>");
 							}
 						%>
 						</div>
@@ -215,9 +217,64 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 				<p align="right">예상 경비 약 10,000,000 </p>
 					<div id="save_btn_div">
 						<a href = "plan_page.jsp?paging=edit_my&e_no=<%=esti.get(0).gete_no()%>"><input type="button" name="edit_plan" value="수정"></a>
-					</div>		
+					</div>	
+					</div>
+					<div id="plandiv_2">
+			<p class="plan_sub">※가계부</p>
+			<p><%=e_destination %>여행</p>
+				<div id="air_hotel_div">숙박ㆍ항공권</div>
+				<% int rs=0;
+					for(int a = 1 ; a <= datecnt ; a++){
+					%>	<table id="acc_table<%=a%>">
+						<tr>
+						<td>종류</td>
+						<td>내용</td>
+						<td>결제수단</td>
+						<td>금액</td>					
+						<td>삭제</td>
+						</tr>
+					<%	for(Account acc : accList){
+							if(acc.getAcc_day() == a){
+				%>	
+						<tr>
+						<td><%=acc.getAcc_category() %></td>
+						<td><%=acc.getAcc_contents() %></td>
+						<td><%=acc.getAcc_payment() %></td>
+						<td><%=acc.getAcc_amount() %></td>
+						<td><input type="button" name="del_place" value="삭제" onclick="del_pl(this, <%=acc.getAcc_amount()%>)"></td>
+						</tr>
+		
+				</table>
+				<%rs += acc.getAcc_amount();}} %>
+				<div id="pay_one_div<%=a%>">
+					<div id="price">
+						<input type="text" name="acc_price<%=a%>" id = "acc_price<%=a%>"placeholder="금액입력">
+					</div>
+					 <select name="pay_with<%=a%>" id= "pay_with<%=a%>" >
+					 	<option>결제수단</option>
+                        <option>현금</option>
+                        <option>카드</option>
+                     </select>
+                     <input type="text" name="acc_content<%=a%>" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
+                     <p>카테고리</p>
+                      <select name="acc_sort<%=a%>" id ="acc_sort<%=a%>">
+                         <option>숙소</option>
+                         <option>항공</option>
+                         <option>교통</option>
+                         <option>관광</option>
+                         <option>식비</option>
+                         <option>쇼핑</option>                   
+                     </select>
+  					<input type="button" name="add_acc_one<%=a%>" value="추가하기" onclick="add_acc(<%=a%>)">
+				</div>
+				<input type="button" name="add_acc<%=a%>" value="비용 추가" onclick="open_acc_div(<%=a%>)">
+				<%} %>
+				<input type="hidden" id="result_price" value="<%=rs %>">
+				<p id= "result_price_text"><%=rs %></p>
+		</div>	
 			<%}else{ %>
 	<input type="hidden" id="item" value="<%= items%>">
+	<input type="hidden" name="day" value="<%=aaaa %>">
 			<div id="list_text">
 				<p id="list_text"></p>
 			</div>
@@ -285,9 +342,12 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 						
 						<div class="pl_eat_div">
 						<%int i = 0;
+							int number;
 							for(String st : place_arr){
 								i++;
-								out.println("<div class='place'><div class='no'>"+i+"</div>"+st+"</div>");
+								number = a*100+i;
+								out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name"+number+"'>"+st+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up' onclick='up_pla("+number+")'><img src='img/icon/arrow_down.png' class='down' onclick='down_pla("+number+")'></div></div>");
+								out.println("<input type='hidden' name = 'change_value"+a+"' id='change_name"+number+"' value='"+st+"'>");
 							}
 						%>
 						</div>
@@ -373,9 +433,6 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 					<input type="submit" name="save_plan" value="저장">
 					</div>
 		</div>
-		<%} %>
-		</div>
-		
 		<div id="plandiv_2">
 			<p class="plan_sub">※가계부</p>
 			<p><%=e_destination %>여행</p>
@@ -387,9 +444,10 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 				<div id="acc_div<%=a%>">Day <%=a %></div>
 				<table id="acc_table<%=a%>">
 					<tr>
+					<td>종류</td>
 					<td>내용</td>
 					<td>결제수단</td>
-					<td>금액</td>
+					<td>금액</td>					
 					<td>삭제</td>
 					</tr>
 				</table>
@@ -405,7 +463,7 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
                      </select>
                      <input type="text" name="acc_content<%=a%>" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
                      <p>카테고리</p>
-                      <select name="reason<%=a%>">
+                      <select name="acc_sort<%=a%>" id ="acc_sort<%=a%>">
                          <option>숙소</option>
                          <option>항공</option>
                          <option>교통</option>
@@ -417,8 +475,12 @@ long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 				</div>
 				<input type="button" name="add_acc<%=a%>" value="비용 추가" onclick="open_acc_div(<%=a%>)">
 				<%} %>
-				<p>총 지출 : 100000000원</p>
+				<input type="hidden" id="result_price" value="0">
+				<p id= "result_price_text">0</p>
 		</div>
+		<%} %>
+		
+		
 		<div id="plandiv_3">
 			<p>체크리스트</p>
 		</div>

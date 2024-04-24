@@ -16,8 +16,10 @@ import com.jj.dto.Inquiry;
 import com.jj.dto.Place;
 import com.jj.dto.Plan;
 import com.jj.dto.Purchase;
-import com.jj.dto.Schedule;
+import com.jj.dto.User;
+
 import com.jj.dto.Package;
+import com.jj.dto.Package_like;
 import com.jj.dto.Package_schedule;
 
 import static com.jj.db.JdbcUtil.*;
@@ -96,7 +98,7 @@ public class JourneySql {
 	}
 	
 	public ArrayList<Package> mypagePackageSelect(String u_id) { //패키지 기획내역(패키지 상세내용 select)
-		String sql = "select * from package where u_id = '" + u_id + "'";
+		String sql = "select * from package where u_id = '" + u_id + "' order by p_no desc";
 		ArrayList<Package> alist = new ArrayList<Package>();
 		
 		try {
@@ -222,7 +224,7 @@ public class JourneySql {
 	}
 	
 	public ArrayList<Purchase> mypagePurchaseSelect(String u_id) { //패키지 참여내역 select
-		String sql = "select * from purchase where u_id = '" + u_id + "'";
+		String sql = "select * from purchase where u_id = '" + u_id + "' order by p_no desc";
 		ArrayList<Purchase> alist = new ArrayList<Purchase>();
 		
 		try {
@@ -277,10 +279,66 @@ public class JourneySql {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("sql mypagePackageSelect 에러----->"+e);
+			System.out.println("sql mypagePackageSelect2 에러----->"+e);
 		} finally {
 			close(rs);
 			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	public ArrayList<Package_like> mypageLikeSelect(String u_id) { //찜한 패키지 select
+		String sql = "select * from package_like where u_id = '" + u_id + "' order by p_no desc";
+		ArrayList<Package_like> alist = new ArrayList<Package_like>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Package_like pl = new Package_like();
+				pl.setU_id(rs.getString("u_id"));
+				pl.setP_no(rs.getInt("p_no"));
+				
+				alist.add(pl);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	public ArrayList<User> mypageUserInfoSelect(String u_id) { //user 정보 select
+		String sql = "select * from user where u_id = '" + u_id + "'";
+		ArrayList<User> alist = new ArrayList<User>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				User u = new User();
+				u.setU_id(rs.getString("u_id"));
+				u.setU_name(rs.getString("u_name"));
+				u.setU_phone(rs.getString("u_phone"));
+				u.setU_addr(rs.getString("u_addr"));
+				u.setU_email(rs.getString("u_email"));
+				u.setU_birth(rs.getDate("u_birth"));
+				u.setU_gender(rs.getString("u_gender"));
+				u.setU_nickname(rs.getString("u_nickname"));
+				u.setU_profile(rs.getString("u_profile"));
+				
+				alist.add(u);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return alist;

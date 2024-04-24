@@ -147,32 +147,78 @@ function initMap() {
     google.maps.event.addDomListener(window, "load", initMap);
   }
 
+function up_pla(num){
+
+	var ch_num = num-1 ;
+	var me = document.getElementById("plac_name"+num);
+	var change = document.getElementById("plac_name"+ch_num);
+	var save_me = document.getElementById("change_name"+num);
+	var save_change = document.getElementById("change_name"+ch_num);
+	
+	var me_val = me.innerText;
+	var change_val = change.innerText;
+	
+	save_me.setAttribute('value',change_val);
+	save_change.setAttribute('value',me_val);
+	
+	me.textContent = save_me.value;
+	change.textContent = save_change.value;
+
+}
+function down_pla(num){
+
+	var ch_num = num+1 ;
+	var me = document.getElementById("plac_name"+num);
+	var change = document.getElementById("plac_name"+ch_num);
+	var save_me = document.getElementById("change_name"+num);
+	var save_change = document.getElementById("change_name"+ch_num);
+	
+	var me_val = me.innerText;
+	var change_val = change.innerText;
+	
+	save_me.setAttribute('value',change_val);
+	save_change.setAttribute('value',me_val);
+
+	me.textContent = save_me.value;
+	change.textContent = save_change.value;	
+}
+
 function add_acc(num){
+	var add_sort = document.getElementById("acc_sort"+num);
 	var add_content = document.getElementById("acc_content"+num);
 	var add_price = document.getElementById("acc_price"+num);
 	var add_pay = document.getElementById("pay_with"+num);
 	
+	var sort = document.createElement("input");
+	sort.setAttribute("type","text");
+	sort.name="sort"+num;
+	sort.setAttribute("value", add_sort.value);
+	sort.readOnly = true;
+	
 	var content = document.createElement("input");
 	content.setAttribute("type","text");
 	content.name="content"+num;
-	content.value=add_content.value;
+	content.setAttribute("value",add_content.value);
+	content.readOnly = true;
 	
 	var price = document.createElement("input");
 	price.setAttribute("type","text");
-	price.name="price"+num;
-	price.value=add_price.value;
+	price.name="prices"+num;
+	price.setAttribute("value", add_price.value);
+	price.readOnly = true;
 	
 	var pay = document.createElement("input");
 	pay.setAttribute("type","text");
 	pay.name="pay_with"+num;
-	pay.value=add_pay.value;
+	pay.setAttribute("value",add_pay.value);
+	pay.readOnly = true;
 	
 	var del = document.createElement("input");
 	del.setAttribute("type", "button");
 	del.value="삭제";
 	del.name="del_place";
 	
-	del.setAttribute("onclick" , "del_pl(this)")
+	del.setAttribute("onclick" , "del_pl(this,"+add_price.value+")")
 	
 	var taList = document.getElementById('acc_table'+num);
 	var row = taList.insertRow(taList.rows.length);
@@ -181,24 +227,45 @@ function add_acc(num){
 	var td2 = row.insertCell(1);
 	var td3 = row.insertCell(2);
 	var td4 = row.insertCell(3);
+	var td5 = row.insertCell(4);
 	
-	td1.appendChild(content);
-	td2.appendChild(pay);
-	td3.appendChild(price);
-	td4.appendChild(del);
+	td1.appendChild(sort);
+	td2.appendChild(content);
+	td3.appendChild(pay);
+	td4.appendChild(price);
+	td5.appendChild(del);
+	
+
+	
+	var result_price = document.getElementById("result_price");
+	var before = parseInt(result_price.value);
+	var bb = parseInt(add_price.value);
+	var after = before + bb;
+
+	var text = document.getElementById("result_price_text");
+	text.textContent = after;
+	result_price.setAttribute("value", after);
 	
 	add_content.value = "";
 	add_price.value = "";
 	add_pay.value = "결제수단";
 	$("div[id='pay_one_div"+num+"']").slideUp();
 }
-function del_pl(st){
+function del_pl(st, i){
 	var tdd = st.parentNode;
 	var trr = tdd.parentNode;
 	var tbb = trr.parentNode;
 	tbb.removeChild(trr);
+	
+	var result_price = document.getElementById("result_price");
+	var before = parseInt(result_price.value);
+	var bb = parseInt(i);
+	var after = before - bb;
+	
+	var text = document.getElementById("result_price_text");
+	text.textContent = after;
+	result_price.setAttribute("value", after);
 }
 function open_acc_div(num){
 	$("div[id='pay_one_div"+num+"']").slideDown();
 }
-
