@@ -1,15 +1,10 @@
 package com.jj.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.dao.JourneyInterface;
-import com.jj.dao.Review;
-import com.jj.dto.Eatery;
-import com.jj.dto.Place;
 import com.jj.inter.ClassApply;
 import com.jj.inter.ClassApplyDelete;
 import com.jj.inter.ClassInsert;

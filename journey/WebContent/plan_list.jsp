@@ -73,7 +73,7 @@ System.out.println("셀렉트 완료 이스 : "+esti.size()+"플랜 : "+plan.siz
 								if(st.gete_no() == pl.getE_no()){
 					%>
 							<a href="plan_page.jsp?paging=detail_my&e_no=<%=st.gete_no() %>">
-							<div class="plan">
+								<div class="plan">
 									<div class="plan_content">
 										<h2><%=pl.getPlan_title()%></h2><span><%=pl.getPlan_date() %></span>
 										<br>
@@ -83,8 +83,8 @@ System.out.println("셀렉트 완료 이스 : "+esti.size()+"플랜 : "+plan.siz
 										<input type="submit" name="del_plan<%= st.gete_no()%>" value="삭제" class="button" onclick="del_plan(<%=st.gete_no() %>)"/>
 										<input type="hidden" name="e_no" value="<%=st.gete_no() %>">								
 									</div>
-							</div>
-						</a>
+								</div>
+							</a>
 							
 									
 					<% 			
