@@ -6,7 +6,7 @@
 
 <%
 	request.setCharacterEncoding("utf-8"); 
-	String list = "a";
+	String list = "a"; 
 	ArrayList<com.jj.dto.Plan_review> reviewList = dao.select_plan_review(list);
 	String u_id = (String) session.getAttribute("u_id");
 	response.addCookie(new Cookie("u_id", u_id));
