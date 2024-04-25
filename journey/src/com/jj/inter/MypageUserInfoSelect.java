@@ -1,10 +1,13 @@
 package com.jj.inter;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.conn.MypageUserInfoSelectDB;
 import com.jj.dao.JourneyInterface;
+import com.jj.dto.User;
 
 public class MypageUserInfoSelect implements JourneyInterface {
 	static MypageUserInfoSelect muSelect = new MypageUserInfoSelect();
@@ -20,11 +23,11 @@ public class MypageUserInfoSelect implements JourneyInterface {
 		String tab = request.getParameter("tab");
 		
 		MypageUserInfoSelectDB muSelectDB = new MypageUserInfoSelectDB();
-		muSelectDB.mypageUserInfoSelectDB(u_id);
+		ArrayList<User> ulist = muSelectDB.mypageUserInfoSelectDB(u_id);
 		
+		request.setAttribute("ulist", ulist);
 		
-		
-		return null;
+		return "mypage.jj?page=mypagePlanReview&tab="+tab+"&u_id="+u_id;
 	}
 	
 

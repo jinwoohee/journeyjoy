@@ -28,6 +28,8 @@ import com.jj.inter.LikeDelete;
 import com.jj.inter.LikeInsert;
 import com.jj.inter.MypageLikeSelect;
 import com.jj.inter.MypagePackageSelect;
+import com.jj.inter.MypagePlaceReviewSelect;
+import com.jj.inter.MypagePlanReviewSelect;
 import com.jj.inter.MypagePurchaseSelect;
 import com.jj.inter.MypageUserInfoSelect;
 import com.jj.inter.PackageDetail;
@@ -121,6 +123,24 @@ public class JourneyController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (page.equals("mypagePlanReview")) { //마이페이지-일정리뷰
+			ji = MypagePlanReviewSelect.mypagePlanReviewSelect();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("mypagePlaceReview")) { //마이페이지-장소리뷰
+			ji = MypagePlaceReviewSelect.mypagePlaceReviewSelect();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (page.equals("mypageUserInfo")) { //마이페이지-회원정보수정
 			ji = MypageUserInfoSelect.mypageUserInfoSelect();
 			try {
@@ -131,6 +151,10 @@ public class JourneyController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		
+		
+		
 		
 		//진수님 부분
 		else if(page.equals("insert")) {
