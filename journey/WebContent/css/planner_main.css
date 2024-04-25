@@ -2,12 +2,13 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	margin: 0;
 	color: rgb(64,64,64);
+	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover;
 }
 
 div[id="main_full_div"]{ /*섹션 전체 div*/
 	width: 100%;
 	height: 850px;
-	background-color: #6C94B8;
 	margin: 0px auto;
 	padding-top: 100px;
 	overflow: hidden;
@@ -23,7 +24,7 @@ input[class*="next"]{ /*슬라이드의 다음,테마선택 버튼 */
 	margin-left: 30px;
 	border-radius: 10px;
 	background-color: #f1f1f3;
-	border: 0;
+	border : 2px solid black;
 	cursor: pointer;
 }
 input[id*="save"]{ /* 슬라이드의 저장 버튼 */
@@ -37,18 +38,16 @@ input[id*="save"]{ /* 슬라이드의 저장 버튼 */
 	margin-left: 30px;
 	border-radius: 10px;
 	background-color: #f1f1f3;
-	border: 0;
+	border : 2px solid black;
 	cursor: pointer;
 }
 a[id*="right"]{ /* 오른쪽 화살표 버튼 */
 	float: right;
-	background-color: #6C94B8;
 	margin-top: -400px;
 	margin-right: 90px;
 }
 a[id*="left"]{ /*왼쪽 화살표 버튼 */
 	float: left;
-	background-color: #6C94B8;
 	margin-top: -400px;
 	margin-left: 80px;
 }
@@ -75,7 +74,6 @@ div[class="main_div"]{ /* 첫번째, 두번째, 세번째 화면의 div */
 div[class="main_con"]{ /* 첫번째, 두번째, 세번째 화면의 내부 내용 div */
 	width: 460px;
 	height: 560px;
-	background-color: #6C94B8;
 	margin: 0 auto;
 	padding-top: 40px;
 }
@@ -83,7 +81,6 @@ div[class="main_con"]{ /* 첫번째, 두번째, 세번째 화면의 내부 내�
 	margin-left: 30px;
 	font-size: 25px;
 	font-weight: bold;
-	color: #f1f1f3;
 	margin-top: 0;
 }
 div[id="img_div"]{ /*이미지 슬라이드의 div */
@@ -101,19 +98,18 @@ select{ /*셀렉트 */
 	width: 400px;
 	height: 40px;
 	border-radius: 5px;
-	border-color: #f1f1f3;
 	font-size: 11pt;
 	font-weight: bold;
 	font-family: "Noto Sans KR", sans-serif;
 	margin-bottom: 13px;
 	margin-left: 30px;
 	background-color: #f1f1f3;
-	color: rgb(64,64,64);	
+	color: rgb(64,64,64);
+	border : 1px solid black;	
 }
 div[id="cal_div"]{ /* 날짜선택창이 들어갈 div */
 	width: 400px;
 	height: 120px;
-	background-color: #6C94B8;;
 	margin-left: 30px;
 	margin-bottom: -10px;
 }
@@ -127,9 +123,9 @@ input[name*="Dt"]{ /*날짜 선택 */
 	font-family: "Noto Sans KR", sans-serif;
 	margin-bottom: 13px;
 	float: left;
-	border: 0px ;
 	background-color: #f1f1f3;
 	color:  rgb(64,64,64);
+	border : 1px solid black;
 }
 img[src*="cal"]{
 	margin-top: 3px;
@@ -139,32 +135,36 @@ img[src*="cal"]{
 	display: none;
 }
 label[id="airplane"]{ /*항공권 유무 */
-  padding: 9px 25px;
+  padding: 14px 33px;
 	margin-right: 25px;
 	background-color: #f1f1f3;
-	border-radius: 10px;
-	border: 5px solid #f1f1f3;
+	border-radius: 5px;
 	font-size: 10pt;
 	font-weight: bold;
 	margin-left: 30px;
-	color:  rgb(64,64,64);
+	color:  gray;
 	cursor: pointer;
+	border : 1px solid gray;
 }
 label[id="hotel"]{ /*숙소 유무 */
-	padding: 9px 33px;
-	border-radius: 10px;
+	padding: 14px 37px;
+	border-radius: 5px;
 	background-color: #f1f1f3;
-	color:  rgb(64,64,64);
-	border: 5px solid #f1f1f3;
+	color:  gray;
 	font-size: 10pt;
 	font-weight: bold;
 	cursor: pointer;
+	border : 1px solid gray;
 }
 img[name="check_img"]{ /*비행기,집 이미지 */
-	width: 30px;
+	width: 26px;
 	height: 30px;
 	padding: 0;
 	margin-top: -5px;
+}
+#hotel_check{
+	width : 30px;
+	height:27px;
 }
 
 /*2번째 선택화면 */
@@ -172,7 +172,6 @@ img[name="check_img"]{ /*비행기,집 이미지 */
 div[id="thema_div"]{ /*큰 테마가 들어갈 div */
 	width: 420px;
 	height: 160px;
-	background-color: #6C94B8;
 	margin: 30px 30px;
 }
 input[name="thema"], input[name="with"]{
@@ -188,6 +187,7 @@ input[name="thema"], input[name="with"]{
 	margin-right: 15px;
 	margin-bottom: 10px;
 	color:  rgb(64,64,64);
+	border : 0.5px solid black;
 }
 input[type=radio]:checked + label { /* 큰테마와 인원유형 라디오버튼 눌렀을때 */
 	background-color: #1E427F;
@@ -196,7 +196,6 @@ input[type=radio]:checked + label { /* 큰테마와 인원유형 라디오버튼
 div[id="with_div"]{ /*인원유형이 들어갈 div */
 	width: 410px;
 	height: 140px;
-	background-color: #6C94B8;
 	margin: 30px 30px;
 	margin-bottom: -25px;
 }
@@ -210,6 +209,7 @@ div[id="with_div"]{ /*인원유형이 들어갈 div */
 	margin-right: 15px;
 	margin-bottom: 10px;
 	color:  rgb(64,64,64);
+	border : 0.5px solid black;
 }
 
 /*3번째 선택화면*/
@@ -217,7 +217,6 @@ div[id="with_div"]{ /*인원유형이 들어갈 div */
 div[id="place_div"]{ /*여행지가 들어갈 div*/
 	width: 440px;
 	height: 160px;
-	background-color: #6C94B8;
 	margin: 30px 30px;
 }
 input[name="place"], input[name="eat"]{
@@ -233,11 +232,11 @@ input[name="place"], input[name="eat"]{
 	margin-right: 15px;
 	margin-bottom: 10px;
 	color: rgb(64,64,64);
+	border : 0.5px solid black;
 }
 div[id="eat_div"]{ /*음식취향이 들어갈 div*/
 	width: 430px;
 	height: 140px;
-	background-color: #6C94B8;
 	margin: 30px 30px;
 }
 .eat_check{ /*음식취향 체크박스의 속성 */
@@ -250,6 +249,7 @@ div[id="eat_div"]{ /*음식취향이 들어갈 div*/
 	margin-right: 15px;
 	margin-bottom: 10px;
 	color: rgb(64,64,64);
+	border : 0.5px solid black;
 }
 
 

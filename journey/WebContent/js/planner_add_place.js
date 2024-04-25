@@ -95,7 +95,7 @@ function plan_add_btn(num){
 	}
 	
 	$("input[name='place_one']").each(function(){
-	    if( $(this).is(":checked") == true ){	    	
+	    if( $(this).is(":checked") == true ){
 	      var id = $(this).attr('id');
 	      var checkVal = " #"+$(this).val();     
 	     

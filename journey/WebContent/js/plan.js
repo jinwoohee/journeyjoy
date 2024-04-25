@@ -4,6 +4,9 @@ $(function() {
 	$("input[name='edit_plan']").click(function(){
 		$("form").attr("action","plan_page.jsp?paging=edit_my");
 	});
+	$("input[name='save_acc']").click(function(){
+		$("form").attr("action","planner.jj?page=plan_update")
+	});
 	
 
 	  const kindWrap =  document.querySelector('#slide_div');
@@ -246,8 +249,8 @@ function add_acc(num){
 	text.textContent = after;
 	result_price.setAttribute("value", after);
 	
-	add_content.value = "";
-	add_price.value = "";
+	add_content.value = " ";
+	add_price.value = " ";
 	add_pay.value = "결제수단";
 	$("div[id='pay_one_div"+num+"']").slideUp();
 }
