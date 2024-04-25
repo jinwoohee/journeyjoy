@@ -15,7 +15,21 @@ public class Plan_review {
 	private Date pr_date;
 	
 	private String u_nickname;
+	private String u_profile;
+	private String e_destination;
 
+	public String getE_destination() {
+		return e_destination;
+	}
+	public void setE_destination(String e_destination) {
+		this.e_destination = e_destination;
+	}
+	public String getU_profile() {
+		return u_profile;
+	}
+	public void setU_profile(String u_profile) {
+		this.u_profile = u_profile;
+	}
 	public int getPr_no() {
 		return pr_no;
 	}

@@ -30,8 +30,41 @@
 	        	$(this).css({'background':'#f1f1f3'});
 	        });
 			 $(".review_div").mouseleave(function(){
-				 $(this).css({'background':'none'});
+				 $(this).css({'background':'white'});
 	        });
+			 
+			 
+			 /* 선택한 나라에 따라서 도시선택*/
+			$('select[name*=city]').hide();
+			
+			$('select[name=nation]').change(function(){
+				
+				var cities = ["japan", "canada", "philippines", "america", "australia", "newzealand", "china"];
+				
+				for(var i=0; i<cities.length; i++){
+					if($('select[name=nation]').val() == cities[i]){
+						$('#'+$('select[name=nation]').val()+'').show();
+						$('select[name*=city]').not($('#'+$('select[name=nation]').val()+'')).hide();
+					}
+				}
+			}); 
+			
+			
+			/*검색*/
+			$('#search img').click(function(){
+				
+				var nation = $('select[name=nation]').val();
+				var search = $('input[name=searchBox]').val();
+				var city = $('select[name=city_'+nation+']').val();
+
+				$.ajax({
+					url : "planReview_list.jj?page=planReviewSearch",
+	        		data : {"city" : city, "search" : search},
+	        		success : function(re){
+	        			$("#list_div").html(re);
+	        		}
+				});
+			});
 		});
     </script>
 </head>
@@ -46,29 +79,84 @@
             	<!-- 검색필터 -->
 				<div id="search_section">
 					<div>	
-						<select name='nation'>
-		                    <option value='-'>국가</option>
-		                    <option value='japan'>일본</option>
-		                    <option value='canada'>캐나다</option>
-		                </select>
-	
-		                <select name='city'>
-		                    <option value='-'>도시</option>
-		                    <option value='tokyo'>도쿄</option>
-		                    <option value='osaka'>오사카</option>
-		                </select>
-		                
-		                <select name='category'>
-		                	<option value='-'>카테고리</option>
-		                	<option value='place'>관광지</option>
-		                	<option value='restaurant'>음식점</option>
-		                </select>
-	
-		                <div id="search">
-							<input type="text" name="searchBox" placeholder="  검색단어 입력">
-							<button type='button' name='search'>검색</button>
-						</div>
-						<div>
+						<select name="nation">
+				    		<option value="choice">국가</option>
+				    		<option value="japan">일본</option>
+				    		<option value="canada">캐나다</option>
+				    		<option value="philippines">필리핀</option>
+				    		<option value="america">미국</option>
+				    		<option value="australia">호주</option>
+				    		<option value="newzealand">뉴질랜드</option>
+				    		<option value="china">중국</option>
+					  	</select>
+
+		               <select name="city_japan" id="japan">
+				    		<option value="choice">도시</option>
+				    		<option value="tokyo">도쿄</option>
+				    		<option value="osaka">오사카</option>
+				    		<option value="fukuoka">후쿠오카</option>
+				    		<option value="sapporo">삿포로</option>
+				    		<option value="okinawa">오키나와</option>
+				    		<option value="kyoto">교토</option>
+					  	</select>
+					  	<select name="city_canada" id="canada">
+				    		<option value="choice">도시</option>
+				    		<option value="vancouver">벤쿠버</option>
+				    		<option value="toronto">토론토</option>
+				    		<option value="banff">밴프(로키)</option>
+				    		<option value="niagara">나이아가라</option>
+				    		<option value="quebec">퀘벡</option>
+				    		<option value="whitehorse">화이트호스</option>
+					  	</select>
+					  	<select name="city_philippines" id="philippines">
+				    		<option value="choice">도시</option>
+				    		<option value="manila">마닐라</option>
+				    		<option value="boracay">보라카이</option>
+				    		<option value="cebu">세부</option>
+				    		<option value="bohol">보홀</option>
+				    		<option value="palawan">팔라완</option>
+				    		<option value="clark">클락</option>
+					  	</select>
+					  	<select name="city_america" id="america">
+				    		<option value="choice">도시</option>
+				    		<option value="hawaii">하와이</option>
+				    		<option value="maui">마우이</option>
+				    		<option value="bigisland">빅아일랜드(힐로)</option>
+				    		<option value="losAngeles">로스앤젤레스</option>
+				    		<option value="sanFrancisco">샌프란시스코</option>
+				    		<option value="lasVegas">라스베이거스</option>
+				    		<option value="guam">괌</option>
+					  	</select>
+					  	<select name="city_australia" id="australia">
+				    		<option value="choice">도시</option>
+				    		<option value="sydney">시드니</option>
+				    		<option value="melbourne">멜버른</option>
+				    		<option value="goldCoast">골드코스트</option>
+				    		<option value="brisbane">브리즈번</option>
+					  	</select>
+					  	<select name="city_newzealand" id="newzealand">
+				    		<option value="choice">도시</option>
+				    		<option value="auckland">오클랜드</option>
+				    		<option value="queenstown">퀸스타운</option>
+				    		<option value="christchurch">크라이스트처치</option>
+				    		<option value="rotorua">로토루아</option>
+					  	</select>
+					  	<select name="city_china" id="china">
+				    		<option value="choice">도시</option>
+				    		<option value="shanghai">상하이</option>
+				    		<option value="harbin">하얼빈</option>
+				    		<option value="shaman">샤먼</option>
+				    		<option value="beijing">북경</option>
+				    		<option value="hainan">하이난</option>
+				    		<option value="qingdao">칭다오</option>
+					  	</select>
+					</div>
+
+	                <div id="search">
+						<input type="text" name="searchBox" placeholder=" 검색단어 입력">
+						<img src='img/icon/search_btn.png'>
+					</div>
+					<div id="write_div">
 					  <%
 					  	if(u_id == null){
                   			 out.println("<img src='img/icon/write.png' name='write'/>");
@@ -76,7 +164,6 @@
                 			out.println("<a href='plan_review.jj?page=plan_reviewTab'><img src='img/icon/write.png' /></a>");
 					  	}
 					  %>
-						</div>
 					</div>
 				</div>
             </article>
@@ -84,17 +171,17 @@
            		<div id="list_div">         		
 	            	<%
 		            	for(com.jj.dto.Plan_review pr : reviewList){ %>
-		            	
     						<a href='plan_review_detail.jsp?page_no=<%=pr.getPr_no()%>&e_no=<%=pr.getE_no() %>'>
     						<div class='review_div'>
-    							<img src='img/profile/d.jpg'/>
+    							<img src='<%=pr.getU_profile() %>'/>
     							<p><%= pr.getU_nickname()%></p>
-    							<p class='nation'>여행도시</p>
+    							<div><%=pr.getPr_date() %></div>
     							<img src='uploadFile/<%=pr.getPr_file() %>' />
-    							<p>
-    								<div><%=pr.getPr_title() %></div>
-    								<div><%=pr.getPr_date() %></div>
-    							</p>
+    							<div class='nation_div'>
+	    							<img id="icon" src="img/icon/plane.png">
+	    							<p><%=pr.getE_destination() %></p>
+    							</div>
+   								<div><p><%=pr.getPr_title() %></p></div>
     							<p><%=pr.getPr_contents() %></p>
     						</div>
     						</a>
@@ -106,8 +193,7 @@
     <!--
     <div id="paging"></div>
     -->
-<footer>
-		<jsp:include page="main_footer.jsp" />	
-	</footer>
+
+	<jsp:include page="main_footer.jsp" />	
 </body>
 </html>

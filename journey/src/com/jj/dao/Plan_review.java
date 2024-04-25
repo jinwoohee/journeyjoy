@@ -56,14 +56,19 @@ public class Plan_review {
 		connDb();
 		
 		if(num.equals("a")) {
-			ResultSet rs = stmt.executeQuery("SELECT DISTINCT *,\r\n" + 
-					"(SELECT u_nickname FROM user u WHERE p.u_id = u.u_id) AS u_nickname\r\n" + 
-					"FROM plan_review p;");
+			ResultSet rs = stmt.executeQuery("SELECT DISTINCT p.*, u.u_nickname, u.u_profile, e.e_destination \r\n" + 
+												"FROM plan_review p\r\n" + 
+												"LEFT JOIN user u\r\n" + 
+												"ON p.u_id = u.u_id\r\n" + 
+												"LEFT JOIN estimate e\r\n" + 
+												"ON p.e_no = e.e_no;");
 			while(rs.next()) {
 				com.jj.dto.Plan_review review = new com.jj.dto.Plan_review();
 				review.setPr_no(rs.getInt("pr_no"));
 				review.setU_id(rs.getString("u_id"));
 				review.setU_nickname(rs.getString("u_nickname"));
+				review.setU_profile(rs.getString("u_profile"));
+				review.setE_destination(rs.getString("e_destination"));
 				review.setE_no(rs.getInt("e_no"));
 				review.setPr_title(rs.getString("pr_title"));
 				review.setPr_contents(rs.getString("pr_contents"));

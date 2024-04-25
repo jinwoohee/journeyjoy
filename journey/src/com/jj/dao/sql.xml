@@ -460,5 +460,14 @@
 		select u_id, p_no, (select u_id from package p where p.p_no = i.p_no) as p_uid  from inquiry i where p_no = #{p_no};
 	</select>
 	
-	
+	<!-- 일정리뷰 search -->
+	<select id="planReviewSearch" resultType="com.jj.dto.Plan_review" parameterType="java.util.HashMap">
+		SELECT DISTINCT p.*, u.u_nickname, u.u_profile, e.e_destination
+		FROM plan_review p
+		LEFT JOIN user u
+		ON p.u_id = u.u_id
+		LEFT JOIN estimate e
+		ON p.e_no = e.e_no
+		WHERE e.e_destination = #{city} and p.pr_title LIKE concat('%', #{search}, '%')
+	</select>
 </mapper>

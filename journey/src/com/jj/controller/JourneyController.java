@@ -33,6 +33,7 @@ import com.jj.inter.PlaceReviewSearch;
 import com.jj.inter.PlaceSearch;
 import com.jj.inter.PlanDelete;
 import com.jj.inter.PlanInsert;
+import com.jj.inter.PlanReviewSearch;
 import com.jj.inter.PlanSelect;
 import com.jj.inter.PlanUpdate;
 import com.jj.inter.Plan_reviewTabSelect;
@@ -445,6 +446,15 @@ public class JourneyController extends HttpServlet {
 				request.getRequestDispatcher(result).forward(request, response);
 			} catch (Exception e) {
 				System.out.println("--- Controller / 일정리뷰>장소검색 ---" + e);
+				e.printStackTrace();
+			}
+		}else if(page.equals("planReviewSearch")) {
+			ji = PlanReviewSearch.planReviewSearchInter();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 일정리뷰>검색 ---" + e);
 				e.printStackTrace();
 			}
 		}else {
