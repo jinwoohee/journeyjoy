@@ -1,15 +1,10 @@
 package com.jj.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.dao.JourneyInterface;
-import com.jj.dao.Review;
-import com.jj.dto.Eatery;
-import com.jj.dto.Place;
 import com.jj.inter.ClassApply;
 import com.jj.inter.ClassApplyDelete;
 import com.jj.inter.ClassInsert;
@@ -40,6 +35,7 @@ import com.jj.inter.PlaceReviewSearch;
 import com.jj.inter.PlaceSearch;
 import com.jj.inter.PlanDelete;
 import com.jj.inter.PlanInsert;
+import com.jj.inter.PlanReviewSearch;
 import com.jj.inter.PlanSelect;
 import com.jj.inter.PlanUpdate;
 import com.jj.inter.Plan_reviewTabSelect;
@@ -240,9 +236,9 @@ public class JourneyController extends HttpServlet {
 			} catch(Exception e) { 
 				// TODO: handle exception } }
 			}
-		}else if(page.equals("plan_reviewTab")) {
+		}
+		else if(page.equals("plan_reviewTab")) {
 			ji = Plan_reviewTabSelect.plan_reviewTabSelect();
-			System.out.println("일정리뷰컨트롤러");
 			try {
 				String page_url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(page_url).forward(request, response); 
@@ -475,6 +471,15 @@ public class JourneyController extends HttpServlet {
 				request.getRequestDispatcher(result).forward(request, response);
 			} catch (Exception e) {
 				System.out.println("--- Controller / 일정리뷰>장소검색 ---" + e);
+				e.printStackTrace();
+			}
+		}else if(page.equals("planReviewSearch")) {
+			ji = PlanReviewSearch.planReviewSearchInter();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 일정리뷰>검색 ---" + e);
 				e.printStackTrace();
 			}
 		}else {

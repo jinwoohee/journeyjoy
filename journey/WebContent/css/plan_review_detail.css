@@ -85,7 +85,7 @@ div[id="img_div"] img{
 	height: 300px;
 	object-fit : cover;
 }
-li{
+.li_sli{
 	list-style: none;
 	float : left;
 }

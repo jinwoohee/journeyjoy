@@ -8,6 +8,7 @@
 <%@page import="com.jj.dto.Ticket"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="com.jj.dto.Account"%>
 <%
 request.setCharacterEncoding("utf-8");
 	Cookie[] cookies = request.getCookies(); 
@@ -54,6 +55,7 @@ Date sdate = sdf.parse(e_start_date);
 Date edate = sdf.parse(e_end_date);
 long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 String aaaa = datecnt+"";
+List<Account> accList = (List<Account>)request.getAttribute("account");
 %>
 <!DOCTYPE html>
 <html>
@@ -175,7 +177,6 @@ String aaaa = datecnt+"";
 									String pr_no = pr.getProd_no()+"";
 									for(String my_pr : pr_arr){									
 										if(pr_no.equals(my_pr)){
-											System.out.println("상품1 :"+  my_pr);
 											products += pr.getProd_no()+",";
 											%>
 											<tr>
@@ -195,9 +196,7 @@ String aaaa = datecnt+"";
 								for(Ticket ti : tick){
 									String ti_no = ti.getTick_no()+"";	
 									for(String my_pr : pr_arr){
-										if(ti_no.equals(my_pr)){
-											System.out.println("티켓1 :"+ my_pr);
-										
+										if(ti_no.equals(my_pr)){									
 											tickets += ti.getTick_no()+",";
 											%>
 											<tr>
@@ -275,125 +274,66 @@ String aaaa = datecnt+"";
 							<img src="img/icon/arrows_left_black.png" id="left">
 						</div>	
 					</div>
-					<%-- <div class="product_add">
-						<p class="plan_sub">※이런 상품은 어떠세요?</p>				
-						<div id="item_div">
-						<div id = "slide_div">
-						<div class = "kind_slider">
-						<ul class="slider">
-						<li id="plan_li">							
-							<div class="product_adv">
-						<% 	for(Ticket ti : tick){
-								String ti_no = ti.getTick_no()+"";
-								System.out.println("티켓이다."+ti_no);					
-								for(String my_pr : pr_arr){
-									int a = Integer.parseInt(my_pr);
-									if(a < 20000){		
-										if(ti_no.equals(my_pr)){
-											System.out.println("티켓2(같을때) :"+ my_pr);
-											%>
-							<div id="product_item<%=ti.getTick_no()%>" style="display:none">
-							<img src="img\ticket.png" />
-								<table id="product_tb<%=ti.getTick_no()%>">
-									<tr>
-										<td name="prod_name" id="product_name<%=ti.getTick_no()%>"><%=ti.getTick_name() %></td>
-									</tr>
-									<tr>
-										<td name="prod_price" id="product_price<%=ti.getTick_no()%>" ><%=ti.getTick_price() %>																					
-									</td>
-									<td><img src="img/icon/plus.png" onclick="add_prod(<%=ti.getTick_no()%>)"/></td>
-									</tr>
-								</table>
-								<input type="hidden" id="product_sort<%=ti.getTick_no()%>" value="<%=ti.getTick_sort()%>">
-								<input type="hidden" id="product_no<%=ti.getTick_no()%>" value="<%=ti.getTick_no()%>">	
-							</div>
-							<%break;
-							} else if(!ti_no.equals(my_pr)){System.out.println("티켓3다를때 :"+ my_pr);%>
-							
-							<div id="product_item<%=ti.getTick_no() %>">
-							<img src="img\ticket.png" />
-								<table id="product_tb<%=ti.getTick_no()%>">
-									<tr>
-										<td name="prod_name" id="product_name<%=ti.getTick_no()%>"><%=ti.getTick_name() %></td>
-									</tr>
-									<tr>
-										<td name="prod_price" id="product_price<%=ti.getTick_no()%>" ><%=ti.getTick_price() %>																					
-									</td>
-									<td><img src="img/icon/plus.png" onclick="add_prod(<%=ti.getTick_no()%>)"/></td>
-									</tr>
-								</table>
-								<input type="hidden" id="product_sort<%=ti.getTick_no()%>" value="<%=ti.getTick_sort()%>">
-								<input type="hidden" id="product_no<%=ti.getTick_no()%>" value="<%=ti.getTick_no()%>">	
-							</div>
-							<%break;
-								}	
-							}
-						}}
-						
-						for(Product pro : prod){
-							String pr_no = pro.getProd_no()+"";
-							System.out.println("상품2이다."+pr_no);		
-							for(String my_pr : pr_arr){
-								int a = Integer.parseInt(my_pr);
-								System.out.println("상품1이다."+my_pr);	
-								if(a > 20000){
-								if(pr_no.equals(my_pr)){System.out.println("상품2 같을때 :"+  my_pr+"="+pr_no);
-										%>
-							<div id="product_item<%=pro.getProd_no()%>" style="display:none">
-								<img src="img\ticket.png" />
-								<table id="product_tb<%=pro.getProd_no()%>">
-									<tr>
-										<td name="prod_name" id="product_name<%=pro.getProd_no()%>"><%=pro.getProd_name() %></td>
-									</tr>
-									<tr>
-									<td name="prod_price" id="product_price<%=pro.getProd_no()%>" ><%=pro.getProd_price() %>
-										<img src="img/icon/plus.png" onclick="add_prod(<%=pro.getProd_no()%>)"/>											
-									</td>
-									</tr>
-								</table>
-								<input type="hidden" id="product_sort<%=pro.getProd_no()%>" value="<%=pro.getProd_sort()%>">
-								<input type="hidden" id="product_no<%=pro.getProd_no()%>" value="<%=pro.getProd_no()%>">	
-							</div>
-								<%
-								break;	}else if(!pr_no.equals(my_pr)){System.out.println("상품3 다를때 :"+  my_pr);%>		
-							<div id="product_item<%=pro.getProd_no()%>">
-								<img src="img\ticket.png" />
-								<table id="product_tb<%=pro.getProd_no()%>">
-									<tr>
-										<td name="prod_name" id="product_name<%=pro.getProd_no()%>"><%=pro.getProd_name() %></td>
-									</tr>
-
-									<tr>
-										<td name="prod_price" id="product_price<%=pro.getProd_no()%>" ><%=pro.getProd_price() %>
-											<img src="img/icon/plus.png" onclick="add_prod(<%=pro.getProd_no()%>)"/>											
-									</td>
-									</tr>
-								</table>
-								<input type="hidden" id="product_sort<%=pro.getProd_no()%>" value="<%=pro.getProd_sort()%>">
-								<input type="hidden" id="product_no<%=pro.getProd_no()%>" value="<%=pro.getProd_no()%>">	
-							</div>
-								<%		
-								break;	}	
-									} 
-								}
-						}
-							%> 
-				
-						</div>
-						</li>
-						</ul>
-						</div>
-						</div>
-							<img src="img/icon/arrows_right_black.png" id="right">
-							<img src="img/icon/arrows_left_black.png" id="left">
-						</div>	
-					</div> --%>
 				</div>
-						<p align="right">예상 경비 약 10,000,000 </p>
 					<div id="save_btn_div">
 						<input type="submit" name="save_plan" value="저장">
 					</div>
 				</div>
+				<div id="plandiv_2">
+			<p class="plan_sub">※가계부</p>
+			<p><%=e_destination %>여행</p>
+				<div id="air_hotel_div">숙박ㆍ항공권</div>
+				<% int rs=0;
+				System.out.println("가계부없"+accList.size());
+					for(int a = 1 ; a <= datecnt ; a++){
+					%>	<div id="acc_div<%=a%>">Day <%=a %></div>
+					<table id="acc_table<%=a%>">
+						<tr>
+							<td><input type="hidden" name="sort<%=a%>" readOnly="true" value="0">종류</td>
+							<td><input type="hidden" name="content<%=a%>" readOnly="true" value="0">내용</td>
+							<td><input type="hidden" name="pay_with<%=a%>" readOnly="true" value="0">결제수단</td>
+							<td><input type="hidden" name="prices<%=a%>" readOnly="true" value="0">금액</td>					
+							<td>삭제</td>
+						</tr>
+					<%	for(Account acc : accList){
+							if(acc.getAcc_day() == a){
+				%>	
+						<tr>
+						<td><input type="text" name="sort<%=a%>" readOnly="true" value="<%=acc.getAcc_category() %>"></td>
+						<td><input type="text" name="content<%=a%>" readOnly="true" value="<%=acc.getAcc_contents() %>"></td>
+						<td><input type="text" name="pay_with<%=a%>" readOnly="true" value="<%=acc.getAcc_payment() %>"></td>
+						<td><input type="text" name="prices<%=a%>" readOnly="true" value="<%=acc.getAcc_amount() %>"></td>
+						<td><input type="button" name="del_place" value="삭제" onclick="del_pl(this, <%=acc.getAcc_amount()%>)"></td>
+						</tr>
+				<%rs += acc.getAcc_amount();}} %>
+				</table>
+				<div id="pay_one_div<%=a%>">
+					<div id="price">
+						<input type="text" name="acc_price<%=a%>" id = "acc_price<%=a%>"placeholder="금액입력">
+					</div>
+					 <select name="pay_with<%=a%>" id= "pay_with<%=a%>" >
+					 	<option>결제수단</option>
+                        <option>현금</option>
+                        <option>카드</option>
+                     </select>
+                     <input type="text" name="acc_content<%=a%>" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
+                     <p>카테고리</p>
+                      <select name="acc_sort<%=a%>" id ="acc_sort<%=a%>">
+                         <option>숙소</option>
+                         <option>항공</option>
+                         <option>교통</option>
+                         <option>관광</option>
+                         <option>식비</option>
+                         <option>쇼핑</option>                   
+                     </select>
+  					<input type="button" name="add_acc_one<%=a%>" value="추가하기" onclick="add_acc(<%=a%>)">
+				</div>
+				<input type="button" name="add_acc<%=a%>" value="비용 추가" onclick="open_acc_div(<%=a%>)">
+				<%} %>
+				<input type="hidden" id="result_price" value="<%=rs %>">
+				<p id= "result_price_text"><%=rs %></p>
+				<input type="submit" name="save_acc" value="저장">
+		</div>	
 			</div>
 		</form>
 	</section>

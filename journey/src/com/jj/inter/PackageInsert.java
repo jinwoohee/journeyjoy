@@ -82,7 +82,7 @@ public class PackageInsert implements JourneyInterface {
 			pk.setP_file(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
 		}
 		pk.setP_notification(multi.getParameter("notice"));
-		pk.setP_url("aa"); // 현재페이지 URL > 나중에 뒤에 ?페이지번호 붙이기
+		pk.setP_url(request.getRequestURI()); // 현재페이지 URL > 나중에 뒤에 ?페이지번호 붙이기
 		
 		HashMap<String, Object> param = insertDB.insertPackage(pk);
 		

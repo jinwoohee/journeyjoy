@@ -6,8 +6,7 @@ import java.util.Arrays;
 public class Plan_review {
 	private int pr_no;
 	private String u_id;
-	private int plan_no;
-	private String pl_eat_no;
+	private int e_no;
 	private String pr_title;
 	private String pr_contents;
 	private String pr_file;
@@ -15,69 +14,99 @@ public class Plan_review {
 	private String pr_file3;
 	private Date pr_date;
 	
-	public int getpr_no() {
+	private String u_nickname;
+	private String u_profile;
+	private String e_destination;
+
+	public String getE_destination() {
+		return e_destination;
+	}
+	public void setE_destination(String e_destination) {
+		this.e_destination = e_destination;
+	}
+	public String getU_profile() {
+		return u_profile;
+	}
+	public void setU_profile(String u_profile) {
+		this.u_profile = u_profile;
+	}
+	public int getPr_no() {
 		return pr_no;
 	}
-	public void setpr_no(int pr_no) {
+	public void setPr_no(int pr_no) {
 		this.pr_no = pr_no;
 	}
-	public String getu_id() {
+
+	public String getU_id() {
 		return u_id;
 	}
-	public void setu_id(String u_id) {
+
+	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-	public int getplan_no() {
-		return plan_no;
+
+	public int getE_no() {
+		return e_no;
 	}
-	public void setplan_no(int plan_no) {
-		this.plan_no = plan_no;
+
+	public void setE_no(int e_no) {
+		this.e_no = e_no;
 	}
-	public String getpl_eat_no() {
-		return pl_eat_no;
-	}
-	public void setpl_eat_no(String[] pl_eat_no) {
-		String place_no = Arrays.toString(pl_eat_no);
-		String pl_no = place_no.replaceAll("\\[", "").replaceAll("\\]", "");
-		
-		this.pl_eat_no = pl_no;
-	}
-	public String getpr_title() {
+
+	public String getPr_title() {
 		return pr_title;
 	}
-	public void setpr_title(String pr_title) {
+
+	public void setPr_title(String pr_title) {
 		this.pr_title = pr_title;
 	}
-	public String getpr_contents() {
+
+	public String getPr_contents() {
 		return pr_contents;
 	}
-	public void setpr_contents(String pr_contents) {
+
+	public void setPr_contents(String pr_contents) {
 		this.pr_contents = pr_contents;
 	}
-	public String getpr_file() {
+
+	public String getPr_file() {
 		return pr_file;
 	}
-	public void setpr_file(String pr_file) {
+
+	public void setPr_file(String pr_file) {
 		this.pr_file = pr_file;
 	}
-	public Date getpr_date() {
-		return pr_date;
-	}
-	public void setpr_date(Date pr_date) {
-		this.pr_date = pr_date;
-	}
-	public String getpr_file2() {
+
+	public String getPr_file2() {
 		return pr_file2;
 	}
-	public void setpr_file2(String pr_file2) {
+
+	public void setPr_file2(String pr_file2) {
 		this.pr_file2 = pr_file2;
 	}
 
-	public String getpr_file3() {
+	public String getPr_file3() {
 		return pr_file3;
 	}
-	public void setpr_file3(String pr_file3) {
+
+	public void setPr_file3(String pr_file3) {
 		this.pr_file3 = pr_file3;
+	}
+
+	public Date getPr_date() {
+		return pr_date;
+	}
+
+	public void setPr_date(Date pr_date) {
+		this.pr_date = pr_date;
+	}
+
+	public String getU_nickname() {
+		return u_nickname;
+	}
+
+	public void setU_nickname(String u_nickname) {
+		this.u_nickname = u_nickname;
 	}
 
 }

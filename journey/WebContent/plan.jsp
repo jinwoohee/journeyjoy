@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Estimate"%>
 <%@page import="com.jj.dto.Schedule"%>
+<%@page import="com.jj.dto.Account"%>
 <%@page import="com.jj.dto.Plan"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -84,8 +85,11 @@ String aaaa = datecnt+"";
 		List<Plan> planList = (List<Plan>)request.getAttribute("plan");
 		String my_prod = planList.get(0).getPlan_product();
 		System.out.println(my_prod);
+		System.out.println(aaaa);
 		String [] mp = my_prod.split(",");
+		List<Account> accList = (List<Account>)request.getAttribute("account");
 		%>
+		<input type="hidden" name="day" value="<%=aaaa %>">
 		<input type="hidden" id="item" value="<%= items%>">
 			<div id="list_text">
 				<p id="list_text"></p>
@@ -95,7 +99,7 @@ String aaaa = datecnt+"";
 				<label for="gagyebu_btn" id="plan_radio_2" onclick="change_main('2')">가계부</label>
 				<label for="checklist_btn" id="plan_radio_3" onclick="change_main('3')">체크리스트</label>
 			</div>
-			
+			<input type="hidden" name="selected_prod" id="selected_prod" value="<%=my_prod%>">
 			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">
 			<div id="plandiv_1">
 				<input type="text" name="plan_subject" placeholder="계획서 제목(최대50자)" maxlength="50" value="<%=esti.get(0).getu_id()%>의 <%=esti.get(0).gete_destination() %>여행계획서"/>
@@ -154,9 +158,12 @@ String aaaa = datecnt+"";
 						
 						<div class="pl_eat_div">
 						<%int i = 0;
+							int number;
 							for(String st : place_arr){
 								i++;
-								out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name'>"+st+"</div></div>");
+								number = a*100+i;
+								out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name"+number+"'>"+st+"</div></div>");
+								out.println("<input type='hidden' name = 'change_value"+a+"' id='change_name"+number+"' value='"+st+"'>");
 							}
 						%>
 						</div>
@@ -212,10 +219,64 @@ String aaaa = datecnt+"";
 						</table>
 					</div>
 				</div>
-				<p align="right">예상 경비 약 10,000,000 </p>
 					<div id="save_btn_div">
 						<a href = "plan_page.jsp?paging=edit_my&e_no=<%=esti.get(0).gete_no()%>"><input type="button" name="edit_plan" value="수정"></a>
-					</div>		
+					</div>	
+					</div>
+					<div id="plandiv_2">
+			<p class="plan_sub">※가계부</p>
+			<p><%=e_destination %>여행</p>
+				<div id="air_hotel_div">숙박ㆍ항공권</div>
+				<% int rs=0;
+					for(int a = 1 ; a <= datecnt ; a++){
+					%>	<div id="acc_div<%=a%>">Day <%=a %></div>
+					<table id="acc_table<%=a%>">
+						<tr>
+						<td><input type="hidden" name="sort<%=a%>" readOnly="true" value="0">종류</td>
+						<td><input type="hidden" name="content<%=a%>" readOnly="true" value="0">내용</td>
+						<td><input type="hidden" name="pay_with<%=a%>" readOnly="true" value="0">결제수단</td>
+						<td><input type="hidden" name="prices<%=a%>" readOnly="true" value="0">금액</td>					
+						<td>삭제</td>
+						</tr>
+					<%	for(Account acc : accList){
+							if(acc.getAcc_day() == a){
+				%>	
+						<tr>
+						<td><input type="text" name="sort<%=a%>" readOnly="true" value="<%=acc.getAcc_category() %>"></td>
+						<td><input type="text" name="content<%=a%>" readOnly="true" value="<%=acc.getAcc_contents() %>"></td>
+						<td><input type="text" name="pay_with<%=a%>" readOnly="true" value="<%=acc.getAcc_payment() %>"></td>
+						<td><input type="text" name="prices<%=a%>" readOnly="true" value="<%=acc.getAcc_amount() %>"></td>
+						<td><input type="button" name="del_place" value="삭제" onclick="del_pl(this, <%=acc.getAcc_amount()%>)"></td>
+						</tr>
+				<%rs += acc.getAcc_amount();}} %>
+				</table>
+				<div id="pay_one_div<%=a%>">
+					<div id="price">
+						<input type="text" name="acc_price<%=a%>" id = "acc_price<%=a%>"placeholder="금액입력">
+					</div>
+					 <select name="pay_with<%=a%>" id= "pay_with<%=a%>" >
+					 	<option>결제수단</option>
+                        <option>현금</option>
+                        <option>카드</option>
+                     </select>
+                     <input type="text" name="acc_content<%=a%>" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
+                     <p>카테고리</p>
+                      <select name="acc_sort<%=a%>" id ="acc_sort<%=a%>">
+                         <option>숙소</option>
+                         <option>항공</option>
+                         <option>교통</option>
+                         <option>관광</option>
+                         <option>식비</option>
+                         <option>쇼핑</option>                   
+                     </select>
+  					<input type="button" name="add_acc_one<%=a%>" value="추가하기" onclick="add_acc(<%=a%>)">
+				</div>
+				<input type="button" name="add_acc<%=a%>" value="비용 추가" onclick="open_acc_div(<%=a%>)">
+				<%} %>
+				<input type="hidden" id="result_price" value="<%=rs %>">
+				<p id= "result_price_text"><%=rs %></p>
+				<input type="submit" name="save_acc" value="저장">
+		</div>	
 			<%}else{ %>
 	<input type="hidden" id="item" value="<%= items%>">
 	<input type="hidden" name="day" value="<%=aaaa %>">
@@ -372,14 +433,10 @@ String aaaa = datecnt+"";
 						</div>	
 					</div>
 				</div>
-			<p align="right">예상 경비 약 10,000,000 </p>
 			<div id="save_btn_div">
 					<input type="submit" name="save_plan" value="저장">
 					</div>
 		</div>
-		<%} %>
-		</div>
-		
 		<div id="plandiv_2">
 			<p class="plan_sub">※가계부</p>
 			<p><%=e_destination %>여행</p>
@@ -391,10 +448,11 @@ String aaaa = datecnt+"";
 				<div id="acc_div<%=a%>">Day <%=a %></div>
 				<table id="acc_table<%=a%>">
 					<tr>
-					<td>내용</td>
-					<td>결제수단</td>
-					<td>금액</td>
-					<td>삭제</td>
+						<td><input type="hidden" name="sort<%=a%>" readOnly="true" value="0">종류</td>
+						<td><input type="hidden" name="content<%=a%>" readOnly="true" value="0">내용</td>
+						<td><input type="hidden" name="pay_with<%=a%>" readOnly="true" value="0">결제수단</td>
+						<td><input type="hidden" name="prices<%=a%>" readOnly="true" value="0">금액</td>					
+						<td>삭제</td>
 					</tr>
 				</table>
 				
@@ -409,7 +467,7 @@ String aaaa = datecnt+"";
                      </select>
                      <input type="text" name="acc_content<%=a%>" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
                      <p>카테고리</p>
-                      <select name="reason<%=a%>">
+                      <select name="acc_sort<%=a%>" id ="acc_sort<%=a%>">
                          <option>숙소</option>
                          <option>항공</option>
                          <option>교통</option>
@@ -421,8 +479,15 @@ String aaaa = datecnt+"";
 				</div>
 				<input type="button" name="add_acc<%=a%>" value="비용 추가" onclick="open_acc_div(<%=a%>)">
 				<%} %>
-				<p>총 지출 : 100000000원</p>
+				<input type="hidden" id="result_price" value="0">
+				<p id= "result_price_text">0</p>
+				<div id="save_btn_div">
+					<input type="submit" name="save_plan" value="저장">
+					</div>
 		</div>
+		<%} %>
+		
+		
 		<div id="plandiv_3">
 			<p>체크리스트</p>
 		</div>

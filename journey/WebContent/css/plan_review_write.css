@@ -88,10 +88,10 @@ div[class="day_plan"]{ /*날짜별 일정 div*/
 div[class="day_info"]{
 	width: 790px;
     height: 120px;
-    margin-left: 50px;
+    margin-left: 52px;
     float: left;
     border-radius: 10px 10px 0 0;
-    border: 2px solid #0D112D;
+    border: 1px solid #CCCCCC;
     margin-top: 30px;
 }
 .day{
@@ -105,38 +105,37 @@ img[class="day_write"]{
 	width : 25px;
 	height : 25px;
 	float : left;
-	margin-top : 18px;
-	margin-left : 40px;
+	margin-top: 19px;
+    margin-left: 20px;
 }
 p[class="place_info"]{
-	float: left;
-    font-size: 15px;
-    margin-left: 40px;
-    margin-top: 4px;
+	font-size: 15px;
     width: 600px;
     height: 30px;
     color: white;
     background: #6C94B8;
     border-radius: 30px;
-    text-align: center;
+    padding-left: 20px;
     padding-top: 4px;
+    margin-top: 60px;
+    margin-left: 37px;
 }
 img[id*="down"]{
 	width : 25px;
 	height : 25px;
 	float : right;
 	margin-right : 40px;
-	margin-top :-15px; 
+	margin-top :-65px; 
 	cursor : pointer;
 }
 img[id*="up"]{
-	width : 25px;
-	height : 25px;
-	float : right;
-	margin-right : 40px;
-	margin-top :-15px;
-	display : none; 
-	cursor : pointer;
+	width: 25px;
+    height: 25px;
+    float: right;
+    margin-right: 40px;
+    margin-top: -65px;
+    display: none;
+    cursor: pointer;
 }
 img[id="down1"]{
 	display:none;
@@ -216,4 +215,92 @@ input[name="cancel"]{
 	border : none;
 	color : #646464;
 	font-weight: bold;
+}
+
+/* 첨부파일 */
+#file_txt{
+	width : 150px;
+	height: 30px;
+	background : #0D112D;
+	margin-left : 54px;
+	color : white;
+	border-radius : 5px 5px 0 0;
+}
+
+#file_txt > p{
+	text-align : center;
+}
+
+#file{
+	margin: 0 auto;
+    display: flex;
+    width: 790px;
+    height: 190px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+#file > div{
+	margin : 0 auto;
+	display: flex;
+    align-items: center;
+}
+
+div[id*=thumnail]{
+	width: 150px;
+	height: 150px;
+	border-radius: 10px;
+	background: #f1f1f3;
+	margin-right: 30px;
+}
+
+input[type=file]{
+	display: none;
+}
+
+/* 추가버튼 */
+input[name *=upload_btn]{
+	width: 40px;
+    height: 40px;
+    font-size: 30px;
+    color: #CCCCCC;
+    margin-top: 58px;
+    border: none;
+    margin-left: 55px;
+}
+
+/* 삭제버튼 */
+input[name *=del_btn]{
+	width: 20px;
+    height: 20px;
+    background: #FF2424;
+    color: white;
+    border: none;
+    position: absolute;
+    margin-left: 132px;
+    margin-top: -157px;
+    display : none;
+}
+
+#thumnail3{
+	margin-right: 0;
+}
+
+/* 썸네일 추가시 미리보기 이미지 */
+div[id *= preview] img{
+	width: 150px;
+	height : 150px;
+	overflow: hidden;
+	object-fit : cover;
+	border-radius: 10px;
+	background : white;
+	border : 1px solid #CCCCCC;
+}
+
+#preview{
+	width: 150px;
+	height: 150px;
+	object-fit : cover;
+	overflow: hidden;
+	border-radius: 10px;
 }

@@ -113,17 +113,19 @@ function callbackz(place, status) {
 
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-
+	  var id = document.getElementsByName("place_num");
     for (var i = 0; i < results.length; i++) {
       var place = results[i];
       createMarker(results[i]);
+      for(var j = 0; j < id.length; j++){
+      	selectMarker(results[i], id[j].value,j);
+      }
     } map.setCenter(results[0].geometry.location);
   }
 }
 
-
 function createMarker(place) {
-  const infowindow = new google.maps.InfoWindow();
+  var infowindow = new google.maps.InfoWindow();
   if (!place.geometry || !place.geometry.location) return;
 
   const marker = new google.maps.Marker({
@@ -131,6 +133,7 @@ function createMarker(place) {
     position: place.geometry.location,
   });
   
+
   const re_request = {
 	      placeId : place.place_id,
 	      fields : ["price_level", "opening_hours","photos","url"]
@@ -143,11 +146,26 @@ function createMarker(place) {
     
     infowindow.open(map, marker);
   });
-			  
-	  
-
+  
 }
-
+function selectMarker(place, btn_place,j){
+	var infowindow = new google.maps.InfoWindow();	
+	if (!place.geometry || !place.geometry.location) return;
+		if(place.place_id == btn_place){
+		var btn = document.getElementsByClassName("pl_label");
+		const marker_pick = new google.maps.Marker({
+		    map,
+		    position: place.geometry.location,
+		  });
+		
+		btn[j].addEventListener('click', function(){
+			infowindow.setContent(place.name+"<br>"+place.formatted_address+"<br>리뷰점수 : "+place.rating+"<br>"+"<a href='"+pla_url+"'  style='color:blue;' target='_blank'>구글지도에서 정보보기</a>");
+			infowindow.open(map, marker_pick);
+			map.setCenter(place.geometry.location);
+			map.setZoom(15);
+		 });
+	}
+}
 window.initMap = initMap;
 </script>
 
@@ -206,16 +224,15 @@ window.initMap = initMap;
 						}		
 					}
 					else{
-						
-						int z=0;
+						String locate;
+						int z=-1;
 						for(Place plalist : pla){
 							z++;
 											
-							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_id()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
+							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_name()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
 							out.println("<label for='pone"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");		
-							out.println("<input type='hidden' id='place_num"+z+"' value='"+plalist.getPlac_id()+"'>");
-								System.out.println(plalist.getPlac_name());
-						}
+							out.println("<input type='hidden' name='place_num' value='"+plalist.getPlac_id()+"'>");
+						}	
 						out.println("</div>");		
 						for(int a = 1 ; a <= datecnt ; a++){
 							out.println("<input type='button' id='plan_add"+a+"' value='여행지 추가' class='button' onclick='plan_add_btn("+a+")'/>");	
@@ -235,7 +252,7 @@ window.initMap = initMap;
 					String place_attr = (String) request.getAttribute("planList"+a);
 					System.out.println(place_attr+"1번");
 					out.println("<div id='places"+a+"'>");
-					out.println("<p class='my_place'>나의 여행지</p>");
+					out.println("<p class='my_place'>나의 여행지 (Day"+a+")</p>");
 					if(place_name == null ){
 						if(place_cookie.equals("")){
 							

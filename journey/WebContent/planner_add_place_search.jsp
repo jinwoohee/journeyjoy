@@ -147,15 +147,14 @@ function plan_add_btn(num){
 						}		
 					}
 					else{
-						
-						int z=0;
+						String locate;
+						int z=-1;
 						for(Place plalist : pla){
 							z++;
 											
-							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_name()+"' id= '"+z+"' onclick='checking(this.id)'>");
-							out.println("<label for='"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");
-							out.println("<input type='hidden' id='place_num"+z+"' value='"+plalist.getPlac_id()+"'>");
-								System.out.println(plalist.getPlac_name());
+							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_name()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
+							out.println("<label for='pone"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");		
+							out.println("<input type='hidden' name='place_num' value='"+plalist.getPlac_id()+"'>");
 						}
 						out.println("</div>");
 						for(int a = 1 ; a <= datecnt ; a++){

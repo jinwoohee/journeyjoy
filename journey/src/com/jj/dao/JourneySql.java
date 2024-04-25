@@ -19,6 +19,7 @@ import com.jj.dto.Plan;
 import com.jj.dto.Plan_review;
 import com.jj.dto.Purchase;
 import com.jj.dto.User;
+
 import com.jj.dto.Package;
 import com.jj.dto.Package_like;
 import com.jj.dto.Package_schedule;
@@ -358,15 +359,15 @@ public class JourneySql {
 			
 			while (rs.next()) {
 				Plan_review pr = new Plan_review();
-				pr.setpr_no(rs.getInt("pr_no"));
-				pr.setu_id(rs.getString("u_id"));
-				pr.setplan_no(rs.getInt("plan_no"));
-				pr.setpr_title(rs.getString("pr_title"));
-				pr.setpr_contents(rs.getString("pr_contents"));
-				pr.setpr_file(rs.getString("pr_file"));
-				pr.setpr_file2(rs.getString("pr_file2"));
-				pr.setpr_file3(rs.getString("pr_file3"));
-				pr.setpr_date(rs.getDate("pr_date"));
+				pr.setPr_no(rs.getInt("pr_no"));
+				pr.setU_id(rs.getString("u_id"));
+				pr.setE_no(rs.getInt("e_no"));
+				pr.setPr_title(rs.getString("pr_title"));
+				pr.setPr_contents(rs.getString("pr_contents"));
+				pr.setPr_file(rs.getString("pr_file"));
+				pr.setPr_file2(rs.getString("pr_file2"));
+				pr.setPr_file3(rs.getString("pr_file3"));
+				pr.setPr_date(rs.getDate("pr_date"));
 				
 				alist.add(pr);
 			}
