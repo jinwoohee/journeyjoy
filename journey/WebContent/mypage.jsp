@@ -710,7 +710,7 @@
 										<p class="plan_title"><strong><%= pr.getPr_title() %></strong></p>
 										<p class="plan_word"><%= pr.getPr_contents() %></p>
 									</div>
-									<div class="plan_btn">
+									<div class="plan_btn"> 
 										<button>상세내역</button>
 										<button>리뷰삭제</button>
 									</div>

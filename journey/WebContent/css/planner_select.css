@@ -2,6 +2,8 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	margin: 0;
 	color: rgb(64,64,64);
+	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover;
 }
 header iframe{ /*헤더*/
 	position: fixed;
@@ -153,6 +155,7 @@ p[class="list_thema"]{ /*리스트의 태그 글자 */
 	font-weight: bold;
 	margin-bottom: 8px;
 	margin-right: 12px;
+	background-color : white;
 }
 div[class="select_btn_div"]{
 	float:right;

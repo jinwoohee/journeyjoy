@@ -20,18 +20,35 @@ section{
 	padding-bottom: 210px;
 }
 div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
-	width: 500px;
+	width: 700px;
     border: 2px solid #cccccc;
     padding: 50px 50px;
-    border-radius: 10px;
     box-shadow: 3px 3px 3px #cccccc	;
 	margin: 0 auto;
 	background : white;
 }
 .plan_div{
-	width : 450px;
-	height : 100px;
-	border : 1px solid #cccccc;
-	margin: 20px auto;
-	background-color : violet;
+	width: 500px;
+    height: 190px;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding : 10px;
+}
+
+.plan_div > a > div:first-of-type > img{
+	width: 40px;
+    height: 40px;
+    object-fit: cover;
+    float : left;
+}
+
+.plan_div > a > div:first-of-type > p{
+	float: left;
+    font-size: 20px;
+    color: #0D112D;
+    margin-left: 10px;
+    font-weight: bold;
+    margin-top: 5px;
+    width: 450px;
 }

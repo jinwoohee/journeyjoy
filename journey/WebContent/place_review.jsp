@@ -46,12 +46,12 @@
 		});
 		
 		//mouseenter, leave
-		$(".review").mouseenter(function(){
+		/* $(".review").mouseenter(function(){
         	$(this).css({'background':'#f1f1f3'});
         });
 		 $(".review").mouseleave(function(){
-			 $(this).css({'background':'none'});
-        });
+			 $(this).css({'background':'white'});
+        }); */
 		 
 		 //검색창 
 		 $("input[name='search']").click(function(){
@@ -174,9 +174,9 @@
        						}
        						out.println("<textarea disabled>"+lr.getLr_contents()+"</textarea>");
        						out.println("</div><div class='file'>");
-       						if(lr.getLr_file2() == null && lr.getLr_file3() == null){
+       						if(lr.getLr_file2().equals("bg1.jpg") && lr.getLr_file3().equals("bg1.jpg")){
        							out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=520px height=300px />");
-       						}else if(lr.getLr_file3() == null){
+       						}else if(lr.getLr_file3().equals("bg1.jpg")){
        							out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=255px height=300px />");
        							out.println("<img src='uploadFile/"+lr.getLr_file2()+"' width=255px height=300px />");
        						}else{

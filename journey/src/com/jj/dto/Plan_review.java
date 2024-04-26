@@ -17,7 +17,21 @@ public class Plan_review {
 	private String u_nickname;
 	private String u_profile;
 	private String e_destination;
-
+	private String e_thema;
+	private String e_detail_thema;
+	
+	public String getE_thema() {
+		return e_thema;
+	}
+	public void setE_thema(String e_thema) {
+		this.e_thema = e_thema;
+	}
+	public String getE_detail_thema() {
+		return e_detail_thema;
+	}
+	public void setE_detail_thema(String e_detail_thema) {
+		this.e_detail_thema = e_detail_thema;
+	}
 	public String getE_destination() {
 		return e_destination;
 	}

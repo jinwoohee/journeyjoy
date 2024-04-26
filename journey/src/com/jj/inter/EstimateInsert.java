@@ -21,7 +21,7 @@ public class EstimateInsert implements JourneyInterface{
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession(false);
 		String u_id = (String) session.getAttribute("u_id");
-		System.out.println("hi1");
+		
 		Cookie[] ck = request.getCookies();
 		String e_departure = getCookieValue(ck, "e_departure");
 		String e_destination = getCookieValue(ck, "e_destination");
@@ -33,11 +33,11 @@ public class EstimateInsert implements JourneyInterface{
 		String e_food_taste = getCookieValue(ck, "e_food_taste");
 		String e_airplane = getCookieValue(ck, "e_airplane");
 		String e_hotel = getCookieValue(ck, "e_hotel");
-		System.out.println("hi2");
+		
 		String thema_arr = e_detail_thema.replaceAll("_", ",");
 		
 		String food_arr = e_food_taste.replaceAll("_", ",");
-		System.out.println("hi3");
+		
 		EstimateInsertDB idb = EstimateInsertDB.indb();
 		Map<String, Object> param = idb.insertMth(u_id, e_departure, e_destination, e_start_date, e_end_date, e_thema, thema_arr, e_volume, food_arr, e_airplane, e_hotel);
 		

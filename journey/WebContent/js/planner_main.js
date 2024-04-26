@@ -26,7 +26,7 @@ window.onload = function() {
           currentIdx -= 1;
         }
       });
-
+   
 
   $("#air").change(function(){ /*항공권 여부 체크박스 */
       if($("#air").is(":checked")){``
@@ -46,12 +46,43 @@ window.onload = function() {
         $("#hotel_check").attr("src","img/icon/hotel_check.png");
       }
     });
+   
+   $(".departure_one").click(function(){
+	  $("#departure_text").attr("value",$(this).text());
+	  $("#departure_text_div").hide();
+   });
+   $(".nation_one, .city_one").mouseover(function(){
+	   $(this).css({"text-decoration":"underline", "font-weight" :"bold"});
+   });
+   $(".nation_one, .city_one").mouseout(function(){
+	   $(this).css({"text-decoration":"none", "font-weight" :"normal"});
+   });
+   $(".nation_one").click(function(){
+	   $("#nation_text").attr("value",$(this).text());
+	   $("#nation_text_div").hide();
+	   $("table[id*='city_table_']").hide();
+	   $("#plz_pick_nation").hide();
+	   var text = $("#nation_text").val();
+	   if(text == "베트남"){
+		   $("table[id='city_table_vi']").show();
+	   }else  if(text == "대만"){
+		   $("table[id='city_table_taiw']").show();
+	   }else  if(text == "태국"){
+		   $("table[id='city_table_thai']").show();
+	   }else  if(text == "필리핀"){
 
+		   $("table[id='city_table_phil']").show();
+	   }
+   });
+   $(".city_one").click(function(){
+	   $("#city_text").attr("value",$(this).text());
+	   $("#city_text_div").hide();
+   });
 }
 
  function checking(id){ /*테마 체크 여부 */
   if($("input[id="+id+"]").is(":checked")){
-    $("label[for="+id+"]").css({"background-color":"#1E427F", "color":"#f1f1f3"});
+    $("label[for="+id+"]").css({"background-color":"#2C609C", "color":"#f1f1f3"});
   }else{
     $("label[for="+id+"]").css({"background-color":"#f1f1f3", "color":"rgb(64,64,64)"});
   }
@@ -74,4 +105,28 @@ function select_check(){
 	}
 	
 }
+function text_div(id){
+	var div = document.getElementById(id+"_div");
+	var input = document.getElementById(id);
+	div.style.display= "block";
 
+}
+
+function nation_open(id){
+	if(id === "a"){
+		var text = document.getElementById("nation_text");
+		text.setAttribute("value","일본");
+		document.getElementById("nation_text_div").style.display = "none";
+		$("table[id*='city_table_']").hide();
+		$("table[id='city_table_jp']").show();
+		$("#plz_pick_nation").hide();
+	}else{
+	var open_table = document.getElementById("nation_table_"+id);
+	$("table[id*='nation_table']").hide();
+	
+	open_table.style.display = "block";
+	}
+}
+function aa(){
+	document.getElementById("city_text_div").style.display = "none";
+}

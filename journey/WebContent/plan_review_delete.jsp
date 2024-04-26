@@ -17,7 +17,7 @@
 	dao.delete_plan_review(pr.getPr_no());
 	
 	//데이리뷰 삭제
-	//dao.delete_day_review(pr.getPr_no());
+	dao.delete_day_review(pr.getPr_no());
 	
 	response.sendRedirect("plan_review_list.jsp");
 %>

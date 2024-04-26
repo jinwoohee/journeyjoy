@@ -35,6 +35,17 @@
 		pr.setPr_contents(multi.getParameter("content"));
 		
 		//일정리뷰 > day_review
+		int sche = Integer.parseInt(multi.getParameter("sche_day"));
+		for(int i=0; i<sche; i++){
+			dr = new Day_review();
+			
+			dr.setPr_no(Integer.parseInt(multi.getParameter("page_no")));
+			dr.setDr_day((i+1));
+			dr.setDr_contents(multi.getParameter("day_review"+(i+1)));
+			
+			/* 데이리뷰 등록*/
+			dao.update_day_review(dr.getPr_no(), dr.getDr_day(), dr.getDr_contents());
+		}
 		
 		
 		/* 첨부파일 */

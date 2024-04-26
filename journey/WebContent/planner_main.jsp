@@ -74,26 +74,256 @@ String u_id = (String) session.getAttribute("u_id");
 				            			    <div class="main_div">
 				                   				 <div class="main_con">
 				                    				<p class="main_text"><%if(u_id == null){out.print("고객");}else{out.print(u_id+" ");}%>님,<br>어떤 여행을 꿈꾸시나요?</p>         
-				                            		<select name="departure">
-				                       		        	<option>출발지</option>
-				                                		<option>김포/인천</option>
-				                               			<option>부산</option>
-				                                		<option>대구</option>
-				                                		<option>청주</option>
-				                                		<option>제주</option>
-				                                		<option>양양</option>
-				                            		</select>
-						                            <select name="nation">
-						                                <option>목적지(국가)</option>
-						                                <option>일본</option>
-						                                <option>태국</option>
-						                            </select>
-						                            <select name="city" id="city">
-						                                <option value="1">목적지(도시)</option>
-						                                <option>도쿄</option>
-						                                <option>오사카</option>
-						                                <option>후쿠오카</option>
-						                            </select>
+				                            		<input type="text" name="departure_text" id="departure_text" value="출발지" readonly="true" onclick="text_div(this.id)">
+				                            		<div id="departure_text_div" tabindex='0'>
+				                            			<div id="departure_div_in">
+				                            				<p id="departure_sel">출발지 선택</p>
+					                            			<table cellspacing="0" id="departure_table">
+					                            				<tr>
+					                            					<td class="departure_one">김포</td>
+					                            					<td class="departure_one">인천</td>					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="departure_one">부산</td>
+					                            					<td class="departure_one">대구</td>					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="departure_one">청주</td>
+					                            					<td class="departure_one">제주</td>					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="departure_one">양양</td>
+					                            					<td class="departure_one">김해</td>					           
+					                            				</tr>
+					                            			</table>
+				                            			</div>
+				                            		</div>
+				                            		<input type="text" name="nation_text" id="nation_text" value="목적지(국가)" readonly="true" onclick="text_div(this.id)">
+				                            		<div id="nation_text_div">
+				                            			<div id="nation_div_in">
+				                            				<p id="nation_sel">목적지 선택(국가)</p>
+					                            			<table cellspacing="0" id="continent_table">
+					                            				<tr>
+					                            					<td class="continent_one" onclick="nation_open('a')">일본</td>	           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="continent_one" onclick="nation_open('b')">동남아/대만/서남아</td>			           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="continent_one" onclick="nation_open('c')">미주/캐나다/남중미</td>			           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="continent_one" onclick="nation_open('d')">유럽/아프리카</td>			           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="continent_one" onclick="nation_open('e')">괌/사이판/하와이</td>			           
+					                            				</tr>					                            				
+					                            				<tr>
+					                            					<td class="continent_one" onclick="nation_open('f')">중국/홍콩/마카오</td>			           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="continent_one" onclick="nation_open('g')">호주/뉴질랜드</td>			           
+					                            				</tr>
+					                            								                            				
+					                            			</table>
+					                            			<table id="nation_table_b">
+					                            				<tr>
+					                            					<td class="nation_one">베트남</td>
+					                            					<td class="nation_one">대만</td>
+					                            					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">필리핀</td>	
+					                            					<td class="nation_one">태국</td>	           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">싱가포르</td>	
+					                            					<td class="nation_one">말레이시아</td>	           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">인도네시아</td>	
+					                            					<td class="nation_one">라오스</td>	           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">캄보디아</td>	
+					                            					<td class="nation_one">스리랑카</td>	           
+					                            				</tr>					                            				
+					                            			</table>
+					                            			
+					                            			<table id="nation_table_c">
+					                            				<tr>
+					                            					<td class="nation_one">미국</td>	
+					                            					<td class="nation_one">캐나다</td>	
+					                            					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">멕시코</td>	
+					                            					<td class="nation_one">브라질</td>	           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">아르헨티나</td>	
+					                            					<td class="nation_one">페루</td>	           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">칠레</td>	
+					                            					<td class="nation_one">볼리비아</td>	           
+					                            				</tr>				                            				
+					                            			</table>
+					                            			<table id="nation_table_d">
+					                            				<tr>
+					                            					<td class="nation_one">그리스</td>	
+					                            					<td class="nation_one">스페인</td>	
+					                            					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">크로아티아</td>	
+					                            					<td class="nation_one">조지아</td>	           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">스위스</td>	
+					                            					<td class="nation_one">이탈리아</td>	           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">체코</td>	
+					                            					<td class="nation_one">오스트리아</td>	           
+					                            				</tr>	
+					                            				<tr>
+					                            					<td class="nation_one">헝가리</td>	
+					                            					<td class="nation_one">튀르키예</td>	
+					                            					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">프랑스</td>	
+					                            					<td class="nation_one">영국</td>	           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">독일</td>	
+					                            					<td class="nation_one">포르투갈</td>	           
+					                            				</tr>		                            				
+					                            			</table>
+					                            			<table id="nation_table_e">
+					                            				<tr>
+					                            					<td class="nation_one">괌</td>	
+					                            					<td class="nation_one">사이판</td>	
+					                            					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">하와이</td>	
+					                            					<td class="nation_one"></td>         
+					                            				</tr>	
+					                            								                            				                   				
+					                            			</table>
+					                            			<table id="nation_table_f">
+					                            				<tr>
+					                            					<td class="nation_one">중국</td>	
+					                            					<td class="nation_one">홍콩</td>	
+					                            					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">마카오</td>	
+					                            					<td class="nation_one"></td>	           
+					                            				</tr>					                            								                            				
+					                            			</table>
+					                            			<table id="nation_table_g">
+					                            				<tr>
+					                            					<td class="nation_one">호주</td>	
+					                            					<td class="nation_one">뉴질랜드</td>	
+					                            					           
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="nation_one">마카오</td>	
+					                            					<td class="nation_one"></td>	           
+					                            				</tr>					                            								                            				
+					                            			</table>
+				                            			</div>
+				                            		</div>
+				                            		<input type="text" name="city_text" id="city_text" value="목적지(도시)" readonly="true" onclick="text_div(this.id)">
+				                            		<div id="city_text_div" tabindex='0'>
+				                            			<div id="city_div_in">
+				                            				<p id="city_sel" onclick="aa()">목적지 선택(도시)</p>
+				                            				<p id="plz_pick_nation" onclick="aa()">국가를 선택해주세요.</p>
+					                            			<table cellspacing="0" id="city_table_jp">
+					                            				<tr>
+					                            					<td class="city_one">오사카</td>
+					                            					<td class="city_one">도쿄</td>
+					                            					<td class="city_one">후쿠오카</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">삿포로</td>
+					                            					<td class="city_one">오키나와</td>
+					                            					<td class="city_one">알펜루트</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">나고야</td>
+					                            					<td class="city_one">나오시마</td>
+					                            					<td class="city_one">대마도</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">교토</td>
+					                            					<td class="city_one">고베</td>
+					                            					<td class="city_one">히로시마</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">니가타</td>
+					                            					<td class="city_one">오카야마</td>
+					                            					<td class=""></td>
+					                            				</tr>		                            				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_vi">
+					                            				<tr>
+					                            					<td class="city_one">다낭</td>
+					                            					<td class="city_one">나트랑</td>
+					                            					<td class="city_one">달랏</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">푸꾸옥</td>
+					                            					<td class="city_one">하노이</td>
+					                            					<td class="city_one">호치민</td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_taiw">
+					                            				<tr>
+					                            					<td class="city_one">타이베이</td>
+					                            					<td class="city_one">타이중</td>
+					                            					<td class="city_one">가오슝</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">컨딩</td>
+					                            					<td class=""></td>
+					                            					<td class=""></td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_thai">
+					                            				<tr>
+					                            					<td class="city_one">푸켓</td>
+					                            					<td class="city_one">카오락</td>
+					                            					<td class="city_one">방콕</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">치앙마이</td>
+					                            					<td class="city_one">코사무이</td>
+					                            					<td class=""></td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_phil">
+					                            				<tr>
+					                            					<td class="city_one">보라카이</td>
+					                            					<td class="city_one">세부</td>
+					                            					<td class="city_one">방콕</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">보홀</td>
+					                            					<td class="city_one">팔라완</td>
+					                            					<td class="city_one">클락</td>
+					                            				</tr>	
+					                            				<tr>
+					                            					<td class="city_one">마닐라</td>
+					                            					<td class=""></td>
+					                            					<td class=""></td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+				                            			</div>
+				                            		</div>
 				                        		    <div id="cal_div">
 				                            		    <input type="text" id="startDt" name = "startDt" placeholder="여행출발일" autocomplete="off"/>
 				                         		        <img src="img\icon\cal.png" align="right" />
