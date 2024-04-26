@@ -85,7 +85,7 @@ div[id="img_div"]{
  	padding: 0;
 }
 
-div[id="img_div"] img{
+div[id="img_div"] img{ 
 	width: 400px;
 	height: 300px;
 	object-fit : cover;
