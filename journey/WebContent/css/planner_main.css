@@ -100,16 +100,15 @@ div[id="img_div"]{ /*이미지 슬라이드의 div */
 /*첫번째 화면*/
 input[name*=_text]{
 	width: 400px;
-	height: 40px;
-	border-radius: 5px;
-	font-size: 11pt;
-	font-weight: bold;
-	font-family: "Noto Sans KR", sans-serif;
-	margin-bottom: 13px;
-	margin-left: 30px;
-	background-color: white;
-	color: rgb(64,64,64);
-	border : 1px solid black;	
+    height: 50px;
+    font-size: 11pt;
+    font-family: "Noto Sans KR", sans-serif;
+    margin-bottom: 13px;
+    margin-left: 30px;
+    background-color: white;
+    color: #646464;
+    border: 1px solid #CCCCCC;
+    padding-left: 10px;	
 }
 #departure_text_div{ /*출발지 버튼누르면 나오는 div*/
 	width : 398px;
