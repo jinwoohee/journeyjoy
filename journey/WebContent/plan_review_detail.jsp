@@ -27,9 +27,8 @@
 
 
 $(function() {
-	  const kindWrap =  document.querySelector('#img_div');
-	  const slider = kindWrap.querySelector('.slider');
-	  const slideLis = slider.querySelectorAll('li');
+	  const slider = document.getElementById('slider');
+	  const slideLis = document.getElementsByClassName('li_sli');
 	  
 	  //ul 넓이 계산해 주기 
 	  const liWidth = slideLis[0].clientWidth;
@@ -43,14 +42,14 @@ $(function() {
 	  $("#right").click(function(){   //오른쪽화살표 눌렀을때 슬라이드
 		  if (currentIdx !== slideLis.length -1) {
 		        translate -= liWidth;
-		        slider.style.transform = `translateX(${translate}px)`;
+		        slider.style.transform = "translateX(${translate}px)";
 		        currentIdx += 1;
 		      }
 	  });
 	  $("#left").click(function(){  //왼쪽 화살표 눌렀을 때 슬라이드
-	        if (currentIdx !== 0) {
+		  if (currentIdx !== 0) {
 	          translate += liWidth;
-	          slider.style.transform = `translateX(${translate}px)`;
+	          slider.style.transform ="translateX(${translate}px)";
 	          currentIdx -= 1;
 	        }
 	   });
@@ -106,10 +105,10 @@ function tab(num){
 					
 						<div id='img_div'>
 							<div id = 'kind_slider'>
-								<ul class='slider'>
-									<li class='li_sli'><img src='uploadFile/<%= pr.getPr_file()%>'/></li> 
-									<li class='li_sli'><img src='uploadFile/<%= pr.getPr_file2()%>'/></li>
-									<li class='li_sli'><img src='uploadFile/<%= pr.getPr_file3()%>'/></li>
+								<ul id='slider'>
+									<li class='li_sli'><img src="img\icon\arrow_down.png"/></li> 
+									<li class='li_sli'><img src="img\icon\arrow_down.png"/></li>
+									<li class='li_sli'><img src="img\icon\arrow_down.png"/></li>
 								</ul>
 							</div>
 						</div> 

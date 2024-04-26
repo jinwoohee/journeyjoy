@@ -93,12 +93,13 @@ div[id="img_div"] img{
 
 .li_sli{
 	list-style: none;
-	float : left;
+	float:left;
 }
 #kind_slider{
-	overflow:hidden;
+
+ 	overflow:hidden;
 }
-#img_div > #kind_slider .slider { 
+#img_div > #kind_slider #slider { 
   position: relative; 
   transition: 0.5s;
    margin: 0;
@@ -107,9 +108,6 @@ div[id="img_div"] img{
 .kind_wrap > #kind_slider{
   float:left;
 }
-#plan_li{
-	flaot:left
-}
 
 /*화살표 < >*/
 #left{
@@ -117,6 +115,7 @@ div[id="img_div"] img{
     position: relative;
     top: -210px;
     left: 110px;
+    cursor : pointer;
 }
 
 #right{
@@ -124,6 +123,7 @@ div[id="img_div"] img{
     position: relative;
     top: -210px;
     left: -100px;
+    cursor : pointer;
 }
 
 
