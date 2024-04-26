@@ -326,12 +326,9 @@ String u_id = (String) session.getAttribute("u_id");
 				                            		</div>
 				                        		    <div id="cal_div">
 				                            		    <input type="text" id="startDt" name = "startDt" placeholder="여행출발일" autocomplete="off"/>
-				                         		        <img src="img\icon\cal.png" align="right" />
 				                          		        <input type="text" id="endDt" name = "endDt" placeholder="여행도착일" autocomplete="off"/>
-				                            		    <img src="img\icon\cal.png" align="right" />
 				                           			</div>
 				                        			<input type="checkbox" name="airplane" id ="air" value="1">
-				                        			<br>
 				                        			<label for="air" id="airplane">
 				                        				<img src="img\icon\airplane_check.png" name="check_img" id="air_check">
 				                        				항공권은 있어요

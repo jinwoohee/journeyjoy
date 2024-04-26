@@ -14,23 +14,20 @@ div[id="main_full_div"]{ /*섹션 전체 div*/
 	overflow: hidden;
 }
 input[class*="next"]{ /*슬라이드의 다음,테마선택 버튼 */
-	color: rgb(64,64,64);
-	font-size: 12pt;
-	font-weight: bold;
-	font-family: "Noto Sans KR", sans-serif;
-	width: 405px;
-	height: 45px;
-	margin-top: 70px;
-	margin-left: 30px;
-	border-radius: 10px;
-	border : 2px solid black;
-	cursor: pointer;
+	background: #6C94B8;
+    color: white;
+    font-size: 12pt;
+    width: 400px;
+    height: 50px;
+    margin-top: 60px;
+    margin-left: 30px;
+    border: none;
+    cursor: pointer;
 }
 input[id*="save"]{ /* 슬라이드의 저장 버튼 */
 	color: rgb(64,64,64);
 	font-size: 11pt;
 	font-weight: bold;
-	font-family: "Noto Sans KR", sans-serif;
 	width: 405px;
 	height: 45px;
 	margin-top: 15px;
@@ -84,8 +81,7 @@ div[class="main_con"]{ /* 첫번째, 두번째, 세번째 화면의 내부 내�
 }
 .main_text{ /*각 화면에서 흰색 가장 큰 글자들 */
 	margin-left: 30px;
-	font-size: 25px;
-	font-weight: bold;
+	font-size: 28px;
 	margin-top: 0;
 }
 div[id="img_div"]{ /*이미지 슬라이드의 div */
@@ -102,7 +98,6 @@ input[name*=_text]{
 	width: 400px;
     height: 50px;
     font-size: 11pt;
-    font-family: "Noto Sans KR", sans-serif;
     margin-bottom: 13px;
     margin-left: 30px;
     background-color: white;
@@ -111,23 +106,22 @@ input[name*=_text]{
     padding-left: 10px;	
 }
 #departure_text_div{ /*출발지 버튼누르면 나오는 div*/
-	width : 398px;
-	height : 330px;
-	border : 1px solid black;
-	background-color : white;
-	position : absolute;
-	z-index: 100;
-	display:none;
-	margin-top : -8px;
-	margin-left : 30px;
-	border-radius: 5px;
-	box-shadow: 4px 4px 4px 4px #CCCCCC;
+	width: 398px;
+    height: 330px;
+    border: 1px solid #CCCCCC;
+    background-color: white;
+    position: absolute;
+    z-index: 100;
+    display: none;
+    margin-top: -6px;
+    margin-left: 30px;
+    box-shadow: 4px 6px 20px 3px #CCCCC
 }
 #departure_sel{
-	width : 320px;
-	margin-left :2px;
-	border-bottom : 1px solid gray;
-	padding-bottom : 8px;
+	width: 320px;
+    margin-left: 2px;
+    border-bottom: 2px solid #0D112D;
+    padding-bottom: 10px;
 }
 #departure_div_in{
 	width : 380px;
@@ -138,57 +132,68 @@ input[name*=_text]{
 	margin-top : 25px;
 }
 .departure_one{
-	float : left;
-	width : 157px;
-	height : 20px;
-	margin: 0px;
-	border : 1px solid gray;
-	text-align : center;
-	padding-top : 13px;
-	padding-bottom : 17px;
-	cursor : pointer;
+	float: left;
+    width: 155px;
+    height: 20px;
+    margin: 0px;
+    border: 1px solid #0D112D;
+    text-align: center;
+    padding-top: 13px;
+    padding-bottom: 17px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    color: #0D112D;
+    border-radius: 10px;
 }
+
+.departure_one:nth-of-type(2n){
+	margin-left : 5px;
+}
+
 #nation_text_div{ /*국가선택 버튼누르면 나오는 div*/
-	width : 440px;
+	width: 398px;
 	height : 430px;
-	border : 1px solid black;
-	background-color : white;
-	position : absolute;
-	z-index: 100;
-	display:none;	
-	margin-top : -8px;
-	margin-left : 30px;
-	border-radius: 5px;
-	box-shadow: 4px 4px 4px 4px #CCCCCC;
+	border: 1px solid #CCCCCC;
+    background-color: white;
+    position: absolute;
+    z-index: 100;
+    display: none;
+    margin-top: -6px;
+    margin-left: 30px;
+    box-shadow: 4px 6px 20px 3px #CCCCC
 }
 #nation_sel{
-	width : 360px;
-	margin-left :2px;
-	border-bottom : 1px solid gray;
-	padding-bottom : 8px;
+	width: 320px;
+    margin-left: 2px;
+    border-bottom: 2px solid #0D112D;
+    padding-bottom: 10px;
 }
 #nation_div_in{
 	width : 380px;
 	height : 200px;
 	margin : 20px 40px;
 }
+
 #continent_table{
 	margin :0;
 	margin-top : 2px;
 	float:left;
 }
+
 .continent_one{
-	float : left;
-	width : 130px;
-	height : 12px;
-	margin: 0px;
-	border : 1px solid gray;
-	text-align : center;
-	padding-top : 12px;
-	padding-bottom : 18px;
-	cursor : pointer;
-	font-size : 13px;
-	background-color : #f1f1f3;
+	float: left;
+    width: 130px;
+    height: 12px;
+    argin: 0px;
+    border: 1px solid #0D112D;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 18px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #0D112D;
+    border-radius: 10px;
 }
 table[id*="nation_table"]{
 	margin:0;
@@ -209,20 +214,19 @@ table[id*="nation_table"]{
 #city_text_div{ /*출발지 버튼누르면 나오는 div*/
 	width : 398px;
 	height : 330px;
-	border : 1px solid black;
-	background-color : white;
-	position : absolute;
-	z-index: 100;
-	display:none;
-	margin-top : -8px;
-	margin-left : 30px;
-	border-radius: 5px;
-	box-shadow: 4px 4px 4px 4px #CCCCCC;
+	border: 1px solid #CCCCCC;
+    background-color: white;
+    position: absolute;
+    z-index: 100;
+    display: none;
+    margin-top: -6px;
+    margin-left: 30px;
+    box-shadow: 4px 6px 20px 3px #CCCCC
 }
 #city_sel{
 	width : 320px;
 	margin-left :2px;
-	border-bottom : 1px solid gray;
+	border-bottom: 2px solid #0D112D
 	padding-bottom : 8px;
 }
 #city_div_in{
@@ -250,20 +254,17 @@ div[id="cal_div"]{ /* 날짜선택창이 들어갈 div */
 	width: 400px;
 	height: 120px;
 	margin-left: 30px;
-	margin-bottom: -10px;
+	margin-bottom: 20px;
 }
 input[name*="Dt"]{ /*날짜 선택 */
-	width: 350px;
-	height: 40px;
-	border-radius: 5px;
-	border-color: #f1f1f3;
-	font-size: 11pt;
-	font-weight: bold;
-	font-family: "Noto Sans KR", sans-serif;
-	margin-bottom: 13px;
-	float: left;
-	color:  rgb(64,64,64);
-	border : 1px solid black;
+	width: 400px;
+    height: 50px;
+    font-size: 11pt;
+    margin-bottom: 13px;
+    background-color: white;
+    color: #646464;
+    border: 1px solid #CCCCCC;
+    padding-left: 10px;	
 }
 img[src*="cal"]{
 	margin-top: 3px;
@@ -273,26 +274,23 @@ img[src*="cal"]{
 	display: none;
 }
 label[id="airplane"]{ /*항공권 유무 */
-  padding: 14px 33px;
-	margin-right: 25px;
-	background-color: #f1f1f3;
-	border-radius: 5px;
-	font-size: 10pt;
-	font-weight: bold;
-	margin-left: 30px;
-	color:  gray;
-	cursor: pointer;
-	border : 1px solid gray;
+ 	padding: 14px 34px;
+    margin-right: 25px;
+    background-color: #f1f1f3;
+    font-size: 10pt;
+    margin-left: 30px;
+    color: #646464;
+    cursor: pointer;
+    border: 1px solid #CCCCCC;
 }
 label[id="hotel"]{ /*숙소 유무 */
-	padding: 14px 37px;
-	border-radius: 5px;
-	background-color: #f1f1f3;
-	color:  gray;
-	font-size: 10pt;
-	font-weight: bold;
-	cursor: pointer;
-	border : 1px solid gray;
+	padding: 14px 34px;
+    margin-right: 25px;
+    background-color: #f1f1f3;
+    font-size: 10pt;
+    color: #646464;
+    cursor: pointer;
+    border: 1px solid #CCCCCC;
 }
  /*비행기,집 이미지 */
 
