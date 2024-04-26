@@ -352,6 +352,7 @@ button, input[type="button"], .notification_wrap li {
     border: 1px solid #666666;
     border-radius: 10px;
     padding: 20px;
+    float: left;
 }
 
 .plan_size {
@@ -367,6 +368,10 @@ button, input[type="button"], .notification_wrap li {
 
 .plan_size strong {
 	color : #FA5252;
+}
+
+.plan_li {
+	
 }
 
 .plan_list { /* 일정리뷰 전체div */

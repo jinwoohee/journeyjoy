@@ -350,7 +350,7 @@ public class JourneySql {
 	}
 	
 	public ArrayList<Plan_review> mypagePlanReviewSelect(String u_id) { //일정리뷰 select
-		String sql = "select * from plan_review where u_id = '" + u_id + "'";
+		String sql = "select * from plan_review where u_id = '" + u_id + "' order by pr_no desc";
 		ArrayList<Plan_review> alist = new ArrayList<Plan_review>();
 		
 		try {
@@ -364,7 +364,7 @@ public class JourneySql {
 				pr.setE_no(rs.getInt("e_no"));
 				pr.setPr_title(rs.getString("pr_title"));
 				pr.setPr_contents(rs.getString("pr_contents"));
-				pr.setPr_file(rs.getString("pr_file"));
+				pr.setPr_file(rs.getString("pr_file1"));
 				pr.setPr_file2(rs.getString("pr_file2"));
 				pr.setPr_file3(rs.getString("pr_file3"));
 				pr.setPr_date(rs.getDate("pr_date"));
@@ -383,7 +383,7 @@ public class JourneySql {
 	}
 	
 	public ArrayList<Location_review> mypagePlaceReviewSelect(String u_id) { //장소리뷰 select
-		String sql = "select * from location_review where u_id = '" + u_id + "'";
+		String sql = "select * from location_review where u_id = '" + u_id + "' order by lr_no desc";
 		ArrayList<Location_review> alist = new ArrayList<Location_review>();
 		
 		try {
@@ -415,8 +415,30 @@ public class JourneySql {
 		return alist;
 	}
 	
-	public void mypagePlaceSelect(String pl_eat_no) { //장소리뷰-장소 select
-		String sql = "select * from place ";
+	public ArrayList<Place> mypagePlaceSelect(String pl_eat_no) { //장소리뷰-장소 select
+		String sql = "select * from place where plac_no = " + pl_eat_no;
+		ArrayList<Place> alist = new ArrayList<Place>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Place p = new Place();
+				p.setPlac_no(rs.getInt("plac_no"));
+				p.setPlac_name(rs.getString("plac_name"));
+				
+				alist.add(p);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
 	}
 	
 	

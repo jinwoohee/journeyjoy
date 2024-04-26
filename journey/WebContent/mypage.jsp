@@ -692,32 +692,34 @@
 						<p>일정리뷰 <strong><%= prList.size() %></strong>개</p>
 					</div>
 					<ul>
-						<% for (Plan_review pr : prList) { %>
-						<li>
-							<div class="plan_list">
-								<div class="plan_img">
-									<% if (pr.getPr_file() != null) { %>
-									<img src="<%= pr.getPr_file() %>" />
-									<% } else { %>
-									<img src="img/travel/travel1.jpg" />
-									<% } %>
+						<div class="plan_li">
+							<% for (Plan_review pr : prList) { %>
+							<li>
+								<div class="plan_list">
+									<div class="plan_img">
+										<% if (pr.getPr_file() != null) { %>
+										<img src="<%= pr.getPr_file() %>" />
+										<% } else { %>
+										<img src="img/travel/travel1.jpg" />
+										<% } %>
+									</div>
+									<div class="plan_cont">
+										<div class="plan_date">
+											<p><%= pr.getPr_date() %></p>
+										</div>
+										<div class="plan_ctitle">
+											<p class="plan_title"><strong><%= pr.getPr_title() %></strong></p>
+											<p class="plan_word"><%= pr.getPr_contents() %></p>
+										</div>
+										<div class="plan_btn"> 
+											<button>상세내역</button>
+											<button>리뷰삭제</button>
+										</div>
+									</div>
 								</div>
-								<div class="plan_cont">
-									<div class="plan_date">
-										<p><%= pr.getPr_date() %></p>
-									</div>
-									<div class="plan_ctitle">
-										<p class="plan_title"><strong><%= pr.getPr_title() %></strong></p>
-										<p class="plan_word"><%= pr.getPr_contents() %></p>
-									</div>
-									<div class="plan_btn"> 
-										<button>상세내역</button>
-										<button>리뷰삭제</button>
-									</div>
-								</div>
-							</div>
-						</li>
-						<% } %>
+							</li>
+							<% } %>
+						</div>
 					</ul>
 					<% } else { %>
 					<div class="plan_blank">

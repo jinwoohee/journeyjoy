@@ -9,6 +9,7 @@ import com.jj.conn.MypagePlaceReviewSelectDB;
 import com.jj.conn.MypagePlaceReview_placeSelectDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Location_review;
+import com.jj.dto.Place;
 
 public class MypagePlaceReviewSelect implements JourneyInterface {
 	static MypagePlaceReviewSelect mpcSelect = new MypagePlaceReviewSelect();
@@ -31,15 +32,14 @@ public class MypagePlaceReviewSelect implements JourneyInterface {
 		}
 		
 		MypagePlaceReview_placeSelectDB pcSelectDB = new MypagePlaceReview_placeSelectDB();
-		ArrayList<String> plist = new ArrayList<String>();
+		ArrayList<Place> pclist = new ArrayList<Place>();
 		String[] pl_eat_no = place.split("/");
 		for (String s : pl_eat_no) {
-			pcSelectDB.mypagePlaceSelectDB(s);
+			pclist.addAll(pcSelectDB.mypagePlaceSelectDB(s));
 		}
 		
-		
-		
 		request.setAttribute("lrList", lrList);
+		request.setAttribute("pclist", pclist);
 		
 		return "mypage_placeReview.jsp";
 	}

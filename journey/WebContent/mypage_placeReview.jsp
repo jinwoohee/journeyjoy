@@ -130,9 +130,13 @@
 		}
 		
 		.pc_blank { /* 장소리뷰 없을 때 div */
-			text-align: center;
+			/* text-align: center; */
 		    font-size: 18px;
 		    font-weight: 600;
+			height: 200px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
 		}
 	</style>
 	
