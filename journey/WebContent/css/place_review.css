@@ -4,6 +4,8 @@ body{
 	margin: 0;
 	font-family: "Noto Sans KR", sans-serif;
 	color:#646464;
+	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover;
 }
 
 body>div:first-of-type{
@@ -19,14 +21,13 @@ section{
 /* 검색구간 */
 #search_section{
 	width: 1200px;
-	height: 100px;
-	display: flex;
-	justify-content: center; 
-	align-items: center;
-	background: #6c94b8;
-	border-radius: 10px;
-	box-shadow: 3px 3px 3px #CCCCCC;
-	margin-bottom: 20px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #b7b4b7;
+    box-shadow: 3px 3px 3px #CCCCCC;
+    margin-bottom: 20px;
 }
 
 /* 검색구간 - 콤보박스 */
@@ -35,7 +36,7 @@ section{
 	height: 40px;
 	margin-right: 20px;
 	text-align: center;
-	border: 2px solid #6C94B8;
+	border: none;
 }
 
 /* 검색구간 - 검색창 */
@@ -99,10 +100,10 @@ section{
 	height: 600px;
 	padding : 20px 30px;
 	border : 1px solid #cccccc;
-	border-radius: 10px;
 	box-shadow: 3px 3px 3px #CCCCCC;
 	margin: 20px 0;
 	float: left;
+	background: white;
 }
 
 /* 프로필, 닉네임, 수정버튼 div */
@@ -130,7 +131,6 @@ section{
 	width: 70px;
 	height: 40px;
 	border: none;
-	border-radius: 10px;
 	font-weight: bold;
 }
 

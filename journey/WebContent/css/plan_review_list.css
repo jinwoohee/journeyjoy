@@ -16,6 +16,12 @@ header + div {
     padding-bottom: 100px;
 }
 
+#no{
+	text-align : center;
+	width: 1200px;
+    margin: 140px auto;
+}
+
 section{
 	width : 1200px;
 	margin : 0 auto;
@@ -68,6 +74,11 @@ section{
 	width:40px;
 	height:40px; 
 	margin-left: 392px;
+}
+
+hr{
+	border: 0.1em solid #f1f1f3;
+    margin-bottom: 40px;
 }
 
 /* 게시글 목록div */
@@ -173,12 +184,4 @@ div[id=list_div]{
     font-size: 13px;
     overflow: hidden;
    
-}
-
-#paging {
-    width: 1200px;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    padding-top: 100px;
 }

@@ -694,19 +694,19 @@
 						<li>
 							<div class="plan_list">
 								<div class="plan_img">
-									<% if (pr.getpr_file() != null) { %>
-									<img src="<%= pr.getpr_file() %>" />
+									<% if (pr.getPr_file() != null) { %>
+									<img src="<%= pr.getPr_file() %>" />
 									<% } else { %>
 									<img src="img/travel/travel1.jpg" />
 									<% } %>
 								</div>
 								<div class="plan_cont">
 									<div>
-										<p>작성날짜 : <%= pr.getpr_date() %></p>
+										<p>작성날짜 : <%= pr.getPr_date() %></p>
 									</div>
 									<div>
-										<p class="plan_title"><strong><%= pr.getpr_title() %></strong></p>
-										<p><%= pr.getpr_contents() %></p>
+										<p class="plan_title"><strong><%= pr.getPr_title() %></strong></p>
+										<p><%= pr.getPr_contents() %></p>
 									</div>
 								</div>
 								<div class="plan_btn">
@@ -738,19 +738,19 @@
 						<li>
 							<div class="plan_list">
 								<div class="plan_img">
-									<% if (pr.getpr_file() != null) { %>
-									<img src="<%= pr.getpr_file() %>" />
+									<% if (pr.getPr_file() != null) { %>
+									<img src="<%= pr.getPr_file() %>" />
 									<% } else { %>
 									<img src="img/travel/travel1.jpg" />
 									<% } %>
 								</div>
 								<div class="plan_cont">
 									<div>
-										<p>작성날짜 : <%= pr.getpr_date() %></p>
+										<p>작성날짜 : <%= pr.getPr_date() %></p>
 									</div>
 									<div>
-										<p class="plan_title"><strong><%= pr.getpr_title() %></strong></p>
-										<p><%= pr.getpr_contents() %></p>
+										<p class="plan_title"><strong><%= pr.getPr_title() %></strong></p>
+										<p><%= pr.getPr_contents() %></p>
 									</div>
 								</div>
 								<div class="plan_btn">

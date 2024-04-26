@@ -473,6 +473,19 @@
 		ON p.u_id = u.u_id
 		LEFT JOIN estimate e
 		ON p.e_no = e.e_no
-		WHERE e.e_destination = #{city} and p.pr_title LIKE concat('%', #{search}, '%')
+		<where>
+			<if test="city != null">
+				<if test="!city.equals('choice') and search == ''">
+					e.e_destination = #{city}
+				</if>
+				<if test="!city.equals('choice') and search != ''">
+					e.e_destination = #{city} and p.pr_title LIKE concat('%', #{search}, '%')
+				</if>
+			</if>
+			<if test="search != ''">
+				p.pr_title LIKE concat('%', #{search}, '%')
+			</if>
+		</where>
+		ORDER BY p.pr_no DESC;
 	</select>
 </mapper>
