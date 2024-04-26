@@ -415,6 +415,10 @@ public class JourneySql {
 		return alist;
 	}
 	
+	public void mypagePlaceSelect(String pl_eat_no) { //장소리뷰-장소 select
+		String sql = "select * from place ";
+	}
+	
 	
 	
 	

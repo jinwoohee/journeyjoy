@@ -16,27 +16,41 @@
 			padding-inline-start: 0px;
 			margin-top: 0px;
 		    margin-bottom: 0px;
+		    display: flex;
+    		justify-content: space-between;
 		}
 		
 		.place_review li {
-			padding-top: 25px;
-    		padding-bottom: 25px;
-		    border-bottom: 1px solid #ddd;
+			width: calc((100% - 120px) / 2);
+		    border: 1px solid #666666;
+		    border-radius: 10px;
+		    padding: 20px;
 		}
 		
-		.place_review > p {
+		.pc_size {
+			border-bottom: 1px solid #ddd;
+			margin-bottom: 25px;
+		}
+		
+		.pc_size p {
 			margin-top: 0px;
-			margin-bottom: 0px;
+			margin-bottom: 25px;
+			width: fit-content;
+		}
+		
+		.pc_size strong {
+			color : #FA5252;
 		}
 		
 		.pc_list { /* 장소리뷰 전체div */
-			width: 1200px;
+			width: 100%;
+			height: 200px;
 			display: -webkit-box;
 		}
 		
 		.pc_img { /* 장소리뷰 img div */
-			width: 300px;
-			height: 300px;
+			width: 200px;
+			height: 200px;
 			margin-right: 40px;
 		}
 		
@@ -47,13 +61,12 @@
 		}
 		
 		.pc_cont { /* 장소리뷰 contents */
-			width: 730px;
-			margin-bottom: 20px;
+			width: calc(100% - 240px);
+			height: 100%;
 		}
 		
 		.pc_cont div {
-			display: flow-root;
-			margin-bottom: 15px;
+			margin-bottom: 10px;
 		}
 		
 		.pc_cont p {
@@ -61,14 +74,42 @@
 		    margin-bottom: 0px;
 		}
 		
+		.pc_date {
+			font-size: 12px;
+		    color: #ccc;
+			display: flex;
+		    justify-content: flex-end;
+		}
+		
+		.pc_star {
+			
+		}
+		
+		.pc_star label{
+			font-size: 22px;
+			color: #fc0;
+		}
+		
+		/* 별점 */
+		.star {
+			appearance: none;
+			margin: 0;
+		}
+		
 		.pc_title { /* 제목 */
 			font-size: 25px;
+			width: 100%;
+			padding-bottom: 10px;
+			overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
 		}
 		
 		.pc_btn { /* 장소리뷰 버튼 div */
-			height: 300px;
+			/*height: calc(100% - 114px); */
 			display: flex;
 		    align-items: flex-end;
+		    justify-content: flex-end;
 		}
 		
 		.pc_btn button {
@@ -104,7 +145,9 @@
 	
 	if (lrList.size() != 0) {
 	%>
-	<p>장소리뷰 <strong><%= lrList.size() %></strong>개</p>
+	<div class="pc_size">
+		<p>장소리뷰 <strong><%= lrList.size() %></strong>개</p>
+	</div>
 	<ul>
 		<% for (Location_review lr : lrList) { %>
 		<li>
@@ -117,15 +160,28 @@
 					<% } %>
 				</div>
 				<div class="pc_cont">
-					<div>
-						<p>별점 <%= lr.getLr_star() %></p>
+					<div class="pc_date">
+						<p><%= lr.getLr_date() %></p>
 					</div>
-					<div>
+					<div class="pc_star">
+						<%
+						for (int i = 1; i < 6; i++) {
+							if (i <= lr.getLr_star()) {
+						%>
+						<input type="radio" class="star" value="<%= i %>"><label>★</label>
+						<% 	} else { %>
+						<input type="radio" class="star" value="<%= i %>"><label>☆</label>
+						<%
+							}
+						}
+						%>
+					</div>
+					<div class="pc_cont_detail">
 						<p><%= lr.getLr_contents() %></p>
 					</div>
-				</div>
-				<div class="pc_btn">
-					<button>리뷰삭제</button>
+					<div class="pc_btn">
+						<button>리뷰삭제</button>
+					</div>
 				</div>
 			</div>
 		</li>
