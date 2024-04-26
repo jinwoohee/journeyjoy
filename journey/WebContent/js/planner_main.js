@@ -82,9 +82,9 @@ window.onload = function() {
 
  function checking(id){ /*테마 체크 여부 */
   if($("input[id="+id+"]").is(":checked")){
-    $("label[for="+id+"]").css({"background-color":"#2C609C", "color":"#f1f1f3"});
+    $("label[for="+id+"]").css({"background-color":"#0D112D", "color":"white"});
   }else{
-    $("label[for="+id+"]").css({"background-color":"#f1f1f3", "color":"rgb(64,64,64)"});
+    $("label[for="+id+"]").css({"background-color":none, "color":"#0D112D"});
   }
  }
 function login_check(){

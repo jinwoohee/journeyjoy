@@ -19,21 +19,20 @@ input[class*="next"]{ /*슬라이드의 다음,테마선택 버튼 */
     font-size: 12pt;
     width: 400px;
     height: 50px;
-    margin-top: 60px;
+    margin-top: 15px;
     margin-left: 30px;
     border: none;
     cursor: pointer;
 }
 input[id*="save"]{ /* 슬라이드의 저장 버튼 */
-	color: rgb(64,64,64);
-	font-size: 11pt;
-	font-weight: bold;
+	color: white;
+	font-size: 12pt;
 	width: 405px;
-	height: 45px;
-	margin-top: 15px;
+	height: 50px;
+	margin-top: 32px;
 	margin-left: 30px;
-	border-radius: 10px;
-	border : 2px solid black;
+	border: none;
+	background: #6C94B8;
 	cursor: pointer;
 }
 a[id*="right"]{ /* 오른쪽 화살표 버튼 */
@@ -80,9 +79,11 @@ div[class="main_con"]{ /* 첫번째, 두번째, 세번째 화면의 내부 내�
 	padding-top: 40px;
 }
 .main_text{ /*각 화면에서 흰색 가장 큰 글자들 */
-	margin-left: 30px;
-	font-size: 28px;
+	margin-left:30px;
+	font-size: 25px;
+	float: left;
 	margin-top: 0;
+	margin-block-start: 10px;
 }
 div[id="img_div"]{ /*이미지 슬라이드의 div */
 	width: 630px;
@@ -98,7 +99,7 @@ input[name*=_text]{
 	width: 400px;
     height: 50px;
     font-size: 11pt;
-    margin-bottom: 13px;
+    margin-bottom: 15px;
     margin-left: 30px;
     background-color: white;
     color: #646464;
@@ -115,7 +116,7 @@ input[name*=_text]{
     display: none;
     margin-top: -6px;
     margin-left: 30px;
-    box-shadow: 4px 6px 20px 3px #CCCCC
+    box-shadow: 4px 6px 20px 3px #CCCCCC
 }
 #departure_sel{
 	width: 320px;
@@ -160,7 +161,7 @@ input[name*=_text]{
     display: none;
     margin-top: -6px;
     margin-left: 30px;
-    box-shadow: 4px 6px 20px 3px #CCCCC
+    box-shadow: 4px 6px 20px 3px #CCCCCC
 }
 #nation_sel{
 	width: 320px;
@@ -221,12 +222,12 @@ table[id*="nation_table"]{
     display: none;
     margin-top: -6px;
     margin-left: 30px;
-    box-shadow: 4px 6px 20px 3px #CCCCC
+    box-shadow: 4px 6px 20px 3px #CCCCCC
 }
 #city_sel{
 	width : 320px;
 	margin-left :2px;
-	border-bottom: 2px solid #0D112D
+	border-bottom: 2px solid #0D112D;
 	padding-bottom : 8px;
 }
 #city_div_in{
@@ -254,7 +255,7 @@ div[id="cal_div"]{ /* 날짜선택창이 들어갈 div */
 	width: 400px;
 	height: 120px;
 	margin-left: 30px;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 }
 input[name*="Dt"]{ /*날짜 선택 */
 	width: 400px;
@@ -311,83 +312,108 @@ label[id="hotel"]{ /*숙소 유무 */
 
 div[id="thema_div"]{ /*큰 테마가 들어갈 div */
 	width: 420px;
-	height: 160px;
-	margin: 30px 30px;
+	height: 159px;
+	margin-top: 22px;
+	margin-left: 30px;
 }
 input[name="thema"], input[name="with"]{
 	display: none;
 }
+
+.title_icon > img{
+	width: 45px;
+	height: 45px;
+	object-fit: cover;
+	float: left;
+	margin-left: 25px;
+	margin-right: -15px;
+}
+
+.title_icon > hr{
+	width: 420px;
+	border: 0.5px solid #646464;
+}
+
 .thema_check{ /* 큰 테마 라디오버튼의 속성 */
 	float: left;
-	padding: 9px 17px;
-	border-radius: 15px;
+	padding: 12px 15px;
+	border-radius: 25px;
 	font-weight: bold;
 	font-size: 9pt;
 	margin-right: 15px;
-	margin-bottom: 10px;
-	color:  rgb(64,64,64);
-	border : 0.5px solid black;
+	margin-bottom: 15px;
+	color: #0D112D;
+	border: 1px solid #0D112D;
+	width: 88px;
+	text-align: center;
 }
 input[type=radio]:checked + label { /* 큰테마와 인원유형 라디오버튼 눌렀을때 */
-	background-color: #2C609C;
-	color: #f1f1f3;
+	background-color: #0D112D;
+	color: white;
 }
 div[id="with_div"]{ /*인원유형이 들어갈 div */
 	width: 410px;
 	height: 140px;
-	margin: 30px 30px;
-	margin-bottom: -25px;
+	margin: 22px 30px;
 }
 .with_check{ /*인원유형 라디오버튼의 속성 */
 	float: left;
-	padding: 9px 29px;
-	border-radius: 15px;
+	padding: 12px 15px;
+	border-radius: 25px;
 	font-weight: bold;
 	font-size: 9pt;
 	margin-right: 15px;
-	margin-bottom: 10px;
-	color:  rgb(64,64,64);
-	border : 0.5px solid black;
+	margin-bottom: 15px;
+	color: #0D112D;
+	border: 1px solid #0D112D;
+	width: 88px;
+	text-align: center;
 }
 
 /*3번째 선택화면*/
 
 div[id="place_div"]{ /*여행지가 들어갈 div*/
-	width: 440px;
-	height: 160px;
-	margin: 30px 30px;
+	width: 425px;
+	height: 180px;
+	margin-top: 17px;
+	margin-bottom: 20px;
+	margin-left: 30px;
 }
 input[name="place"], input[name="eat"]{
 	display: none;
 }
 .place_check{ /*여행지 체크박스의 속성 */
 	float: left;
-	padding: 9px 27px;
-	background-color: #f1f1f3;
-	border-radius: 15px;
+	padding: 7px 23px;
+	border-radius: 25px;
 	font-weight: bold;
 	font-size: 9pt;
-	margin-right: 15px;
+	text-align: center;
+	margin-right: 13px;
+	width: 80px;
 	margin-bottom: 10px;
-	color: rgb(64,64,64);
-	border : 0.5px solid black;
+	color: #0D112D;
+	border: 1px solid #0D112D;
 }
 div[id="eat_div"]{ /*음식취향이 들어갈 div*/
 	width: 430px;
 	height: 140px;
-	margin: 30px 30px;
+	margin-top: 17px;
+	margin-left: 30px;
+	margin-bottom: 10px;
 }
 .eat_check{ /*음식취향 체크박스의 속성 */
 	float: left;
-	padding: 9px 27px;
-	background-color: #f1f1f3;
-	border-radius: 15px;
+	padding: 7px 30px;
+	width: 65px;
+	border-radius: 25px;
 	font-weight: bold;
 	font-size: 9pt;
 	margin-right: 15px;
 	margin-bottom: 10px;
-	color: rgb(64,64,64);
-	border : 0.5px solid black;
+	color: #0D112D;
+	border: 1px solid #0D112D;
+	text-align: center;
 }
 
 

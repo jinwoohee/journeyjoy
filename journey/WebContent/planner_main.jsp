@@ -352,22 +352,30 @@ String u_id = (String) session.getAttribute("u_id");
 						               <article>
 						                <div class="main_div">
 						                    <div class ="main_con">
-						                        <p class="main_text">어떤 스타일의 여행을 원하시나요?</p>
+						                    	<div class='title_icon'>
+						                    		<img src="img/icon/travel.png">
+						                    		<p class="main_text">어떤 스타일의 여행을 원하시나요?</p>
+						                   			<hr>
+						                    	</div>
 						                        <div id="thema_div">
-						                                <input type="radio" name="thema" value="여유롭게힐링" id="thema1" checked>
-						                                <label for="thema1" class="thema_check">여유롭게 힐링</label>
+						                                <input type="radio" name="thema" value="힐링" id="thema1" checked>
+						                                <label for="thema1" class="thema_check">힐링</label>
 						                                <input type="radio" name="thema" value="체험/액티비티" id="thema2">
 						                                <label for="thema2" class="thema_check">체험/액티비티</label>
 						                                <input type="radio" name="thema" value="자연과함께" id="thema3">
 						                                <label for="thema3" class="thema_check">자연과 함께</label>
-						                                <input type="radio" name="thema" value="유명관광지는필수" id="thema4">
-						                                <label for="thema4" class="thema_check">유명 관광지는 필수</label>
-						                                <input type="radio" name="thema" value="관광보단먹방" id="thema5">
-						                                <label for="thema5" class="thema_check">관광보단 먹방</label>
+						                                <input type="radio" name="thema" value="랜드마크" id="thema4">
+						                                <label for="thema4" class="thema_check">랜드마크</label>
+						                                <input type="radio" name="thema" value="먹방" id="thema5">
+						                                <label for="thema5" class="thema_check">먹방</label>
 						                                <input type="radio" name="thema" value="덕질의성지" id="thema6">  
 						                                <label for="thema6" class="thema_check">덕질의 성지</label>         
 						                        </div>
-						                        <p class="main_text">누구와 함께 여행가시나요?</p>
+						                        <div class='title_icon'>
+						                        	<img src="img/icon/people.png">
+						                        	 <p class="main_text">누구와 함께 여행가시나요?</p>
+						                        	 <hr>
+						                        </div>
 						                        <div id="with_div">
 						                                <input type="radio" name="with" value="혼자" id="with1" checked>
 						                                <label for="with1" class="with_check">혼자</label>
@@ -395,7 +403,11 @@ String u_id = (String) session.getAttribute("u_id");
 					        	    <article>
 						           		<div class="main_div">
 						                    <div class="main_con">
-						                        <p class="main_text">어떤 여행지를 가고 싶으신가요?</p>
+						                    	<div class='title_icon'>
+						                    		<img src="img/icon/island.png">
+						                    		<p class="main_text">어떤 여행지를 가고 싶으신가요?</p>
+						                    		<hr>
+						                    	</div>
 						                        <div id="place_div">
 						                        	<input type="checkbox" name="place" value="놀이공원" id="place1" onchange="checking(this.id)">
 					                                <label for="place1" class="place_check">놀이공원</label>
@@ -418,7 +430,11 @@ String u_id = (String) session.getAttribute("u_id");
 					                                <input type="checkbox" name="place" value="온천/스파" id="place10" onchange="checking(this.id)">
 			                                		<label for="place10" class="place_check">온천/스파</label>
 					                            </div>
-					                            <p class="main_text">음식 취향을 골라주세요.</p>
+					                            <div class='title_icon'>
+					                            	<img src="img/icon/food.png">
+					                            	<p class="main_text">음식 취향을 골라주세요.</p>
+					                            	<hr>
+					                            </div>
 					                           	<div id="eat_div">
 				                                	<input type="checkbox" name="eat" value="한식" id="eat1" onchange="checking(this.id)">
 				                                	<label for="eat1" class="eat_check">한식</label>
