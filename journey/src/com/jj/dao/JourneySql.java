@@ -13,8 +13,10 @@ import com.jj.dto.Class_list;
 import com.jj.dto.Eatery;
 import com.jj.dto.Estimate;
 import com.jj.dto.Inquiry;
+import com.jj.dto.Location_review;
 import com.jj.dto.Place;
 import com.jj.dto.Plan;
+import com.jj.dto.Plan_review;
 import com.jj.dto.Purchase;
 import com.jj.dto.User;
 
@@ -339,6 +341,75 @@ public class JourneySql {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	public ArrayList<Plan_review> mypagePlanReviewSelect(String u_id) { //일정리뷰 select
+		String sql = "select * from plan_review where u_id = '" + u_id + "'";
+		ArrayList<Plan_review> alist = new ArrayList<Plan_review>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Plan_review pr = new Plan_review();
+				pr.setPr_no(rs.getInt("pr_no"));
+				pr.setU_id(rs.getString("u_id"));
+				pr.setE_no(rs.getInt("e_no"));
+				pr.setPr_title(rs.getString("pr_title"));
+				pr.setPr_contents(rs.getString("pr_contents"));
+				pr.setPr_file(rs.getString("pr_file"));
+				pr.setPr_file2(rs.getString("pr_file2"));
+				pr.setPr_file3(rs.getString("pr_file3"));
+				pr.setPr_date(rs.getDate("pr_date"));
+				
+				alist.add(pr);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	public ArrayList<Location_review> mypagePlaceReviewSelect(String u_id) { //장소리뷰 select
+		String sql = "select * from location_review where u_id = '" + u_id + "'";
+		ArrayList<Location_review> alist = new ArrayList<Location_review>();
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Location_review lr = new Location_review();
+				lr.setLr_no(rs.getInt("lr_no"));
+				lr.setU_id(rs.getString("u_id"));
+				lr.setPl_eat_no(rs.getInt("pl_eat_no"));
+				lr.setLr_contents(rs.getString("lr_contents"));
+				lr.setLr_file1(rs.getString("lr_file1"));
+				lr.setLr_file2(rs.getString("lr_file2"));
+				lr.setLr_file3(rs.getString("lr_file3"));
+				lr.setLr_date(rs.getDate("lr_date"));
+				lr.setLr_star(rs.getInt("lr_star"));
+				
+				alist.add(lr);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		return alist;

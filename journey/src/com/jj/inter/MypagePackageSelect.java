@@ -14,7 +14,9 @@ import com.jj.conn.MypageRewardSelectDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Package;
 import com.jj.dto.Package_schedule;
+import com.jj.dto.Plan_review;
 import com.jj.dto.Purchase;
+import com.jj.dto.User;
 
 public class MypagePackageSelect implements JourneyInterface {
 	static MypagePackageSelect mSelect = new MypagePackageSelect();
@@ -27,6 +29,9 @@ public class MypagePackageSelect implements JourneyInterface {
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String u_id = request.getParameter("u_id");
+		String tab = request.getParameter("tab");
+		ArrayList<User> ulist = (ArrayList<User>)request.getAttribute("ulist");
+		ArrayList<Plan_review> prList = (ArrayList<Plan_review>)request.getAttribute("prList");
 		
 		/* 패키지(기획내역) */
 		MypagePackageSelectDB mSelectDB = new MypagePackageSelectDB(); //패키지 상세내용
@@ -37,15 +42,18 @@ public class MypagePackageSelect implements JourneyInterface {
 			no += pk.getP_no() + "/";
 		}
 		
-		MypagePackageScheSelectDB msSelectDB = new MypagePackageScheSelectDB(); //패키지 일정
+		//패키지 일정
+		MypagePackageScheSelectDB msSelectDB = new MypagePackageScheSelectDB();
 		ArrayList<Package_schedule> pslist;
 		HashMap<String, ArrayList<Package_schedule>> map = new HashMap<String, ArrayList<Package_schedule>>();
 		
-		MypageRewardSelectDB mrSelectDB = new MypageRewardSelectDB(); //패키지 리워드
+		//패키지 리워드
+		MypageRewardSelectDB mrSelectDB = new MypageRewardSelectDB();
 		ArrayList<Package> rlist;
 		HashMap<String, ArrayList<Package>> map2 = new HashMap<String, ArrayList<Package>>();
 		
-		MypagePsPlaceSelectDB mppSelectDB = new MypagePsPlaceSelectDB(); //패키지 장소
+		//패키지 장소
+		MypagePsPlaceSelectDB mppSelectDB = new MypagePsPlaceSelectDB();
 		ArrayList<Package_schedule> pclist;
 		HashMap<String, ArrayList<Package_schedule>> map3 = new HashMap<String, ArrayList<Package_schedule>>();
 		
@@ -67,7 +75,9 @@ public class MypagePackageSelect implements JourneyInterface {
 		request.setAttribute("packagesche", map);
 		request.setAttribute("reward", map2);
 		request.setAttribute("place", map3);
+		request.setAttribute("ulist", ulist); //회원정보
+		request.setAttribute("prList", prList); //일정리뷰
 		
-		return "mypage_packageMaking.jsp";
+		return "mypage.jsp?tab="+tab;
 	}
 }

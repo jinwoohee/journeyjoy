@@ -25,10 +25,12 @@
 		
 		.package_making li {
 			margin-top: 25px;
+			padding-bottom: 25px;
 		    border-bottom: 1px solid #ddd;
 		}
 		
 		.package_making > p {
+			margin-top: 0px;
 			margin-bottom: 0px;
 		}
 		
@@ -38,8 +40,8 @@
 		}
 		
 		.pk_img { /* 패키지 기획내역 img div */
-			width: 200px;
-			height: 200px;
+			width: 300px;
+			height: 300px;
 			margin-right: 40px;
 		}
 		
@@ -50,8 +52,7 @@
 		}
 		
 		.pk_cont { /* 패키지 기획내역 contents */
-			width: 850px;
-			margin-bottom: 25px;
+			width: 730px;
 		}
 		
 		.pk_cont div {
@@ -69,9 +70,9 @@
 		}
 		
 		.pk_cont table { /* 패키지 기획내역-요금 */
-			width: 400px;
+			width: 600px;
 			border: 1px #0D112D solid;
-		    font-size: .9em;
+		    font-size: 15px;
 		    box-shadow: 0 2px 5px rgba(0,0,0,.25);
 		    border-collapse: collapse;
 		    border-radius: 4px;
@@ -92,6 +93,11 @@
 		    font-weight: bold;
 		}
 		
+		.pk_cont table tr:first-of-type td p {
+			font-size: 9px;
+			color: #ccc;
+		}
+		
 		.pk_cont table tr:last-of-type td {
 			
 		}
@@ -99,7 +105,7 @@
 		.pk_tag {
 			float: left;
 		    border: 1px solid #6C94B8;
-		    /* border-radius: 20px; */
+		    border-radius: 50px;
 		    width: fit-content;
 		    height: fit-content;
 		    color: #6C94B8;
@@ -111,13 +117,18 @@
 		}
 		
 		.pk_title {
-			font-size: 18px;
+			font-size: 25px;
+		}
+		
+		.pk_plan { /* 여행일정 */
+			font-size: small;
+			font-weight: 600;
 		}
 		
 		.pk_btn { /* 패키지 기획내역 수정버튼 div */
-			height: 200px;
+			height: 300px;
 			display: flex;
-		    align-items: center;
+		    align-items: flex-end;
 		}
 		
 		.pk_btn button {
@@ -134,7 +145,7 @@
 		
 		.pk_update_btn { /* 패키지 기획내역 수정버튼 세부div */
 			position: relative;
-		    top: 126px;
+		    top: 303px;
 			right: 120px;
 		    /* display: inline-grid; */
 		    z-index: 5;
@@ -213,7 +224,7 @@
 						<p class="pk_title"><strong><%= p.getP_title() %></strong></p>
 					</div>
 					<div>
-						<p>▶ 요금</p>
+						<p>※ 요금</p>
 						<%
 						for (Entry<String, ArrayList<Package>> e2 : map2.entrySet()) {
 							if (p.getP_no() == Integer.parseInt(e2.getKey())) {
@@ -248,7 +259,7 @@
 						%>
 					</div>
 					<div>
-						<p>▶ 여행일정</p>
+						<p>※ 여행일정</p>
 					<% 
 					for (Entry<String, ArrayList<Package_schedule>> e : map.entrySet()) {
 						if (p.getP_no() == Integer.parseInt(e.getKey())) {

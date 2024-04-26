@@ -4,6 +4,10 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	color: #646464;
 	margin: 0px auto;
+	width: 100%;
+    height: 100%;
+    background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover;
 }
 
 button, input[type="button"], .notification_wrap li {
@@ -11,11 +15,15 @@ button, input[type="button"], .notification_wrap li {
 }
 
 .all_wrap { /* 전체 div */
-	
-	width: 1200px;
-    margin: 0px auto;
+	width: 100%;
+    height: 100%;
 	padding-top: 180px;
-	background-color: #f1f1f3;
+}
+
+.sub_wrap {
+	width: 1200px;
+	margin: 0px auto;
+	padding-bottom: 100px;
 }
 
 .notification_wrap { /* 마이페이지 메뉴바 전체div */
@@ -74,13 +82,18 @@ button, input[type="button"], .notification_wrap li {
     margin-right: 15px;
 }
 
-.no_active { /* 클릭되지 않은 cards li */
+.no_active { /* 클릭되지 않은 cards li, content_wrap div */
 	display: none;
 }
 
 .package, .review, .userInfo { /* cards li */
 	border-bottom: 1px solid #2b2b2b;
 }
+
+.package li:hover, .review li:hover, .userInfo li:hover {
+	text-decoration: underline;
+}
+
 
 .package li:first-of-type, .review li:first-of-type, .userInfo li:first-of-type {
 	border-color: #12245c;
@@ -97,7 +110,7 @@ button, input[type="button"], .notification_wrap li {
 	background-color: #6c94b8;
 }
 
-.package li:first-of-type:hover, .review li:first-of-type:hover, .userInfo li:first-of-type:hover {
+/*.package li:first-of-type:hover, .review li:first-of-type:hover, .userInfo li:first-of-type:hover {
 	color: #646464;
 	background-color: white;
 }
@@ -110,11 +123,311 @@ button, input[type="button"], .notification_wrap li {
 .package li:last-of-type:hover, .review li:last-of-type:hover, .userInfo li:last-of-type:hover {
 	color: #646464;
 	background-color: white;
-}
+}*/
 
 .content_wrap { /* 정보출력 전체 div */
-	padding-bottom: 100px;
-	margin-top: 30px;
+	background-color: #ffffffc7;
+}
+
+.package_making, .package_attending, .package_like { /* 패키지 */
+	padding-top: 30px;
+    padding-bottom: 100px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.package_making ul {
+	list-style: none;
+	padding-inline-start: 0px;
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+		
+.package_making li {
+	padding-top: 25px;
+	padding-bottom: 25px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pk_size {
+	border-bottom: 1px solid #ddd;
+}
+
+.pk_size p {
+	margin-top: 0px;
+	margin-bottom: 25px;
+	/* background-color: #ffffa7; */
+	width: fit-content;
+}
+
+.pk_size strong {
+	color : #FA5252;
+}
+
+.pk_list { /* 패키지 기획내역 list */
+	width: 100%;
+	height: 200px;
+	display: -webkit-box;
+}
+
+.pk_img { /* 패키지 기획내역 img div */
+	width: 200px;
+	height: 200px;
+	margin-right: 40px;
+}
+
+.pk_img img { 
+	width: 100%;
+	height: 100%;
+	object-fit: cover
+}
+
+.pk_cont { /* 패키지 기획내역 contents */
+	height: fit-content;
+    margin-right: 40px;
+    width: 250px;
+    height: 100%;
+}
+
+.pk_list > div:nth-of-type(3) {
+	width: 440px;
+}
+
+.pk_cont > div {
+	display: flow-root;
+	margin-bottom: 10px;
+}
+
+.pk_cont p {
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.pk_cont table { /* 패키지 기획내역-요금 */
+	width: 400px;
+	border: 1px #0D112D solid;
+    font-size: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    border-collapse: collapse;
+    border-radius: 4px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 12px;
+}
+
+.pk_cont table td {
+	border-right: 0.1em solid #f1f1f3;
+	width: fit-content;
+	background: white;
+}
+
+.pk_cont table tr:first-of-type td {
+	background: #6C94B8;
+    color: #f1f1f3;
+    font-weight: bold;
+}
+
+.pk_cont table tr:first-of-type td p {
+	font-size: 9px;
+	color: #ccc;
+}
+
+.pk_cont table tr:last-of-type td {
+	
+}
+
+.pk_tag { /* 나라,도시 tag */
+	float: left;
+    border: 1px solid #6C94B8;
+    border-radius: 50px;
+    width: fit-content;
+    height: fit-content;
+    color: #6C94B8;
+    font-weight: 600;
+    text-align: center;
+    margin-right: 10px;
+    padding: 1px 7px;
+    background-color: white;
+}
+
+.pk_line {
+	display: inline-block;
+}
+
+.pk_title { /* 제목 */
+	font-size: 25px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.pk_days {
+	overflow-y: hidden;
+    /* text-overflow: ellipsis; */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+	line-height: 21px;
+}
+
+.pk_plan { /* 여행일정 */
+	font-size: small;
+	font-weight: 600;
+}
+
+.pk_btn { /* 패키지 기획내역-수정버튼 div */
+	height: 200px;
+	display: flex;
+    align-items: center;
+}
+
+.pk_btn button {
+	width: 110px;
+    height: 46px;
+	color: #6C94B8;
+	font-size: 15px;
+	font-weight: 600;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: white;
+	border: 1px solid #6C94B8;
+	border-radius: 4px;
+}
+
+.pk_update_btn { /* 패키지 기획내역-수정버튼 하위div */
+	position: relative;
+    top: 303px;
+	right: 120px;
+    /* display: inline-grid; */
+    z-index: 5;
+    border: 1px solid #6c94b8;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    padding: 10px 1px;
+    width: 130px;
+    height: 120px;
+    background-color: white;
+}
+
+.pk_update_btn button {
+	width: 100%;
+    height: 40px;
+    font-size: 13px;
+    letter-spacing: -1px;
+    background-color: white;
+    border: none;
+    box-sizing: border-box;
+}
+
+.pk_update_btn button:hover {
+	background-color: #f4f6fa;
+    color: #6c94b8;
+}
+
+.pk_blank { /* 패키지 기획내역 없을 때 div */
+	text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.plan_review, .place_review { /* 일정리뷰, 장소리뷰 */
+	padding-top: 30px;
+    padding-bottom: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.plan_review ul { /* 일정리뷰 */
+	list-style: none;
+	padding-inline-start: 0px;
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.plan_review li {
+	padding-top: 25px;
+  		padding-bottom: 25px;
+    border-bottom: 1px solid #ddd;
+}
+
+.plan_review > p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.plan_list { /* 일정리뷰 전체div */
+	width: 1200px;
+	display: -webkit-box;
+}
+
+.plan_img { /* 일정리뷰 img div */
+	width: 300px;
+	height: 300px;
+	margin-right: 40px;
+}
+
+.plan_img img { 
+	width: 100%;
+	height: 100%;
+	object-fit: cover
+}
+
+.plan_cont { /* 일정리뷰 contents */
+	width: 730px;
+	margin-bottom: 20px;
+}
+
+.plan_cont div {
+	display: flow-root;
+	margin-bottom: 15px;
+}
+
+.plan_cont p {
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.plan_title { /* 제목 */
+	font-size: 25px;
+	padding-bottom: 10px;
+}
+
+.plan_btn { /* 일정리뷰 버튼 div */
+	height: 300px;
+	display: flex;
+    align-items: flex-end;
+}
+
+.plan_btn button {
+	width: 110px;
+    height: 46px;
+	color: #6C94B8;
+	font-size: 15px;
+	font-weight: 600;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: white;
+	border: 1px solid #6C94B8;
+	border-radius: 4px;
+}
+
+.plan_btn button:last-of-type {
+	margin-top: 5px;
+}
+
+.plan_btn button:last-of-type:hover { /* 일정리뷰 삭제버튼 */
+    color: red;
+	border: 1px solid red;
+}
+
+.plan_detail {
+	display: grid;
+}
+
+.plan_blank { /* 일정리뷰 없을 때 div */
+	text-align: center;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 
@@ -123,8 +436,17 @@ button, input[type="button"], .notification_wrap li {
 
 
 
-.user_wrap { /* 회원정보 수정div */
+
+
+
+
+
+
+
+.user_wrap { /* 회원정보수정div */
 	color: black;
+	padding-top: 25px;
+    padding-bottom: 50px;
 }
 
 .profile { /* 회원정보-프로필div */
@@ -132,17 +454,29 @@ button, input[type="button"], .notification_wrap li {
     float: left;
 }
 
-.pf_img {
-	margin-top: 0px;
-	margin-bottom: 0px;
+.pf_wrap {
+	display: grid;
+    justify-content: center;
 }
 
-.pf_edit {
+.pf_img { /* 회원정보-프로필 img div */
+	margin-top: 0px;
+	margin-bottom: 0px;
+	width: fit-content;
+}
+
+.pf_img img {
+	object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+
+.pf_edit { /* 회원정보-프로필 편집button */
 	margin-bottom: 5px;
 }
 
 .user_field { /* 회원정보-내용div */
-	width: 800px;
+	width: 1000px;
     display: flex;
     justify-content: center;
 }
@@ -151,10 +485,16 @@ button, input[type="button"], .notification_wrap li {
 	
 }
 
-.txt {
+.txt { 
 	width: 350px;
     height: 20px;
     padding: 7px;
+    border: 1px solid #646464;
+}
+
+.lb {
+	color: #959595;
+    font-size: 13px;
 }
 
 input[name="id"] {
@@ -172,6 +512,7 @@ input[name="id"] {
     height: 20px;
     padding: 7px;
     margin-bottom: 5px;
+    border: 1px solid #646464;
 }
 
 #sample4_roadAddress {
@@ -190,7 +531,7 @@ input[name="id"] {
 }
 
 .btn_wrap {
-	margin-top: 40px;
+	margin-top: 60px;
     display: flex;
     /* align-items: center; */
     justify-content: center;

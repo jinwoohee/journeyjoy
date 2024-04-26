@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.jj.dto.Package" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,12 +26,23 @@
 		    border-bottom: 1px solid #ddd;
 		}
 		
-		.package_like > p {
-			margin-bottom: 0px;
+		.pk_like_size {
+			border-bottom: 1px solid #ddd;
+		}
+		
+		.pk_like_size > p {
+			margin-top: 0px;
+			margin-bottom: 25px;
+			width: fit-content;
+		}
+		
+		.pk_like_size strong {
+			color : #FA5252;
 		}
 		
 		.pk_like_list { /* 찜한패키지 전체div */
-			width: 1200px;
+			width: 100%;
+			height: 200px;
 			display: -webkit-box;
 		}
 		
@@ -46,13 +59,14 @@
 		}
 		
 		.pk_like_cont { /* 찜한패키지 contents */
-			width: 850px;
-			margin-bottom: 20px;
+			width: 345px;
+			height: 100%;
+		    margin-right: 40px;
 		}
 		
 		.pk_like_cont div {
 			display: flow-root;
-			margin-bottom: 15px;
+			margin-bottom: 10px;
 		}
 		
 		.pk_like_cont p {
@@ -63,7 +77,7 @@
 		.pk_like_tag {
 			float: left;
 		    border: 1px solid #6C94B8;
-		    /* border-radius: 20px; */
+		    border-radius: 50px;
 		    width: fit-content;
 		    height: fit-content;
 		    color: #6C94B8;
@@ -75,7 +89,17 @@
 		}
 		
 		.pk_like_title { /* 제목 */
-			font-size: 18px;
+			font-size: 25px;
+			overflow: hidden;
+		    text-overflow: ellipsis;
+		    display: -webkit-box;
+		    -webkit-line-clamp: 4;
+		    -webkit-box-orient: vertical;
+		}
+		
+		.pk_like_plan { /* 여행일정 */
+			font-size: small;
+			font-weight: 600;
 		}
 		
 		.pk_like_btn { /* 찜한패키지 버튼 div */
@@ -127,7 +151,9 @@
 	
 	if (plist.size() != 0) {
 	%>
-	<p>찜한 패키지 <strong><%= plist.size() %></strong>개</p>
+	<div class="pk_like_size">
+		<p>찜한 패키지 <strong><%= plist.size() %></strong>개</p>
+	</div>
 	<ul>
 	<% for (Package p : plist) { %>
 		<li>
@@ -141,9 +167,21 @@
 					<div>
 						<p class="pk_like_title"><strong><%= p.getP_title() %></strong></p>
 					</div>
+				</div>
+				<div class="pk_like_cont">
 					<div>
-						<p><strong>▶ 여행일정</strong></p>
-						<p><%= p.getP_start_date() %> ~ <%= p.getP_end_date() %></p>
+						<p>※ 여행일정</p>
+						<p class="pk_like_plan"><%= p.getP_start_date() %> ~ <%= p.getP_end_date() %></p>
+					</div>
+					<div>
+						<p>※ 정원 / 가이드비용</p>
+						<c:set var="pay" value="<%= p.getP_guide_pay() %>" />
+						<fmt:formatNumber var="guide" value="${ pay }" />
+						<p class="pk_like_plan"><%= p.getP_volume() %>명 / ${ guide }원</p>
+					</div>
+					<div>
+						<p>※ 참여 마감날짜</p>
+						<p class="pk_like_plan"><%= p.getP_due_date() %>까지</p>
 					</div>
 				</div>
 				<div class="pk_like_btn">

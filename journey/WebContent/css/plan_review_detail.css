@@ -2,7 +2,7 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	margin: 0;
 	color: #646464;
-		background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
 	background-size: cover;
 }
 input{ /*모든 input의 내부 글자폰트*/
