@@ -29,13 +29,24 @@ List<Estimate> esti = (List<Estimate>) request.getAttribute("estilist");
 			<p>계획서 선택</p>
 			<%
 				for(Estimate es : esti){%>
-				<a href="plan_review_write.jsp?e_no=<%=es.gete_no()%>&e_destination=<%=es.gete_destination()%>&page_no=write&e_start_date=<%=es.gete_start_date() %>&e_end_date=<%=es.gete_end_date() %>">
 					<div class="plan_div">
-						<p><%=es.gete_destination() %></p>
-						<p><%=es.gete_start_date() %> ~ <%=es.gete_end_date() %></p>
-						<p><%=es.gete_thema()+es.gete_detail_thema()+es.gete_food_taste()+es.gete_volume() %></p>
+						<a href="plan_review_write.jsp?e_no=<%=es.gete_no()%>&e_destination=<%=es.gete_destination()%>&page_no=write&e_start_date=<%=es.gete_start_date() %>&e_end_date=<%=es.gete_end_date() %>">
+							<div><img src='img/icon/flag.png'><p><%=es.gete_destination() %></p></div>
+							<div><p><%=es.gete_start_date() %> ~ <%=es.gete_end_date() %></p></div>
+							<div>#<%=es.gete_thema() %></div>
+							<%
+								String detailTheme = es.gete_detail_thema();
+								String replace = detailTheme.replaceAll(",", " ");
+								String [] theme = replace.split(" ");
+								
+								for(int i = 0; i < theme.length ; i ++){%>
+									#<%=theme[i] %>
+								<%}
+							%>
+							<div><p><%=es.gete_food_taste() %></p></div>
+							<div><p><%=es.gete_volume() %></p></div>
+						</a>
 					</div>
-				</a>
 			<%} %>
 		</div>
 	</section>

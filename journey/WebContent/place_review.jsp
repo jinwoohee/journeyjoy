@@ -46,12 +46,12 @@
 		});
 		
 		//mouseenter, leave
-		$(".review").mouseenter(function(){
+		/* $(".review").mouseenter(function(){
         	$(this).css({'background':'#f1f1f3'});
         });
 		 $(".review").mouseleave(function(){
 			 $(this).css({'background':'white'});
-        });
+        }); */
 		 
 		 //검색창 
 		 $("input[name='search']").click(function(){
