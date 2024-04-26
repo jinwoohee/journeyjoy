@@ -90,7 +90,7 @@ div[class="main_con"]{ /* 첫번째, 두번째, 세번째 화면의 내부 내�
 }
 div[id="img_div"]{ /*이미지 슬라이드의 div */
 	width: 630px;
-	height: 630px;
+	height: 630px; 
 	float: right;
 	margin-top: 90px;
 	margin-right: 240px;
