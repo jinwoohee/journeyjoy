@@ -155,7 +155,7 @@
 								</div>
 								<%for(int i=0; i<place.length; i++){%>
 									<p class='place'><div class='no'><%=i+1 %></div><%=place[i] %></p>
-									<a href='place_review_write.jsp'><img src='img/icon/write.png' class='place_write'></a>
+									<a href='place_review_write.jsp?place_name=<%=place[i] %>'><img src='img/icon/write.png' class='place_write'></a>
 								<%} %>
 								</div>
 							</div>
@@ -206,6 +206,7 @@
 								<% for(Schedule sc : scList){ %>
 									<div class='day_plan'>
 										<div class='day_info'>
+											<input type='hidden' name='sche_day' value=<%=sc.getSche_day() %>>
 											<p class='day'>Day<%=sc.getSche_day()%></p>
 											<img src='img/icon/write.png' class='day_write' onclick='place_down(<%=sc.getSche_day()%>)'>
 											
@@ -228,7 +229,7 @@
 											</div>
 											<%for(int i=0; i<place.length; i++){%>
 												<p class='place'><div class='no'><%=i+1 %></div><%=place[i] %></p>
-												<a href='place_review_write.jsp'><img src='img/icon/write.png' class='place_write'></a>
+												<a href='place_review_write.jsp?place_name=<%=place[i] %>'><img src='img/icon/write.png' class='place_write'></a>
 											<%} %>
 											</div>
 										</div>

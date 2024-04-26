@@ -35,8 +35,6 @@
 		pr.setPr_title(multi.getParameter("title"));
 		pr.setPr_contents(multi.getParameter("content"));
 		
-		System.out.println(Integer.parseInt(multi.getParameter("e_no")));
-		
 		/* 첨부파일 */
 		Enumeration files=multi.getFileNames();
 		
@@ -59,15 +57,16 @@
 		/* 일정리뷰 등록 */
 		dao.insert_plan_review(pr.getU_id(), pr.getE_no(), pr.getPr_title(), pr.getPr_contents(), pr.getPr_file(), pr.getPr_file2(), pr.getPr_file3());
 		
-		
+		/*pr_no값 select*/
+		int pr_no = dao.select_pr_no();
 		
 		//일정리뷰 > day_review
 		int sche = Integer.parseInt(multi.getParameter("sche_day"));
 		for(int i=0; i<sche; i++){
 			dr = new Day_review();
 			
-			dr.setPr_no(Integer.parseInt(multi.getParameter("e_no")));
-			dr.setDr_day(i+1);
+			dr.setPr_no(pr_no);
+			dr.setDr_day((i+1));
 			dr.setDr_contents(multi.getParameter("day_review"+(i+1)));
 			
 			/* 데이리뷰 등록*/

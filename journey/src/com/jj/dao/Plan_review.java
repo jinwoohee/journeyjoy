@@ -3,9 +3,11 @@ package com.jj.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.jj.dto.Day_review;
 import com.jj.dto.Schedule;
 
 public class Plan_review {
@@ -38,7 +40,22 @@ public class Plan_review {
 		throw new Exception("데이터 입력 실패");
 		
 		closeDb();
+	}
+	
+	/* insert후 pr_no select */
+	public int select_pr_no() throws Exception {
+		connDb();
+		
+		int pr_no = 0;
+		ResultSet rs = stmt.executeQuery("SELECT MAX(pr_no) AS pr_no FROM plan_review;");
+		
+		if(rs.next()) {
+			pr_no = rs.getInt("pr_no");
 		}
+		
+		closeDb();
+		return pr_no; 
+	}
 	
 	/* 데이리뷰 insert */
 	public void insert_day_review(int pr_no, int day, String dr_contents) throws Exception{ 
@@ -49,8 +66,9 @@ public class Plan_review {
 		throw new Exception("데이터 입력 실패");
 		
 		closeDb();
-		}
+	}
 	
+	/* 일정리뷰 select */
 	public ArrayList<com.jj.dto.Plan_review> select_plan_review(String num) throws Exception{
 		ArrayList<com.jj.dto.Plan_review> reviewList = new ArrayList<com.jj.dto.Plan_review>();
 		connDb();
@@ -61,7 +79,8 @@ public class Plan_review {
 												"LEFT JOIN user u\r\n" + 
 												"ON p.u_id = u.u_id\r\n" + 
 												"LEFT JOIN estimate e\r\n" + 
-												"ON p.e_no = e.e_no;");
+												"ON p.e_no = e.e_no \r\n" +
+												"ORDER BY pr_no DESC;");
 			while(rs.next()) {
 				com.jj.dto.Plan_review review = new com.jj.dto.Plan_review();
 				review.setPr_no(rs.getInt("pr_no"));
@@ -80,11 +99,25 @@ public class Plan_review {
 				reviewList.add(review);
 			}
 		}else{
-			ResultSet rs = stmt.executeQuery("select*from plan_review where pr_no="+num+";");
+			ResultSet rs = stmt.executeQuery("SELECT DISTINCT p.*, u.u_nickname, u.u_profile, e.e_destination, e_thema, e_detail_thema, d.dr_contents \r\n" + 
+												"FROM plan_review p\r\n" + 
+												"LEFT JOIN user u\r\n" + 
+												"ON p.u_id = u.u_id\r\n" + 
+												"LEFT JOIN estimate e\r\n" + 
+												"ON p.e_no = e.e_no\r\n" + 
+												"LEFT JOIN day_review d \r\n" + 
+												"ON p.e_no = d.pr_no\r\n" + 
+												"WHERE p.pr_no ="+num+" \r\n" + 
+												"ORDER BY pr_no DESC");
 			if(rs.next()) {
 				com.jj.dto.Plan_review review = new com.jj.dto.Plan_review();
 				review.setPr_no(rs.getInt("pr_no"));
 				review.setU_id(rs.getString("u_id"));
+				review.setU_nickname(rs.getString("u_nickname"));
+				review.setU_profile(rs.getString("u_profile"));
+				review.setE_destination(rs.getString("e_destination"));
+				review.setE_thema(rs.getString("e_thema"));
+				review.setE_detail_thema(rs.getString("e_detail_thema"));
 				review.setE_no(rs.getInt("e_no"));
 				review.setPr_title(rs.getString("pr_title"));
 				review.setPr_contents(rs.getString("pr_contents"));
@@ -109,7 +142,21 @@ public class Plan_review {
 		throw new Exception("데이터 입력 실패");
 		
 		closeDb();
-		}
+	}
+	
+	
+	/*데이리뷰 수정*/
+	public void update_day_review(int pr_no, int dr_day, String dr_contents) throws Exception{
+		connDb();
+		String comm = String.format("UPDATE day_review SET dr_contents='"+dr_contents+"' WHERE pr_no="+pr_no+" and dr_day="+dr_day+";");
+		
+		int rowNum = stmt.executeUpdate(comm);
+		if(rowNum < 1)
+			throw new Exception("데이리뷰 수정 실패");
+		
+		closeDb();
+	}
+	
 	
 	/*일정리뷰 삭제*/
 	public void delete_plan_review(int pr_no) throws Exception{
@@ -155,6 +202,31 @@ public class Plan_review {
 			closeDb();
 		}
 		return scList;
+	}
+	
+	
+	/* 데이리뷰 select */
+	public ArrayList<Day_review> select_dayReview_pick(int pr_no2) throws Exception{
+		ArrayList<Day_review> drList = new ArrayList<Day_review>();
+		ResultSet rs = null;
+		
+		try {
+			connDb();
+			rs = stmt.executeQuery("SELECT * FROM day_review WHERE pr_no="+pr_no2+";");
+			
+			while(rs.next()) {
+				Day_review day = new Day_review();
+				
+				day.setPr_no(rs.getInt("pr_no"));
+				day.setDr_day(rs.getInt("dr_day"));
+				day.setDr_contents(rs.getString("dr_contents"));
+				
+				drList.add(day);
+			}
+		} finally {
+			closeDb();
+		}
+		return drList;
 	}
 }
 
