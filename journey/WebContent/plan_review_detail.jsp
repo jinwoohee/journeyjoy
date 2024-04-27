@@ -19,41 +19,14 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<link href="css/plan_review_detail.css" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	
+	<script type="text/javascript" src="js\plan_review_detail.js"></script>
 	
 <title>Insert title here</title>
 </head>
 <script>
 
 
-$(function() {
-	  const slider = document.getElementById('slider');
-	  const slideLis = document.getElementsByClassName('li_sli');
-	  
-	  //ul 넓이 계산해 주기 
-	  const liWidth = slideLis[0].clientWidth;
-	  const sliderWidth =  liWidth * slideLis.length;
-	  slider.style.width = sliderWidth+"px" ;
 
-	  //리스너 설치하기 
-	  var currentIdx = 0; // 슬라이드 현재 번호
-	  var translate = 0; // 슬라이드 위치 값
-	  
-	  $("#right").click(function(){   //오른쪽화살표 눌렀을때 슬라이드
-		  if (currentIdx !== slideLis.length -1) {
-		        translate -= liWidth;
-		        slider.style.transform = "translateX(${translate}px)";
-		        currentIdx += 1;
-		      }
-	  });
-	  $("#left").click(function(){  //왼쪽 화살표 눌렀을 때 슬라이드
-		  if (currentIdx !== 0) {
-	          translate += liWidth;
-	          slider.style.transform ="translateX(${translate}px)";
-	          currentIdx -= 1;
-	        }
-	   });
-});
 
 function tab(num){
 	var day_plan = "#day_plan"+num;
@@ -112,8 +85,8 @@ function tab(num){
 								</ul>
 							</div>
 						</div> 
-						<div id='left'><img src='img/icon/arrow_left.png'></div>
-						<div id='right'><img src='img/icon/arrow_right.png'></div>
+						<div id='left'><img src='img/icon/arrow_left.png' id='left_btn'></div>
+						<div id='right'><img src='img/icon/arrow_right.png' id='right_btn'></div>
 					<!-- <input type='button' value='left' id='left'>
 					<input type='button' value='right' id='right'> -->
 					<div id='content'><%=pr.getPr_contents() %></div>

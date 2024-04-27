@@ -91,7 +91,7 @@ $(function(){
     	  //console.log('window ready');
     	  var uid = $('input[name=uid]').val();
     	  
-    	  $.ajax({
+    	   $.ajax({
 			  type : 'post',
 			  data : {'u_id' : uid},
 			  url : 'inquiryNotice.jj?page=inquiry_flag',
@@ -102,7 +102,7 @@ $(function(){
 					  $('.alarm').attr('src', 'img/icon/alarm.png');
 				  }
 			  }
-		  });
+		  }); 
       });
       
       $('.alarm').click(function() { //알람 버튼 클릭시
