@@ -116,10 +116,11 @@
 			String city = request.getParameter("city");
 			String month = request.getParameter("month");
 			String category = request.getParameter("category");
+			//System.out.println("jsp----->" + stxt + "/" + nation + "/" + city + "/" + month + "/" + category);
 			
 			ArrayList<Board> alist;
 			
-			if (stxt != null) {
+			if (stxt != null || nation != null || city != null || month != null || category != null) {
 				alist = board.searchRow(stxt, nation, city, month, category);
 			} else {
 				alist = board.selectRow(-1);

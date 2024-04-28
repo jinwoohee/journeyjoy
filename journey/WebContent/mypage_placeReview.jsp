@@ -17,14 +17,19 @@
 			margin-top: 0px;
 		    margin-bottom: 0px;
 		    display: flex;
-    		justify-content: space-between;
 		}
 		
 		.place_review li {
-			width: calc((100% - 120px) / 2);
+			width: calc((100% - 113px) / 2);
 		    border: 1px solid #666666;
 		    border-radius: 10px;
 		    padding: 20px;
+		    float: left;
+			margin-bottom: 25px;
+		}
+		
+		.place_review li:nth-of-type(2n-1) {
+			margin-right: 30px;
 		}
 		
 		.pc_size {
@@ -78,7 +83,7 @@
 			font-size: 12px;
 		    color: #ccc;
 			display: flex;
-		    justify-content: flex-end;
+		    justify-content: space-between;
 		}
 		
 		.pc_star {
@@ -105,10 +110,15 @@
 		    white-space: nowrap;
 		}
 		
+		.pc_cont_detail {
+			height: calc(100% - 42px);
+			display: grid;
+		    align-content: space-between;
+		}
+		
 		.pc_btn { /* 장소리뷰 버튼 div */
 			/*height: calc(100% - 114px); */
 			display: flex;
-		    align-items: flex-end;
 		    justify-content: flex-end;
 		}
 		
@@ -153,43 +163,46 @@
 		<p>장소리뷰 <strong><%= lrList.size() %></strong>개</p>
 	</div>
 	<ul>
-		<% for (Location_review lr : lrList) { %>
-		<li>
-			<div class="pc_list">
-				<div class="pc_img">
-					<% if (lr.getLr_file1() != null) { %>
-					<img src="<%= lr.getLr_file1() %>" />
-					<% } else { %>
-					<img src="img/travel/travel1.jpg" />
-					<% } %>
+		<div class="place_li">
+			<% for (Location_review lr : lrList) { %>
+			<li>
+				<div class="pc_list">
+					<div class="pc_img">
+						<% if (lr.getLr_file1() != null) { %>
+						<img src="<%= lr.getLr_file1() %>" />
+						<% } else { %>
+						<img src="img/travel/travel1.jpg" />
+						<% } %>
+					</div>
+					<div class="pc_cont">
+						<div class="pc_date">
+							<p class="pc_star">
+								<%
+								for (int i = 1; i < 6; i++) {
+									if (i <= lr.getLr_star()) {
+								%>
+								<input type="radio" class="star" value="<%= i %>"><label>★</label>
+								<% 	} else { %>
+								<input type="radio" class="star" value="<%= i %>"><label>☆</label>
+								<%
+									}
+								}
+								%>
+							</p>
+							<p><%= lr.getLr_date() %></p>
+						</div>
+						<div class="pc_cont_detail">
+							<p><%= lr.getLr_contents() %></p>
+							<p class="pc_btn">
+								<button>리뷰삭제</button>
+							</p>
+						</div>
+						
+					</div>
 				</div>
-				<div class="pc_cont">
-					<div class="pc_date">
-						<p><%= lr.getLr_date() %></p>
-					</div>
-					<div class="pc_star">
-						<%
-						for (int i = 1; i < 6; i++) {
-							if (i <= lr.getLr_star()) {
-						%>
-						<input type="radio" class="star" value="<%= i %>"><label>★</label>
-						<% 	} else { %>
-						<input type="radio" class="star" value="<%= i %>"><label>☆</label>
-						<%
-							}
-						}
-						%>
-					</div>
-					<div class="pc_cont_detail">
-						<p><%= lr.getLr_contents() %></p>
-					</div>
-					<div class="pc_btn">
-						<button>리뷰삭제</button>
-					</div>
-				</div>
-			</div>
-		</li>
-		<% } %>
+			</li>
+			<% } %>
+		</div>
 	</ul>
 	<% } else { %>
 	<div class="pc_blank">

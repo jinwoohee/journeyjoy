@@ -16,7 +16,7 @@ public class MypagePackageScheSelectDB {
 		JourneySql sql = JourneySql.getInstance();
 		sql.setConnection(con);
 		ArrayList<Package_schedule> pslist = sql.mypagePackageScheSelect(p_no); //패키지 일정
-		System.out.println("MypagePackageScheSelectDB list----->"+pslist.size());
+		//System.out.println("MypagePackageScheSelectDB list----->"+pslist.size());
 		
 		close(con);
 		return pslist;

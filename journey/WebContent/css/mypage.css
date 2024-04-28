@@ -344,15 +344,19 @@ button, input[type="button"], .notification_wrap li {
 	margin-top: 0px;
     margin-bottom: 0px;
     display: flex;
-    justify-content: space-between;
 }
 
 .plan_review li {
-    width: calc((100% - 120px) / 2);
+    width: calc((100% - 113px) / 2);
     border: 1px solid #666666;
     border-radius: 10px;
     padding: 20px;
     float: left;
+	margin-bottom: 25px;
+}
+
+.plan_review li:nth-of-type(2n-1) {
+	margin-right: 30px;
 }
 
 .plan_size {

@@ -132,22 +132,36 @@ public class BoardDB {
 		connDB();
 		ArrayList<Board> alist = new ArrayList<Board>();
 		
-		ResultSet rs = stmt.executeQuery("select *, (select u_nickname from user where user.u_id = board.u_id) as u_nickname from board where b_title like '%" + stxt + "%' or b_city like '%" + city + "%' or b_month like '%" + month + "%' or b_category like '%" + category + "%' order by b_no desc;");
+		if (nation.equals("국가"))
+			nation = "";
+		
+		if (city.equals("도시"))
+			city = "";
+		
+		if (month.equals("여행시기"))
+			month = "";
+		
+		if (category.equals("카테고리"))
+			category = "";
+		//System.out.println("java----->" + stxt + "/" + nation + "/" + city + "/" + month + "/" + category);
+		
+		String sql = "select *, (select u_nickname from user where user.u_id = board.u_id) as u_nickname from board where b_title like '%" + stxt + "%' and b_nation like '%" + nation + "%' and b_city like '%" + city + "%' and b_month like '%" + month + "%' and b_category like '%" + category + "%' order by b_no desc;";
+		ResultSet rs = stmt.executeQuery(sql);
 		
 		while (rs.next()) {
-			Board blist = new Board();
-			blist.setB_no(rs.getInt("b_no"));
-			blist.setU_id(rs.getString("u_id"));
-			blist.setB_category(rs.getString("b_category"));
-			blist.setB_title(rs.getString("b_title"));
-			blist.setB_contents(rs.getString("b_contents"));
-			blist.setB_nation(rs.getString("b_nation"));
-			blist.setB_city(rs.getString("b_city"));
-			blist.setB_month(rs.getString("b_month"));
-			blist.setB_date(rs.getDate("b_date"));
-			blist.setU_nickname(rs.getString("u_nickname"));
+			Board b = new Board();
+			b.setB_no(rs.getInt("b_no"));
+			b.setU_id(rs.getString("u_id"));
+			b.setB_category(rs.getString("b_category"));
+			b.setB_title(rs.getString("b_title"));
+			b.setB_contents(rs.getString("b_contents"));
+			b.setB_nation(rs.getString("b_nation"));
+			b.setB_city(rs.getString("b_city"));
+			b.setB_month(rs.getString("b_month"));
+			b.setB_date(rs.getDate("b_date"));
+			b.setU_nickname(rs.getString("u_nickname"));
 			
-			alist.add(blist);
+			alist.add(b);
 		}
 		
 		closeDB();

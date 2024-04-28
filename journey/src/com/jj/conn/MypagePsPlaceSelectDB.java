@@ -23,7 +23,7 @@ public class MypagePsPlaceSelectDB {
 		
 		if (schedule != "")
 			schedule = schedule.substring(0, schedule.length() - 2);
-		System.out.println("일정 스케줄------>"+schedule);
+		//System.out.println("일정 스케줄------>"+schedule);
 		
 		ArrayList<Package_schedule> pclist = sql.mypagePsPlaceSelect(schedule);
 		
