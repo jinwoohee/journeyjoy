@@ -90,13 +90,13 @@ $(document).ready(function() {
 	
 function checking(id){ /*테마 체크 여부 */
 	$("input[type='checkbox']").prop("checked", false);
-	$("label").css({"background-color":"white", "color":"rgb(64,64,64)"});
+	$("label").css({"background-color":"", "color":"rgb(64,64,64)"});
 	$("input[id="+id+"]").prop("checked",true);	
 	  
 	if($("input[id="+id+"]").is(":checked")){  
 	    $("label[for="+id+"]").css({"background-color":"#1E427F", "color":"#f1f1f3"});
 	  }else{
-	    $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
+	    $("label[for="+id+"]").css({"background-color":"", "color":"rgb(64,64,64)"});
 	  }
 }
 

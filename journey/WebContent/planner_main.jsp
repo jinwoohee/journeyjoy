@@ -364,7 +364,7 @@ String u_id = (String) session.getAttribute("u_id");
 						                                <label for="thema2" class="thema_check">체험/액티비티</label>
 						                                <input type="radio" name="thema" value="자연과함께" id="thema3">
 						                                <label for="thema3" class="thema_check">자연과 함께</label>
-						                                <input type="radio" name="thema" value="랜드마크" id="thema4">
+						                                <input type="radio" name="thema" value="유명관광지는필수" id="thema4">
 						                                <label for="thema4" class="thema_check">랜드마크</label>
 						                                <input type="radio" name="thema" value="먹방" id="thema5">
 						                                <label for="thema5" class="thema_check">먹방</label>

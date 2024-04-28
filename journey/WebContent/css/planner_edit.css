@@ -2,6 +2,8 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	margin: 0;
 	color: rgb(64,64,64);
+	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover;
 }
 p{
 	margin: 0;

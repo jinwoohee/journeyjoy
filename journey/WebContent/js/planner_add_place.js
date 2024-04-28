@@ -70,22 +70,6 @@ function day_select(num){
 	
 }
 
-function checking(id){ /*테마 체크 여부 */
-	$("input[type='checkbox']").prop("checked", false);
-	$("label").css({"background-color":"white", "color":"rgb(64,64,64)"});
-	$("input[id="+id+"]").prop("checked",true);	
-	  
-	if($("input[id="+id+"]").is(":checked")){  
-	    $("label[for="+id+"]").css({"background-color":"#1E427F", "color":"#f1f1f3"});
-	    createMarker(place);
-	    
-	    
-	    
-	  }else{
-	    $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
-	  }
-}
-
 function plan_add_btn(num){	
 	var edit = document.getElementById("edited"+num);
 	var before =document.getElementById("places_text"+num).innerText;
@@ -103,7 +87,7 @@ function plan_add_btn(num){
 	      document.getElementById("places_text"+num).textContent = before+checkVal ;
 	      
 	      $(this).prop("checked", false);
-	      $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
+	      $("label[for="+id+"]").css({"background-color":"", "color":"rgb(64,64,64)"});
 	      
 	      var after = edit.value+checkVal+"_";
 	      var after = document.getElementById("places_text"+num).innerText;
@@ -116,13 +100,13 @@ function plan_add_btn(num){
 
 function checking(id){ /*테마 체크 여부 */
 	$("input[type='checkbox']").prop("checked", false);
-	$("label").css({"background-color":"white", "color":"rgb(64,64,64)"});
+	$("label").css({"background-color":"", "color":"rgb(64,64,64)"});
 	$("input[id="+id+"]").prop("checked",true);	
 	  
 	if($("input[id="+id+"]").is(":checked")){  
 	    $("label[for="+id+"]").css({"background-color":"#1E427F", "color":"#f1f1f3"});
 	  }else{
-	    $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
+	    $("label[for="+id+"]").css({"background-color":"", "color":"rgb(64,64,64)"});
 	  }
 	
 	selectMarker(id);
