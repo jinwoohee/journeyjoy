@@ -435,14 +435,16 @@
 		LEFT JOIN eatery e
 		ON l.pl_eat_no = e.eat_no
 		<where>
-			<if test="city!= '' and search == ''">
-				p.plac_city = #{city} or e.eat_city = #{city}
-			</if>
-			<if test="search!= '' and city == ''">
-				l.lr_contents like concat('%', #{search}, '%') ORDER BY l.lr_no
-			</if>
-			<if test="city !='' and search != ''">
-				p.plac_city = #{city} or e.eat_city = #{city} and l.lr_contents like concat('%', #{search}, '%') ORDER BY l.lr_no
+			<if test="city != null or search != null">
+				<if test="city!= '' and search == ''">
+					p.plac_city = #{city} or e.eat_city = #{city}
+				</if>
+				<if test="search!= '' and city == ''">
+					l.lr_contents like concat('%', #{search}, '%')
+				</if>
+				<if test="city !='' and search != ''">
+					(p.plac_city = #{city} or e.eat_city = #{city}) and l.lr_contents like concat('%', #{search}, '%')
+				</if>
 			</if>
 		</where>
 		<if test="param != null">

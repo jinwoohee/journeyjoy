@@ -133,7 +133,7 @@
 				
 				<hr>
 				<div>
-					<textarea name="contents" maxlength="1000" cols="70" placeholder="솔직한 리뷰를 남겨주세요. (500자 이내)"></textarea>
+					<textarea name="contents" maxlength="600" cols="70" placeholder="솔직한 리뷰를 남겨주세요. (300자 이내)"></textarea>
 				</div>
 			
 				<div id="file">

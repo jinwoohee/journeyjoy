@@ -356,7 +356,7 @@ public class JourneyController extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("--- Controller / 구매취소 ---" + e);
 			}
-		}else if(page.equals("commInsert")) {
+		}else if(page.equals("commInsert")) { //패키지 댓글
 			ji = CommInsert.commentInsert();
 			String result;
 			try {

@@ -144,7 +144,7 @@ li div:nth-of-type(3), li div:nth-of-type(4){
 	font-weight: bold;
 	border : 1px solid #6C94B8;
 	border-radius : 50px;
-	width : 110px;
+	width : 120px;
 	height : 30px;
 	color: #6C94B8;
 	text-align : center;
@@ -157,6 +157,7 @@ li div:nth-of-type(3), li div:nth-of-type(4){
 
 /* 타이틀 */
 li div:nth-of-type(5){
+	width: 280px;
 	text-decoration: none;
 	font-size: 20px;
 	color: #646464;
