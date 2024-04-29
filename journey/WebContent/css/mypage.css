@@ -347,7 +347,7 @@ button, input[type="button"], .notification_wrap li {
 }
 
 .plan_review li {
-    width: calc((100% - 113px) / 2);
+    width: calc((100% - 115px) / 2);
     border: 1px solid #666666;
     border-radius: 10px;
     padding: 20px;
@@ -375,7 +375,7 @@ button, input[type="button"], .notification_wrap li {
 }
 
 .plan_li {
-	
+	width: 100%;
 }
 
 .plan_list { /* 일정리뷰 전체div */

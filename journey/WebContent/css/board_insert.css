@@ -4,6 +4,8 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	color: #646464;
 	margin: 0px auto;
+	background: url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+    background-size: cover;
 }
 
 .board_wrap { /* 글쓰기 전체 */
@@ -13,11 +15,12 @@ body {
 }
 
 .board {
-	border: 3px solid #f1f1f3;
+	border: 1px solid #f1f1f3;
     border-radius: 10px;
     box-shadow: 3px 3px 3px #cccccc;
     padding: 50px;
     margin-bottom: 210px;
+    background-color: #fff;
 }
 
 .board > p {

@@ -1,3 +1,4 @@
+<%@page import="com.jj.dto.Place"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Location_review"%>
@@ -20,7 +21,7 @@
 		}
 		
 		.place_review li {
-			width: calc((100% - 113px) / 2);
+			width: calc((100% - 115px) / 2);
 		    border: 1px solid #666666;
 		    border-radius: 10px;
 		    padding: 20px;
@@ -47,10 +48,20 @@
 			color : #FA5252;
 		}
 		
+		.pc_li {
+			width: 100%;
+		}
+		
 		.pc_list { /* 장소리뷰 전체div */
 			width: 100%;
-			height: 200px;
+			height: 300px;
 			display: -webkit-box;
+		}
+		
+		.pc_title {
+			width: 200px;
+		    height: 100%;
+		    margin-right: 40px;
 		}
 		
 		.pc_img { /* 장소리뷰 img div */
@@ -63,6 +74,21 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover
+		}
+		
+		.pc_pname {
+			width: 100%;
+		    height: calc(100% - 210px);
+		    margin-top: 10px;
+		}
+		
+		.pc_pname p {
+			margin-top: 0px;
+		    margin-bottom: 0px;
+		    overflow-y: auto;
+		    /* width: 100%; */
+		    height: 100%;
+		    font-weight: 600;
 		}
 		
 		.pc_cont { /* 장소리뷰 contents */
@@ -101,19 +127,15 @@
 			margin: 0;
 		}
 		
-		.pc_title { /* 제목 */
-			font-size: 25px;
-			width: 100%;
-			padding-bottom: 10px;
-			overflow: hidden;
-		    text-overflow: ellipsis;
-		    white-space: nowrap;
-		}
-		
 		.pc_cont_detail {
 			height: calc(100% - 42px);
 			display: grid;
 		    align-content: space-between;
+		}
+		
+		.pc_detail {
+			overflow-y: auto;
+    		margin-bottom: 5px;
 		}
 		
 		.pc_btn { /* 장소리뷰 버튼 div */
@@ -156,6 +178,7 @@
 <body>
 	<%
 	ArrayList<Location_review> lrList = (ArrayList<Location_review>)request.getAttribute("lrList");
+	ArrayList<Place> pclist = (ArrayList<Place>)request.getAttribute("pclist");
 	
 	if (lrList.size() != 0) {
 	%>
@@ -163,16 +186,30 @@
 		<p>장소리뷰 <strong><%= lrList.size() %></strong>개</p>
 	</div>
 	<ul>
-		<div class="place_li">
+		<div class="pc_li">
 			<% for (Location_review lr : lrList) { %>
 			<li>
 				<div class="pc_list">
-					<div class="pc_img">
-						<% if (lr.getLr_file1() != null) { %>
-						<img src="<%= lr.getLr_file1() %>" />
-						<% } else { %>
-						<img src="img/travel/travel1.jpg" />
-						<% } %>
+					<div class="pc_title">
+						<div class="pc_img">
+							<% if (lr.getLr_file1() != null) { %>
+							<img src="<%= lr.getLr_file1() %>" />
+							<% } else { %>
+							<img src="img/travel/travel1.jpg" />
+							<% } %>
+						</div>
+						<div class="pc_pname">
+							<p>
+							<%
+							for (Place p : pclist) {
+								if (lr.getPl_eat_no() == p.getPlac_no())
+							%>
+							<%= p.getPlac_name() %>
+							<%
+							}
+							%>
+							</p>
+						</div>
 					</div>
 					<div class="pc_cont">
 						<div class="pc_date">
@@ -192,12 +229,11 @@
 							<p><%= lr.getLr_date() %></p>
 						</div>
 						<div class="pc_cont_detail">
-							<p><%= lr.getLr_contents() %></p>
+							<p class="pc_detail"><%= lr.getLr_contents() %></p>
 							<p class="pc_btn">
 								<button>리뷰삭제</button>
 							</p>
 						</div>
-						
 					</div>
 				</div>
 			</li>
@@ -206,7 +242,7 @@
 	</ul>
 	<% } else { %>
 	<div class="pc_blank">
-		일정리뷰가 존재하지 않습니다.
+		장소리뷰가 존재하지 않습니다.
 	</div>
 	<% } %>
 </body>
