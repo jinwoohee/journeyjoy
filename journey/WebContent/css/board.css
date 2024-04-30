@@ -87,10 +87,14 @@ body {
 	margin-bottom: 10px;
 }
 
-.board_title p {
+.sch_result {
 	height: 25px;
 	margin-top: 0px;
 	margin-bottom: 0px;
+}
+
+.sch_result strong {
+	color: #FA5252;
 }
 
 .board_list {

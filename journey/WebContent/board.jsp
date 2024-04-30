@@ -129,7 +129,7 @@
 			out.println("<div class='board_wrap'>");
 			out.println("<div class='board'>");
 			out.println("<div class='board_title'>");
-			out.println("<p class='sch_result'>총 게시물<b> " + alist.size() + "</b>개</p>");
+			out.println("<p class='sch_result'>총 게시물<strong> " + alist.size() + "</strong>개</p>");
 			out.println("</div>"); //board_title 끝
 			out.println("<div class='board_list_wrap'>");
 			out.println("<div class='board_list'>");

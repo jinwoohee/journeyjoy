@@ -286,7 +286,7 @@
 			}
 		});
 		
-		$('input[name=nickname]').blur(function() { //회원정보수정-닉네임 중복체크			
+		$('input[name=nickname]').blur(function() { //회원정보수정-닉네임 중복체크	
 			$(this).off().on('change', function() {
 				$.ajax({
 					type : 'post',
