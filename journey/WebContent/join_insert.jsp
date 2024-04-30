@@ -30,7 +30,7 @@
 		stmt = conn.createStatement(); //실제 쿼리문장 수행
 		int row = stmt.executeUpdate("insert into user values('" + id + "', '" + pw + "', '" + name + "', '" + p1 + "-" + p2 + "-" + p3 + "', '" 
 				+ addr1 + "/" + addr2 + "/" + addr3 + "', '" + email + emailAddr + "', " + ymd + ", '"
-				+ gender + "', '" + nickname + "', '', "+ "curdate()" +");");
+				+ gender + "', '" + nickname + "', '"+"img/profile/profile.png" +"', "+ "curdate()" +");");
 		
 		if (row < 1) {
 			throw new Exception("데이터를 DB에 입력할 수 없습니다.");
