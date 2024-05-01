@@ -285,7 +285,7 @@ function join(){
 	$(function() {
 		const regId = /^[0-9a-zA-Z]{6,20}$/; //아이디 : 영문소/대문자+숫자(6~20자)
 		
-		$('.idBtn').click(function() {
+		$('.idBtn').click(function() { //아이디 중복버튼 클릭시
 			var id = $('input[name=id]').val();
 			
 			if (id == '' || !id.match(regId)) {
@@ -310,7 +310,8 @@ function join(){
 			}
 		});
 		
-		$('input[name=id]').on('propertychange change keyup paste input', function() {
+		//아이디 입력시
+		$('input[name=id]').on('propertychange change keyup paste input', function() { 
 			//console.log('change');
 			$(this).css({'color' : 'black', 'background-color' : 'white'});
 		});

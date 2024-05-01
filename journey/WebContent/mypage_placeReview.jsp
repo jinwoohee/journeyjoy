@@ -12,7 +12,7 @@
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<style type="text/css">
-		.place_review ul { /* 장소리뷰 */
+		.place_review > ul { /* 장소리뷰 */
 			list-style: none;
 			padding-inline-start: 0px;
 			margin-top: 0px;
@@ -20,7 +20,7 @@
 		    display: flex;
 		}
 		
-		.place_review li {
+		.pc_li {
 			width: calc((100% - 115px) / 2);
 		    border: 1px solid #666666;
 		    border-radius: 10px;
@@ -29,7 +29,7 @@
 			margin-bottom: 25px;
 		}
 		
-		.place_review li:nth-of-type(2n-1) {
+		.pc_wrap > li:nth-of-type(2n-1) {
 			margin-right: 30px;
 		}
 		
@@ -48,7 +48,7 @@
 			color : #FA5252;
 		}
 		
-		.pc_li {
+		.pc_wrap {
 			width: 100%;
 		}
 		
@@ -64,16 +64,55 @@
 		    margin-right: 40px;
 		}
 		
-		.pc_img { /* 장소리뷰 img div */
+		.pc_imgBox { /* 장소리뷰 img div */
 			width: 200px;
 			height: 200px;
-			margin-right: 40px;
+			overflow: hidden;
 		}
 		
-		.pc_img img { 
-			width: 100%;
-			height: 100%;
+		.pc_img {
+			/*width: 200px;
+			height: 100%;*/
+		}
+		
+		.slides { /* img ul */
+		    /*width: 600px;
+		    height: 100%;*/
+		    list-style: none;
+		    padding-inline-start: 0px;
+    	}
+    	
+    	.slide { /* img li */
+    		/*width: 200px;
+		    height: 100%;*/
+		    float: left;
+    	}
+		
+		.slide img { 
+			/*width: 200px;
+			height: 100%;*/
 			object-fit: cover
+		}
+		
+		.slider_nav {
+			position: relative;
+		    z-index: 10;
+		    top: -26px;
+		    left: 78px;
+		    width: fit-content;
+		}
+		
+		.dot {
+			list-style: none;
+		    border: 0.15em solid #9E9E9E;
+		    box-sizing: border-box;
+		    width: 1em;
+		    height: 1em;
+		    display: inline-block;
+		    border-radius: 50%;
+		    vertical-align: middle;
+		    font-size: 12px;
+			background-color: #ffffff1c;
 		}
 		
 		.pc_pname {
@@ -174,6 +213,46 @@
 	
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var width = 200;
+			var height = 200;
+			var li = $('.pc_li').size();
+			var totalDot = $('.dot').size();
+			var totalSlides = totalDot/li;
+			
+			var currentSlide = 2; //이 항목은 수정하지 않음
+			var action;
+			var dotNum;
+			var dMinusC;
+			
+			function initSlider() {
+				$('.pc_img').css('width', width);
+				$('.pc_img').css('height', height);
+				$('.slides').css('margin-left', 0);
+				$('.slides').css('width', totalSlides*width);
+				$('.slide').css('width', width);
+				$('.slide').css('height', height);
+				$('.slide img').css('width', width);
+				$('.slide img').css('height', height);
+			}
+			
+			$('.dot').click(function() {
+				var $dots = $(this).parent();
+				var $slideUl = $(this).parent().siblings('.pc_img').find('.slides');
+				
+				dotNum = $(this).attr('id');
+				dotNum = parseInt(dotNum.substring(7))+1;
+				dMinusC = dotNum-currentSlide;
+				
+				$dots.find('span').css({'background-color' : '#ffffff1c'});
+				$(this).css({'background-color' : '#9E9E9E'});
+				$slideUl.animate({'margin-left' : '-=' + (dMinusC*width)}, 100);
+			});
+			
+			initSlider();
+		});
+	</script>
 </head>
 <body>
 	<%
@@ -186,15 +265,47 @@
 		<p>장소리뷰 <strong><%= lrList.size() %></strong>개</p>
 	</div>
 	<ul>
-		<div class="pc_li">
+		<div class="pc_wrap">
 			<% for (Location_review lr : lrList) { %>
-			<li>
+			<li class="pc_li">
 				<div class="pc_list">
 					<div class="pc_title">
-						<div class="pc_img">
-							<% if (lr.getLr_file1() != null) { %>
-							<img src="<%= lr.getLr_file1() %>" />
-							<% } else { %>
+						<div class="pc_imgBox">
+							<% 
+							String str = "";
+							if (lr.getLr_file1() != null) {
+								str += lr.getLr_file1() + ",";
+							}
+							
+							if (lr.getLr_file2() != null) {
+								str += lr.getLr_file2() + ",";
+							}
+							
+							if (lr.getLr_file3() != null) {
+								str += lr.getLr_file3() + ",";
+							}
+							
+							str = str.substring(0, str.length() - 1);
+							String[] imgs = str.split(",");
+							
+							if (imgs.length == 3) {
+							%>
+							<div class="pc_img">
+								<ul class="slides">
+									<li class="slide"><img src="<%= lr.getLr_file1() %>" /></li>
+									<li class="slide"><img src="<%= lr.getLr_file2() %>" /></li>
+									<li class="slide"><img src="<%= lr.getLr_file3() %>" /></li>
+								</ul>
+							</div>
+							<div class="slider_nav">
+								<span class="dot" id="nav_dot1" style="background-color:#9E9E9E"></span>
+								<span class="dot" id="nav_dot2"></span>
+								<span class="dot" id="nav_dot3"></span>
+							</div>
+							
+							
+							
+							<% } else if (imgs.length == 0) { %>
 							<img src="img/travel/travel1.jpg" />
 							<% } %>
 						</div>

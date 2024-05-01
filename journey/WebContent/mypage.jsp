@@ -1,3 +1,4 @@
+<%@page import="com.jj.dto.Plan"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
@@ -415,11 +416,28 @@
 				<!-- 여행계획서 -->
 				<% if (mpg.equals("myplan")) { %>
 				<div class="plan_wrap">
-					나의 여행계획서
+					<%--
+					<%
+					ArrayList<Plan> pnlist = (ArrayList<Plan>)request.getAttribute("pnlist"); //여행계획서
+					
+					if (pnlist.size() != 0) {
+					%>
+					<div></div>
+					<% } else { %>
+					<div class="pn_blank">
+						여행계획서가 존재하지 않습니다.
+					</div>
+					<% } %>
+					--%>
+					<div class="pn_blank">
+						여행계획서가 존재하지 않습니다.
+					</div>
 				</div>
 				<% } else { %>
 				<div class="plan_wrap no_active">
-					나의 여행계획서
+					<div class="pn_blank">
+						여행계획서가 존재하지 않습니다.
+					</div>
 				</div>
 				<% } %>
 				
@@ -738,32 +756,34 @@
 						<p>일정리뷰 <strong><%= prList.size() %></strong>개</p>
 					</div>
 					<ul>
-						<% for (Plan_review pr : prList) { %>
-						<li>
-							<div class="plan_list">
-								<div class="plan_img">
-									<% if (pr.getPr_file() != null) { %>
-									<img src="<%= pr.getPr_file() %>" />
-									<% } else { %>
-									<img src="img/travel/travel1.jpg" />
-									<% } %>
+						<div class="plan_li">
+							<% for (Plan_review pr : prList) { %>
+							<li>
+								<div class="plan_list">
+									<div class="plan_img">
+										<% if (pr.getPr_file() != null) { %>
+										<img src="<%= pr.getPr_file() %>" />
+										<% } else { %>
+										<img src="img/travel/travel1.jpg" />
+										<% } %>
+									</div>
+									<div class="plan_cont">
+										<div class="plan_date">
+											<p><%= pr.getPr_date() %></p>
+										</div>
+										<div class="plan_ctitle">
+											<p class="plan_title"><strong><%= pr.getPr_title() %></strong></p>
+											<p class="plan_word"><%= pr.getPr_contents() %></p>
+										</div>
+										<div class="plan_btn"> 
+											<button>상세내역</button>
+											<button>리뷰삭제</button>
+										</div>
+									</div>
 								</div>
-								<div class="plan_cont">
-									<div>
-										<p>작성날짜 : <%= pr.getPr_date() %></p>
-									</div>
-									<div>
-										<p class="plan_title"><strong><%= pr.getPr_title() %></strong></p>
-										<p><%= pr.getPr_contents() %></p>
-									</div>
-									<div class="plan_btn">
-										<button>상세내역</button>
-										<button>리뷰삭제</button>
-									</div>
-								</div>
-							</div>
-						</li>
-						<% } %>
+							</li>
+							<% } %>
+						</div>
 					</ul>
 					<% } else { %>
 					<div class="plan_blank">
