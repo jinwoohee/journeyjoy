@@ -39,7 +39,6 @@
 	<section>
 		<div>
 			<div>
-				<p>로그인</p>
 				<a href="index.jsp"><img src="img/icon/home.png" /></a>			
 				<img src="img/icon/logo.png" />
 				<form name="loginForm" action="login_session.jsp" align="center" onsubmit="return login()">
@@ -57,10 +56,8 @@
 				</div>
 				<div id="easy_log">
 					<div>
-						<p>간편하게<br>로그인하기</p>
-					</div>	
-					<div>
-						<img src="img/icon/easy_log.png" align="right" />
+						<img src="img/icon/naver.png"/>
+						<img src="img/icon/kakao.png"/>
 					</div>
 				</div>
 			</div>

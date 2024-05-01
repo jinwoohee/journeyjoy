@@ -176,37 +176,31 @@
 					    		<option value="tokyo">도쿄</option>
 					    		<option value="osaka">오사카</option>
 					    		<option value="fukuoka">후쿠오카</option>
-					    		<option value="sapporo">삿포로</option>
-					    		<option value="okinawa">오키나와</option>
 					    		<option value="kyoto">교토</option>
+					    		<option value="nagoya">나고야</option>
 						  	</select>
 						  	<select name="city_canada" id="canada">
 					    		<option value="choice">도시</option>
 					    		<option value="vancouver">벤쿠버</option>
 					    		<option value="toronto">토론토</option>
-					    		<option value="banff">밴프(로키)</option>
+					    		<option value="victoria">빅토리아</option>
 					    		<option value="niagara">나이아가라</option>
-					    		<option value="quebec">퀘벡</option>
-					    		<option value="whitehorse">화이트호스</option>
+					    		<option value="montreal">몬트리올</option>
 						  	</select>
 						  	<select name="city_philippines" id="philippines">
 					    		<option value="choice">도시</option>
 					    		<option value="manila">마닐라</option>
-					    		<option value="boracay">보라카이</option>
 					    		<option value="cebu">세부</option>
-					    		<option value="bohol">보홀</option>
-					    		<option value="palawan">팔라완</option>
-					    		<option value="clark">클락</option>
+					    		<option value="baguio">바기오</option>
+					    		<option value="iloilo">일로일로</option>
 						  	</select>
 						  	<select name="city_america" id="america">
 					    		<option value="choice">도시</option>
-					    		<option value="hawaii">하와이</option>
-					    		<option value="maui">마우이</option>
-					    		<option value="bigisland">빅아일랜드(힐로)</option>
+					    		<option value="newyork">뉴욕</option>
+					    		<option value="boston">보스턴</option>
 					    		<option value="losAngeles">로스앤젤레스</option>
 					    		<option value="sanFrancisco">샌프란시스코</option>
-					    		<option value="lasVegas">라스베이거스</option>
-					    		<option value="guam">괌</option>
+					    		<option value="cicago">시카고</option>
 						  	</select>
 						  	<select name="city_australia" id="australia">
 					    		<option value="choice">도시</option>
@@ -219,16 +213,13 @@
 					    		<option value="choice">도시</option>
 					    		<option value="auckland">오클랜드</option>
 					    		<option value="queenstown">퀸스타운</option>
-					    		<option value="christchurch">크라이스트처치</option>
-					    		<option value="rotorua">로토루아</option>
+					    		<option value="wellington">웰링턴</option>
 						  	</select>
 						  	<select name="city_china" id="china">
 					    		<option value="choice">도시</option>
 					    		<option value="shanghai">상하이</option>
-					    		<option value="harbin">하얼빈</option>
-					    		<option value="shaman">샤먼</option>
-					    		<option value="beijing">북경</option>
-					    		<option value="hainan">하이난</option>
+					    		<option value="beijing">베이징</option>
+					    		<option value="guangzhou">광저우</option>
 					    		<option value="qingdao">칭다오</option>
 						  	</select>
 						</td>

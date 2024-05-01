@@ -17,7 +17,6 @@ body{
 	width: 700px;
     background: white;
     margin: 0 auto;
-    border-radius: 10px;
     padding-top: 30px;
     padding-bottom : 50px;
     box-shadow: 5px 5px 10px #CCCCCC;
@@ -38,7 +37,6 @@ div[id*='day']{
     border: 2px solid #6C94B8;
     margin-left: 70px;
     margin-bottom: 20px;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,7 +48,6 @@ div[id*='day']{
 	width: 550px;
 	padding-top: 20px;
 	border: 1px solid #6C94B8;
-	border-radius: 10px;
 	margin-bottom: 20px;
 	display: flex;
 	align-items: center;
@@ -64,7 +61,6 @@ select{
 	width: 450px;
 	height: 40px;
 	border: 1px solid #6C94B8;
-	border-radius: 10px;
 	margin-bottom: 10px;
 	color: #646464;
 }
@@ -74,7 +70,6 @@ input[type="text"]{
 	height: 40px;
 	margin-bottom: 10px;
 	padding-left : 10px;
-	border-radius: 10px;
 	border: 1px solid #6C94B8;
 }
 
@@ -83,7 +78,6 @@ textarea {
     height: 75px;
     resize: none;
     margin-bottom: 10px;
-    border-radius: 10px;
     border: 1px solid #6C94B8;
     padding: 10px;
 }
@@ -97,7 +91,6 @@ textarea {
 #file>div{
 	width: 95px;
 	height: 95px;;
-	border-radius: 10px;
 	overflow: hidden;
 	background: #f1f1f3;
 	margin-right: 10px;	
@@ -106,7 +99,6 @@ textarea {
 #file>input[type="button"]{
 	width: 100px;
     height: 40px;
-    border-radius: 10px;
     background: white;
     border: 0.7px solid #6C94B8;
     color: #646464;
@@ -119,7 +111,6 @@ textarea {
 #buttonArea > button{
 	width: 450px;
     height: 50px;
-    border-radius: 10px;
     border: none;
     background: #6C94B8;
     color: white;
@@ -132,7 +123,6 @@ textarea {
 input[type="submit"]{
 	width: 550px;
     height: 50px;
-    border-radius: 10px;
     border: none;
     background: #0D112D;
     color: white;

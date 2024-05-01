@@ -49,15 +49,15 @@
 				}
 			out.println("<textarea disabled>"+lr.getLr_contents()+"</textarea>");
 			out.println("</div><div class='file'>");
-			if(lr.getLr_file2() == null && lr.getLr_file3() == null){
-				out.println("<img src='"+lr.getLr_file1()+"' width=520px height=300px />");
-			}else if(lr.getLr_file3() == null){
-				out.println("<img src='"+lr.getLr_file1()+"' width=255px height=300px />");
-				out.println("<img src='"+lr.getLr_file2()+"' width=255px height=300px />");
+			if(lr.getLr_file2().equals("bg1.jpg") && lr.getLr_file3().equals("bg1.jpg")){
+				out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=500px height=300px />");
+			}else if(lr.getLr_file3().equals("bg1.jpg")){
+				out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=245px height=300px />");
+				out.println("<img src='uploadFile/"+lr.getLr_file2()+"' width=245px height=300px />");
 			}else{
-				out.println("<img src='"+lr.getLr_file1()+"' width=330px height=300px />");
-				out.println("<img src='"+lr.getLr_file2()+"' width=180px height=145px />");
- 						out.println("<img src='"+lr.getLr_file3()+"' width=180px height=145px/>");
+				out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=310px height=300px />");
+				out.println("<img src='uploadFile/"+lr.getLr_file2()+"' width=180px height=145px />");
+				out.println("<img src='uploadFile/"+lr.getLr_file3()+"' width=180px height=145px/>");
 			}
 			out.println("</div><div>");
 			out.println("<p>"+lr.getLr_date()+"</p>");

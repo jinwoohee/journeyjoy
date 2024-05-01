@@ -133,7 +133,7 @@
 	<!-- header(이미지) -->
 	<section>
 		<div id="top_section">
-			<img src="img/travel/travel15.jpg">
+			<img src="img/travel/travel.jpg">
 			<div>
 				<div>
 					<p>패키지 여행</p>
@@ -202,7 +202,7 @@
 							out.println("<div><p>"+list.getP_nation()+"</p></div>");
 							out.println("<div><p>"+list.getP_city()+"</p></div>");
 							out.println("<div><P class='title'>"+list.getP_title()+"</P></div>");
-							out.println("<div><P>"+list.getU_nickname()+"</P></div>");
+							out.println("<div><P>"+list.getU_nickname()+" 가이드</P></div>");
 							
 							DecimalFormat f = new DecimalFormat("###,###,###");
 							out.println("<div><P>"+f.format(list.getChild_fee())+"~</P></div>");

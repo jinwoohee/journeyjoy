@@ -87,15 +87,51 @@
 				$('select[name=city]').append("<option value='osaka'>오사카</option>");
 				$('select[name=city]').append("<option value='fukuoka'>후쿠오카</option>");
 				$('select[name=city]').append("<option value='kyoto'>교토</option>");
-				$('select[name=city]').append("<option value='narita'>나리타</option>");
+				$('select[name=city]').append("<option value='nagoya'>나고야</option>");
 			} else if ($(this).find('option:selected').text() == '캐나다') {
 				$('select[name=city]').find('option').remove();
 				$('select[name=city]').append("<option value=''>도시</option>");
 				$('select[name=city]').append("<option value='vancouver'>벤쿠버</option>");
 				$('select[name=city]').append("<option value='toronto'>토론토</option>");
-				$('select[name=city]').append("<option value='calgary'>캘거리</option>");
+				$('select[name=city]').append("<option value='niagara'>나이아가라</option>");
 				$('select[name=city]').append("<option value='victoria'>빅토리아</option>");
 				$('select[name=city]').append("<option value='montreal'>몬트리올</option>");
+			}else if ($(this).find('option:selected').text() == '필리핀') {
+				$('select[name=city]').find('option').remove();
+				$('select[name=city]').append("<option value=''>도시</option>");
+				$('select[name=city]').append("<option value='vancouver'>벤쿠버</option>");
+				$('select[name=city]').append("<option value='manila'>마닐라</option>");
+				$('select[name=city]').append("<option value='cebu'>세부</option>");
+				$('select[name=city]').append("<option value='baguio'>바기오</option>");
+				$('select[name=city]').append("<option value='iloilo'>일로일로</option>");
+			}else if ($(this).find('option:selected').text() == '미국') {
+				$('select[name=city]').find('option').remove();
+				$('select[name=city]').append("<option value=''>도시</option>");
+				$('select[name=city]').append("<option value='newyork'>뉴욕</option>");
+				$('select[name=city]').append("<option value='boston'>보스턴</option>");
+				$('select[name=city]').append("<option value='losAngeles'>로스앤젤레스</option>");
+				$('select[name=city]').append("<option value='sanFrancisco'>샌프란시스코</option>");
+				$('select[name=city]').append("<option value='cicago'>시카고</option>");
+			}else if ($(this).find('option:selected').text() == '호주') {
+				$('select[name=city]').find('option').remove();
+				$('select[name=city]').append("<option value=''>도시</option>");
+				$('select[name=city]').append("<option value='sydney'>시드니</option>");
+				$('select[name=city]').append("<option value='melbourne'>멜버른</option>");
+				$('select[name=city]').append("<option value='goldCoast'>골드코스트</option>");
+				$('select[name=city]').append("<option value='brisbane'>브리즈번</option>");
+			}else if ($(this).find('option:selected').text() == '뉴질랜드') {
+				$('select[name=city]').find('option').remove();
+				$('select[name=city]').append("<option value=''>도시</option>");
+				$('select[name=city]').append("<option value='auckland'>오클랜드</option>");
+				$('select[name=city]').append("<option value='queenstown'>퀸스타운</option>");
+				$('select[name=city]').append("<option value='wellington'>웰링턴</option>");
+			}else if ($(this).find('option:selected').text() == '중국') {
+				$('select[name=city]').find('option').remove();
+				$('select[name=city]').append("<option value=''>도시</option>");
+				$('select[name=city]').append("<option value='shanghai'>상하이</option>");
+				$('select[name=city]').append("<option value='beijing'>베이징</option>");
+				$('select[name=city]').append("<option value='guangzhou'>광저우</option>");
+				$('select[name=city]').append("<option value='qingdao'>칭다오</option>");
 			}
 		});
 	});
@@ -115,6 +151,11 @@
 	                    <option value=''>국가</option>
 	                    <option value='japan'>일본</option>
 	                    <option value='canada'>캐나다</option>
+	                    <option value="philippines">필리핀</option>
+			    		<option value="america">미국</option>
+			    		<option value="australia">호주</option>
+			    		<option value="newzealand">뉴질랜드</option>
+			    		<option value="china">중국</option>
                 	</select>
                 	
                 	<select name='city'>
@@ -175,12 +216,12 @@
        						out.println("<textarea disabled>"+lr.getLr_contents()+"</textarea>");
        						out.println("</div><div class='file'>");
        						if(lr.getLr_file2().equals("bg1.jpg") && lr.getLr_file3().equals("bg1.jpg")){
-       							out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=520px height=300px />");
+       							out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=500px height=300px />");
        						}else if(lr.getLr_file3().equals("bg1.jpg")){
-       							out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=255px height=300px />");
-       							out.println("<img src='uploadFile/"+lr.getLr_file2()+"' width=255px height=300px />");
+       							out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=245px height=300px />");
+       							out.println("<img src='uploadFile/"+lr.getLr_file2()+"' width=245px height=300px />");
        						}else{
-       							out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=330px height=300px />");
+       							out.println("<img src='uploadFile/"+lr.getLr_file1()+"' width=310px height=300px />");
        							out.println("<img src='uploadFile/"+lr.getLr_file2()+"' width=180px height=145px />");
            						out.println("<img src='uploadFile/"+lr.getLr_file3()+"' width=180px height=145px/>");
        						}

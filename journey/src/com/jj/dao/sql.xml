@@ -335,13 +335,13 @@
 	</select>
 	
 	<!-- 일정 리스트/장소 select -->
-	<select id="packagePlaceSelect" resultType="com.jj.dto.Place">
-		SELECT * FROM place WHERE plac_addr
+	<select id="packagePlaceSelect" resultType="com.jj.dto.Place" parameterType="String">
+		SELECT * FROM place WHERE plac_city = #{selectCity}
 	</select>
 	
 	<!-- 일정 리스트/식당 select -->
-	<select id="packageEatSelect" resultType="com.jj.dto.Eatery">
-		SELECT * FROM eatery WHERE eat_addr
+	<select id="packageEatSelect" resultType="com.jj.dto.Eatery" parameterType="String">
+		SELECT * FROM eatery WHERE eat_city = #{selectCity}
 	</select>
 	
 	<!-- 일정 insert -->

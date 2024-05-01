@@ -4,8 +4,12 @@ body{
 	margin: 0;
 	font-family: "Noto Sans KR", sans-serif;
 	color:#646464;
-	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	/* background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background-size: cover; */
+	background: url("https://copilot.microsoft.com/rp/itdq0TGlsM-BDvSovDaQdrVxPbo.jpg");
 	background-size: cover;
+	background-repeat: no-repeat;
+	
 }
 
 body>div:first-of-type{
@@ -25,8 +29,8 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #b7b4b7;
-    box-shadow: 3px 3px 3px #CCCCCC;
+    background: #2a799c;
+    /* box-shadow: 3px 3px 3px #CCCCCC; */
     margin-bottom: 20px;
 }
 
@@ -92,18 +96,18 @@ section{
 }
 
 #review_section > div:nth-of-type(2n){
-	margin-left : 34px;
+	margin-left : 74px;
 }
 
 .review{
-	width : 520px;
-	height: 600px;
-	padding : 20px 30px;
-	border : 1px solid #cccccc;
-	box-shadow: 3px 3px 3px #CCCCCC;
-	margin: 20px 0;
-	float: left;
-	background: white;
+	width: 500px;
+    height: 590px;
+    padding: 20px 30px;
+    border: 1px solid #cccccc;
+    /* box-shadow: 3px 3px 3px #CCCCCC; */
+    margin: 30px 0;
+    float: left;
+    background: white;
 }
 
 /* 프로필, 닉네임, 수정버튼 div */
@@ -116,11 +120,12 @@ section{
 .review div:first-of-type >p{
 	font-size: 15px;
 	margin-left: 7px;
+	width: 100px;
 }
 
 .profile{
-	width: 60px;
-	height: 60px;
+	width: 45px;
+	height: 45px;
 	border-radius: 50%;
 	object-fit : cover;
 	overflow: hidden;
@@ -137,7 +142,7 @@ section{
 .modify{
 	background: #0D112D;
 	color : white;
-	margin-left: 260px;
+	margin-left: 195px;
 }
 
 .delete{
@@ -172,17 +177,18 @@ label{
 
 /* 리뷰내용 */
 .review div:nth-of-type(2) > textarea{
-	width: 514px;
+	width: 500px;
     height: 80px;
-    font-size: 15px;
+    font-size: 13px;
     resize: none;
     border: none;
     margin-top: 15px;
     background: none;
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .file{
-	width:520px;
+	width:500px;
 	margin : 0 auto;
 }
 

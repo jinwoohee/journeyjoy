@@ -2,6 +2,8 @@ body {
     margin: 0px;
 	font-family: "Noto Sans KR", sans-serif;
 	color: #646464;
+	background: url(https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/Case_Study_Carousel-Filter_Variation?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=1600&hei=786&qlt=100&fmt=png-alpha&fit=constrain);
+    background-size: cover;
 }
 
 .workingholiday {

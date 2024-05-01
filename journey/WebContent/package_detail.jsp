@@ -456,11 +456,11 @@
 					List<Community> comm = (List<Community>)request.getAttribute("comm");
 
 					for(Community commList : comm){
-						out.println("<div>");
+						out.println("<div id='comm_profile'>");
 						out.println("<img id='profile' src='"+commList.getU_profile()+"'>");
 						out.println("<p>"+commList.getU_nickname()+"</p>");
-						out.println("<div><p>"+commList.getComm_contents()+"</p></div>");
-						out.println("<div><p>"+commList.getComm_date()+"</p></div>");
+						out.println("<div id='comm_contents'><p>"+commList.getComm_contents()+"</p></div>");
+						out.println("<div id='comm_date'><p>"+commList.getComm_date()+"</p></div>");
 						out.println("</div>");
 					}
 					

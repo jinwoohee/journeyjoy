@@ -358,7 +358,7 @@ String u_id = (String) session.getAttribute("u_id");
 						                   			<hr>
 						                    	</div>
 						                        <div id="thema_div">
-						                                <input type="radio" name="thema" value="힐링" id="thema1" checked>
+						                                <input type="radio" name="thema" value="여유롭게힐링" id="thema1" checked>
 						                                <label for="thema1" class="thema_check">힐링</label>
 						                                <input type="radio" name="thema" value="체험/액티비티" id="thema2">
 						                                <label for="thema2" class="thema_check">체험/액티비티</label>

@@ -20,20 +20,20 @@ public class PackagePlaceSelectDB {
 	SqlSessionFactory sql = SqlMapconfig.getSqlSession();
 	
 	/*장소*/
-	public List<Place> selectPlace(){
+	public List<Place> selectPlace(String selectCity){
 		
 		SqlSession ss = sql.openSession();
-		List<Place> placeList = ss.selectList("packagePlaceSelect");
+		List<Place> placeList = ss.selectList("packagePlaceSelect", selectCity);
 		ss.close();
 		
 		return placeList;	
 	}
 	
 	/*식당*/
-	public List<Eatery> selectEatery(){
+	public List<Eatery> selectEatery(String selectCity){
 		
 		SqlSession ss = sql.openSession();
-		List<Eatery> eatList = ss.selectList("packageEatSelect");
+		List<Eatery> eatList = ss.selectList("packageEatSelect", selectCity);
 		ss.close();
 		
 		return eatList;	

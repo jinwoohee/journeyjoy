@@ -15,14 +15,7 @@ section > div{
 	height: 753px;
 	background-color: white;
 	margin: 100px auto;
-	box-shadow: 5px 5px 10px #CCCCCC;
-	border-radius: 10px;
-}
-
-div > div{
-	width: 700px;
-	height: 910;
-	margin: 0 auto;
+	box-shadow: 3px 3px 15px #CCCCCC;
 }
 
 section > div >div>p:first-of-type{
@@ -56,51 +49,42 @@ form{
 }
 
 input[type='text']{
-	width: 510px;
-	height: 50px;
-	border-radius: 10px;
-	border: 1px solid #6C94B8;
-	margin-bottom: 10px;
+	width: 500px;
+    height: 50px;
+    border: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 input[type='password']{
-	width: 510px;
+	width: 500px;
 	height: 50px;
-	border-radius: 10px;
-	border: 1px solid #6C94B8;
+	border: 1px solid #CCCCCC;
 	margin-bottom: 10px;
+	padding-left: 10px;
 }
 
 input[type="submit"]{
 	width: 520px;
-	height: 50px;
-	margin-top: 35px;
-	border-radius: 10px;
-	background: #2C609C;
-	border: none;
-	font-size: 15px;
-	color: white;
-	font-weight: bold;
+    height: 50px;
+    margin-top: 30px;
+    background: #2C609C;
+    border: none;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
 }
 
 /* 찾기 구간 div */
 div[id="serch"]{
 	width: 520px;
-	display: flex;
-	margin-top: 20px;
-}
-
-/* 아이디찾기|비번찾기 */
-div[id="serch"]>div:first-of-type{
-	display: flex;
-	align-items: center;
+    display: flex;
+    margin: 20px auto;
 }
 
 /* 회원가입 */
 div[id="serch"]>div:last-of-type{
-	display: flex;
-    justify-content: right;
-    font-weight: bold;
+	margin-left: 280px;
 }
 
 #search > p{
@@ -112,12 +96,18 @@ div[id="serch"]>div:last-of-type{
 
 /* 간편로그인 div */
 div[id="easy_log"]{
-	width: 520px;
+	width: 540px;
 	display: flex;
+	margin: 0 auto;
 }
 
 div[id="easy_log"]>div:first-of-type{
-	display: flex;
-	align-items: center;
-	margin-top: -16px;
+	margin-top: -15px;
+    margin-left: 408px;
+}
+
+#easy_log > div > img{
+	width: 60px;
+	heigth : 60px;
+	object-fit : cover;
 }

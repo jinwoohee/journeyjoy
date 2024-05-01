@@ -166,7 +166,6 @@
 					</div>
 				</div>
             </article>
-            <hr>
             <article>
            		<div id="list_div">         		
 	            	<%

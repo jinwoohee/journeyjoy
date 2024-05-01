@@ -20,6 +20,7 @@
 		.m_foot > img{
 			object-fit: cover;
     		width: 100%;
+    		border-top: 2px solid #CCCCCC;
 		}
 	</style>
 </head>
