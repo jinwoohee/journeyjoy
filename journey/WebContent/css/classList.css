@@ -102,27 +102,36 @@ select{
 
 #search_section  div{
 	display: flex;
+	justify-content: center;
 }
 
 #filter div{
 	width : 80px;
-	height : 40px;
+	height : 35px;
 	margin-right: 10px;
 	border-radius: 30px;
-	border : 1px solid #CCCCCC;
+	border : 1px solid #0D112D;
 }
 
-#filter img{
+#filter div p{
+    color: #0D112D;
+    font-size: 16px;
+    justify-items: center;
+    align-content: center;
+    margin-bottom: 0;
+}
+
+/* #filter img{
 	width: 80px;
 	height : 40px;
 	object-fit : cover;
-}
+} */
 
 /* 검색구간 - 검색창 */
 #search_section input[name="searchBox"]{
 	width: 400px;
     height: 40px;
-    margin-left: 400px;
+    margin-left: 320px;
     border: none;
     border-bottom: 1px solid #CCCCCC;
 }
@@ -157,7 +166,6 @@ article{
 	width: 1200px;
 	height: 320px;
 	border: 1px solid #0D112D;
-	border-radius: 10px;
 	box-shadow: 3px 3px 3px #CCCCCC;
 	margin-top: 30px;
 }

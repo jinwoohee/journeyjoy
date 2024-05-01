@@ -164,7 +164,7 @@ section{
 	margin: 0;
 }
 
-label{
+.star+label{
 	font-size: 22px;
 	color: #fc0;
 }
@@ -222,3 +222,18 @@ label{
 	color:#cccccc;
 }
 
+#more_div{
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 70px;
+}
+
+#more_div > input[type='button']{
+	width: 200px;
+    height: 50px;
+    border: none;
+    background: #2a799c;;
+    color: white;
+    font-size: 15px;
+}

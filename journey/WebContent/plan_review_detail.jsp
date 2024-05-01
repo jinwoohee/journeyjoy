@@ -79,9 +79,16 @@ function tab(num){
 						<div id='img_div'>
 							<div id = 'kind_slider'>
 								<ul id='slider'>
-									<li class='li_sli'><img src="img\icon\arrow_down.png"/></li> 
-									<li class='li_sli'><img src="img\icon\arrow_down.png"/></li>
-									<li class='li_sli'><img src="img\icon\arrow_down.png"/></li>
+									<%if(!pr.getPr_file().equals("bg1.jpg") && pr.getPr_file2().equals("bg1.jpg") && pr.getPr_file3().equals("bg1.jpg")){%>
+									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file() %>"></li> 
+									<%}else if(!pr.getPr_file().equals("bg1.jpg") && !pr.getPr_file2().equals("bg1.jpg") && pr.getPr_file3().equals("bg1.jpg")) {%>
+									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file() %>"></li> 
+									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file2() %>"></li>
+									<%}else if(!pr.getPr_file().equals("bg1.jpg") && !pr.getPr_file2().equals("bg1.jpg") && !pr.getPr_file3().equals("bg1.jpg")) {%>
+									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file() %>"></li> 
+									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file2() %>"></li>
+									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file3() %>"></li>
+									<%}%>
 								</ul>
 							</div>
 						</div> 

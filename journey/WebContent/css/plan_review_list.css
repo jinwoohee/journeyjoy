@@ -35,8 +35,7 @@ section{
     justify-content: center;
     align-items: center;
     background: #a994cf;;
-    /* box-shadow: 3px 3px 3px #CCCCCC; */
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 #search_section div{
@@ -53,18 +52,13 @@ section{
 	border: none;
 }
 
-#search_section > div:first-of-type{
-	width : 350px;
-	margin-left: 80px;
-}
-
 /* 검색구간 - 검색창 */
 #search_section input[name="searchBox"]{
-	width: 310px;
+	width: 380px;
     height: 40px;
     float: left;
     border: none;
-    margin-left: 68px;
+    margin-left: 20px;
 }
 
 #search>img{
@@ -79,7 +73,7 @@ section{
 #write_div> a >img{
 	width:40px;
 	height:40px; 
-	margin-left: 392px;
+	margin-left: 100px;
 }
 
 hr{

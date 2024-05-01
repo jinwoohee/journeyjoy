@@ -68,8 +68,11 @@
         /* 검색필터 */
         $('#filter div').click(function(){
         	if($(this).css('background-color') != 'rgb(241, 241, 243)'){
-        		$(this).css({"background":"#f1f1f3"});
+        		console.log($(this));
+        		$(this).css({'background':'#0D112D'});
+        		$(this).find('p').css({'color' : 'white'});
         		$(this).siblings('div').css({"background":"white"});
+        		$(this).siblings('div').find('p').css({'color' : '#0D112D'});
 
         		$.ajax({
         			url : "class_list.jj?page=classFilter",
@@ -85,7 +88,9 @@
         $('#search img').click(function(){
         	var filter;
         	
-        	if($('#recent').css('background-color') == 'rgb(241, 241, 243)'){
+        	if($('#entire').css('background-color') == '#0D112D'){
+        		filter = 'entire';
+        	}else if($('#recent').css('background-color') == 'rgb(241, 241, 243)'){
         		filter = "recent";
         	}else if($('#closing').css('background-color') == 'rgb(241, 241, 243)'){
         		filter = "closing";
@@ -159,7 +164,7 @@
 	<!-- header(이미지) -->
 	<section>
 		<div id="top_section">
-			<img src="img/travel/travel16.jpg">
+			<img src="img/travel/class.jpg">
 			<div>
 				<div>
 					<h1>모임만들기</h1>
@@ -198,10 +203,11 @@
 		<div id="search_section">
 			<div>
 				<div id='filter'>
-					<div id='recent'><img src='img/icon/classIcon1.png'></div>
-					<div id='closing'><img src='img/icon/classIcon2.png'></div>
-					<div id='ing'><img src='img/icon/classIcon3.png'></div>
-					<div id='end'><img src='img/icon/classIcon4.png'></div>
+					<div id='entire'><p>#전체</p></div>
+					<div id='recent'><p>#최신순</p></div>
+					<div id='closing'><p>#마감순</p></div>
+					<div id='ing'><p>#진행중</p></div>
+					<div id='end'><p>#종료</p></div>
 				</div>
 				<div id="search">
 					<input type="text" name="searchBox" placeholder=" 검색단어 입력">
@@ -279,7 +285,6 @@
 								</table>
 								<%
 								  if(flag == 1){
-									  
 									//참여 하기, 취소하기
 									if(c.getA_id() != null && c.getA_id().equals(u_id)){ //참여여부(a_id : 참여한 사람 아이디)
 										if(c.getC_no() == c.getA_no()){%>
@@ -299,7 +304,7 @@
 									int date = Integer.parseInt(today.replaceAll("-", ""));
 									int getDate = Integer.parseInt(c.getC_end_date().replaceAll("-", ""));
 									
-									if(date > getDate || c.getCount() == c.getC_volume()){ //모집마감날짜
+									if(date > getDate || c.getCount() == c.getC_volume()){ //모집마감날짜, 모집인원
 										out.println("<input type='button' name='end_btn' value='참여마감'>");
 									}else{
 								%>

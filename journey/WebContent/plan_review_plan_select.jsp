@@ -19,14 +19,24 @@ List<Estimate> esti = (List<Estimate>) request.getAttribute("estilist");
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
-
+<script type="text/javascript">
+$(function(){
+	$(".plan_div").mouseenter(function(){
+    	$(this).css({'background':'#f1f1f3'});
+    });
+	
+	$(".plan_div").mouseleave(function(){
+    	$(this).css({'background':'white'});
+    });
+});
+</script>
 <body>
 <!-- menu bar -->
 	<jsp:include page="main_header.jsp"></jsp:include>
 	<!-- 페이지 섹션 -->
 	<section>
 		<div id="content">
-			<p>계획서 선택</p>
+			<p>일정 선택</p>
 			<%
 				for(Estimate es : esti){%>
 					<div class="plan_div">

@@ -18,11 +18,22 @@
 
 <!-- font -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+<style type="text/css">
+#no{
+	text-align : center;
+	margin-top: 100px;
+}
+</style>
 </head>
 <body>
 	<%
 		//select
 		List<Location_review> lrList = (List<Location_review>)request.getAttribute("review");
+		
+		if(lrList.size() < 1){
+			out.println("<p id='no'>등록된 리뷰가 없습니다.</p>");
+		}
 
 		for(Location_review lr : lrList){
 			out.println("<div class='review'>"); //전체

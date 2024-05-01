@@ -652,7 +652,9 @@ public class JourneySql {
 			if(param == null && search == null) {
 				condition = "WHERE c.c_city = '"+city+"'";
 			}else if(param != null && search == null) {
-				if(param.equals("recent")) {
+				if(param.equals("entire")) {
+					condition = "ORDER BY c.c_no";
+				}else if(param.equals("recent")) {
 					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("closing")) {
 					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date > now() ORDER BY c.c_end_date";
@@ -662,7 +664,9 @@ public class JourneySql {
 					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
 				}
 			}else if(param != null && search != null) {
-				if(param.equals("recent")) {
+				if(param.equals("entire")) {
+					condition = "ORDER BY c.c_no";
+				}else if(param.equals("recent")) {
 					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("closing")) {
 					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_end_date";
@@ -676,7 +680,9 @@ public class JourneySql {
 			}
 		}else if(city.equals("여행중인 도시")){
 			if(search  == null) { //검색창 값 없을때
-				if(param.equals("recent")) {
+				if(param.equals("entire")) {
+					condition = "ORDER BY c.c_no";
+				}else if(param.equals("recent")) {
 					condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("closing")) {
 					condition = "WHERE c.c_end_date > now() ORDER BY c.c_end_date";
@@ -686,7 +692,9 @@ public class JourneySql {
 					condition = "WHERE c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
 				}
 			}else { //검색창 값 있을때 
-				if(param.equals("recent")) {
+				if(param.equals("entire")) {
+					condition = "ORDER BY c.c_no";
+				}else if(param.equals("recent")) {
 					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("closing")) {
 					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_end_date";

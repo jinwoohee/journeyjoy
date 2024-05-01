@@ -2,7 +2,7 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	margin: 0;
 	color: #646464;
-	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background : url("https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/Case_Study_Carousel-Filter_Variation?resMode=sharp2&op_usm=1.5,0.65,15,0&wid=1600&hei=786&qlt=100&fmt=png-alpha&fit=constrain");
 	background-size: cover;
 }
 
@@ -25,7 +25,6 @@ div[id="main_div"] {
     margin: 0 auto;
     box-shadow: 3px 3px 3px #cccccc	;
     border: 1px solid #cccccc;
-    border-radius: 10px;
     padding: 20px;
 }
 textarea{
@@ -47,7 +46,6 @@ textarea[name="content"]{
 	height: 150px;
 	float: left;
 	border: 1px solid #cccccc;
-	border-radius: 5px;
 	resize: none;
 	margin : 30px 50px;
 	font-size: 15px;
@@ -67,7 +65,6 @@ textarea[name*="day_review"]{
     display: flex;
     align-content: center;
     border: aliceblue;
-    border-radius: 10px;
     resize: none;
     font-size: 15px;
     margin-left: 40px;
@@ -200,7 +197,6 @@ input[type="submit"]{
     height: 50px;
     float: right;
     margin-right: 210px;
-    border-radius: 5px;
     border: none;
     background: #0D112D;
     color: #f1f1f3;
@@ -210,11 +206,11 @@ input[name="cancel"]{
 	width : 230px;
 	height : 50px;
 	float: left;
-	border-radius:5px;
 	margin-left : 210px;
 	border : none;
-	color : #646464;
+	color : white;
 	font-weight: bold;
+	background: #CCCCCC;
 }
 
 /* 첨부파일 */
@@ -237,7 +233,7 @@ input[name="cancel"]{
     width: 790px;
     height: 190px;
     border: 1px solid #cccccc;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 #file > div{
@@ -249,7 +245,6 @@ input[name="cancel"]{
 div[id*=thumnail]{
 	width: 150px;
 	height: 150px;
-	border-radius: 10px;
 	background: #f1f1f3;
 	margin-right: 30px;
 }
