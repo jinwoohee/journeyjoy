@@ -61,8 +61,8 @@ function day_select(num){
 	var places = "#places"+num;
 	var add_btn = "#plan_add"+num;
 	
-	$("p[id*='day']").css({'border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px'});
-	$(day).css({'border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #fed293','margin-top':'11px'});
+	$("p[id*='day']").css({'border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px', 'background-color' : 'transparent'});
+	$(day).css({'border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #6C94B8','margin-top':'11px', 'background-color' : 'white'});
 	$("div[id*='places']").css({'display':'none'});
 	$(places).css({'display':'block'});
 	$("input[id*='plan_add']").css({'display':'none'});

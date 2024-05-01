@@ -72,7 +72,6 @@ label{
 div[id="search_result1"]{
 	width : 280px;
 	height : 545px;
-	border-radius : 5px;
 	float:left;
 }
 

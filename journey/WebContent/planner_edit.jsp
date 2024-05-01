@@ -84,7 +84,14 @@
 					%>				
 				</div>
 			</div>
-			
+			<%
+			if(edit0 == null){
+				
+			}else if(edit0.equals("1")){
+				
+			}
+			%>
+			<div id="main_content">
 			<div id="thema_div">
 				<p id="city"><%=e_destination%></p>
 				<p id="thema">여행테마</p>
@@ -159,7 +166,7 @@
 				
 					for(String st : list_place){	
 						st_list += st+",";
-						z++;					
+						z++;
 				%>
 				<div id="list_content<%=a*100+z%>">
 					<img src="img\japan\tokyo1.jpg" class="place_pic" />	
@@ -199,7 +206,9 @@
 			%>
 					<input type="submit" name="add_place" value="여행지 추가하기" class="button">
 			
-				<%if(pa.equals("null")) {%>
+
+			</div>
+							<%if(pa.equals("null")) {%>
 					<input type="submit" name="save_plan" value="저장" class="button"/>		
 				<%}else{ %>
 					<input type="submit" name="save_plan_edit" value="수정" class="button"/>	 

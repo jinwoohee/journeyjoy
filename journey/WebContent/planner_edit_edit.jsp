@@ -83,7 +83,7 @@ System.out.println("edit_edit로 왔다 e_no : "+e_no);
 					%>				
 				</div>
 			</div>
-			
+			<div id="main_content">
 			<div id="thema_div">
 				<p id="city"><%=e_destination%></p>
 				<p id="thema">여행테마</p>
@@ -143,9 +143,10 @@ System.out.println("edit_edit로 왔다 e_no : "+e_no);
 						
 			<%	System.out.println("플랜editx23"+st_list);}
 			%>
-					<input type="submit" name="add_place" value="여행지 추가하기" class="button">
-					<input type="submit" name="save_plan" value="수정" class="button"/>
+					
 			</div>
+			<input type="submit" name="add_place" value="여행지 추가하기" class="button">
+					<input type="submit" name="save_plan" value="수정" class="button"/>
 			</div>
 		<div id="side_menu">
 			<p id="side_menu_p" align="center">side menu</p>
@@ -155,6 +156,7 @@ System.out.println("edit_edit로 왔다 e_no : "+e_no);
 				</a>
 					<input type="submit" name="plan_sel_add" value="여행지&#10;추가하기" class="button">
 			</div>
+		</div>
 		</div>
 		</form>
 	</section>

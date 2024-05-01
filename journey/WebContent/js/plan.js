@@ -16,7 +16,7 @@ $(function() {
 	  
 	  /* ul 넓이 계산해 주기 */
 	  const liWidth = slideLis.clientWidth;
-	  const sliderWidth = liWidth * items;
+	  const sliderWidth = (liWidth * items*3)/4;
 	  slider.style.width = `${sliderWidth}px` ;
 
 	  /* 리스너 설치하기 */
@@ -26,7 +26,7 @@ $(function() {
 	  
 
 	  $("#right").click(function(){   //오른쪽화살표 눌렀을때 슬라이드
-	    if(translate > -(sliderWidth)){
+	    if(translate > -(liWidth)){
 	        translate -= liWidth;
 	        slider.style.transform = `translateX(${translate}px)`;
 	        currentIdx += 1;
@@ -145,7 +145,20 @@ function initMap() {
         zoom: 15,
         center: { lat: 34.6964016465328, lng: 135.4867092276206 }
       });
-
+    var map4 = new google.maps.Map(document.getElementById('map4'), {
+        zoom: 15,
+        center: { lat: 34.6964016465328, lng: 135.4867092276206 }
+      });
+         
+      var map5 = new google.maps.Map(document.getElementById('map5'), {
+          zoom: 15,
+          center: { lat: 34.6964016465328, lng: 135.4867092276206 }
+        });
+      
+      var map6 = new google.maps.Map(document.getElementById('map6'), {
+          zoom: 15,
+          center: { lat: 34.6964016465328, lng: 135.4867092276206 }
+        });
     
     google.maps.event.addDomListener(window, "load", initMap);
   }

@@ -33,8 +33,9 @@ List<Schedule> sche = (List<Schedule>) request.getAttribute("schedule");
 List<Ticket> tick = (List<Ticket>) request.getAttribute("ticket");
 List<Product> prod = (List<Product>) request.getAttribute("product");
 String paging = (String) request.getAttribute("paging");
-int items = (int) Math.ceil((double) (tick.size()+prod.size())/3);
-System.out.println("플랜jsp"+paging);
+
+int items = (int) Math.ceil((double) (tick.size()+prod.size())/4);
+System.out.println("플랜jsp"+paging+items);
 
 
 
@@ -89,7 +90,7 @@ String aaaa = datecnt+"";
 		String [] mp = my_prod.split(",");
 		List<Account> accList = (List<Account>)request.getAttribute("account");
 		%>
-		<input type="hidden" name="day" value="<%=aaaa %>">
+		<input type="hidden" name="day" id="day_count" value="<%=aaaa %>">
 		<input type="hidden" id="item" value="<%= items%>">
 			<div id="list_text">
 				<p id="list_text"></p>
@@ -151,9 +152,6 @@ String aaaa = datecnt+"";
 						<div class="map_info">
 							<div id="map<%=a%>">				
 							</div>
-							<div id="place_info<%=a%>">		
-							장소								
-							</div>
 						</div>
 						
 						<div class="pl_eat_div">
@@ -178,10 +176,9 @@ String aaaa = datecnt+"";
 						<p class="product_sub">※추가상품</p>
 						<table id="product_table">
 							<tr>
-								<td id="product_add_name">이름</td>
-								<td id="product_add_sort">종류</td>
-								<td id="product_add_price">가격</td>
-								<td id="del"></td>
+								<td id="product_sub_name">이름</td>
+								<td id="product_sub_sort">종류</td>
+								<td id="product_sub_price">가격</td>
 							</tr>
 							<% String [] pr_arr = plan.get(0).getPlan_product().split(",");
 								for(Product pr : prod){
@@ -193,7 +190,6 @@ String aaaa = datecnt+"";
 												<td id="product_add_name<%=pr_no%>"><%=pr.getProd_name() %></td>
 												<td id="product_add_sort<%=pr_no%>"><%=pr.getProd_sort() %></td>
 												<td id="product_add_price<%=pr_no%>"><%=pr.getProd_price() %></td>
-												<td id="del"></td>
 											</tr>							
 											<% 
 										}
@@ -209,7 +205,6 @@ String aaaa = datecnt+"";
 												<td id="product_add_name<%=ti_no%>"><%=ti.getTick_name()%></td>
 												<td id="product_add_sort<%=ti_no%>"><%=ti.getTick_sort() %></td>
 												<td id="product_add_price<%=ti_no%>"><%=ti.getTick_price() %></td>
-												<td id="del"></td>
 											</tr>							
 											<% 
 										}
@@ -337,13 +332,8 @@ String aaaa = datecnt+"";
 					</div>
 					
 					<div id="detail_info<%=a%>">
-						<div class="map_info">
 							<div id="map<%=a%>">
 							</div>
-							<div id="place_info<%=a%>">	
-							장소								
-							</div>
-						</div>
 						
 						<div class="pl_eat_div">
 						<%int i = 0;
@@ -367,15 +357,15 @@ String aaaa = datecnt+"";
 						<p class="product_sub">※추가상품</p>
 						<table id="product_table">
 							<tr>
-								<td id="product_add_name">이름</td>
-								<td id="product_add_sort">종류</td>
-								<td id="product_add_price">가격</td>
+								<td id="product_sub_name">이름</td>
+								<td id="product_sub_sort">종류</td>
+								<td id="product_sub_price">가격</td>
 								<td id="del">삭제</td>
 							</tr>
 						</table>
 					</div>
 					<div class="product_add">
-						<p class="plan_sub">※이런 상품은 어떠세요?</p>				
+						<p class="product_add_sub">※이런 상품은 어떠세요?</p>				
 						<div id="item_div">
 						<div id = "slide_div">
 						<div class = "kind_slider">
@@ -389,12 +379,12 @@ String aaaa = datecnt+"";
 								<img src="img\ticket.png" />
 								<table id="product_tb<%=ti.getTick_no()%>">
 									<tr>
-										<td name="prod_name" id="product_name<%=ti.getTick_no()%>"><%=ti.getTick_name() %></td>
+										<td colspan='2' name="prod_name" id="product_name<%=ti.getTick_no()%>"><%=ti.getTick_name() %></td>
 									</tr>
 									<tr>
-										<td name="prod_price" id="product_price<%=ti.getTick_no()%>" ><%=ti.getTick_price() %>																					
-									</td>
-									<td><img src="img/icon/plus.png" onclick="add_prod(<%=ti.getTick_no()%>)"/></td>
+										<td name="prod_price" id="product_price<%=ti.getTick_no()%>" ><%=ti.getTick_price() %>
+										<img src="img/icon/plus.png" onclick="add_prod(<%=ti.getTick_no()%>)"/>
+										</td>
 									</tr>
 								</table>
 								<input type="hidden" id="product_sort<%=ti.getTick_no()%>" value="<%=ti.getTick_sort()%>">
@@ -409,13 +399,13 @@ String aaaa = datecnt+"";
 								<img src="img\ticket.png" />
 								<table id="product_tb<%=pro.getProd_no()%>">
 									<tr>
-										<td name="prod_name" id="product_name<%=pro.getProd_no()%>"><%=pro.getProd_name() %></td>
+										<td colspan='2' name="prod_name" id="product_name<%=pro.getProd_no()%>"><%=pro.getProd_name() %></td>
 									</tr>
 
 									<tr>
 										<td name="prod_price" id="product_price<%=pro.getProd_no()%>" ><%=pro.getProd_price() %>
 											<img src="img/icon/plus.png" onclick="add_prod(<%=pro.getProd_no()%>)"/>											
-									</td>
+										</td>
 									</tr>
 								</table>
 								<input type="hidden" id="product_sort<%=pro.getProd_no()%>" value="<%=pro.getProd_sort()%>">

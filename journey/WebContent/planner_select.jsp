@@ -63,6 +63,7 @@ request.setCharacterEncoding("utf-8");
 			<div id="list_text">
 				<p id="list_text">여행일정 선택</p>
 			</div>
+			<div id="main_content" >
 			<div id="thema_div">
 				<p id="city"><%= e_destination %></p>
 				<p id="thema">여행테마</p>
@@ -78,6 +79,7 @@ request.setCharacterEncoding("utf-8");
 					<input type="button" name="edit_thema" value="수정하기" class="button" />
 				</a>						
 			</div>		
+			
 			<div id="plan_list">
 				<%
 				for(int a = 1 ; a <= datecnt*3 ; a++){
@@ -123,8 +125,8 @@ request.setCharacterEncoding("utf-8");
 				<%						
 					}				
 				%>
-				
-				<input type="button" name="finish_btn" value="선택완료" class="button" onclick="check_plan()"/>										
+				</div>
+				<input type="button" name="finish_btn" value="선택완료" class="button" onclick="check_plan()"/>			
 			</div>
 		</div>
 		<div id="select_div">
