@@ -1,3 +1,4 @@
+<%@page import="com.jj.dto.KakaoUser"%>
 <%@page import="com.jj.dto.Plan"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -333,7 +334,9 @@
 				for (User u : ulist) {
 				%>
 				<h1><%= u.getU_name() %>님</h1>
-				<% } %>
+				<%
+				}
+				%>
 				<div class="tab">
 					<ul>
 						<% if (mpg.equals("myplan")) { %>

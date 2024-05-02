@@ -16,6 +16,7 @@ import com.jj.inter.EaterySelect;
 import com.jj.inter.EstimateInsert;
 import com.jj.inter.EstimateSelect;
 import com.jj.inter.InquiryUpdateFlag;
+import com.jj.inter.KakaoLogin;
 import com.jj.inter.InquiryFlag;
 import com.jj.inter.InquiryInsert;
 import com.jj.inter.InquiryNotice;
@@ -27,6 +28,7 @@ import com.jj.inter.MypagePlaceReviewSelect;
 import com.jj.inter.MypagePlanReviewSelect;
 import com.jj.inter.MypagePurchaseSelect;
 import com.jj.inter.MypageUserInfoSelect;
+import com.jj.inter.NaverLogin;
 import com.jj.inter.PackageDetail;
 import com.jj.inter.PackageInsert;
 import com.jj.inter.PackageSearch;
@@ -139,6 +141,24 @@ public class JourneyController extends HttpServlet {
 			}
 		} else if (page.equals("mypageUserInfo")) { //마이페이지-회원정보수정
 			ji = MypageUserInfoSelect.mypageUserInfoSelect();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("naverLogin")) { //네이버 로그인
+			ji = NaverLogin.naverLogin();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		} else if (page.equals("kakaoLogin")) { //카카오 로그인
+			ji = KakaoLogin.kakaoLogin();
 			try {
 				String url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(url).forward(request, response);

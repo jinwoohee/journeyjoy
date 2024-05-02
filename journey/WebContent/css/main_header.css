@@ -93,7 +93,7 @@ div[id="sub_menu_div"]{ /*서브메뉴 부분 div */
 
 div[id="login"]{ /*아이디,회원가입,알림창,마이페이지 div*/
 	position: fixed;
-	width: 240px;
+	width: fit-content;
     height: 35px;
     right: 140px;
 	top: 25px;
