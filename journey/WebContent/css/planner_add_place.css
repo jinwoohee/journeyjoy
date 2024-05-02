@@ -207,11 +207,12 @@ div[id="search_result"]{
 }
 
 div[id="map"]{ /*지도 */
-	width: 685px;
-	height: 600px;
+	width: 681px;
+	height: 596px;
 	float: left;
 	margin : 0 auto;
 	margin-left : 5px;
+	border : 2px solid black;
 }
 div[id="infowindow-content"]{
 	width: 685px;
@@ -223,13 +224,14 @@ div[id="infowindow-content"]{
 }
 div[id*="places"]{ /*추가되어있는 여행지 */
 	width: 1000px;
-	height: 140px;
+	min-height: 110px;
 	margin-top: 10px;
 	border-bottom: 2px solid;
 	border-top: 2px solid;
 	float: left;
 	display : none;
 	padding : 10px;
+	overflow : auto;
 }
 div[id="places1"]{
 	display : block;

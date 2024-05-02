@@ -51,7 +51,10 @@ request.setCharacterEncoding("utf-8");
 	<link rel="stylesheet" type="text/css" href="css\planner_select.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="js\planner_select.js"></script>	
-	
+	<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3FQ06J6teP32y6_sqWP8d2sRvB_321Us&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
 </head>
 <body>
 	<!-- menu bar -->

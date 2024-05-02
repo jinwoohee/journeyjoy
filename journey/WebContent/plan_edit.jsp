@@ -139,9 +139,6 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 					<div id="detail_info<%=a%>">
 						<div class="map_info">
 							<div id="map<%=a%>"></div>
-							<div id="place_info<%=a%>">	
-							장소								
-							</div>
 						</div>
 						
 						<div class="pl_eat_div">
@@ -166,9 +163,9 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 						<p class="product_sub">※추가상품</p>
 						<table id="product_table">
 							<tr>
-								<td id="product_add_name">이름</td>
-								<td id="product_add_sort">종류</td>
-								<td id="product_add_price">가격</td>
+								<td id="product_sub_name">이름</td>
+								<td id="product_sub_sort">종류</td>
+								<td id="product_sub_price">가격</td>
 								<td id="del">삭제</td>
 							</tr>
 							<% String [] pr_arr = plan.get(0).getPlan_product().split(",");
@@ -228,15 +225,15 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 							for(Ticket ti : tick){	
 						%>
 							<div id="product_item<%=ti.getTick_no()%>">
-								<img src="img\ticket.png" />
+								<img src="img/tick_prod/<%=ti.getTick_file() %>"  class="tick_prod" />
 								<table id="product_tb<%=ti.getTick_no()%>">
 									<tr>
 										<td name="prod_name" id="product_name<%=ti.getTick_no()%>"><%=ti.getTick_name() %></td>
 									</tr>
 									<tr>
 										<td name="prod_price" id="product_price<%=ti.getTick_no()%>" ><%=ti.getTick_price() %>																					
-									</td>
-									<td><img src="img/icon/plus.png" onclick="add_prod(<%=ti.getTick_no()%>)"/></td>
+										<img src="img/icon/plus.png" onclick="add_prod(<%=ti.getTick_no()%>)"/>
+										</td>
 									</tr>
 								</table>
 								<input type="hidden" id="product_sort<%=ti.getTick_no()%>" value="<%=ti.getTick_sort()%>">
@@ -248,7 +245,7 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 
 						%>
 							<div id="product_item<%=pro.getProd_no()%>">
-								<img src="img\ticket.png" />
+								<img src="img/tick_prod/<%=pro.getProd_file() %>" class="tick_prod"/>
 								<table id="product_tb<%=pro.getProd_no()%>">
 									<tr>
 										<td name="prod_name" id="product_name<%=pro.getProd_no()%>"><%=pro.getProd_name() %></td>
@@ -256,7 +253,7 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 
 									<tr>
 										<td name="prod_price" id="product_price<%=pro.getProd_no()%>" ><%=pro.getProd_price() %>
-											<img src="img/icon/plus.png" onclick="add_prod(<%=pro.getProd_no()%>)"/>											
+										<img src="img/icon/plus.png" onclick="add_prod(<%=pro.getProd_no()%>)"/>											
 									</td>
 									</tr>
 								</table>

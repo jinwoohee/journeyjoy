@@ -376,7 +376,7 @@ String aaaa = datecnt+"";
 							for(Ticket ti : tick){	
 						%>
 							<div id="product_item<%=ti.getTick_no()%>">
-								<img src="img\ticket.png" />
+								<img src="img/tick_prod/<%=ti.getTick_file() %>"  class="tick_prod" />
 								<table id="product_tb<%=ti.getTick_no()%>">
 									<tr>
 										<td colspan='2' name="prod_name" id="product_name<%=ti.getTick_no()%>"><%=ti.getTick_name() %></td>
@@ -396,7 +396,7 @@ String aaaa = datecnt+"";
 
 						%>
 							<div id="product_item<%=pro.getProd_no()%>">
-								<img src="img\ticket.png" />
+								<img src="img/tick_prod/<%=pro.getProd_file() %>" class="tick_prod"/>
 								<table id="product_tb<%=pro.getProd_no()%>">
 									<tr>
 										<td colspan='2' name="prod_name" id="product_name<%=pro.getProd_no()%>"><%=pro.getProd_name() %></td>

@@ -363,18 +363,16 @@ div[id*="product_item"]{ /*由ъ뒪�듃 �븞 �빆紐쯣iv */
 	width: 145px;
 	height: 175px;
 	border: 1px solid #646464;
-	border-radius: 5px;
+	border-radius : 5px;
 	margin-top: 25px;
 	margin-left: 15px;
 	float: left;
 }
-img[src*="ticket"]{ /*�떚耳� �씠誘몄�*/
-	width: 125px;
-	height: 70px;
-	margin: 10px 10px;
-	border-radius: 5px;
-	border: 1px solid #646464;
-	margin-bottom : 0px;
+img[class="tick_prod"]{ /*�떚耳� �씠誘몄�*/
+	width: 145px;
+    height: 85px;
+    border-radius : 5px 5px 0 0;
+	border-bottom: 1px solid #646464;
 }
 table[id*="product_tb"]{ /* 異붿쿇�긽�뭹 �젙蹂� �뀒�씠釉� */
 	margin-left: 10px;
