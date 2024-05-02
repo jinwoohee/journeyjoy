@@ -66,6 +66,7 @@ input[name="plan_subject"]{ /*�젣紐� text*/
 	height: 40px;
 	border: 2px solid ;
 	border-radius: 10px;
+	padding-left : 7px;
 	margin: 25px 70px;
 	margin-top: 40px;
 	font-weight: bold;
@@ -89,6 +90,7 @@ p[id="plan_date"]{ /*�뿬�뻾�궇吏�*/
 	font-size: 15px;
 	font-weight: bold;
 	margin-left: 5px;
+	margin-bottom: 10px;
 	color: #646464;
 }
 p[class="list_thema"]{ /*�꽑�깮�븳 �뀒留� 湲��옄*/
@@ -100,7 +102,7 @@ p[class="list_thema"]{ /*�꽑�깮�븳 �뀒留� 湲��옄*/
 	float: left;
 	font-size: 10px;
 	font-weight: bold;
-	margin-bottom: 8px;
+	margin-bottom: 5px;
 	margin-right: 12px;
 }
 div[id="plan_div"]{ /*�뿬�뻾�씪�젙 div*/
