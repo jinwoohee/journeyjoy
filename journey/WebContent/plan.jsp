@@ -277,7 +277,8 @@ String aaaa = datecnt+"";
                       <label for="acc_sort5" id="sort_img5"><img src="img/icon/acc_shopping.png" id="sort_img5"/></label>
                       <input type="radio" name="acc_sort0" id="acc_sort6" value="기타">
                       <label for="acc_sort6" id="sort_img6"><img src="img/icon/acc_etc.png" id="sort_img6"/></label>
-
+					  
+					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one0" value="닫기" onclick="close_acc_one('0')">
   					<input type="button" name="add_acc_one0" value="추가하기" onclick="add_acc('0')">
 				</div>
@@ -308,7 +309,6 @@ String aaaa = datecnt+"";
 							</tr>
 				<%rs += acc.getAcc_amount();}} %>
 				</table>
-				</div>
 				<div id="pay_one_div<%=a%>">
 					<div class="price_div">
 						<input type="text" name="acc_price<%=a%>" id = "acc_price<%=a%>"placeholder="금액입력" maxlength="15" value="">
@@ -345,9 +345,11 @@ String aaaa = datecnt+"";
                       <label for="acc_sorts6" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>"/></label>
                       <input type="radio" name="acc_sort<%=a%>" id="acc_sorts7" value="기타">
                       <label for="acc_sorts7"><img src="img/icon/acc_etc.png"/></label>
-
+						
+					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one<%=a %>" value="닫기" onclick="close_acc_one(<%=a%>)">
   					<input type="button" name="add_acc_one<%=a%>" value="추가하기" onclick="add_acc(<%=a%>)">
+				</div>
 				</div>
 				<%} %>
 				<input type="hidden" id="result_price" value="<%=rs %>">
@@ -558,7 +560,8 @@ String aaaa = datecnt+"";
                       <label for="acc_sorts5" id="sort_img5"><img src="img/icon/acc_shopping.png" id="sort_img5"/></label>
                       <input type="radio" name="acc_sort0" id="acc_sorts6" value="기타" onclick="checking(this.id)">
                       <label for="acc_sorts6" id="sort_img6"><img src="img/icon/acc_etc.png" id="sort_img6"/></label>
-
+					  
+					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one0" value="닫기" onclick="close_acc_one('0')">
   					<input type="button" name="add_acc_one0" value="추가하기" onclick="add_acc('0')">
 				</div>
@@ -616,6 +619,7 @@ String aaaa = datecnt+"";
                       <input type="radio" name="acc_sort<%=a%>" id="acc_sorts7" value="기타">
                       <label for="acc_sorts7"><img src="img/icon/acc_etc.png"/></label>
 
+					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one<%=a %>" value="닫기" onclick="close_acc_one(<%=a%>)">
   					<input type="button" name="add_acc_one<%=a%>" value="추가하기" onclick="add_acc(<%=a%>)">
 				</div>
@@ -623,11 +627,11 @@ String aaaa = datecnt+"";
 				<%} %>
 				<input type="hidden" id="result_price" value="<%=rs %>">
 				<p id= "result_price_text"></p>
-				<input type="submit" name="save_acc" value="저장">
+				<input type="button" name="save_acc" value="저장">
 			
 		<%} %>
 		
-		
+		</div>
 		<div id="plandiv_3">
 			<p>체크리스트</p>
 		</div>

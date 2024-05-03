@@ -210,7 +210,7 @@ function down_pla(num){
 }
 
 function add_acc(num){
-	var add_sort = document.getElementById("acc_sort"+num);
+	var add_sort = document.querySelector("input[name='acc_sort"+num+"']:checked");
 	var add_content = document.getElementById("acc_content"+num);
 	var add_price = document.getElementById("acc_price"+num);
 	var add_pay = document.getElementById("pay_with"+num);
@@ -272,7 +272,7 @@ function add_acc(num){
 	text.textContent = after;
 	result_price.setAttribute("value", after);
 	
-	add_content.value = " ";
+	add_content.value = "";
 	add_price.value = " ";
 	add_pay.value = "현금";
 	$("div[id='pay_one_div"+num+"']").slideUp();
@@ -301,7 +301,7 @@ function close_acc_one(num){
 	var add_price = document.getElementById("acc_price"+num);
 	var add_pay = document.getElementById("pay_with"+num);
 	
-	add_content.value = " ";
+	add_content.value = "";
 	add_price.value = " ";
 	add_pay.value = "현금";
 	$("div[id='pay_one_div"+num+"']").slideUp(300);

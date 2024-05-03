@@ -41,7 +41,7 @@ p[id="list_text"]{ /* "�뿬�뻾怨꾪쉷�꽌" 湲��옄 */
 	font-weight: bold;
 }
 div[id="radio_div"]{ /*�씪�뵒�삤踰꾪듉 div*/
-	width: 905px;
+	width: 906px;
 	height: 40px;
 	margin: 0 auto;
 	position : relative;
@@ -71,7 +71,7 @@ label[id="plan_radio_1"]{
 	color:#f1f1f3;
 }
 div[id*="plandiv_"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
-	width: 901px;
+	width: 902px;
 	background-color: white;
 	margin: 0 auto;	
 	border: 2px solid #0D112D;
@@ -640,6 +640,12 @@ img[src*="acc"]{ /*카테고리 버튼 이미지*/
 label{ /*카테고리 버튼 라벨*/
 	margin-right: 20px;
 }
+.ctg_t{ /*각 카테고리 글자*/
+	font-size : 12px;
+	margin-left: 7px;
+    margin-top: -6px;
+    word-spacing: 38.5px;
+}
 input[name*="add_acc_one"]{ /*추가하기 버튼*/
 	font-size: 15px;
 	height: 20px;
@@ -656,6 +662,12 @@ input[name*="close_acc"]{ /*추가하기 버튼*/
 input[type=radio]:checked + label { /* 큰테마와 인원유형 라디오버튼 눌렀을때 */
 	background-color: #0D112D;
 	color: white;
+}
+input[name="save_acc"]{/*가계부 저장버튼*/
+	width : 250px;
+	height : 40px;
+	margin : 20px 327px;
+	background-color : white;
 }
 footer {
 	margin-top: 0px;
