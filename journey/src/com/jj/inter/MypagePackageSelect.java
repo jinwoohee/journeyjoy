@@ -30,8 +30,8 @@ public class MypagePackageSelect implements JourneyInterface {
 		// TODO Auto-generated method stub
 		String u_id = request.getParameter("u_id");
 		String tab = request.getParameter("tab");
-		ArrayList<User> ulist = (ArrayList<User>)request.getAttribute("ulist");
-		ArrayList<Plan_review> prList = (ArrayList<Plan_review>)request.getAttribute("prList");
+		ArrayList<User> ulist = (ArrayList<User>)request.getAttribute("ulist"); //회원정보
+		ArrayList<Plan_review> prList = (ArrayList<Plan_review>)request.getAttribute("prList"); //일정리뷰
 		
 		/* 패키지(기획내역) */
 		MypagePackageSelectDB mSelectDB = new MypagePackageSelectDB(); //패키지 상세내용
@@ -57,18 +57,19 @@ public class MypagePackageSelect implements JourneyInterface {
 		ArrayList<Package_schedule> pclist;
 		HashMap<String, ArrayList<Package_schedule>> map3 = new HashMap<String, ArrayList<Package_schedule>>();
 		
-		String[] p_no = no.split("/");
-		for (String s : p_no) {
-			pslist = msSelectDB.mypagePackageScheSelectDB(s);
-			map.put(s, pslist);
-			
-			pclist = mppSelectDB.mypagePsPlaceSelect(pslist);
-			map3.put(s, pclist);
-			
-			rlist = mrSelectDB.mypageRewardSelectDB(s);
-			map2.put(s, rlist);
+		if (no != "") {
+			String[] p_no = no.split("/");
+			for (String s : p_no) {
+				pslist = msSelectDB.mypagePackageScheSelectDB(s);
+				map.put(s, pslist);
+				
+				pclist = mppSelectDB.mypagePsPlaceSelect(pslist);
+				map3.put(s, pclist);
+				
+				rlist = mrSelectDB.mypageRewardSelectDB(s);
+				map2.put(s, rlist);
+			}
 		}
-		
 		//System.out.println("MypageSelect-------->" + plist + " / " + map + " / " + map2);
 		
 		request.setAttribute("package", plist);

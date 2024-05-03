@@ -331,12 +331,16 @@
 				<%
 				ArrayList<User> ulist = (ArrayList<User>)request.getAttribute("ulist");
 				
-				for (User u : ulist) {
+				if (ulist.size() != 0) {
+					for (User u : ulist) {
 				%>
 				<h1><%= u.getU_name() %>님</h1>
 				<%
-				}
+					}
+				} else {
 				%>
+				<h1><%= u_id %>님</h1>
+				<%} %>
 				<div class="tab">
 					<ul>
 						<% if (mpg.equals("myplan")) { %>
@@ -427,7 +431,7 @@
 					%>
 					<div></div>
 					<% } else { %>
-					<div class="pn_blank">
+					<div class="cont_blank">
 						여행계획서가 존재하지 않습니다.
 					</div>
 					<% } %>
@@ -563,7 +567,7 @@
 					<% } %>
 					</ul>
 					<% } else { %>
-					<div class="pk_blank">
+					<div class="cont_blank">
 						패키지가 존재하지 않습니다.
 					</div>
 					<% } %>
@@ -686,7 +690,7 @@
 					<% } %>
 					</ul>
 					<% } else { %>
-					<div class="pk_blank">
+					<div class="cont_blank">
 						패키지가 존재하지 않습니다.
 					</div>
 					<% } %>
@@ -743,7 +747,7 @@
 						</div>
 					</ul>
 					<% } else { %>
-					<div class="plan_blank">
+					<div class="cont_blank">
 						일정리뷰가 존재하지 않습니다.
 					</div>
 					<% } %>
@@ -789,7 +793,7 @@
 						</div>
 					</ul>
 					<% } else { %>
-					<div class="plan_blank">
+					<div class="cont_blank">
 						일정리뷰가 존재하지 않습니다.
 					</div>
 					<% } %>
@@ -803,7 +807,8 @@
 				<!-- 회원정보 수정 -->
 				<% if (mpg.equals("myinfo")) { %>
 				<div class="user_wrap">
-					<% 
+					<%
+					if (ulist.size() != 0) {
 						for (User u : ulist) { 
 						String[] addr = u.getU_addr().split("/");
 					%>
@@ -871,11 +876,19 @@
 							<button type="button" class="save_btn">저장하기</button>
 						</div>
 					</form>
+					<% 
+						}
+					} else {	
+					%>
+					<div class="cont_blank">
+						외부 SNS 연동 회원입니다.
+					</div>
 					<% } %>
 				</div>
 				<% } else { %>
 				<div class="user_wrap no_active">
 					<% 
+					if (ulist.size() != 0) {
 						for (User u : ulist) { 
 						String[] addr = u.getU_addr().split("/");
 					%>
@@ -943,6 +956,13 @@
 							<button type="button" class="save_btn">저장하기</button>
 						</div>
 					</form>
+					<% 
+						}
+					} else {	
+					%>
+					<div class="cont_blank">
+						외부 SNS 연동 회원입니다.
+					</div>
 					<% } %>
 				</div>
 				<% } %>

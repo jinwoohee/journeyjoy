@@ -86,11 +86,22 @@ button, input[type="button"], .notification_wrap li, .dot {
 	display: none;
 }
 
+.cont_blank { /* 내용 없을 때 div */
+	/* text-align: center; */
+    font-size: 18px;
+    font-weight: 600;
+	height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* 여행계획서 */
 .pn_blank {
-	font-size: 18px;
+	/* text-align: center; */
+    font-size: 18px;
     font-weight: 600;
-	height: 200px;
+	height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -142,10 +153,7 @@ button, input[type="button"], .notification_wrap li, .dot {
 }
 
 .package_making, .package_attending, .package_like { /* 패키지 */
-	padding-top: 30px;
-    padding-bottom: 100px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 30px 40px 100px 40px;
 }
 
 .package_making ul {
@@ -337,17 +345,8 @@ button, input[type="button"], .notification_wrap li, .dot {
     color: #6c94b8;
 }
 
-.pk_blank { /* 패키지 기획내역 없을 때 div */
-	text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-}
-
 .plan_review, .place_review { /* 일정리뷰, 장소리뷰 */
-	padding-top: 30px;
-    padding-bottom: 100px;
-    padding-left: 40px;
-    padding-right: 40px;
+	padding: 30px 40px 100px 40px;
 }
 
 .plan_review ul { /* 일정리뷰 */
@@ -475,12 +474,6 @@ button, input[type="button"], .notification_wrap li, .dot {
 	border: 1px solid red;
 }
 
-.plan_blank { /* 일정리뷰 없을 때 div */
-	text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-}
-
 
 
 
@@ -495,9 +488,7 @@ button, input[type="button"], .notification_wrap li, .dot {
 
 
 .user_wrap { /* 회원정보수정div */
-	color: black;
-	padding-top: 25px;
-    padding-bottom: 50px;
+	padding: 30px 40px 100px 40px;
 }
 
 .profile { /* 회원정보-프로필div */

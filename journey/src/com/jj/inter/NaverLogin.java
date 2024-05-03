@@ -4,10 +4,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jj.dao.JourneyInterface;
@@ -68,10 +71,22 @@ public class NaverLogin implements JourneyInterface {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		NaverUser nu = mapper.readValue(user, NaverUser.class);
-		System.out.println(nu.getResponse());
+		String[] property = nu.getResponse().toString().replace("{", "").replace("}", "").replace(" ", "").split(",|=");
+		//System.out.println(Arrays.toString(property));
 		
+		JSONObject jb = new JSONObject();
+		jb.put(property[0], property[1]);
+		jb.put(property[2], property[3]);
+		jb.put(property[4], property[5]);
+		jb.put(property[6], property[7]);
+		System.out.println(jb);
 		
-		return "login.jsp";
+		NaverUser nu2 = mapper.readValue(jb.toString(), NaverUser.class);
+		System.out.println(nu2.getId().substring(0, 10));
+		
+		session.setAttribute("u_id", nu2.getId().substring(0, 10));
+				
+		return "index.jsp";
 	}
 
 }

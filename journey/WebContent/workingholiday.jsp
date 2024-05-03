@@ -701,6 +701,19 @@
 					}
 				});
 			});
+			
+			$('.sideBar_cont li').click(function() {
+				$('.modal_wrap').show();
+				$('.modal').css({'display' : 'inline-block'});
+				
+				//스크롤 막기
+				$('body').css({'overflow' : 'hidden'});
+				/*$('.workingholiday').on('scroll touchmove mousewheel', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					return false;
+				});*/
+			});
 		});
 	</script>
 </head>
@@ -1805,6 +1818,23 @@
 				</form>
 			</article>
 		</section>
+		<div class="sideBar_wrap">
+			<div class="sideBar_name">
+				<p>해외일자리 정보</p>
+			</div>
+			<div class="sideBar_cont">
+				<ul>
+					<li>해외취업 통계정보</li>
+					<li>해외취업 우수일자리 정보</li>
+					<li>국가별 해외취업자 통계</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="modal_wrap">
+		<div class="modal">
+			팝업
+		</div>
 	</div>
 	
 	<jsp:include page="main_footer.jsp" />
