@@ -22,12 +22,12 @@ public class ScheduleInsertDB {
 	
 	public int insertMtd(int e_no, int sche_day, String places) {	
 		Schedule dto = new Schedule();
-		
+		System.out.println("hi9");
 		String place = places.replaceAll("_", ",");
 		dto.setE_no(e_no);
 		dto.setSche_day(sche_day);
 		dto.setPlace(place);
-		
+		System.out.println("hi10");
 		SqlSession sqls = sql.openSession();
 		
 		int i = sqls.insert("schedule_insert",dto);

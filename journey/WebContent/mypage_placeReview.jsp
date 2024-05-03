@@ -292,9 +292,9 @@
 							%>
 							<div class="pc_img">
 								<ul class="slides">
-									<li class="slide"><img src="<%= lr.getLr_file1() %>" /></li>
-									<li class="slide"><img src="<%= lr.getLr_file2() %>" /></li>
-									<li class="slide"><img src="<%= lr.getLr_file3() %>" /></li>
+									<li class="slide"><img src="uploadFile/<%= imgs[0] %>" /></li>
+									<li class="slide"><img src="uploadFile/<%= imgs[1] %>" /></li>
+									<li class="slide"><img src="uploadFile/<%= imgs[2] %>" /></li>
 								</ul>
 							</div>
 							<div class="slider_nav">
@@ -302,9 +302,19 @@
 								<span class="dot" id="nav_dot2"></span>
 								<span class="dot" id="nav_dot3"></span>
 							</div>
-							
-							
-							
+							<% } else if (imgs.length == 2) { %>
+							<div class="pc_img">
+								<ul class="slides">
+									<li class="slide"><img src="uploadFile/<%= imgs[0] %>" /></li>
+									<li class="slide"><img src="uploadFile/<%= imgs[1] %>" /></li>
+								</ul>
+							</div>
+							<div class="slider_nav">
+								<span class="dot" id="nav_dot1" style="background-color:#9E9E9E"></span>
+								<span class="dot" id="nav_dot2"></span>
+							</div>
+							<% } else if (imgs.length == 1) { %>
+							<img src="uploadFile/<%= imgs[0] %>" />
 							<% } else if (imgs.length == 0) { %>
 							<img src="img/travel/travel1.jpg" />
 							<% } %>

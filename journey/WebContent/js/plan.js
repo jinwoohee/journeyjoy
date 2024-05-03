@@ -16,7 +16,7 @@ $(function() {
 	  
 	  /* ul 넓이 계산해 주기 */
 	  const liWidth = slideLis.clientWidth;
-	  const sliderWidth = liWidth * items;
+	  const sliderWidth = (liWidth * items*3)/4;
 	  slider.style.width = `${sliderWidth}px` ;
 
 	  /* 리스너 설치하기 */
@@ -26,7 +26,7 @@ $(function() {
 	  
 
 	  $("#right").click(function(){   //오른쪽화살표 눌렀을때 슬라이드
-	    if(translate > -(sliderWidth)){
+	    if(translate > -(liWidth)){
 	        translate -= liWidth;
 	        slider.style.transform = `translateX(${translate}px)`;
 	        currentIdx += 1;
@@ -38,6 +38,16 @@ $(function() {
 	          slider.style.transform = `translateX(${translate}px)`;
 	          currentIdx -= 1;
 		   }
+	   });
+	   $("img[src*='acc']").mouseover(function(){
+		   $(this).css({'box-shadow':'rgb(0, 0, 84) 1px 1px','border':'2px solid rgb(218, 218, 218)','margin-top':'-5px'});
+		   var id = $(this).attr('id');
+		   $("label[id='"+id+"']").css({'margin-right':'16px'});
+	   });
+	   $("img[src*='acc']").mouseout(function(){
+		   $(this).css({'box-shadow':'0px 0px 0px 0px','border':'0px','margin-top':'0px'});
+		   var id = $(this).attr('id');
+		   $("label[id='"+id+"']").css({'margin-right':'20px'});
 	   });
 });
 
@@ -145,7 +155,20 @@ function initMap() {
         zoom: 15,
         center: { lat: 34.6964016465328, lng: 135.4867092276206 }
       });
-
+    var map4 = new google.maps.Map(document.getElementById('map4'), {
+        zoom: 15,
+        center: { lat: 34.6964016465328, lng: 135.4867092276206 }
+      });
+         
+      var map5 = new google.maps.Map(document.getElementById('map5'), {
+          zoom: 15,
+          center: { lat: 34.6964016465328, lng: 135.4867092276206 }
+        });
+      
+      var map6 = new google.maps.Map(document.getElementById('map6'), {
+          zoom: 15,
+          center: { lat: 34.6964016465328, lng: 135.4867092276206 }
+        });
     
     google.maps.event.addDomListener(window, "load", initMap);
   }
@@ -187,7 +210,7 @@ function down_pla(num){
 }
 
 function add_acc(num){
-	var add_sort = document.getElementById("acc_sort"+num);
+	var add_sort = document.querySelector("input[name='acc_sort"+num+"']:checked");
 	var add_content = document.getElementById("acc_content"+num);
 	var add_price = document.getElementById("acc_price"+num);
 	var add_pay = document.getElementById("pay_with"+num);
@@ -249,9 +272,9 @@ function add_acc(num){
 	text.textContent = after;
 	result_price.setAttribute("value", after);
 	
-	add_content.value = " ";
+	add_content.value = "";
 	add_price.value = " ";
-	add_pay.value = "결제수단";
+	add_pay.value = "현금";
 	$("div[id='pay_one_div"+num+"']").slideUp();
 }
 function del_pl(st, i){
@@ -271,4 +294,30 @@ function del_pl(st, i){
 }
 function open_acc_div(num){
 	$("div[id='pay_one_div"+num+"']").slideDown();
+}
+function close_acc_one(num){
+	var add_sort = document.getElementById("acc_sort"+num);
+	var add_content = document.getElementById("acc_content"+num);
+	var add_price = document.getElementById("acc_price"+num);
+	var add_pay = document.getElementById("pay_with"+num);
+	
+	add_content.value = "";
+	add_price.value = " ";
+	add_pay.value = "현금";
+	$("div[id='pay_one_div"+num+"']").slideUp(300);
+} 
+
+function checking(id){ /*테마 체크 여부 */
+	$("input[id="+id+"]").prop("checked",true);
+	
+	var img_id = $("label[for='"+id+"']").attr('id');
+	var before_src =  $("img[id='"+img_id+"']").attr('src').replaceAll("_check","");
+	var before_cut = before_src.replaceAll(".png","");
+	var after = before_cut+"_check.png";
+
+	if($("input[id='"+id+"']").is(":checked")){  
+	    $("img[id='"+img_id+"']").attr("src",after);
+	  }else{
+	    $("img[id='"+img_id+"']").attr("src",result);
+	  }
 }

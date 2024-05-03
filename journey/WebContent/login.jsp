@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +36,10 @@
 			}
 		%>
 	}
+	
+	$(function() {
+		
+	});
 </script>
 <body>
 	<section>
@@ -56,8 +62,26 @@
 				</div>
 				<div id="easy_log">
 					<div>
-						<img src="img/icon/naver.png"/>
-						<img src="img/icon/kakao.png"/>
+						<%
+						//네이버
+						String clientId = "lEYwWdovBT_X9ayS_3P9";
+					    String redirectURI = "http://localhost:8091/journey/oauth.jj?page=naverLogin";
+					    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+					    SecureRandom random = new SecureRandom();
+					    String state = new BigInteger(130, random).toString();
+					    apiURL += "&client_id=" + clientId;
+					    apiURL += "&redirect_uri=" + redirectURI;
+					    apiURL += "&state=" + state;
+					    session.setAttribute("state", state);
+						
+						
+						//카카오
+						String client_id = "97d3d4fdd304333d14ac189994d057ea";
+						String redirect_uri = "http://localhost:8091/journey/oauth.jj?page=kakaoLogin";
+						String url = "https://kauth.kakao.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&response_type=code";
+						%>
+						<a href="<%= apiURL %>"><img src="img/icon/naver.png"/></a>
+						<a href="<%= url %>"><img src="img/icon/kakao.png"/></a>
 					</div>
 				</div>
 			</div>

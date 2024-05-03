@@ -140,7 +140,7 @@ function createMarker(place) {
 	    };
   
   service.getDetails(re_request, callbackz);
-	
+
   google.maps.event.addListener(marker, "click", () => {
     infowindow.setContent(place.name+"<br>"+place.formatted_address+"<br>리뷰점수 : "+place.rating+"<br>"+"<a href='"+pla_url+"'  style='color:blue;' target='_blank'>구글지도에서 정보보기</a>");
     
@@ -187,7 +187,7 @@ window.initMap = initMap;
 					%>	
 				</div>
 			</div>
-			
+			<div id="main_content">
 			<div id="thema_div">
 				<p id="city"><%=e_destination%></p>
 				<p id="thema">여행테마</p>
@@ -238,12 +238,11 @@ window.initMap = initMap;
 							out.println("<input type='button' id='plan_add"+a+"' value='여행지 추가' class='button' onclick='plan_add_btn("+a+")'/>");	
 						}	
 					}
-					%>
-										
+					%>					
 				
 							</div>		
 						</div>	
-				<div id="map"></div>
+						<div id="map"></div>
 				<%
 				for(int a = 1 ; a <= datecnt ; a++){ 
 					String place_name = request.getParameter("place_name"+a);
@@ -258,7 +257,7 @@ window.initMap = initMap;
 							
 							out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
 							out.println("<p id='places_text"+a+"'></p>");
-							out.println("<input type='hidden' name='edit_plan"+a+"' value='1' id='edited"+a+"'>");
+							out.println("<input type='hidden' name='edit_plan"+a+"' value='' id='edited"+a+"'>");
 						}else if(place_attr != null && !place_cookie.equals("")){
 							out.println("<p id='places_text"+a+"'>"+place_attr+"</p>");
 							out.println("<input type='hidden' name='edit_plan"+a+"' value='"+place_attr+"' id='edited"+a+"'>");
@@ -282,7 +281,7 @@ window.initMap = initMap;
 						response.addCookie(new Cookie("pla"+a, ""));
 						out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
 						out.println("<p id='places_text"+a+"'></p>");
-						out.println("<input type='hidden' name='edit_plan"+a+"'value='3' id='edited"+a+"'>");
+						out.println("<input type='hidden' name='edit_plan"+a+"'value='' id='edited"+a+"'>");
 					}
 					else{System.out.println("2번");
 						String place_ck = place_name.replaceAll(",", "_").replaceAll("empty","").replaceAll("-", " ");
@@ -307,10 +306,12 @@ window.initMap = initMap;
 				}
 				%>	
 				<input type="hidden" name="edit_plan0" value="1">  
-				<input type="button" name="save_plan" value="저장" class="button">		
-			<div id="infowindow-content"></div>
+				
+			
 			</div>
+			<input type="button" name="save_plan" value="저장" class="button">	
 		</div>
+			
 		<div id="side_menu">
 			<p id="side_menu_p" align="center">side menu</p>
 			<div id= "side_inner">
@@ -319,7 +320,9 @@ window.initMap = initMap;
 				
 			</div>
 			</div>
-			</div>>
+			
+			</div>
+			</div>
 		</form>
 	</section>
 	<footer>

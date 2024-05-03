@@ -4,8 +4,19 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	color: #646464;
 	margin: 0px auto;
-	background: url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	background: url("https://copilot.microsoft.com/rp/itdq0TGlsM-BDvSovDaQdrVxPbo.jpg");
     background-size: cover;
+    position: relative;
+    isolation: isolate;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.7;
 }
 
 /* 게시판 전체 */

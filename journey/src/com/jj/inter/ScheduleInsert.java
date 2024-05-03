@@ -21,7 +21,7 @@ public class ScheduleInsert implements JourneyInterface{
 		Cookie[] ck = request.getCookies();
 		int e_no = (int) request.getAttribute("e_no");	
 		int day = Integer.parseInt(getCookieValue(ck, "datecnt"));
-		
+		System.out.println("hi11");
 		for(int a = 1 ; a <= day ; a++) {		
 			String place_arr= new String(request.getParameter("place_name"+a).getBytes("8859_1"),"UTF-8");
 			System.out.println(place_arr);
@@ -30,7 +30,7 @@ public class ScheduleInsert implements JourneyInterface{
 			ScheduleInsertDB isc = ScheduleInsertDB.insertdb();
 			int i = isc.insertMtd(e_no, a, place);
 		}
-		
+		System.out.println("hi13");
 		String num = e_no+"";
 		request.setAttribute("e_no", num);
 		request.setAttribute("paging", "detail_my");

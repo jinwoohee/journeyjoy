@@ -7,6 +7,7 @@ public class Product {
 	String prod_explain;
 	int prod_price;
 	String prod_city;
+	String prod_file;
 	public int getProd_no() {
 		return prod_no;
 	}
@@ -42,6 +43,12 @@ public class Product {
 	}
 	public void setProd_city(String prod_city) {
 		this.prod_city = prod_city;
+	}
+	public String getProd_file() {
+		return prod_file;
+	}
+	public void setProd_file(String prod_file) {
+		this.prod_file = prod_file;
 	}
 	
 	

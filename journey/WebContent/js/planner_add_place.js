@@ -10,12 +10,12 @@ $(document).ready(function() {
 		$('#down').css({'display':'none'});
 		$('#up').css({'display':'block'});
 	});
-	$(".button").mouseover(function(){
+	/*$(".button").mouseover(function(){
 		$(this).css({'box-shadow':'inset 5px 5px 10px #CCCCCC'});
 	});
 	$(".button").mouseout(function(){
 		$(this).css({'box-shadow':''});
-	});
+	});*/
 	$("input[name='save_plan']").click(function(){
 		$("form").submit();	
 	});
@@ -61,8 +61,8 @@ function day_select(num){
 	var places = "#places"+num;
 	var add_btn = "#plan_add"+num;
 	
-	$("p[id*='day']").css({'border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px'});
-	$(day).css({'border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #fed293','margin-top':'11px'});
+	$("p[id*='day']").css({'padding':'5px 20px','border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px', 'background-color' : 'transparent'});
+	$(day).css({'padding':'5px 19px','border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #6C94B8','margin-top':'11px', 'background-color' : 'white'});
 	$("div[id*='places']").css({'display':'none'});
 	$(places).css({'display':'block'});
 	$("input[id*='plan_add']").css({'display':'none'});
@@ -101,7 +101,7 @@ function plan_add_btn(num){
 function checking(id){ /*테마 체크 여부 */
 	$("input[type='checkbox']").prop("checked", false);
 	$("label").css({"background-color":"", "color":"rgb(64,64,64)"});
-	$("input[id="+id+"]").prop("checked",true);	
+	$("input[id="+id+"]").prop("checked",true);
 	  
 	if($("input[id="+id+"]").is(":checked")){  
 	    $("label[for="+id+"]").css({"background-color":"#1E427F", "color":"#f1f1f3"});

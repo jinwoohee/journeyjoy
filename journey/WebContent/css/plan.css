@@ -4,6 +4,8 @@ body {
 	color: #646464;
 	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
 	background-size: cover;
+	z-index: -1;
+	position : relative; 	
 }
 *{
 	margin: 0;
@@ -13,6 +15,18 @@ div[id="content"]{ /*�뿤�뜑, �뫖�꽣瑜� �젣�쇅�븳 �꽮�
 	width: 1200px;
 	margin: 0 auto;
 	margin-bottom: 140px;
+}
+input{
+	font-family: "Noto Sans KR", sans-serif;
+	color: #646464;
+}
+input[type="button"]{ /*모든 버튼*/
+	background-color: white;
+	color: #6C94B8;
+	font-size: 15px;
+	font-family: "Noto Sans KR", sans-serif;
+	font-weight: bold;
+	cursor: pointer;
 }
 div[id="list_text"]{ /* "�뿬�뻾怨꾪쉷�꽌" 湲��옄 div �� �븘�옒�쓽 �꽑 */
 	width: 1200px;
@@ -27,9 +41,11 @@ p[id="list_text"]{ /* "�뿬�뻾怨꾪쉷�꽌" 湲��옄 */
 	font-weight: bold;
 }
 div[id="radio_div"]{ /*�씪�뵒�삤踰꾪듉 div*/
-	width: 900px;
+	width: 906px;
 	height: 40px;
 	margin: 0 auto;
+	position : relative;
+	z-index : 5;
 }
 
 input[name="plan"]{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄겕由ъ뒪�듃 踰꾪듉*/
@@ -37,41 +53,50 @@ input[name="plan"]{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄겕由
 }
 label[id*="plan_radio"]{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄겕由ъ뒪�듃 �씪�뵒�삤踰꾪듉 */
 	float: left;
-	padding: 5px 20px;
 	background-color: white;
-	border-radius: 10px;
-	border: 1px solid #6C94B8;
+	border-radius: 20px 20px 0 0;
+	border: 2px solid black;
 	font-weight: bold;
 	font-size: 15px;
-	margin-right: -10px;
-	margin-left: 20px;
-	margin-top: 10px;
 	color:  #6C94B8;
 	cursor: pointer;
+	width : 298px;
+	height: 30px;	
+    margin: 0;
+    text-align: center;
+    padding-top: 10px;
+}
+label[id="plan_radio_1"]{
+	background-color:#0D112D;
+	color:#f1f1f3;
 }
 div[id*="plandiv_"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
-	width: 900px;
+	width: 902px;
 	background-color: white;
-	margin: 20px auto;	
-	border-radius: 10px;
+	margin: 0 auto;	
 	border: 2px solid #0D112D;
 	box-shadow: 3px 3px 3px #CCCCCC;
 	display : none;
+	position : relative; 
+	z-index : 3;
+	margin-bottom : 20px;
 }
 div[id="plandiv_1"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
 	display : block;
 }
 input[name="plan_subject"]{ /*�젣紐� text*/
 	width: 700px;
-	height: 40px;
-	border: 2px solid ;
-	border-radius: 10px;
+	height: 25px;
+	border: none ;
+	border-left : 4px solid black;
+	padding-left : 7px;
 	margin: 25px 70px;
 	margin-top: 40px;
 	font-weight: bold;
 	font-family: "Noto Sans KR", sans-serif;
-	font-size: 12px;
+	font-size: 15px;
 	color: rgb(64,64,64);
+	outline : none;
 }
 div[id="plan_info"]{ /*�뿬�뻾�젙蹂�(�룄�떆,�궇吏�,�뀒留�) div*/
 	width: 600px;
@@ -89,6 +114,7 @@ p[id="plan_date"]{ /*�뿬�뻾�궇吏�*/
 	font-size: 15px;
 	font-weight: bold;
 	margin-left: 5px;
+	margin-bottom: 10px;
 	color: #646464;
 }
 p[class="list_thema"]{ /*�꽑�깮�븳 �뀒留� 湲��옄*/
@@ -100,7 +126,7 @@ p[class="list_thema"]{ /*�꽑�깮�븳 �뀒留� 湲��옄*/
 	float: left;
 	font-size: 10px;
 	font-weight: bold;
-	margin-bottom: 8px;
+	margin-bottom: 5px;
 	margin-right: 12px;
 }
 div[id="plan_div"]{ /*�뿬�뻾�씪�젙 div*/
@@ -119,22 +145,21 @@ p[class="product_sub"]{ /* 異붽��긽�뭹 湲��옄 �룿�듃*/
 	font-weight: bold;
 	color: #646464;
 	float :left;
-	margin-bottom: 15px;
-	margin-top: 50px;
+	margin-bottom: 25px;
+	margin-top: 30px;
 }
+
 div[class="plan_day"]{ /*�뿬�뻾�씪�젙 box �뀒�몢由� */
 	width: 750px;
 	height: 80px;
 	background-color: white;
-	margin: 30px auto;
-
+	margin: 15px auto;
 }
 div[class="plan_date"]{ /*�씪李⑥닔 div*/
 	float: left;
 	width: 200px;
-	height: 90px;
+	height: 70px;
 	background: #6C94B8;
-	border-radius: 10px 0 0 10px;
 	border: 1px solid #6C94B8;
 	color: white;
 	text-align: center;
@@ -142,33 +167,32 @@ div[class="plan_date"]{ /*�씪李⑥닔 div*/
 }
 p[class="day"]{ /*n�씪李� 湲��옄 */
 	margin: 0;
-	padding: 17px 20px;
+	padding: 11px 20px;
 	padding-bottom: 0px;
-	font-size: 20px;	
+	font-size: 15px;	
 	font-weight: bold;
 }
 p[class="date"]{ /* �궇吏�,�슂�씪 */
 	margin: 0;
 	padding: 12px 22px;
 	padding-top: 5px;
-	font-size: 14px;
+	font-size: 13px;
 }
 div[class="place_name_div"]{
 	width : 450px;
-	height : 60px;
+	height : 50px;
 	float : left;
 	margin : auto 15px;
 	overflow : hidden;
 }
 p[class="place_name"]{ /*�뿬�뻾�씪�젙 諛뺤뒪 �븞 �뿬�뻾吏��씠由� 湲��옄*/
-	font-size: 20px;
+	font-size: 15px;
 	color: #646464;
 }
 div[class="plan_detail"]{ /*�긽�꽭�젙蹂� div*/
 	width: 540px;
-	height: 90px;
+	height: 70px;
 	float: left;
-	border-radius: 0 10px 10px 0;
 	border: 1px solid #6C94B8;
 	margin-left: 0;
 	display: flex;
@@ -196,26 +220,21 @@ img[id*="close"]{
 
 div[id*="detail_info"]{ /*�긽�꽭�젙蹂� �뿴�뿀�쓣�븣 div*/
 	width: 750px;
-	height: 430px;
-	margin: 30px auto;
+	margin: 0 auto;
 	display: none;
-}
-div[class="map_info"]{ /*吏��룄 媛먯떥�뒗 div*/
-	width: 750px;
-	height: 410px;
+	overflow : auto;
 }
 div[id*="map"]{/*�긽�꽭�젙蹂� �븞�쓽 吏��룄 div*/
 	float: left;
-	width: 450px;
+	width: 744px;
 	height: 400px;
-	margin-top : 15px;
 }
-div[id*="map1"]{/*�긽�꽭�젙蹂� �븞�쓽 吏��룄 div*/
+/* div[id*="map1"]{�긽�꽭�젙蹂� �븞�쓽 吏��룄 div
 	float: left;
-	width: 450px;
+	width: 740px;
 	height: 400px;
 	margin-top : 0px;
-}
+} */
 div[id*="place_info"]{/*�긽�꽭�젙蹂� �븞�쓽 �옣�냼 �젙蹂�*/
 	float: right;
 	width: 280px;
@@ -240,7 +259,7 @@ p[class="places_name"]{ /*�옣�냼�씠由�*/
 	
 }
 div[class="pl_eat_div"]{ /*�뿬�뻾吏� �뱾�뼱媛늕iv*/
-	width: 750px;
+	width: 745px;
     float: left;
     border-top: 3px solid #646464;
     border-bottom: 1px solid #646464;
@@ -292,47 +311,65 @@ div[id*="plac_name"]{
 
 div[id="product"]{ /*異붽��긽�뭹,異붿쿇�긽�뭹 �쟾泥� div*/
 	width: 800px;
-	margin: 40px auto;
+	margin: 0px auto;
 }
 div[class="product_add"]{/*異붽��긽�뭹, 異붿쿇�긽�뭹 媛곴컖 div*/
 	width: 800px;
-	margin: 50px auto;
+	margin: 0px auto;
 }
 table[id="product_table"]{/*異붽��긽�뭹 �뀒�씠釉�*/
 	width: 750px;
 	height: 30px;
-	border: 2px solid #0D112D;
-	border-radius: 5px;
+	border: 1px solid #646464;
 	margin: 15px auto;
 	background-color: white;
 }
-td[id="product_add_name"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
-	height: 20px;
-	border-bottom: 2px solid #0D112D;
+td[id="product_sub_name"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
+	height: 40px;
+	border-bottom: 1px solid #646464;
 	margin-top : 15px;
+	width : 420px;
+	padding-left : 5px;
 }
-td[id="product_add_sort"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
-	height: 20px;
-	border-bottom: 2px solid #0D112D;
+td[id="product_sub_sort"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
+	height: 40px;
+	border-bottom: 1px solid #646464;
 	margin-top : 15px;
+	width : 160px;
+	padding-left : 5px;
 }
-td[id="product_add_price"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
-	height: 20px;
-	border-bottom: 2px solid #0D112D;
+td[id="product_sub_price"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
+	height: 40px;
+	border-bottom: 1px solid #646464;
 	margin-top : 15px;
+	width : 115px;
+	padding-left : 5px;
+}
+p[id*="product_add"]{
+	font-size : 15px;
+	margin-left : 5px;
 }
 td[class="item"]{
 	height: 30px;
 }
 td[id="del"]{
 	width: 40px;
+	border-bottom: 1px solid #646464;
+	text-align: center;
+}
+.product_add_sub{
+	font-size: 20px;
+	margin-left: 25px;
+	font-weight: bold;
+	color: #646464;
+	margin-top : 40px;
 }
 div[id="item_div"]{
 	width: 750px;
 	height: 240px;
-	border-top: 2px solid #0D112D;
-	border-bottom: 2px solid #0D112D;
-	margin : 15px auto;
+	border-top: 1px solid #646464;
+	border-bottom: 1px solid #646464;
+	margin : 25px auto;
 	
 }
 div[class="product_adv"]{ /*異붿쿇�긽�뭹 div*/
@@ -349,44 +386,50 @@ div[id="slide_div"]{
 }
 
 div[id*="product_item"]{ /*由ъ뒪�듃 �븞 �빆紐쯣iv */
-	width: 170px;
+	width: 145px;
 	height: 175px;
-	border: 2px solid #0D112D;
-	border-radius: 5px;
+	border: 1px solid #646464;
+	border-radius : 5px;
 	margin-top: 25px;
 	margin-left: 15px;
 	float: left;
 }
-img[src*="ticket"]{ /*�떚耳� �씠誘몄�*/
-	width: 150px;
-	height: 70px;
-	margin: 10px 10px;
-	border-radius: 5px;
-	border: 2px solid #0D112D;
+img[class="tick_prod"]{ /*�떚耳� �씠誘몄�*/
+	width: 145px;
+    height: 85px;
+    border-radius : 5px 5px 0 0;
+	border-bottom: 1px solid #646464;
 }
 table[id*="product_tb"]{ /* 異붿쿇�긽�뭹 �젙蹂� �뀒�씠釉� */
 	margin-left: 10px;
-	width: 150px;
+	width: 125px;
 }
 td[id*="product_name"]{ /* 異붿쿇�긽�뭹 td */
+	height : 45px;
 	border-bottom: 1.5px solid #0D112D;
-	width: 150px;
+	font-size : 15px;
+	text-overflow : ellipsis;
+	overflow : hidden;
+	vertical-align : top;
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    width : 125px;
 }
 td[id*="product_price"]{ /* 異붿쿇�긽�뭹 td */
-	border-bottom: 1.5px solid #0D112D;
-	width: 150px;
+	width: 125px;
+	vertical-align : top;
 }
+
 input[name="save_plan"]{ /*���옣 踰꾪듉*/
 	width: 300px;
 	height: 50px;
 	border-radius: 5px;
 	float: left;
 	font-size: 16pt;
-	font-family: 'Nanum Gothic Coding', monospace;
-	font-weight: bold;
+	font-family: "Noto Sans KR", sans-serif;
 	color: rgb(64,64,64);
-	background-color: white;
-	margin-top: 120px;
+	background-color:white;
+	margin-top: 70px;
 	margin-left: 300px;
 	cursor: pointer;
 }
@@ -396,23 +439,26 @@ input[name="edit_plan"]{ /*���옣 踰꾪듉*/
 	border-radius: 5px;
 	float: left;
 	font-size: 16pt;
-	font-family: 'Nanum Gothic Coding', monospace;
-	font-weight: bold;
+	font-family: "Noto Sans KR", sans-serif;
 	color: rgb(64,64,64);
-	background-color: white;
-	margin-top: 120px;
+	margin-top: 70px;
 	margin-left: 300px;
+	background-color:white;
 	cursor: pointer;
 }
 img[src*="minus"]{ /*異붽��긽�뭹 異붽�踰꾪듉*/
 	cursor: pointer;
+	margin-left: 9px;
+    vertical-align: middle;
 }
 img[src*="plus"]{ /*異붽��긽�뭹 �궘�젣踰꾪듉*/
+	float:right;
 	cursor: pointer;
+	margin-top : 2px;
 }
 #save_btn_div{
 	width: 700px;
-	height : 250px;;
+	height : 180px;
 }
 img[src*="arrows"]{
 	width : 20px;
@@ -484,18 +530,145 @@ label{
 img[src*="left"], img[src*="right"]{
 	cursor: pointer;
 }
+
+
 /*가계부  */
-div[id*="pay_one_div"]{
-	display : none;
+div[id*="pay_one_div"]{ /*비용추가 누르면 내려오는 div*/
+	margin-top: 80px;
+    display: none;
+    margin-bottom: 40px;
 }
-input[name*="content"]{
+input[name*="content"]{/*지출내용*/
 	width : 150px;
-	background-color : blue;
 }
+div[id*="acc_div"]{/* 가계부 day 마다의 div*/
+	margin : 40px 70px;
+	min-height: 100px;
+}
+.acc_sub{ /*여행준비, day 글자*/
+	padding-bottom: 5px;
+	font-size : 17px;
+	font-weight: bold;
+	border-bottom: 1px solid #6C94B8;
+}
+input[name*="sort"]{/*카테고리 테이블*/
+	width : 110px;
+	border: 0px;
+	outline:none;	
+}
+input[name*="content"]{ /*내용 테이블*/
+	width : 350px;
+	border: 0px;
+	outline:none;
+}
+input[name*="price"]{/*가격테이블*/
+	width: 120px;
+	border: 0px;	
+	outline:none;
+}
+input[name*="pay_with"]{/*결제수단테이블*/
+	width: 80px;
+	border: 0px;
+	outline:none;	
+}
+input[name*="add_acc"]{ /*비용추가 버튼*/
+	font-size: 12px;
+	float: right;
+	margin-top: 4px;
+	border: 1px solid #6C94B8;
+}
+div[class="price_div"]{ /*금액, 결제수단, 내용 쓰는 div*/
+	width: 210px;
+	height: 20px;
+	border: 1px solid #6C94B8;
+	padding: 10px;
+	float: left;
+}
+input[name*="acc_price"]{ /* 결제금액 쓰는 text*/
+	width: 120px;
+	height: 20px;
+	outline:none;
+	float: left;	
+}
+select[name*="price_sort"]{ /*화폐 select*/
+	width: 75px;
+	font-family: "Noto Sans KR", sans-serif;
+	outline:none;
+	border: none;
+	font-size: 12px;
+	margin-top: 2px;
+  float: right;
+}
+select[name*="pay_with"]{ /*결제수단 select*/
+	width: 65px;
+	font-family: "Noto Sans KR", sans-serif;
+	border: none;
+	border-bottom: 1px solid #6C94B8;
+	outline:none;
+}
+.pay_with_div{ /*결제수단 div*/
+	float: left;
+	margin-left: 10px;
+}
+.pay_with_text{ /*결제수단 글자*/
+	font-size: 12px;
+	margin-bottom: -1px;
+}
+input[name*="acc_content"]{ /* 결제 내용 쓰는 text*/
+	width : 418px;
+	height: 30px;
+	font-size: 15px;
+	padding-top: 10px;
+	margin-left: 30px;
+	border: none;
+	border-bottom: 1px solid #6C94B8;
+	outline:none;
+}
+.sort_text{ /*카테고리 글자*/
+	font-size: 15px;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+input[type="radio"]{ /*카테고리 버튼*/
+	display: none;
+}
+img[src*="acc"]{ /*카테고리 버튼 이미지*/
+	width: 40px;
+	height: 40px;
+	border-radius: 5px;
+}
+label{ /*카테고리 버튼 라벨*/
+	margin-right: 20px;
+}
+.ctg_t{ /*각 카테고리 글자*/
+	font-size : 12px;
+	margin-left: 7px;
+    margin-top: -6px;
+    word-spacing: 38.5px;
+}
+input[name*="add_acc_one"]{ /*추가하기 버튼*/
+	font-size: 15px;
+	height: 20px;
+	
+	float: right;	
+}
+input[name*="close_acc"]{ /*추가하기 버튼*/
+	font-size: 15px;
+	height: 30px;
 
-
-
-
+	float: right;	
+}
+/*라디오버튼 */
+input[type=radio]:checked + label { /* 큰테마와 인원유형 라디오버튼 눌렀을때 */
+	background-color: #0D112D;
+	color: white;
+}
+input[name="save_acc"]{/*가계부 저장버튼*/
+	width : 250px;
+	height : 40px;
+	margin : 20px 327px;
+	background-color : white;
+}
 footer {
 	margin-top: 0px;
 }

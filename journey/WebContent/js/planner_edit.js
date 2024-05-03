@@ -9,12 +9,12 @@ $(document).ready(function() {
 		$('#down').css({'display':'none'});
 		$('#up').css({'display':'block'});
 	});
-	$(".button").mouseover(function(){
+	/*$(".button").mouseover(function(){
 		$(this).css({'box-shadow':'inset 5px 5px 10px #CCCCCC'});
 	});
 	$(".button").mouseout(function(){
 		$(this).css({'box-shadow':''});
-	});
+	});*/
 	$("input[name='add_place'], input[name='plan_sel_add']").click(function(){
 		$("form").attr("action","planner_add_place.jsp");
 	});
@@ -27,8 +27,8 @@ function day_select(num){
 	var day = "#day"+num;
 	var list_no = "#plan_list_day"+num;
 	
-	$("p[id*='day']").css({'border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px'});
-	$(day).css({'border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #fed293','margin-top':'11px'});
+	$("p[id*='day']").css({'padding':'5px 20px','border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px', 'background-color' : 'transparent'});
+	$(day).css({'padding':'5px 19px','border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #6C94B8','margin-top':'11px', 'background-color' : 'white'});
 	$("div[id*='plan_list_day']").css({'display':'none'});
 	$(list_no).css({'display':'block'});
 	
