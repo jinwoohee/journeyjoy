@@ -39,6 +39,16 @@ $(function() {
 	          currentIdx -= 1;
 		   }
 	   });
+	   $("img[src*='acc']").mouseover(function(){
+		   $(this).css({'box-shadow':'rgb(0, 0, 84) 1px 1px','border':'2px solid rgb(218, 218, 218)','margin-top':'-5px'});
+		   var id = $(this).attr('id');
+		   $("label[id='"+id+"']").css({'margin-right':'16px'});
+	   });
+	   $("img[src*='acc']").mouseout(function(){
+		   $(this).css({'box-shadow':'0px 0px 0px 0px','border':'0px','margin-top':'0px'});
+		   var id = $(this).attr('id');
+		   $("label[id='"+id+"']").css({'margin-right':'20px'});
+	   });
 });
 
 
@@ -264,7 +274,7 @@ function add_acc(num){
 	
 	add_content.value = " ";
 	add_price.value = " ";
-	add_pay.value = "결제수단";
+	add_pay.value = "현금";
 	$("div[id='pay_one_div"+num+"']").slideUp();
 }
 function del_pl(st, i){
@@ -284,4 +294,30 @@ function del_pl(st, i){
 }
 function open_acc_div(num){
 	$("div[id='pay_one_div"+num+"']").slideDown();
+}
+function close_acc_one(num){
+	var add_sort = document.getElementById("acc_sort"+num);
+	var add_content = document.getElementById("acc_content"+num);
+	var add_price = document.getElementById("acc_price"+num);
+	var add_pay = document.getElementById("pay_with"+num);
+	
+	add_content.value = " ";
+	add_price.value = " ";
+	add_pay.value = "현금";
+	$("div[id='pay_one_div"+num+"']").slideUp(300);
+} 
+
+function checking(id){ /*테마 체크 여부 */
+	$("input[id="+id+"]").prop("checked",true);
+	
+	var img_id = $("label[for='"+id+"']").attr('id');
+	var before_src =  $("img[id='"+img_id+"']").attr('src').replaceAll("_check","");
+	var before_cut = before_src.replaceAll(".png","");
+	var after = before_cut+"_check.png";
+
+	if($("input[id='"+id+"']").is(":checked")){  
+	    $("img[id='"+img_id+"']").attr("src",after);
+	  }else{
+	    $("img[id='"+img_id+"']").attr("src",result);
+	  }
 }

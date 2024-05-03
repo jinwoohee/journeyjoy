@@ -79,7 +79,7 @@ request.setCharacterEncoding("utf-8");
 					<p class="sub_thema"><%= e_food_taste %></p>
 				</div>
 				<a href="planner_main.jsp">
-					<input type="button" name="edit_thema" value="수정하기" class="button" />
+					<input type="button" name="edit_thema" value="테마수정하기" class="button" />
 				</a>						
 			</div>		
 			

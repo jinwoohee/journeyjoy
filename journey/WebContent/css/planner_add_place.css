@@ -56,16 +56,15 @@ p[id="list_text"]{ /* "여행일정" 글자 */
 div[id="day_div"]{ /* day1,day2,day3,day4... 들어갈div*/
 	width: 900px;
 	height: 50px;
-	margin-left: 227px;
+	margin-left: 232px;
 }
 p[id*="day"]{ /*day 글자 */
 	float : left;
 	font-size: 17px;
 	font-weight: bold;
-	padding-top : 3px;
 	margin-top : 14px;
 	cursor : pointer;
-	padding : 0 10px;
+	padding : 5px 20px;
 }
 p[id="day1"]{ /*day 글자 */
 	border : 1px solid gray ;
@@ -112,6 +111,7 @@ p[class="sub_thema"]{ /*서브테마, 음식취향 글자 */
 	font-size: 15px;
 	font-family: "Noto Sans KR", sans-serif;
 	font-weight: bold;
+	box-shadow: 2px 2px 5px rgba(0,0,0,.25);
 	cursor: pointer;
 }
 input[name="edit_thema"]{ /*테마 수정하기 버튼 */

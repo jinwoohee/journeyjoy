@@ -45,10 +45,9 @@ p[id*="day"]{ /*day 글자 */
 	float : left;
 	font-size: 17px;
 	font-weight: bold;
-	padding-top : 3px;
 	margin-top : 14px;
 	cursor : pointer;
-	padding : 0 10px;
+	padding : 5px 20px;
 }
 p[id="day1"]{ /*day 글자 */
 	border : 1px solid gray ;
@@ -59,7 +58,7 @@ p[id="day1"]{ /*day 글자 */
 	background-color : white;
 }
 #main_content{
-	width : 1050px;
+	width : 1080px;
 	border-radius : 5px;
 	border: 2px solid #0D112D;
 	box-shadow: 3px 3px 3px #CCCCCC;
@@ -130,7 +129,6 @@ input[name="edit_thema"]{ /*테마 수정하기 버튼 */
 }
 div[id="plan_list"]{ /*여행지 리스트 전체 div */
 	width: 820px;
-	overflow : auto;
 	float: left;
 	margin-left: 5px;
 	margin-top : 5px;
@@ -146,18 +144,16 @@ div[id*="plan_list_day"]::-webkit-scrollbar-track-piece {
     background: rgb(233, 236, 239);
 }
 div[id*="plan_list_day"]{
-	width: 810px;
-	max-height : 1010px;
+	width: 820px;
 	float: left;
 	margin-left: 5px;
 	display : none;
-	overflow : auto;
 }
 div[id="plan_list_day1"]{ /*여행지 리스트 day1 div */
 	display : block;
 }
 div[id*="list_content"]{ /* 여행지 하나하나의 div */
-	width: 800px;
+	width: 815px;
 	height: 200px;
 	border-bottom: 0.7px solid #CCCCCC;
 	margin: 0;
@@ -250,7 +246,7 @@ div[id="side_menu"]{ /*사이드 메뉴 div*/
 	width: 120px;
 	height: 60px;
 	top: 260px;
-	right: 365px;
+	right: 300px;
 	border-radius: 10px;
 	border: 2px solid rgb(64,64,64);
 	background-color : white;
@@ -262,7 +258,7 @@ div[id="side_menu"]{ /*사이드 메뉴 div*/
 div[id="side_inner"]{ /*side menu 글자 아래의 사이드메뉴 내부 div */
 	position: fixed;
 	top: 295px;
-	right: 365px;
+	right: 300px;
 	width: 120px;
 	border: 2px solid #0D112D;
 	border-radius: 0px 0px 10px 10px;
