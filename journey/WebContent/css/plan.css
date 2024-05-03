@@ -41,7 +41,7 @@ p[id="list_text"]{ /* "�뿬�뻾怨꾪쉷�꽌" 湲��옄 */
 	font-weight: bold;
 }
 div[id="radio_div"]{ /*�씪�뵒�삤踰꾪듉 div*/
-	width: 900px;
+	width: 905px;
 	height: 40px;
 	margin: 0 auto;
 	position : relative;
@@ -53,20 +53,25 @@ input[name="plan"]{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄겕由
 }
 label[id*="plan_radio"]{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄겕由ъ뒪�듃 �씪�뵒�삤踰꾪듉 */
 	float: left;
-	padding: 5px 20px;
 	background-color: white;
-	border-radius: 10px;
-	border: 1px solid #6C94B8;
+	border-radius: 20px 20px 0 0;
+	border: 2px solid black;
 	font-weight: bold;
 	font-size: 15px;
-	margin-right: -10px;
-	margin-left: 20px;
-	margin-top: 10px;
 	color:  #6C94B8;
 	cursor: pointer;
+	width : 298px;
+	height: 30px;	
+    margin: 0;
+    text-align: center;
+    padding-top: 10px;
+}
+label[id="plan_radio_1"]{
+	background-color:#0D112D;
+	color:#f1f1f3;
 }
 div[id*="plandiv_"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
-	width: 900px;
+	width: 901px;
 	background-color: white;
 	margin: 0 auto;	
 	border: 2px solid #0D112D;
@@ -81,16 +86,17 @@ div[id="plandiv_1"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
 }
 input[name="plan_subject"]{ /*�젣紐� text*/
 	width: 700px;
-	height: 40px;
-	border: 2px solid ;
-	border-radius: 10px;
+	height: 25px;
+	border: none ;
+	border-left : 4px solid black;
 	padding-left : 7px;
 	margin: 25px 70px;
 	margin-top: 40px;
 	font-weight: bold;
 	font-family: "Noto Sans KR", sans-serif;
-	font-size: 12px;
+	font-size: 15px;
 	color: rgb(64,64,64);
+	outline : none;
 }
 div[id="plan_info"]{ /*�뿬�뻾�젙蹂�(�룄�떆,�궇吏�,�뀒留�) div*/
 	width: 600px;
