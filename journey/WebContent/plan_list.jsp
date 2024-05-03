@@ -27,14 +27,83 @@ System.out.println("셀렉트 완료 이스 : "+esti.size()+"플랜 : "+plan.siz
 	<!-- 페이지 섹션 -->
 	<section>
 	<form action = "" method="post">
-		<div id="content">
+		<div>
+			<img src="img/travel/planlist_main3.jpg" id="top_img">
 			<div id="list_text">
-				<p id="list_text"></p>
+				<p id="list_text">여행 계획서</p>
 			</div>
+		</div>
+		<div id="content">	
 			<a href="planner_main.jsp">
 			<input type="button" name="make_plan"value="계획서 만들기" class="button">
 			</a>
 			<div id="filter">
+				<select name="nation">
+		    		<option value="choice">국가별로 보기</option>
+		    		<option value="japan">일본</option>
+		    		<option value="canada">캐나다</option>
+		    		<option value="philippines">필리핀</option>
+		    		<option value="america">미국</option>
+		    		<option value="australia">호주</option>
+		    		<option value="newzealand">뉴질랜드</option>
+		    		<option value="china">중국</option>
+			  	</select>
+			  	<select name="city_sel" id="choice">
+			  		<option value="choice">도시별로 보기</option>
+			  		<option value="choice">국가를</option>
+			  		<option value="choice">선택해주세요.</option>
+			  	</select>
+			  	<select name="city_japan" id="japan">
+		    		<option value="choice">도시별로 보기</option>
+		    		<option value="tokyo">도쿄</option>
+		    		<option value="osaka">오사카</option>
+		    		<option value="fukuoka">후쿠오카</option>
+		    		<option value="kyoto">교토</option>
+		    		<option value="nagoya">나고야</option>
+			  	</select>
+			  	<select name="city_canada" id="canada">
+		    		<option value="choice">도시별로 보기</option>
+		    		<option value="vancouver">벤쿠버</option>
+		    		<option value="toronto">토론토</option>
+		    		<option value="victoria">빅토리아</option>
+		    		<option value="niagara">나이아가라</option>
+		    		<option value="montreal">몬트리올</option>
+			  	</select>
+			  	<select name="city_philippines" id="philippines">
+		    		<option value="choice">도시별로 보기</option>
+		    		<option value="manila">마닐라</option>
+		    		<option value="cebu">세부</option>
+		    		<option value="baguio">바기오</option>
+		    		<option value="iloilo">일로일로</option>
+			  	</select>
+			  	<select name="city_america" id="america">
+		    		<option value="choice">도시별로 보기</option>
+		    		<option value="newyork">뉴욕</option>
+		    		<option value="boston">보스턴</option>
+		    		<option value="losAngeles">로스앤젤레스</option>
+		    		<option value="sanFrancisco">샌프란시스코</option>
+		    		<option value="cicago">시카고</option>
+			  	</select>
+			  	<select name="city_australia" id="australia">
+		    		<option value="choice">도시별로 보기</option>
+		    		<option value="sydney">시드니</option>
+		    		<option value="melbourne">멜버른</option>
+		    		<option value="goldCoast">골드코스트</option>
+		    		<option value="brisbane">브리즈번</option>
+			  	</select>
+			  	<select name="city_newzealand" id="newzealand">
+		    		<option value="choice">도시별로 보기</option>
+		    		<option value="auckland">오클랜드</option>
+		    		<option value="queenstown">퀸스타운</option>
+		    		<option value="wellington">웰링턴</option>
+			  	</select>
+			  	<select name="city_china" id="china">
+		    		<option value="choice">도시별로</option>
+		    		<option value="shanghai">상하이</option>
+		    		<option value="beijing">베이징</option>
+		    		<option value="guangzhou">광저우</option>
+		    		<option value="qingdao">칭다오</option>
+			  	</select>
 				<select name="city">
 					<option>도시별로 보기</option>
 					<option>오사카</option>
@@ -71,15 +140,47 @@ System.out.println("셀렉트 완료 이스 : "+esti.size()+"플랜 : "+plan.siz
 						for(Estimate st : esti){
 							for(Plan pl : plan){
 								if(st.gete_no() == pl.getE_no()){
-					%>
+									String pl_date = pl.getPlan_date()+"";
+									String aabb = pl_date.replaceAll("-", ".");
+									String city = st.gete_destination();
+									String city_img ="";
+									if(city.equals("도쿄")){
+										city_img = "img/japan/tokyo5.jpg";
+									}else if(city.equals("오사카")){
+										city_img = "img/japan/osaka6.jpg";
+									}else if(city.equals("나이아가라")){
+										city_img = "img/canada/niagara2.jpg";
+									}else if(city.equals("토론토")){
+										city_img = "img/canada/toronto1.jpg";
+									}else if(city.equals("밴쿠버")){
+										city_img = "img/canada/vancouver1.jpg";
+									}else if(city.equals("삿포로")){
+										city_img = "img/japan/sapporo1.jpg";
+									}else if(city.equals("뉴욕")){
+										city_img = "img/usa/newyork1.jpg";
+									}else if(city.equals("라스베가스")){
+										city_img = "img/usa/lasvegas1.jpg";
+									}else if(city.equals("다낭")){
+										city_img = "img/vietnam/danang1.jpg";
+									}else if(city.equals("나트랑")){
+										city_img = "img/vietnam/natrang1.jpg";
+									}else if(city.equals("푸꾸옥")){
+										city_img = "img/vietnam/phuquoc1.jpg";
+									}
+							
+					%>			
 							<a href="plan_page.jsp?paging=detail_my&e_no=<%=st.gete_no() %>">
 								<div class="plan">
-									<div class="plan_content">
-										<h2><%=pl.getPlan_title()%></h2><span><%=pl.getPlan_date() %></span>
+								<div class="plan_img"><img src="<%=city_img %>" class="city_img"/><div class="square"></div></div>
+									
+									<div class="plan_content">												
+										<p class="title"><%=pl.getPlan_title()%></p><span><%=aabb %></span>
+										<br><br>
+										<img src="img/icon/location.png"/><p class="destination">&nbsp;&nbsp;<%=city %></p>
+										<br><br>
+										<p class="trip_date"><%=st.gete_start_date().replaceAll("-", ".") %> ~ <%=st.gete_end_date().replaceAll("-", ".") %></p>
 										<br>
-										<h3>&nbsp;&nbsp;&nbsp;<%=st.gete_destination() %>&nbsp;&nbsp;&nbsp;&nbsp;<%=st.gete_start_date() %> ~ <%=st.gete_end_date() %></h3>
-										<br>
-										<h4>&nbsp;&nbsp;&nbsp;<%=st.gete_thema()+","+st.gete_detail_thema()%></h4>
+										<p class="thema_text"><%=st.gete_thema()+","+st.gete_detail_thema()%></p>
 										<input type="submit" name="del_plan<%= st.gete_no()%>" value="삭제" class="button" onclick="del_plan(<%=st.gete_no() %>)"/>
 										<input type="hidden" name="e_no" value="<%=st.gete_no() %>">								
 									</div>
