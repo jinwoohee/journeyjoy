@@ -80,7 +80,7 @@ div[id="serch"]{
 	width: 520px;
     display: flex;
     margin: 20px auto;
-}
+}  
 
 /* 회원가입 */
 div[id="serch"]>div:last-of-type{

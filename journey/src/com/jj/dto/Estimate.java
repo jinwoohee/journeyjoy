@@ -15,6 +15,14 @@ public class Estimate {
 	String e_airplane;
 	String e_hotel;
 	
+	int Cnt;
+	
+	public int getCnt() {
+		return Cnt;
+	}
+	public void setCnt(int cnt) {
+		Cnt = cnt;
+	}
 	public int gete_no() {
 		return e_no;
 	}
