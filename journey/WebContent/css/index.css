@@ -232,7 +232,7 @@ input[type="button"]{
 
 
 /*body*/
-#body_contents{
+#body_contents{ 
 	height : 300px;
 	overflow-y : scroll;
 	text-align : center;
