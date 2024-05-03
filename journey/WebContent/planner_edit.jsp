@@ -74,12 +74,12 @@
 	<input type="hidden" name="day" value="<%=day%>">
 		<div id="content">
 			<div id="list_text">
-				<p id="list_text">여행일정</p>
+				<p id="list_text">| 여행일정</p>
 				<div id="day_div">
 					
 					<%
 						for(int a = 1 ; a <= datecnt ; a++){ 
-							out.println("<p id='day"+a+"' onclick='day_select("+a+")'>Day"+a+"</p>");
+							out.println("<p id='day"+a+"' onclick='day_select("+a+")'>DAY"+a+"</p>");
 						}
 					%>				
 				</div>
@@ -93,15 +93,17 @@
 			%>
 			<div id="main_content">
 			<div id="thema_div">
+				<img src="img/icon/point.png">
 				<p id="city"><%=e_destination%></p>
+				<hr>
 				<p id="thema">여행테마</p>
 				<img src="img\icon\arrow_up.png" width="23px" height="23px" id="up"/>			
 				<img src="img\icon\arrow_down.png" width="23px" height="23px" id="down"/>
 				<div id="detail_div">
-					<p class="thema_text"><%=thema%></p>
-					<p class="thema_text"><%=volume%></p>
-					<p class="sub_thema"><%=e_detail_thema%></p>
-					<p class="sub_thema"><%=e_food_taste%></p>
+					<div><p class="thema_text"><%=thema%></p></div>
+					<div><p class="thema_text"><%=volume%></p></div>
+					<div><p class="sub_thema"><%=e_detail_thema%></p></div>
+					<div><p class="sub_thema"><%=e_food_taste%></p></div>
 				</div>
 				<a href="planner_main.jsp">
 					<input type="button" name="edit_thema" value="수정하기" class="button" />
@@ -140,7 +142,10 @@
 						<input type="button" name="delete" value="삭제" onclick="del_list(<%=a*100+z %>)" class="button"/>	
 					</div>
 					<div class="content_detail">
-						<p class="list_budget">평균가격<br>약 20,000원 ~</p>
+						<div class="list_budget">
+							<p>평균예산</p>
+							<p>약 99,000 ~</p>
+						</div>
 						<input type="button" name="detail" value="상세정보 보기" class="button"/>
 					</div>
 				</div>
@@ -217,12 +222,10 @@
 			</div>
 		<div id="side_menu">
 			<p id="side_menu_p" align="center">side menu</p>
-			<div id= "side_inner">
 				<a href="planner_select.jsp">
 					<input type="button" name="plan_sel" value="일정선택&#10;목록으로" class="button">
 				</a>
 					<input type="submit" name="plan_sel_add" value="여행지&#10;추가하기" class="button">
-			</div>
 		</div>
 		</form>
 	</section>

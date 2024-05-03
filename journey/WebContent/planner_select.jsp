@@ -64,19 +64,21 @@ request.setCharacterEncoding("utf-8");
 	<form action="planner_edit.jsp" method="post">
 		<div id="content">
 			<div id="list_text">
-				<p id="list_text">여행일정 선택</p>
+				<p id="list_text">| 여행일정 선택</p>
 			</div>
 			<div id="main_content" >
 			<div id="thema_div">
+				<img src="img/icon/point.png">
 				<p id="city"><%= e_destination %></p>
+				<hr>
 				<p id="thema">여행테마</p>
 				<img src="img\icon\arrow_up.png" width="23px" height="23px" id="up"/>			
 				<img src="img\icon\arrow_down.png" width="23px" height="23px" id="down"/>
 				<div id="detail_div">
-					<p class="thema_text"><%= thema %></p>
-					<p class="thema_text"><%= volume %></p>
-					<p class="sub_thema"><%= e_detail_thema %></p>
-					<p class="sub_thema"><%= e_food_taste %></p>
+					<div><p class="thema_text">#<%= thema %></p></div>
+					<div><p class="thema_text">#<%= volume %></p></div>
+					<div><p class="sub_thema">#<%= e_detail_thema %></p></div>
+					<div><p class="sub_thema">#<%= e_food_taste %></p></div>
 				</div>
 				<a href="planner_main.jsp">
 					<input type="button" name="edit_thema" value="테마수정하기" class="button" />
@@ -119,7 +121,10 @@ request.setCharacterEncoding("utf-8");
 						</div>
 					</div>
 					<div class="content_detail">
-						<p class="list_budget">평균예산<br>약 99,000 ~</p>
+						<div class="list_budget">
+							<p>평균예산</p>
+							<p>약 99,000 ~</p>
+						</div>
 						<a href="planner_plan_detail.html">
 							<input type="button" name="detail" value="일정 상세보기" class="button" >
 						</a>
@@ -140,22 +145,20 @@ request.setCharacterEncoding("utf-8");
 				%>
 					<input type="hidden" id="next_a<%=a %>" value="none">
 					<div class="select_plan">
-						<p class="day">Day<%=a %></p>
+						<p class="day">DAY<%=a %></p>
 						<img src="img\icon\select_plz.png" id="select_pic<%= a %>" class = "sel_picture"/>
 						<input type="button" name="del<%=a %>" value="삭제" class="button" onclick="del_plan(<%=a%>)"/>
 						<input type="hidden" name="selected<%=a %>" class= "selected" value="null" >
 					</div>
 				<%}%>
 				</div>
-				<input type="button" name="close" value="목록닫기" class="button" />
+				<input type="button" name="close" value="닫기" class="button" />
 					<input type="button" name="finish" value="선택완료" class="button" onclick="check_plan()" />			
 			</div>
 		</div>
 			<div id="side_menu">
 				<p id="side_menu_p" align="center">side menu</p>
-				<div id= "side_inner">
-					<input type="button" name="open" value="목록열기" class="button" />
-				</div>
+				<input type="button" name="open" value="목록열기" class="button" />
 			</div>
 			</form>
 	</section>

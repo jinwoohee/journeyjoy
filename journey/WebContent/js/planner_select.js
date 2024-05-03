@@ -12,12 +12,12 @@ $(document).ready(function() {
 	$("input[name='close']").click(function() { //선택한 일정 (페이지 하단)div 닫기
 		$("#select_div").hide();
 		$("input[name='open']").show();
-		$("#side_inner").css({"border-bottom":"2px solid rgb(64,64,64)"});
+		$("#side_menu").show();
 	});
 	$("input[name='open']").click(function() { //선택한 일정 (페이지 하단)div 열기
 		$("#select_div").show();
 		$("input[name='open']").hide();
-		$("#side_inner").css({"border-bottom":"0"});
+		$("#side_menu").hide();
 	});
 /*	$(".button").mouseover(function(){
 		$(this).css({'box-shadow':'inset 5px 5px 10px #CCCCCC'});

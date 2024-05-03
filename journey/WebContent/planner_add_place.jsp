@@ -178,7 +178,7 @@ window.initMap = initMap;
 		<input type="hidden" name="e_no" value=<%=e_no %>>
 		<div id="content">
 			<div id="list_text">
-				<p id="list_text">여행일정</p>
+				<p id="list_text">| 여행일정</p>
 				<div id="day_div">	
 					<%
 						for(int a = 1 ; a <= datecnt ; a++){
@@ -189,15 +189,17 @@ window.initMap = initMap;
 			</div>
 			<div id="main_content">
 			<div id="thema_div">
+				<img src="img/icon/point.png">
 				<p id="city"><%=e_destination%></p>
+				<hr>
 				<p id="thema">여행테마</p>
 				<img src="img\icon\arrow_up.png" width="23px" height="23px" id="up"/>			
 				<img src="img\icon\arrow_down.png" width="23px" height="23px" id="down"/>
 				<div id="detail_div">
-					<p class="thema_text"><%=thema%></p>
-					<p class="thema_text"><%=volume%></p>
-					<p class="sub_thema"><%=e_detail_thema%></p>
-					<p class="sub_thema"><%=e_food_taste%></p>
+					<div><p class="thema_text">#<%= thema %></p></div>
+					<div><p class="thema_text">#<%= volume %></p></div>
+					<div><p class="sub_thema">#<%= e_detail_thema %></p></div>
+					<div><p class="sub_thema">#<%= e_food_taste %></p></div>
 				</div>
 				<a href="planner_main.jsp">
 					<input type="button" name="edit_thema" value="수정하기" class="button" />
@@ -314,12 +316,8 @@ window.initMap = initMap;
 			
 		<div id="side_menu">
 			<p id="side_menu_p" align="center">side menu</p>
-			<div id= "side_inner">
-				
-				<input type="button" name="plan_sel" value="뒤로가기" class="button">
-				
-			</div>
-			</div>
+			<input type="button" name="plan_sel" value="뒤로가기" class="button">
+		</div>
 			
 			</div>
 			</div>
