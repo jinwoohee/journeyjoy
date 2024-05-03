@@ -707,7 +707,7 @@
 				$('.modal').css({'display' : 'inline-block'});
 				
 				//스크롤 막기
-				$('body').css({'overflow' : 'hidden'});
+				$('body').css({'overflow' : 'hidden'}); 
 				/*$('.workingholiday').on('scroll touchmove mousewheel', function(event) {
 					event.preventDefault();
 					event.stopPropagation();
