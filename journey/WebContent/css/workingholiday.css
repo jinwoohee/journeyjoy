@@ -635,11 +635,23 @@ li button {
     position: relative;
     z-index: 101;
     background-color: #fff;
-    display: inline-block;
     vertical-align: middle;
     box-sizing: border-box;
 }
 
+.modal_title {
+	height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    color: white;
+    background-color: #2c609c;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.modal_contents {
+	
+}
 
 
 

@@ -713,6 +713,20 @@
 					event.stopPropagation();
 					return false;
 				});*/
+				
+				var $li = $(this).text();
+				$('.modal_title').text($li);
+				
+				if ($li == '해외취업 통계정보') {
+					console.log('1-------');
+					$.ajax({
+						type : 'post',
+						url : 'workingholiday.jj?page=publicInfo1',
+						success : function(data) {
+							//$('.modal_contents').html(data);
+						}
+					});
+				}
 			});
 		});
 	</script>
@@ -1833,7 +1847,10 @@
 	</div>
 	<div class="modal_wrap">
 		<div class="modal">
-			팝업
+			<div class="modal_title"></div>
+			<div class="modal_contents">
+				내용
+			</div>
 		</div>
 	</div>
 	

@@ -42,6 +42,7 @@ import com.jj.inter.PlanSelect;
 import com.jj.inter.PlanUpdate;
 import com.jj.inter.Plan_reviewTabSelect;
 import com.jj.inter.PsInsert;
+import com.jj.inter.PublicInfo1;
 import com.jj.inter.PurchaseDelete;
 import com.jj.inter.PurchaseInsert;
 import com.jj.inter.RewardInsert;
@@ -159,6 +160,15 @@ public class JourneyController extends HttpServlet {
 			}			
 		} else if (page.equals("kakaoLogin")) { //카카오 로그인
 			ji = KakaoLogin.kakaoLogin();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("publicInfo1")) { //해외취업 통계정보
+			ji = PublicInfo1.publicInfo1();
 			try {
 				String url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(url).forward(request, response);
