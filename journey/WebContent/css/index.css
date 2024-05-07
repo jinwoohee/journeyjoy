@@ -325,26 +325,31 @@ input[type="button"]{
 /* 여행톡 */
 #talk{
 	width: 100%;
-	height: 919px;
+	height: 730px;
 }
 
 #talk>div:nth-child(3){
     width: 40%;
-    height: 919px;
+    height: 730px;
 }
 
 /* 아이콘 */
-#talk>div:nth-child(3)>img{
+#chart_div2>div{
+	padding-top: 10px;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+   	margin-bottom: -50px;
+}
+#chart_div2>div>img{
 	width: 40px;
 	height: 40px;
 	object-fit: cover;
-	margin-top: 30px;
-    margin-left: 30px;
 }
 
 /* 문구 */
-#talk>div:nth-child(3)>p{
-    font-size: 30px;
+#chart_div2>div>p{
+    font-size: 25px;
     font-weight: bold;
     color: #0D112D;
     border-bottom: none;
@@ -353,16 +358,16 @@ input[type="button"]{
 }
 
 /* 통계 */
-#talk>div:nth-child(3)>div{
-	width: 100%;
-	height: 740px;
-	margin-top: 30px;
+#chart_div2>div:nth-of-type(2){
+	width : 60%;
+	height : 600px;
+	margin : 0 auto;
 }
 
 /* 이미지 */
 #talk>img{
 	width: 60%;
-	height: 919px;
+	height: 730px;
 	object-fit: cover;
 	position: absolute;
 	right: 0;
@@ -371,7 +376,7 @@ input[type="button"]{
 /* 이미지 위에 검은색div */
 #talk>img+div{
 	width: 60%;
-	height: 919px;
+	height: 730px;
 	/* background: rgba(0,0,0,0.1); */
 	position: absolute;
 	right: 0;
@@ -381,7 +386,7 @@ input[type="button"]{
 #talk>div:nth-child(4){
     position: absolute;
     right: 520px;
-    top: 2460px;
+    top: 2350px;
 }
 
 /* 문구 */
@@ -420,6 +425,7 @@ input[type="button"]{
 	position: relative;
     display: flex;
     justify-content: space-around;
+    bottom: 180px;
 }
 
 #review>div img{
