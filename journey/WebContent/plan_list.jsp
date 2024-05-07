@@ -145,7 +145,7 @@ System.out.println("셀렉트 완료 이스 : "+esti.size()+"플랜 : "+plan.siz
 									String city = st.gete_destination();
 									String city_img ="";
 									if(city.equals("도쿄")){
-										city_img = "img/japan/tokyo5.jpg";
+										city_img = "img/japan/tokyo3.jpg";
 									}else if(city.equals("오사카")){
 										city_img = "img/japan/osaka6.jpg";
 									}else if(city.equals("나이아가라")){

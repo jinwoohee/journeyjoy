@@ -68,8 +68,8 @@ function change_main(st){
 	$("div[id*='plandiv_']").hide();
 	$("div[id='plandiv_"+st+"']").show();
 	
-	$("label[id*='plan_radio_']").css({"background-color":"white", "color":"#6C94B8"});
-	$("label[id='plan_radio_"+st+"']").css({"background-color":"#0D112D", "color":"#f1f1f3"});
+	$("label[id*='plan_radio_']").css({"border-bottom":"1px solid #CCCCCC", "color":"#CCCCCC"});
+	$("label[id='plan_radio_"+st+"']").css({"border-bottom":"1px solid white", "color":"#6C94B8"});
 }
 
 
