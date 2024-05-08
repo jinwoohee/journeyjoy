@@ -167,7 +167,7 @@ div[id="plan_list"]::-webkit-scrollbar-track-piece {
     background: #f1f1f3;
 }
 
-div[id*="plan_list_day"]{
+div[id*="plan_list_day"]{ /*여행지 리스트 일자마다 전체 div */
 	width: 820px;
 	float: left;
 	margin-left: 5px;

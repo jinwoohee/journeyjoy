@@ -1,17 +1,26 @@
 body {
 	font-family: "Noto Sans KR", sans-serif;
 	margin: 0;
-	color: #646464;
-	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
+	color: rgb(64,64,64);
+	background: url("https://copilot.microsoft.com/rp/itdq0TGlsM-BDvSovDaQdrVxPbo.jpg");
 	background-size: cover;
-	z-index: -1;
-	position : relative; 	
+	background-repeat: no-repeat;
+	position: relative;
+ 	isolation: isolate;
+}
+body::after {
+  content: '';
+  position: absolute;
+  background: white;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.7;
 }
 *{
 	margin: 0;
 }
 div[id="content"]{ /*�뿤�뜑, �뫖�꽣瑜� �젣�쇅�븳 �꽮�뀡 �쟾泥� div*/
-	padding-top: 150px;
+	padding-top: 100px;
 	width: 1200px;
 	margin: 0 auto;
 	margin-bottom: 140px;
@@ -41,7 +50,7 @@ p[id="list_text"]{ /* "�뿬�뻾怨꾪쉷�꽌" 湲��옄 */
 	font-weight: bold;
 }
 div[id="radio_div"]{ /*�씪�뵒�삤踰꾪듉 div*/
-	width: 906px;
+	width: 898px;
 	height: 40px;
 	margin: 0 auto;
 	position : relative;
@@ -55,31 +64,43 @@ label[id*="plan_radio"]{ /*�뿬�뻾怨꾪쉷�꽌, 媛�怨꾨�, 泥댄�
 	float: left;
 	background-color: white;
 	border-radius: 20px 20px 0 0;
-	border: 2px solid black;
+	border: 1px solid #CCCCCC;
 	font-weight: bold;
 	font-size: 15px;
-	color:  #6C94B8;
+	color:  #CCCCCC;
 	cursor: pointer;
-	width : 298px;
+	width : 297px;
 	height: 30px;	
     margin: 0;
     text-align: center;
     padding-top: 10px;
 }
 label[id="plan_radio_1"]{
-	background-color:#0D112D;
-	color:#f1f1f3;
+	background-color:white;
+	color:#6C94B8;
+	border-bottom : 1px solid white;
+}
+#plan_ra_empty{
+	float:left;
+	width:298px;
+	margin :0;
+	padding-top:10px;
+	border-bottom:1px solid #CCCCCC;
+	height: 31px;	
 }
 div[id*="plandiv_"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
-	width: 902px;
-	background-color: white;
+	width: 895px;
 	margin: 0 auto;	
-	border: 2px solid #0D112D;
-	box-shadow: 3px 3px 3px #CCCCCC;
 	display : none;
 	position : relative; 
 	z-index : 3;
 	margin-bottom : 20px;
+    border: 1px solid #CCCCCC;
+    box-shadow: 3px 3px 10px #CCCCCC;
+    background-color: white;
+    border-top : 0px solid white;
+    margin-top : 1px;
+    overflow : auto;
 }
 div[id="plandiv_1"]{ /*�뿬�뻾怨꾪쉷�꽌 �옄泥� div*/
 	display : block;
@@ -421,30 +442,32 @@ td[id*="product_price"]{ /* 異붿쿇�긽�뭹 td */
 }
 
 input[name="save_plan"]{ /*���옣 踰꾪듉*/
-	width: 300px;
-	height: 50px;
-	border-radius: 5px;
+	width: 240px;
+	height: 45px;
 	float: left;
-	font-size: 16pt;
+	font-size: 15px;
 	font-family: "Noto Sans KR", sans-serif;
-	color: rgb(64,64,64);
-	background-color:white;
 	margin-top: 70px;
-	margin-left: 300px;
+	margin-left: 330px;
 	cursor: pointer;
+    background: #2a799c;
+    color: white;
+    border : none;
+    box-shadow: 2px 2px 10px #CCCCCC;
 }
 input[name="edit_plan"]{ /*���옣 踰꾪듉*/
-	width: 300px;
-	height: 50px;
-	border-radius: 5px;
+	width: 240px;
+	height: 45px;
 	float: left;
-	font-size: 16pt;
+	font-size: 15px;
 	font-family: "Noto Sans KR", sans-serif;
-	color: rgb(64,64,64);
 	margin-top: 70px;
-	margin-left: 300px;
-	background-color:white;
+	margin-left: 330px;
 	cursor: pointer;
+    background: #2a799c;
+    color: white;
+    border : none;
+    box-shadow: 2px 2px 10px #CCCCCC;
 }
 img[src*="minus"]{ /*異붽��긽�뭹 異붽�踰꾪듉*/
 	cursor: pointer;
@@ -537,13 +560,19 @@ div[id*="pay_one_div"]{ /*비용추가 누르면 내려오는 div*/
 	margin-top: 80px;
     display: none;
     margin-bottom: 40px;
+    border-top : 1px solid #CCCCCC ; 
+    border-bottom : 1px solid #CCCCCC ; 
+    padding-top : 20px;
+    padding-bottom : 20px;    
 }
 input[name*="content"]{/*지출내용*/
 	width : 150px;
 }
 div[id*="acc_div"]{/* 가계부 day 마다의 div*/
-	margin : 40px 70px;
-	min-height: 100px;
+	margin: 0 70px;
+    min-height: 100px;
+    margin-bottom: 30px;
+    padding-top: 80px;
 }
 .acc_sub{ /*여행준비, day 글자*/
 	padding-bottom: 5px;
@@ -575,6 +604,8 @@ input[name*="add_acc"]{ /*비용추가 버튼*/
 	font-size: 12px;
 	float: right;
 	margin-top: 4px;
+	height : 25px;
+	width : 75px;
 	border: 1px solid #6C94B8;
 }
 div[class="price_div"]{ /*금액, 결제수단, 내용 쓰는 div*/
@@ -619,7 +650,7 @@ input[name*="acc_content"]{ /* 결제 내용 쓰는 text*/
 	height: 30px;
 	font-size: 15px;
 	padding-top: 10px;
-	margin-left: 30px;
+	margin-left: 22px;
 	border: none;
 	border-bottom: 1px solid #6C94B8;
 	outline:none;
@@ -647,16 +678,24 @@ label{ /*카테고리 버튼 라벨*/
     word-spacing: 38.5px;
 }
 input[name*="add_acc_one"]{ /*추가하기 버튼*/
-	font-size: 15px;
-	height: 20px;
-	
-	float: right;	
+	font-size: 12px;
+	float: right;
+	margin-top: -15px;
+	height : 25px;
+	width : 75px;
+	margin-right : 5px;
 }
-input[name*="close_acc"]{ /*추가하기 버튼*/
-	font-size: 15px;
-	height: 30px;
-
-	float: right;	
+input[name*="close_acc"]{ /*닫기 버튼*/
+	font-size: 12px;
+	float: right;
+	margin-top: -15px;
+	height : 25px;
+	width : 75px;	
+	border: 1px solid #6C94B8;
+}
+input[name*="del_place"]{
+	font-size : 12px;
+	border : none;
 }
 /*라디오버튼 */
 input[type=radio]:checked + label { /* 큰테마와 인원유형 라디오버튼 눌렀을때 */
@@ -664,10 +703,24 @@ input[type=radio]:checked + label { /* 큰테마와 인원유형 라디오버튼
 	color: white;
 }
 input[name="save_acc"]{/*가계부 저장버튼*/
-	width : 250px;
-	height : 40px;
-	margin : 20px 327px;
-	background-color : white;
+	width: 240px;
+	height: 45px;
+	float: left;
+	font-size: 15px;
+	font-family: "Noto Sans KR", sans-serif;
+	margin-top: 70px;
+	margin-left: 330px;
+	cursor: pointer;
+    background: #2a799c;
+    color: white;
+    border : none;
+    box-shadow: 2px 2px 10px #CCCCCC;
+    margin-bottom: 50px;
+}
+#acc_result_div{
+	width : 700px;
+	height : 150px;
+	background-color : violet;
 }
 footer {
 	margin-top: 0px;

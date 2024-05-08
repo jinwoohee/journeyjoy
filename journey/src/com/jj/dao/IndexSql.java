@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.jj.dto.Departure_csv;
 import com.jj.dto.Estimate;
 
 public class IndexSql {
@@ -39,7 +40,7 @@ public class IndexSql {
 	}
 	
 	//index 여행견적 요청나라 select
-		public ArrayList<Estimate> selectEstimateCnt() throws Exception{
+	public ArrayList<Estimate> selectEstimateCnt() throws Exception{
 		ArrayList<Estimate> eList = new ArrayList<Estimate>();
 		ResultSet rs = null;
 		try {
@@ -62,5 +63,30 @@ public class IndexSql {
 			dbClose();
 		}
 		return eList;
+	}
+		
+	//index 인기있는 여행국가 select
+	public ArrayList<Departure_csv> selectDepartureSum() throws Exception{
+		ArrayList<Departure_csv> dList = new ArrayList<Departure_csv>();
+		ResultSet rs = null;
+		try {
+			dbConn();
+			
+			rs = stmt.executeQuery("SELECT nation, SUM(jan)+SUM(feb)+SUM(mar)+SUM(apr)+SUM(may)+SUM(jun)+SUM(jul)+SUM(aug)+SUM(sep)+SUM(oct)+SUM(nov) AS sum FROM departure_csv GROUP BY nation ORDER BY SUM DESC;");
+			
+			
+			while(rs.next()) {
+				Departure_csv dc = new Departure_csv();
+				dc.setNation(rs.getString("nation"));
+				dc.setSum(rs.getInt("sum"));
+				
+				dList.add(dc);
+			}
+		} catch (Exception e) {
+			System.out.println("--- JourneySql/selectDepartureSum ---"+e);
+		} finally {
+			dbClose();
+		}
+		return dList;
 	}
 }

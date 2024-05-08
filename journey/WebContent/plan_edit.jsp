@@ -86,7 +86,7 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 			<div id="radio_div">
 				<label for="plan_btn" id="plan_radio_1" onclick="change_main('1')">여행계획서</label>			
 				<label for="gagyebu_btn" id="plan_radio_2" onclick="change_main('2')">가계부</label>
-				<label for="checklist_btn" id="plan_radio_3" onclick="change_main('3')">체크리스트</label>
+				<label for="checklist_btn" id="plan_ra_empty" onclick="change_main('3')"></label>
 			</div>
 			
 			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">

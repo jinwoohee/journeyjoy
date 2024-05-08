@@ -1,3 +1,4 @@
+<%@page import="com.jj.dto.Departure_csv"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.jj.dto.Estimate"%>
 <%@page import="java.util.List"%>
@@ -30,6 +31,7 @@
 $(function(){
 	/*차트그리기*/
 	barChartDraw();
+	pieChartDraw();
 	
 	/*여행지*/
 	$("#nation").click(function(){
@@ -125,6 +127,48 @@ function barChartDraw() {
         },
         options: {
         	legend : {display: false},
+        		
+        }
+    });
+};
+
+
+//가장많이 여행간 나라(2023년기준)
+function pieChartDraw() {
+    const ctx = document.getElementById('myChart2').getContext('2d');
+    
+    for(var i=0; i<10; i++){
+    	window["departure_nation"+i] = document.getElementById('departure_nation'+i+'').value;
+    	window["sum"+i] = document.getElementById('sum'+i+'').value;
+    }
+    
+    window.barChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+        	labels:[departure_nation0, departure_nation1, departure_nation2, departure_nation3, departure_nation4, departure_nation5, departure_nation6, departure_nation7, departure_nation8, departure_nation9],
+        	datasets : [{
+        		label : "2023 인기있는 여행지 TOP10!",
+        		data : [sum0,sum1,sum2,sum3,sum4,sum5,sum6,sum7,sum8,sum9],
+        		backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple', 'pink', 'skyblue', 'yellowgreen'],
+        		fill : false,
+        	}]
+        },
+        options: {
+        	maintainAspectRatio: false,
+        	responsive : true,
+        	legend : {
+    			position:'bottom',
+    			align : 'center',
+    			maxWidth : "500px",
+    			labels :{
+    				boxWidth : 20,
+        			fontFamily : "Noto Sans KR"
+    			}
+    			
+    		},
+        	title:{
+        		display : true
+        	}
         		
         }
     });
@@ -264,8 +308,26 @@ xhr.send('');
 		<img src="img/travel/main4.jpg">
 		<div></div>
 		<!-- 차트2 -->
-		<div>
-			
+		<div id="chart_div2">
+			<div>
+				<img src="img/icon/plane.png">
+				<p>2023 인기있는 여행지 TOP10!</p>
+			</div>
+			<!-- 차트 -->
+			<div>
+				<jsp:useBean id="departure" class="com.jj.dao.IndexSql">
+
+					<%
+						ArrayList<Departure_csv> dList;
+						dList = departure.selectDepartureSum();
+						for(int i=0; i<dList.size(); i++){%>
+							<input type='hidden' id='departure_nation<%=i%>' value='<%=dList.get(i).getNation()%>'>
+							<input type='hidden' id='sum<%=i%>' value='<%=dList.get(i).getSum()%>'>
+					<%	}%>
+
+				</jsp:useBean>
+				<canvas id="myChart2"></canvas>
+			</div>
 		</div>
 		<div>
 			<p>현지에 있는 여행자와 함께</p>

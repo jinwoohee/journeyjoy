@@ -98,7 +98,6 @@
 			}else if ($(this).find('option:selected').text() == '필리핀') {
 				$('select[name=city]').find('option').remove();
 				$('select[name=city]').append("<option value=''>도시</option>");
-				$('select[name=city]').append("<option value='vancouver'>벤쿠버</option>");
 				$('select[name=city]').append("<option value='manila'>마닐라</option>");
 				$('select[name=city]').append("<option value='cebu'>세부</option>");
 				$('select[name=city]').append("<option value='baguio'>바기오</option>");
