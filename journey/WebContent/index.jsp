@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Journey Joy</title>
+<title>Journey Joy</title> 
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="css/index.css">
 

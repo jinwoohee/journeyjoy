@@ -703,30 +703,44 @@
 			});
 			
 			$('.sideBar_cont li').click(function() {
+				var $li = $(this).text();
+				$('.modal_title').text($li);
+				
+				if ($li == '해외취업 통계정보') {
+					$.ajax({
+						type : 'post',
+						url : 'workingholiday.jj?page=publicInfo1',
+						success : function(data) {
+							$('.modal_contents').html(data);
+						}
+					});
+				} else if ($li == '해외취업 모집공고 정보') { //해외진출정보
+					console.log('1-------');
+					$.ajax({
+						type : 'post',
+						url : 'workingholiday.jj?page=publicInfo2',
+						success : function(data) {
+							$('.modal_contents').html(data);
+						}
+					});
+				}
+				
 				$('.modal_wrap').show();
-				$('.modal').css({'display' : 'inline-block'});
 				
 				//스크롤 막기
-				$('body').css({'overflow' : 'hidden'}); 
+				$('body').css({'overflow' : 'hidden'});
 				/*$('.workingholiday').on('scroll touchmove mousewheel', function(event) {
 					event.preventDefault();
 					event.stopPropagation();
 					return false;
 				});*/
 				
-				var $li = $(this).text();
-				$('.modal_title').text($li);
 				
-				if ($li == '해외취업 통계정보') {
-					console.log('1-------');
-					$.ajax({
-						type : 'post',
-						url : 'workingholiday.jj?page=publicInfo1',
-						success : function(data) {
-							//$('.modal_contents').html(data);
-						}
-					});
-				}
+			});
+			
+			$('.modal_close').click(function() {
+				$('.modal_wrap').hide();
+				$('body').css({'overflow' : 'auto'});
 			});
 		});
 	</script>
@@ -1839,7 +1853,7 @@
 			<div class="sideBar_cont">
 				<ul>
 					<li>해외취업 통계정보</li>
-					<li>해외취업 우수일자리 정보</li>
+					<li>해외취업 모집공고 정보</li>
 					<li>국가별 해외취업자 통계</li>
 				</ul>
 			</div>
@@ -1848,9 +1862,8 @@
 	<div class="modal_wrap">
 		<div class="modal">
 			<div class="modal_title"></div>
-			<div class="modal_contents">
-				내용
-			</div>
+			<div class="modal_contents"></div>
+			<div class="modal_close"><img src="img/icon/btn-layer.png"></div>
 		</div>
 	</div>
 	
