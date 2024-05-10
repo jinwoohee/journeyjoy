@@ -57,7 +57,7 @@
 		</div>
 		<div>
 			<div>
-				<img src="<%=c.getC_file1()%>">
+				<img src="uploadFile/<%=c.getC_file1()%>">
 			</div>
 			<div>
 				<img src="img/icon/location.png">
@@ -74,7 +74,7 @@
 						</tr>
 						<tr>
 							<td>모집 인원</td>
-							<td>1/<%= c.getC_volume() %>명</td>
+							<td><%=c.getCount() %>/<%= c.getC_volume() %>명</td>
 						</tr>
 						<tr>
 							<td>예상 경비</td>

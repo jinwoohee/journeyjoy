@@ -2,16 +2,14 @@ package com.jj.inter;
 
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.conn.LikeSelectDB;
 import com.jj.conn.PackageSelectDB;
-import com.jj.conn.PurchaseSelectDB;
+import com.jj.conn.PageInfoDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Package_like;
-import com.jj.dto.Purchase;
 import com.jj.dto.Package;
 
 public class PackageSelect implements JourneyInterface{
@@ -23,7 +21,32 @@ public class PackageSelect implements JourneyInterface{
 	}
 
 	@Override
-	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		/* 페이징 */
+		PageInfoDB selectPageCount = new PageInfoDB();
+		int page=1;
+		int limit = 8;
+		String table = "package";
+		
+		int listCount = selectPageCount.getPageListCount(table);
+		
+		int maxPage=(int)((double)listCount/limit+0.95);
+		int startPage = (((int) ((double)page / 10 + 0.9)) - 1) * 10 + 1;
+   	    int endPage = startPage+10-1;
+   	    
+   	    if(endPage > maxPage) {
+   	    	endPage = maxPage;
+   	    }
+   	    
+   	    com.jj.dto.PageInfo pageInfo = new com.jj.dto.PageInfo();
+	    pageInfo.setListCount(listCount);
+	    pageInfo.setPage(page);
+	    pageInfo.setMaxPage(maxPage);
+	    pageInfo.setStartPage(startPage);
+	    pageInfo.setEndPage(endPage);
+	    
+	    request.setAttribute("pageInfo", pageInfo);
 		
 		/* 패키지 전체 */
 		PackageSelectDB selectPackage = PackageSelectDB.select();
@@ -35,6 +58,7 @@ public class PackageSelect implements JourneyInterface{
 		List<Package_like> likeList = selectLike.selectLike();
 		request.setAttribute("likeList", likeList);
 		
+
 		return "package_list.jsp";
 	}
 }

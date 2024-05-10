@@ -2,6 +2,7 @@ body{
 	margin: 0;
 	font-family: "Noto Sans KR", sans-serif;
 	color: #646464;
+	text-decoration: none;
 }
 
 section:last-of-type{
@@ -29,8 +30,20 @@ section:last-of-type{
 	width: 1200px;
 	height: 100px;
 	margin: 0px auto;
-	padding-top: 250px;
+	padding-top: 270px;
 	color: #f1f1f3;
+}
+
+#top_section>div>div>p:first-of-type{
+	font-size: 30px;
+    font-weight: bold;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+#top_section>div>div>p:last-of-type{
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 /* 여행중인 국가 */
@@ -45,6 +58,7 @@ section:last-of-type{
 	text-align : center;
 	margin-left: 10px;
 	border : none;
+	font-size: 15px;
 }
 
 /* 아이콘 */
@@ -83,15 +97,6 @@ input[type="submit"]{
 	border: none;
 }
 
-/* 콤보박스 */
-select{
-	width: 100px;
-	height: 40px;
-	border-radius: 10px;
-	margin-right: 20px;
-	border: none;
-}
-
 /* 검색구간 */
 #search_section{
 	width: 1200px;
@@ -116,16 +121,9 @@ select{
 #filter div p{
     color: #0D112D;
     font-size: 16px;
-    justify-items: center;
-    align-content: center;
-    margin-bottom: 0;
+    display: flex;
+    align-items: center;
 }
-
-/* #filter img{
-	width: 80px;
-	height : 40px;
-	object-fit : cover;
-} */
 
 /* 검색구간 - 검색창 */
 #search_section input[name="searchBox"]{
@@ -159,6 +157,8 @@ article{
 	box-shadow: 3px 3px 3px #CCCCCC;
 	background: #0D112D;
 	color: white;
+	font-size: 15px;
+	font-weight: bold;
 }
 
 /* section 1개 */
@@ -188,26 +188,24 @@ article{
 /* 닉네임 */
 #class_section>div:first-of-type>p{
 	float: left;
-	margin-left: 10px;
-	margin-top: 30px;
-	font-size: 15px;
-	color: #646464;
+    margin-left: 7px;
+    margin-top: 17px;
+    font-size: 15px;
+    color: #646464;
+    margin-block-end: 0;
 }
 
 /* 내용 */
 #class_section>div{
 	width: 1200px;
 	display: flex;
-	flex-flow: row nowrap;
 	align-items: center;
-	justify-content: left;
 }
 
 /* 썸네일 */
 #class_section>div>div:first-of-type>img{
 	width: 300px;
-	height: 200px;
-	margin-top: 10px;
+	height: 210px;
 	margin-left: 40px;
 	border-radius: 10px;
 	object-fit: cover;
@@ -217,7 +215,6 @@ article{
 #class_section>div>div:last-child{
 	width: 650px;
 	margin-left: 40px;
-	margin-top: 10px;
 }
 
 /* 위치 아이콘 */
@@ -226,22 +223,26 @@ article{
 	height: 30px;
 	object-fit: cover;
 	float: left;
+	margin-top: 10px;
 }
 
 /* 도시 */
 #class_section>div>div:last-child>p{
 	display: flex;
-	align-items: center;
-	padding-left: 10px;
-	font-size: 20px;
-	font-weight: bold;
-	color: #0D112D;
+    align-items: center;
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #0D112D;
+    margin-block-start: 0;
+    padding-top: 10px;
 }
 
 /* 세부내용 */
 #class_section table{
 	width: 650px;
 	float: left;
+	margin-top: -10px;
 }
 
 td:first-of-type{
@@ -255,6 +256,10 @@ td:first-of-type{
 td:last-of-type{
 	font-size: 14px;
 	color: #646464;
+}
+
+tr:nth-of-type(2) > td:nth-of-type(2){
+	    height: 45px;
 }
 
 /* 세부내용+버튼 div */
@@ -271,7 +276,7 @@ input[name*='join_btn']{
 	border: 2px solid #6C94B8;
 	font-weight: bold;
 	color: #6C94B8;
-	margin-top: 109px;
+	margin-top: 115px;
 	margin-left: 10px;
 	border-radius: 10px;
 }
@@ -314,10 +319,33 @@ input[name='end_btn']{
 }
 
 /* 페이징 */
-#paging {
-	width: 1200px;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    padding-top: 100px;
+.pagination_div {
+	    width: 1200px;
+    margin: 0 auto;
+}
+
+.pagination{
+	display: table;
+    border-collapse: collapse;
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin: 30px auto;
+    margin-bottom: 120px;
+}
+
+.pagination li{
+	display : table-cell;
+    padding: 5px 10px;
+    text-align: center;
+    border : 1px solid #f1f1f3;
+}
+
+.pagination li:hover{
+	background : #6C94B8;
+	color : white;
+}
+
+.pagination li a:hover{
+	background : #6C94B8;
+	color : white;
 }

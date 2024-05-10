@@ -33,6 +33,7 @@ import com.jj.inter.PackageDetail;
 import com.jj.inter.PackageInsert;
 import com.jj.inter.PackageSearch;
 import com.jj.inter.PackageSelect;
+import com.jj.inter.PageInfo;
 import com.jj.inter.PlaceReviewSearch;
 import com.jj.inter.PlaceSearch;
 import com.jj.inter.PlanDelete;
@@ -43,6 +44,8 @@ import com.jj.inter.PlanUpdate;
 import com.jj.inter.Plan_reviewTabSelect;
 import com.jj.inter.PsInsert;
 import com.jj.inter.PublicInfo1;
+import com.jj.inter.PublicInfo2;
+import com.jj.inter.PublicInfo3;
 import com.jj.inter.PurchaseDelete;
 import com.jj.inter.PurchaseInsert;
 import com.jj.inter.RewardInsert;
@@ -167,8 +170,26 @@ public class JourneyController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if (page.equals("publicInfo1")) { //해외취업 통계정보
+		} else if (page.equals("publicInfo1")) { //워홀 sideBar(해외취업 통계정보)
 			ji = PublicInfo1.publicInfo1();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("publicInfo2")) { //워홀 sideBar(해외취업 모집공고 정보)
+			ji = PublicInfo2.publicInfo2();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("publicInfo3")) { //워홀 sideBar(해외취업 News 소식)
+			ji = PublicInfo3.publicInfo3();
 			try {
 				String url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(url).forward(request, response);
@@ -512,6 +533,16 @@ public class JourneyController extends HttpServlet {
 				System.out.println("--- Controller / 일정리뷰>검색 ---" + e);
 				e.printStackTrace();
 			}
+		}else if(page.equals("selectPageInfo")) { //페이징
+			ji = PageInfo.pageInfoSelect();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 페이징 ---" + e);
+				e.printStackTrace();
+			}
+			
 		}else {
 			System.out.println("--- controller else ---");
 		}

@@ -1,7 +1,5 @@
 package com.jj.dao;
 
-import static com.jj.db.JdbcUtil.close;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

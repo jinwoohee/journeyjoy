@@ -3,8 +3,16 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.jj.dao.BoardDB"%>
 <%@page import="com.jj.dto.Board"%>
+<%@page import="com.jj.dto.PageInfo"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String u_id = (String)session.getAttribute("u_id");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int listCount = pageInfo.getListCount();
+	int nowPage = pageInfo.getPage();
+	int maxPage=pageInfo.getMaxPage();
+	int startPage=pageInfo.getStartPage();
+	int endPage=pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -92,15 +100,16 @@
 					<option>8월</option>
 					<option>9월</option>
 					<option>10월</option>
-					<option>11월</option>
+					<option>11월</option> 
 					<option>12월</option>
 				</select>
 				<select name="category">
 					<option>카테고리</option>
+					<option>음식</option>
+					<option>쇼핑</option>
+					<option>일상</option>
 					<option>날씨</option>
-					<option>휴업</option>
-					<option>폐업</option>
-					<option>이전</option>
+					<option>휴업/폐업</option>
 				</select>
 				<input type="text" name="stxt" placeholder="검색어를 입력해주세요">
 				<button type="submit" id="search_btn" name="sbtn">검색</button>
@@ -161,6 +170,22 @@
 				out.println("<button class='no_write'>글쓰기</button>");
 			}
 			out.println("</form>");
+		%>
+		<div class="pagination_div">
+			<ul class="pagination">
+				<c:set var="nowPage" value="<%= nowPage %>" />
+				<c:choose>
+					<c:when test="${ nowPage <= 1 }"><li>이전</li></c:when>
+					<c:otherwise>
+						<li><a href="classList.jj?page=selectPageInfo&nowPage=${ nowPage - 1 }&table=package">이전</a></li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i" begin="<%= startPage %>" end="<%= endPage %>">
+				
+				</c:forEach>
+			</ul>
+		</div>
+		<%	
 			out.println("</div>"); //board 끝
 			out.println("</div>"); //board_wrap 끝
 		%>
