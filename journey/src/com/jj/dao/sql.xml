@@ -293,7 +293,8 @@
 		ON p.u_id = u.u_id
 		LEFT JOIN reward r
 		ON p.p_no = r.p_no
-		ORDER BY p.p_no DESC;
+		ORDER BY p.p_no DESC
+		LIMIT 8;
 	</select>
 	
 	<!-- 패키지 검색 -->

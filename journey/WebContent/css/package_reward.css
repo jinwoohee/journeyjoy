@@ -15,7 +15,6 @@ body{
 	width: 700px;
 	background: white;
     margin: 0 auto;
-    border-radius: 10px;
     padding-top: 20px;
     padding-bottom : 40px;
     box-shadow: 5px 5px 10px #CCCCCC;
@@ -41,7 +40,6 @@ input[type="text"]{
 	height: 40px;
 	margin-bottom: 10px;
 	padding-left : 10px;
-	border-radius: 10px;
 	border: 0.7px solid #6C94B8;
 }
 
@@ -55,7 +53,6 @@ input[type="text"]{
 #buttonArea > input[type="submit"]{
 	width: 300px;
 	height: 45px;
-	border-radius: 10px;
 	background: #6C94B8;
 	border: none;
 	color: white;

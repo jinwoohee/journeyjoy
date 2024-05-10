@@ -200,7 +200,7 @@
 					    		<option value="boston">보스턴</option>
 					    		<option value="losAngeles">로스앤젤레스</option>
 					    		<option value="sanFrancisco">샌프란시스코</option>
-					    		<option value="cicago">시카고</option>
+					    		<option value="chicago">시카고</option>
 						  	</select>
 						  	<select name="city_australia" id="australia">
 					    		<option value="choice">도시</option>

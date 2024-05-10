@@ -33,6 +33,7 @@ import com.jj.inter.PackageDetail;
 import com.jj.inter.PackageInsert;
 import com.jj.inter.PackageSearch;
 import com.jj.inter.PackageSelect;
+import com.jj.inter.PageInfo;
 import com.jj.inter.PlaceReviewSearch;
 import com.jj.inter.PlaceSearch;
 import com.jj.inter.PlanDelete;
@@ -532,6 +533,16 @@ public class JourneyController extends HttpServlet {
 				System.out.println("--- Controller / 일정리뷰>검색 ---" + e);
 				e.printStackTrace();
 			}
+		}else if(page.equals("selectPageInfo")) { //페이징
+			ji = PageInfo.pageInfoSelect();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println("--- Controller / 페이징 ---" + e);
+				e.printStackTrace();
+			}
+			
 		}else {
 			System.out.println("--- controller else ---");
 		}
