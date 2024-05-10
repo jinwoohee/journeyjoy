@@ -123,7 +123,7 @@
 						String id_value = request.getParameter("id_selected"+a);
 						String [] list_id = id_value.split(",");
 		
-			%>
+			%> 
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
 					for(String st : list_place){
