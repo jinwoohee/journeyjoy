@@ -152,7 +152,7 @@ String u_id = (String) session.getAttribute("u_id");
 					                            			
 					                            			<table id="nation_table_c">
 					                            				<tr>
-					                            					<td class="nation_one">미국</td>	
+					                            					<td class="nation_one">미주</td>	
 					                            					<td class="nation_one">캐나다</td>	
 					                            					           
 					                            				</tr>
@@ -322,6 +322,44 @@ String u_id = (String) session.getAttribute("u_id");
 					                            					<td class=""></td>
 					                            				</tr>					                            		                      				
 					                            			</table>
+					                            			<table cellspacing="0" id="city_table_usa">
+					                            				<tr>
+					                            					<td class="city_one">뉴욕</td>
+					                            					<td class="city_one">보스턴</td>
+					                            					<td class="city_one">시카고</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">로스앤젤레스</td>
+					                            					<td class="city_one">워싱턴D.C</td>
+					                            					<td class="city_one">산호세</td>
+					                            				</tr>	
+					                            				<tr>
+					                            					<td class="city_one">샌프란시스코</td>
+					                            					<td class="city_one"></td>
+					                            					<td class="city_one"></td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_can">
+					                            				<tr>
+					                            					<td class="city_one">밴쿠버</td>
+					                            					<td class="city_one">토론토</td>
+					                            					<td class="city_one">나이아가라</td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_aust">
+					                            				<tr>
+					                            					<td class="city_one">시드니</td>
+					                            					<td class="city_one">멜버른</td>
+					                            					<td class="city_one">퀸즈랜드</td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_newz">
+					                            				<tr>
+					                            					<td class="city_one">퀸즈타운</td>
+					                            					<td class="city_one">오클랜드</td>
+					                            					<td class="city_one">웰링턴</td>
+					                            				</tr>					                            		                      				
+					                            			</table>
 				                            			</div>
 				                            		</div>
 				                        		    <div id="cal_div">
@@ -413,22 +451,22 @@ String u_id = (String) session.getAttribute("u_id");
 					                                <label for="place1" class="place_check">놀이공원</label>
 					                                <input type="checkbox" name="place" value="박물관/미술관" id="place2" onchange="checking(this.id)">
 					                                <label for="place2" class="place_check">박물관/미술관</label>
-					                                <input type="checkbox" name="place" value="쇼핑" id="place3" onchange="checking(this.id)">
-					                                <label for="place3" class="place_check">선택불가</label>
-					                                <input type="checkbox" name="place" value="휴양림" id="place4" onchange="checking(this.id)">
-					                                <label for="place4" class="place_check">휴양림</label>
-					                                <input type="checkbox" name="place" value="랜드마크" id="place5" onchange="checking(this.id)">
-					                                <label for="place5" class="place_check">랜드마크</label>
-					                                <input type="checkbox" name="place" value="덕질" id="place6" onchange="checking(this.id)">
-					                                <label for="place6" class="place_check">덕질</label>
-					                                <input type="checkbox" name="place" value="맛집" id="place7" onchange="checking(this.id)">			
-					                                <label for="place7" class="place_check">맛집</label>		                                		
-				                                    <input type="checkbox" name="place" value="문화재" id="place8" onchange="checking(this.id)">
-				                                    <label for="place8" class="place_check">문화재</label>
-					                                <input type="checkbox" name="place" value="수영장/바다" id="place9" onchange="checking(this.id)">
-					                                <label for="place9" class="place_check">수영장/바다</label>
-					                                <input type="checkbox" name="place" value="온천/스파" id="place10" onchange="checking(this.id)">
-			                                		<label for="place10" class="place_check">온천/스파</label>
+					                                <input type="checkbox" name="place" value="휴양림" id="place3" onchange="checking(this.id)">
+					                                <label for="place3" class="place_check">휴양림</label>
+					                                <input type="checkbox" name="place" value="랜드마크" id="place4" onchange="checking(this.id)">
+					                                <label for="place4" class="place_check">랜드마크</label>
+					                                <input type="checkbox" name="place" value="덕질" id="place5" onchange="checking(this.id)">
+					                                <label for="place5" class="place_check">덕질</label>
+					                                <input type="checkbox" name="place" value="문화재" id="place6" onchange="checking(this.id)">
+					                                <label for="place6" class="place_check">문화재</label>
+					                                <input type="checkbox" name="place" value="수영장/바다" id="place7" onchange="checking(this.id)">			
+					                                <label for="place7" class="place_check">수영장/바다</label>		                                		
+				                                    <input type="checkbox" name="place" value="온천/스파" id="place8" onchange="checking(this.id)">
+				                                    <label for="place8" class="place_check">온천/스파</label>
+					                                <input type="checkbox" name="place" value="백화점/쇼핑" id="place9" onchange="checking(this.id)">
+					                                <label for="place9" class="place_check">백화점/쇼핑</label>
+					                                <input type="checkbox" name="place" value="가볍게한잔" id="place10" onchange="checking(this.id)">
+			                                		<label for="place10" class="place_check">가볍게 한잔</label>
 					                            </div>
 					                            <div class='title_icon'>
 					                            	<img src="img/icon/food.png">
@@ -446,16 +484,14 @@ String u_id = (String) session.getAttribute("u_id");
 				                                    <label for="eat4" class="eat_check">양식</label>
 				                                    <input type="checkbox" name="eat" value="아시아" id="eat5" onchange="checking(this.id)">
 				                                    <label for="eat5" class="eat_check">아시아</label>
-				                               		<input type="checkbox" name="eat" value="레스토랑" id="eat6" onchange="checking(this.id)">   
-				                               		<label for="eat6" class="eat_check">선택불가</label>
-				                               		<input type="checkbox" name="eat" value="길거리음식" id="eat7" onchange="checking(this.id)">
-				                               		<label for="eat7" class="eat_check">길거리 음식</label>
-				                                    <input type="checkbox" name="eat" value="비건" id="eat8" onchange="checking(this.id)">
-				                                    <label for="eat8" class="eat_check">비건</label>
-				                                    <input type="checkbox" name="eat" value="음식취향" id="eat9" onchange="checking(this.id)"> 
-				                                    <label for="eat9" class="eat_check">선택불가</label>
-				                                    <input type="checkbox" name="eat" value="음식취향" id="eat10" onchange="checking(this.id)">
-				                                    <label for="eat10" class="eat_check">선택불가</label>
+				                               		<input type="checkbox" name="eat" value="비건" id="eat6" onchange="checking(this.id)">   
+				                               		<label for="eat6" class="eat_check">비건</label>
+				                               		<input type="checkbox" name="eat" value="해산물" id="eat7" onchange="checking(this.id)">
+				                               		<label for="eat7" class="eat_check">해산물</label>
+				                                    <input type="checkbox" name="eat" value="육류" id="eat8" onchange="checking(this.id)">
+				                                    <label for="eat8" class="eat_check">육류</label>
+				                                    <input type="checkbox" name="eat" value="빵" id="eat9" onchange="checking(this.id)"> 
+				                                    <label for="eat9" class="eat_check">빵지순례</label>
 				                           		</div>
 				                           		<% if(u_id == null){%>
 				                           			<input type="button" value="일정만들기" id="save_login" onclick="login_check()"/>

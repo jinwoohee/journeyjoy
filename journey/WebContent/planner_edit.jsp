@@ -120,7 +120,8 @@
 						response.addCookie(new Cookie("pla"+a, place_list));
 						System.out.println("1번째:"+place_list);
 						String [] list_place = place.split(",");
-						
+						String id_value = request.getParameter("id_selected"+a);
+						String [] list_id = id_value.split(",");
 		
 			%>
 				<div id="plan_list_day<%=a%>">
@@ -130,6 +131,7 @@
 						z++;
 				%>
 				<div id="list_content<%=a*100+z%>">
+					<input type="hidden" name="place_id_src" value="<%=list_id[z-1]%>">
 					<img src="img\japan\tokyo1.jpg" class="place_pic" />	
 					<div class="content_fdiv">
 						<div class="list_place">

@@ -5,7 +5,7 @@ $(function() {
 		$("form").attr("action","plan_page.jsp?paging=edit_my");
 	});
 	$("input[name='save_acc']").click(function(){
-		$("form").attr("action","planner.jj?page=plan_update")
+		$("form").attr("action","planner.jj?page=plan_update");
 	});
 	
 

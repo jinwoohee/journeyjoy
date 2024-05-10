@@ -44,11 +44,21 @@ function add_plan(num){
 	var select = document.getElementsByName("select_values"+num);
 	var selected_value ="";
 	
+	var selected_id = document.getElementsByName("pht_id"+num);
+	var result_id = "";
+	
 	for(var i = 0 ; i < select.length ; i++){
 		selected_value += select[i].value+"," ;
+		result_id += selected_id[i].value+",";
 	}
+	
+	
+	
+	
 	var img = document.getElementsByClassName("sel_picture");
 	var save_value = document.getElementsByClassName("selected");
+	var save_id = document.getElementsByClassName("selected_id");
+	
 
 	for(var j = 0 ; j < img.length ; j++){
 		var day = j+1;
@@ -65,6 +75,8 @@ function add_plan(num){
 			img[j].setAttribute('src', img_value);
 			img[j].setAttribute('value', "1");		
 			save_value[j].setAttribute('value',selected_value);
+			save_id[j].setAttribute('value',result_id);
+			
 			pick.setAttribute('value',img_value);
 			console.log("3성공");
 			break;				
@@ -112,8 +124,12 @@ function add_plan(num){
 function del_plan(num){
 	var img = document.getElementById("select_pic"+num);
 	var next = document.getElementById("next_a"+num);
+	var img_src = document.getElementById("img_selected"+num);
+	
 	img.setAttribute('src', "img/icon/select_plz.png");
 	next.setAttribute('value','none');
+	img_src.setAttribute('value','none');
+	
 }
 function check_plan(){
 	var img = document.getElementsByClassName("sel_picture");

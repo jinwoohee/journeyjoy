@@ -71,6 +71,7 @@ function day_select(num){
 }
 
 function plan_add_btn(num){	
+	
 	var edit = document.getElementById("edited"+num);
 	var before =document.getElementById("places_text"+num).innerText;
 	var empty = document.getElementById("places_textb"+num);

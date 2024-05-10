@@ -70,8 +70,15 @@ window.onload = function() {
 	   }else  if(text == "태국"){
 		   $("table[id='city_table_thai']").show();
 	   }else  if(text == "필리핀"){
-
 		   $("table[id='city_table_phil']").show();
+	   }else  if(text == "미주"){
+		   $("table[id='city_table_usa']").show();
+	   }else  if(text == "캐나다"){
+		   $("table[id='city_table_can']").show();
+	   }else  if(text == "호주"){
+		   $("table[id='city_table_aust']").show();
+	   }else  if(text == "뉴질랜드"){
+		   $("table[id='city_table_newz']").show();
 	   }
    });
    $(".city_one").click(function(){

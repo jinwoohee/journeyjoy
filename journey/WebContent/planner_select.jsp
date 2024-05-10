@@ -20,7 +20,7 @@ request.setCharacterEncoding("utf-8");
 		}
 		return null;
 	}%>
-<%
+<%	
 	String e_destination = getCookieValue(cookies, "e_destination");	
 	String e_start_date = getCookieValue(cookies, "e_start_date");
 	String e_end_date = getCookieValue(cookies, "e_end_date");
@@ -37,7 +37,7 @@ request.setCharacterEncoding("utf-8");
 	Date edate = sdf.parse(e_end_date);
 	long datecnt = 1+(edate.getTime() - sdate.getTime()) /(1000*60*60*24);
 	
-
+	System.out.println(e_destination);
 	
 	List<Eatery> eat = (List<Eatery>) request.getAttribute("eatery");
 	List<Place> pla = (List<Place>) request.getAttribute("place");
@@ -52,10 +52,75 @@ request.setCharacterEncoding("utf-8");
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="js\planner_select.js"></script>	
 	<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3FQ06J6teP32y6_sqWP8d2sRvB_321Us&callback=initMap&libraries=places&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initMap&libraries=places&v=weekly"
       defer
     ></script>
+    
 </head>
+<script>
+let map;
+let service;
+function initMap() {
+	var loc= "";
+	var wh = document.getElementById("city").innerText;
+	
+	if(wh === "도쿄"){
+		loc =  {lat : 35.68111, lng : 139.76667};
+	}else if (wh === "오사카"){
+		loc = {lat : 34.6937378, lng : 135.5021651};
+	}
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: loc,
+    zoom: 12,
+  });
+  service = new google.maps.places.PlacesService(map);
+  
+  select();
+}
+	
+function select(){
+	var day = document.getElementsByClassName("list_content").length;
+	  for(var a = 1 ; a <= day; a++){
+		  var pla = document.getElementById("pht_id"+a);
+
+		  const re_request = {
+			      placeId : pla.value,
+			      fields : ["photos"]
+			    };
+		
+		service.getDetails(re_request, callback);
+	}
+}
+
+function img_fix(img_src){
+	var a = 0;
+	var img_v = document.getElementsByName("img_fix");
+
+	for(a = 0; a < img_v.length ; a++){
+		if(img_v[a].getAttribute('src') == ""){
+
+			img_v[a].setAttribute("src", img_src);
+			
+			break;
+		}else{
+			
+		}
+	}
+}
+
+function callback(place, status) {
+	  if (status == google.maps.places.PlacesServiceStatus.OK) {
+		var photos = place.photos;
+		
+		var pla_ph = photos[0].getUrl();
+		
+		img_fix(pla_ph);
+	  }
+	}
+	
+window.initMap = initMap;
+</script>
 <body>
 	<!-- menu bar -->
 	<jsp:include page="main_header.jsp"></jsp:include>
@@ -90,7 +155,11 @@ request.setCharacterEncoding("utf-8");
 				for(int a = 1 ; a <= datecnt*3 ; a++){
 				%>
 					<div class="list_content">
-					<img src="<%= pla.get(a).getPlac_file1()%>" id="place_pic<%=a %>" />
+					
+					<img src="" id="place_pic<%=a %>" name="img_fix"/>
+					
+					
+					<input type="hidden" name="aaaaaa" value="">
 					<div class="content_fdiv"> 
 						<div class="list_place">
 							<p class="list_place">
@@ -98,10 +167,17 @@ request.setCharacterEncoding("utf-8");
 							for(int b = (a-1)*2 ; b <= (a-1)*2+1 ; b++){
 								out.println("#"+pla.get(b).getPlac_name()+"&nbsp;");
 								out.println("<input type='hidden' name='select_values"+a+"' value='"+pla.get(b).getPlac_name()+"'>");
+								if( b% 2 == 0){
+									out.println("<input type='hidden' name='pht_id"+a+"' value='"+pla.get(b).getPlac_id()+"' id='pht_id"+a+"'>");
+								}
+								else{
+									out.println("<input type='hidden' name='pht_id"+a+"' value='"+pla.get(b).getPlac_id()+"' >");
+								}
 							}
 							for(int c = (a-1)*3 ; c <= (a-1)*3+2 ; c++){
 								out.println("#"+eat.get(c).getEat_name()+"&nbsp;&nbsp");
 								out.println("<input type='hidden' name='select_values"+a+"' value='"+eat.get(c).getEat_name()+"'>");
+								out.println("<input type='hidden' name='pht_id"+a+"' value='"+eat.get(c).getEat_id()+"' >");
 								}				
 							%>
 							</p>
@@ -109,10 +185,10 @@ request.setCharacterEncoding("utf-8");
 						<div class="list_thema">
 						 	<%
 							for(int b = (a-1)*2 ; b <= (a-1)*2+1 ; b++){
-								out.println("<p class='list_thema'>"+pla.get(b).getPlac_detail_thema()+"</p>");								
+								out.println("<p class='list_thema'>"+pla.get(b).getPlac_detail_thema().substring(0, pla.get(b).getPlac_detail_thema().length() - 1)+"</p>");								
 							}
 							for(int c = (a-1)*3 ; c <= (a-1)*3+2 ; c++){
-								out.println("<p class='list_thema'>"+eat.get(c).getEat_food_taste()+"</p>");							
+								out.println("<p class='list_thema'>"+eat.get(c).getEat_food_taste().substring(0, eat.get(c).getEat_food_taste().length() - 1)+"</p>");							
 							} 
 							%>
 						</div>
@@ -149,6 +225,7 @@ request.setCharacterEncoding("utf-8");
 						<img src="img\icon\select_plz.png" id="select_pic<%= a %>" class = "sel_picture"/>
 						<input type="button" name="del<%=a %>" value="삭제" class="button" onclick="del_plan(<%=a%>)"/>
 						<input type="hidden" name="selected<%=a %>" class= "selected" value="null" >
+						<input type="hidden" name="id_selected<%=a %>" class="selected_id" value="null">
 					</div>
 				<%}%>
 				</div>
@@ -161,6 +238,7 @@ request.setCharacterEncoding("utf-8");
 				<input type="button" name="open" value="목록열기" class="button" />
 			</div>
 			</form>
+			<div id="map"></div>
 	</section>
 		
 	<footer>

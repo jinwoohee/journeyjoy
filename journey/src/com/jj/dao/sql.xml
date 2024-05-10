@@ -166,16 +166,16 @@
 	
 	<!-- 음식점 불러오기 -->
 	<select id="eatery_select" resultType="com.jj.dto.Eatery" parameterType="java.util.HashMap">	
-		select * from eatery where eat_food_taste in 	
-		<foreach collection="eat_food_taste" item="item" index="index" separator="," open="(" close=")"> 
-			#{item}
+		select * from eatery where eat_city = #{e_destination} and 	
+		<foreach collection="eat_food_taste" item="item" index="index" separator="or" open="(" close=")"> 
+			eat_food_taste like CONCAT('%',#{item},'%')
 		</foreach>
 			order by RAND() LIMIT #{day} 
 	</select>
 	
 	<!-- 관광지 불러오기 -->
 	<select id="place_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">		
-		select * from place where plac_thema like CONCAT('%',#{plac_thema},'%') and 	
+		select * from place where plac_city = #{e_destination} and plac_thema like CONCAT('%',#{plac_thema},'%') and 	
 		<foreach collection="plac_detail_thema" item="item" index="index" separator="or" open="(" close=")">
 			plac_detail_thema like CONCAT('%',#{item},'%')
 		</foreach> 
