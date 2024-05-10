@@ -1,3 +1,4 @@
+<%@page import="com.jj.dto.PageInfo"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Class_list"%>
@@ -12,6 +13,13 @@
 	request.setCharacterEncoding("utf-8");
 	String u_id = (String)session.getAttribute("u_id");
 	ArrayList<Estimate> estimateList = (ArrayList<Estimate>)request.getAttribute("elist");
+	
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int listCount = pageInfo.getListCount();
+	int nowPage = pageInfo.getPage();
+	int maxPage=pageInfo.getMaxPage();
+	int startPage=pageInfo.getStartPage();
+	int endPage=pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -24,8 +32,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 	<!-- 페이징 -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<script src="js/jquery.twbsPagination.js" type="text/javascript"></script>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+	<!-- <script src="js/jquery.twbsPagination.js" type="text/javascript"></script> -->
 
 </head>
 <script>
@@ -51,8 +59,13 @@
         
         /* 모임만들기 버튼 */
         $('.make_btn').click(function(){
-        	$(location).attr('href', 'class_insert.jsp?city='+$("select[name=city]").val()+'');
-        })
+        	var city = $("select[name=city]").val();
+        	if(city == "여행중인 도시"){
+        		alert("여행중인 도시를 선택해주세요.");
+        	}else{
+        		$(location).attr('href', 'class_insert.jsp?city='+$("select[name=city]").val()+'');
+        	}
+        });
         
         /* 탭 */
         $('#sector_section > input[type=button]').click(function(){
@@ -68,7 +81,6 @@
         /* 검색필터 */
         $('#filter div').click(function(){
         	if($(this).css('background-color') != 'rgb(241, 241, 243)'){
-        		console.log($(this));
         		$(this).css({'background':'#0D112D'});
         		$(this).find('p').css({'color' : 'white'});
         		$(this).siblings('div').css({"background":"white"});
@@ -76,7 +88,7 @@
 
         		$.ajax({
         			url : "class_list.jj?page=classFilter",
-        			data : {"city": $('select[name=city]').val(), "param" : $(this).attr('id')},
+        			data : {"city": $('select[name=city]').val(), "param" : $(this).attr('id'), "u_id" : $("input[name=u_id]").val()},
         			success : function(re){
         				$("#class_div").html(re);
         			}
@@ -118,21 +130,7 @@
     			}
         	});
         });
-        
-        /* 페이징
-        $("#paging").twbsPagination({
-        	startPage:1,	//시작시 표시되는 현재 페이지
-        	totalPages:5,	//총 페이지
-        	visiblePages:12, //한페이지당 보여지는 페이지 수
-        	first:"<<",
-        	last:">>",
-        	prev:"<이전",
-        	next:"다음>",
 
-        	onPageClick: function(event, page){
-        		//클릭이벤트
-        	}
-        });  */
 	});
 	
 	/* 모임참여 버튼 */
@@ -157,6 +155,12 @@
     		}	
     	});
 	}
+	
+	/* 페이징 */
+    $('#pagination li').click(function(){
+    	$(this).css({"background":"#6C94B8", "color":"white"});
+		$(this).siblings('li').css({"background":"white", "color":"#646464"});
+    });
 </script>
 <body>
 	<jsp:include page="main_header.jsp" />
@@ -167,7 +171,7 @@
 			<img src="img/travel/class.jpg">
 			<div>
 				<div>
-					<h1>모임만들기</h1>
+					<p>모임만들기</p>
 					<p>#여행지에서 #만드는 #새로운 #인연</p>
 				</div>
 			</div>
@@ -187,7 +191,7 @@
 			<img id="icon" src="img/icon/plane.png">
 			<div>
 				<select name='city'>
-					<option>여행중인 도시</option>
+				<option>여행중인 도시</option>
 				<%
 					for(Estimate e : estimateList){%>
 						<option><%=e.gete_destination() %></option>
@@ -318,12 +322,34 @@
 			</div>
 		</article>
 	</section>
-	
-	<%-- 
-	<div id="paging">
+	<div class="pagination_div">
+		<ul class="pagination">
+			<%
+				if(nowPage<=1){%>
+					<li>이전</li>
+			<%}else{%>
+				<li><a href="classList.jj?page=selectPageInfo&nowPage=<%=nowPage-1%>&table=class_list">이전</a></li>
+			<%} %>
+			
+			<%
+				for(int i=startPage; i<=endPage; i++){
+					if(i == nowPage){%>
+						<li><%=i %></li>
+			<%		}else{%>
+						<li><a href="classList.jj?page=selectPageInfo&nowPage=<%=i%>&table=class_list"><%=i %></a></li>
+				
+			<%		}
+				}
+			%>
+			
+			<%
+				if(nowPage >= maxPage){%>
+					<li>다음</li>
+			<%	}else{%>
+				<li><a href="classList.jj?page=selectPageInfo&nowPage=<%=nowPage+1%>&table=class_list">다음</a></li>
+			<%}%>
+		</ul>
 	</div>
-	--%>
-
 	<jsp:include page="main_footer.jsp" />
 </body>
 </html>

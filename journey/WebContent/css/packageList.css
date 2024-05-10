@@ -47,7 +47,7 @@ body{
 }
 
 /* 계획하기 버튼 */
-section+div{
+#packageWrite_div{
 	width: 1200px;
 	margin: 20px auto;
 }
@@ -91,7 +91,12 @@ input[type="button"]{
 }
 
 /* 리스트 article */
-article > div{width: 1200px; margin: auto;}
+article{
+	width: 1200px;
+    display: flex;
+    margin: 0 auto;
+}
+#packageList_div{width: 1200px; margin: auto;}
 
 article ul{padding-inline-start: 0;}
 
@@ -101,7 +106,7 @@ article li{
 	list-style-type: none;
 	float: left;
 	margin-left: 26px;
-	margin-bottom: 220px;
+	margin-bottom: 100px;
 }
 
 article li:first-of-type{margin-left: 0;}
@@ -188,10 +193,36 @@ li div:nth-of-type(7){
 	margin-top : 25px;
 }
 
-#paging {
-	width: 1200px;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    padding: 85px 0;
+/* 페이징 */
+.pagination_div {
+	    width: 1200px;
+    margin: 0 auto;
 }
+
+.pagination{
+	display: table;
+    border-collapse: collapse;
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin: 30px auto;
+    margin-bottom: 120px;
+}
+
+.pagination li{
+	display : table-cell;
+    padding: 5px 10px;
+    text-align: center;
+    border : 1px solid #f1f1f3;
+}
+
+.pagination li:hover{
+	background : #6C94B8;
+	color : white;
+}
+
+.pagination li a:hover{
+	background : #6C94B8;
+	color : white;
+}
+
+
