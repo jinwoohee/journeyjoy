@@ -92,7 +92,7 @@
 					<option>8월</option>
 					<option>9월</option>
 					<option>10월</option>
-					<option>11월</option>
+					<option>11월</option> 
 					<option>12월</option>
 				</select>
 				<select name="category">
