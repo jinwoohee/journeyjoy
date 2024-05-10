@@ -97,10 +97,11 @@
 				</select>
 				<select name="category">
 					<option>카테고리</option>
+					<option>음식</option>
+					<option>쇼핑</option>
+					<option>일상</option>
 					<option>날씨</option>
-					<option>휴업</option>
-					<option>폐업</option>
-					<option>이전</option>
+					<option>휴업/폐업</option>
 				</select>
 				<input type="text" name="stxt" placeholder="검색어를 입력해주세요">
 				<button type="submit" id="search_btn" name="sbtn">검색</button>

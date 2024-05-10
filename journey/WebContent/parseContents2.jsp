@@ -12,32 +12,35 @@
 		.parseTbl {
 			text-align: left;
 			border-collapse: collapse;
+			font-size: 15px;
 		}
 		
 		.parseTbl tbody {
 			border: 2px solid #2c609c;
     		line-height: 25px;
     		width: 100%;
-    		height: 200px;
+    		height: fit-content;
 		    display: inline-table;
-		    margin-bottom: 10px;
+   			margin-bottom: 10px;
 		}
 		
 		.parseTbl tbody tr:last-of-type {
-		
+			border-bottom: none;
 		}
 		
 		.parseTbl tr {
 			border-bottom: 1px solid #ccc;
+			display: flex;
+		    align-items: center;
+		    padding: 3px 15px;
 		}
 		
 		.parseTbl th {
 			width: 20%;
-			padding: 5px;
 		}
 		
 		.parseTbl td {
-			padding: 5px;
+			width: 80%;
 		}
 		
 		

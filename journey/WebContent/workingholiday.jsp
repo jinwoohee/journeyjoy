@@ -702,7 +702,10 @@
 				});
 			});
 			
+			//사이드바
 			$('.sideBar_cont li').click(function() {
+				$('.modal_contents').empty(); //내용칸 비워두기
+				
 				var $li = $(this).text();
 				$('.modal_title').text($li);
 				
@@ -715,10 +718,17 @@
 						}
 					});
 				} else if ($li == '해외취업 모집공고 정보') { //해외진출정보
-					console.log('1-------');
 					$.ajax({
 						type : 'post',
 						url : 'workingholiday.jj?page=publicInfo2',
+						success : function(data) {
+							$('.modal_contents').html(data);
+						}
+					});
+				} else if ($li == '해외취업 News 소식') {
+					$.ajax({
+						type : 'post',
+						url : 'workingholiday.jj?page=publicInfo3',
 						success : function(data) {
 							$('.modal_contents').html(data);
 						}
@@ -734,13 +744,23 @@
 					event.stopPropagation();
 					return false;
 				});*/
-				
-				
 			});
 			
+			//모달창 close 클릭시
 			$('.modal_close').click(function() {
 				$('.modal_wrap').hide();
 				$('body').css({'overflow' : 'auto'});
+			});
+			
+			//페이징
+			$('.wh_list').hide();
+			$('.wh_list').slice(0, 15).css('display', 'block');
+			
+			$('.more_div').click(function() {
+				$('.wh_list:hidden').slice(0, 9).css('display', 'block');
+				
+				if ($('.wh_list:hidden').length == 0)
+					$('input[name=more_btn]').hide();
 			});
 		});
 	</script>
@@ -1773,7 +1793,6 @@
 					</div>
 				</div>
 			</article>
-			
 			<article>
 				<form class="list_form">
 					<div class="wrap_form">
@@ -1782,7 +1801,7 @@
 							
 							for (Company com : list) {
 						%>
-						<div>
+						<div class="wh_list">
 							<a href="workingholiday.jj?page=whlist&com_no=<%= com.getCom_no() %>">
 							<ul>
 								<li>
@@ -1854,10 +1873,11 @@
 				<ul>
 					<li>해외취업 통계정보</li>
 					<li>해외취업 모집공고 정보</li>
-					<li>국가별 해외취업자 통계</li>
+					<li>해외취업 News 소식</li>
 				</ul>
 			</div>
 		</div>
+		<div class="more_div"><input type="button" name="more_btn" value="+ 더보기"></div>
 	</div>
 	<div class="modal_wrap">
 		<div class="modal">

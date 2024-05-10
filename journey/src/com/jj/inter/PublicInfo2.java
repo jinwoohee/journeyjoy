@@ -29,10 +29,10 @@ public class PublicInfo2 implements JourneyInterface {
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document document = builder.parse("https://www.worldjob.or.kr/openapi/openapi.do?dobType=1&dsptcKsco=01&continent=1&epmt61=N&pageIndex=2&showItemListCount=10");
 		document.getDocumentElement().normalize(); //root tag
-		System.out.println("root elements: "+document.getDocumentElement().getNodeName());
+		//System.out.println("root elements: "+document.getDocumentElement().getNodeName());
 		
 		NodeList nlist = document.getDocumentElement().getElementsByTagName("ITEM");
-		System.out.println("파싱할 리스트 개수-----> "+nlist.getLength());
+		//System.out.println("파싱할 리스트 개수-----> "+nlist.getLength());
 		
 		ArrayList<DtoPublicInfo2> nodeList = new ArrayList<DtoPublicInfo2>();
 		for (int temp = 0; temp < nlist.getLength(); temp++) {
