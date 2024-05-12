@@ -191,4 +191,37 @@ body::after {
     cursor: pointer;
 }
 
+/* 페이징 */
+.pagination_div {
+	width: 100%;
+    margin: 0 auto;
+}
+
+.pagination{
+	display: table;
+    border-collapse: collapse;
+    list-style-type: none;
+    padding-inline-start: 0;
+    margin: 30px auto;
+    margin-bottom: 50px;
+}
+
+.pagination li{
+	display : table-cell;
+    padding: 5px 10px;
+    text-align: center;
+    border : 1px solid #f1f1f3;
+}
+
+.pagination li:hover{
+	background : #6C94B8;
+	color : white;
+}
+
+.pagination li a:hover{
+	background : #6C94B8;
+	color : white;
+}
+
+
 
