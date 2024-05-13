@@ -213,6 +213,7 @@ li div:nth-of-type(7){
     padding: 5px 10px;
     text-align: center;
     border : 1px solid #f1f1f3;
+    cursor: pointer;
 }
 
 .pagination li:hover{

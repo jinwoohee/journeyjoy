@@ -91,7 +91,7 @@ window.onload = function() {
   if($("input[id="+id+"]").is(":checked")){
     $("label[for="+id+"]").css({"background-color":"#0D112D", "color":"white"});
   }else{
-    $("label[for="+id+"]").css({"background-color":none, "color":"#0D112D"});
+    $("label[for="+id+"]").css({"background-color":"transparent", "color":"#0D112D"});
   }
  }
 function login_check(){
@@ -115,8 +115,12 @@ function select_check(){
 function text_div(id){
 	var div = document.getElementById(id+"_div");
 	var input = document.getElementById(id);
-	div.style.display= "block";
-
+	
+	if(div.style.display == "block"){
+		div.style.display= "none";
+	}else{
+		div.style.display= "block";
+	}
 }
 
 function nation_open(id){
