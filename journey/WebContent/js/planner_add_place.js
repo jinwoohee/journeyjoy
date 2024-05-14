@@ -29,7 +29,7 @@ $(document).ready(function() {
 	 $('#search_btn').click(function(){
      	$.ajax({
      		url : "planner.jj?page=place_search",
- 			data : {"search_place": $('input[name=search_place]').val()},
+ 			data : {"search_place": $('input[name=search_place]').val(), "city" :$("#city").text()},
  			success : function(re){
  				$("#search_result").html(re);
  				

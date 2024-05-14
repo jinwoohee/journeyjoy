@@ -179,6 +179,7 @@ input[name="search_place"]{/*검색*/
     margin-top: 45px;
     margin-left: 20px;
     float: left;
+    outline : none;
 }
 button[name="search_btn"]{
 	width:20px;
@@ -186,14 +187,13 @@ button[name="search_btn"]{
 	background-color: white;
 	border : 0px solid white;
 	float:right;
-	margin-right : 1px;
 }
 img[id="search_btn"]{
 	width : 20px;
 	height:20px;
-	margin-top:60px;
+	margin-top:59px;
 	float:right;
-	margin-right : 0px;
+	margin-right : -1px;
 	cursor : pointer;
 }
 div[id="result_list"]{

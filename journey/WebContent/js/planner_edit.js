@@ -40,9 +40,13 @@ function del_list(num){
 	
 	var val = document.getElementById("pla_val"+num).value+",";
 	var place = document.getElementById("place_name"+day);
+	var id = document.getElementById("id_srcs"+num).value+",";
+	var place_id = document.getElementById("place_ids"+day);
 	
 	var result = place.value.replaceAll(val,"");
 	place.setAttribute('value',result);
+	var result_id = place_id.value.replaceAll(id,"");
+	place_id.setAttribute("value",result_id);
 	 
 	var list = document.getElementById("list_content"+num);
 	list.remove();

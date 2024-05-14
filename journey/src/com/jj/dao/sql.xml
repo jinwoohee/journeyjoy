@@ -183,8 +183,11 @@
 	</select>
 	
 	<!-- 장소검색 한거 불러오기 -->
-	<select id="search_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">
-		select * from place where plac_name like CONCAT('%',#{text},'%') or plac_detail_thema like CONCAT('%',#{text},'%')
+	<select id="search_place" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">
+		select * from place where plac_city = #{city} and plac_name like CONCAT('%',#{text},'%') or plac_detail_thema like CONCAT('%',#{text},'%') order by plac_rating limit 15
+	</select>
+	<select id="search_eatery" resultType="com.jj.dto.Eatery" parameterType="java.util.HashMap">
+		select * from eatery where eat_city = #{city} and eat_name like CONCAT('%',#{text},'%') or eat_food_taste like CONCAT('%',#{text},'%') order by plac_rating limit 15
 	</select>
 	
 	<!-- 일정 저장 -->

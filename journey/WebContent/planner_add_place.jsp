@@ -96,7 +96,7 @@ function initMap() {
   
   var request = {
     location : loc,
-    radius: '500',
+    radius: '2500',
     query: que.value
   };
   
@@ -217,7 +217,7 @@ window.initMap = initMap;
 					<%
 					
 					List<Place> pla = (List<Place>) request.getAttribute("search_place");
-					
+					List<Eatery> eat = (List<Eatery>) request.getAttribute("search_eatery");
 					if(pla == null){
 						out.println("<input type='radio' name='place_one' id='search_plz'><label for='search_plz' class='pl_label'>검색어를 입력해주세요.</label>");
 						out.println("</div>");		
@@ -230,11 +230,18 @@ window.initMap = initMap;
 						int z=-1;
 						for(Place plalist : pla){
 							z++;
-											
-							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_name()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
+
+							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_id()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
 							out.println("<label for='pone"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");		
 							out.println("<input type='hidden' name='place_num' value='"+plalist.getPlac_id()+"'>");
-						}	
+						}
+						for(Eatery eatlist : eat){
+							z++;
+
+							out.println("<input type='checkbox' name='place_one' value='"+eatlist.getEat_id()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
+							out.println("<label for='pone"+z+"' class='pl_label'>"+eatlist.getEat_name()+"</label>");		
+							out.println("<input type='hidden' name='place_num' value='"+eatlist.getEat_id()+"'>");
+						}
 						out.println("</div>");		
 						for(int a = 1 ; a <= datecnt ; a++){
 							out.println("<input type='button' id='plan_add"+a+"' value='여행지 추가' class='button' onclick='plan_add_btn("+a+")'/>");	
@@ -249,9 +256,10 @@ window.initMap = initMap;
 				for(int a = 1 ; a <= datecnt ; a++){ 
 					String place_name = request.getParameter("place_name"+a);
 					String place_cookie = getCookieValue(cookies, "pla"+a);
-					System.out.println("쿠키값"+place_cookie);
+					String place_id = request.getParameter("place_ids"+a);
+					
 					String place_attr = (String) request.getAttribute("planList"+a);
-					System.out.println(place_attr+"1번");
+
 					out.println("<div id='places"+a+"'>");
 					out.println("<p class='my_place'>나의 여행지 (Day"+a+")</p>");
 					if(place_name == null ){
@@ -284,6 +292,7 @@ window.initMap = initMap;
 						out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
 						out.println("<p id='places_text"+a+"'></p>");
 						out.println("<input type='hidden' name='edit_plan"+a+"'value='' id='edited"+a+"'>");
+						out.println("<input type='hidden' name='edit_plan_id"+a+"'value='' id='edited_id"+a+"'>");
 					}
 					else{System.out.println("2번");
 						String place_ck = place_name.replaceAll(",", "_").replaceAll("empty","").replaceAll("-", " ");
@@ -302,6 +311,7 @@ window.initMap = initMap;
 						System.out.println("2-3:"+st_list);
 				%>	
 				<input type="hidden" name="edit_plan<%=a%>" value="<%=st_list%>" id="edited<%=a%>">
+				<input type="hidden" name="edit_plan_id<%=a %>" value="<%=place_id %>" id="edited_id<%=a %>">
 				<% 
 					}			
 					out.println("</div>");

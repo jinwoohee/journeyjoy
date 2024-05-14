@@ -63,7 +63,81 @@
 	<link rel="stylesheet" type="text/css" href="css\planner_edit.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="js\planner_edit.js"></script>
+	<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
 </head>
+<script>
+
+let map;
+let service;
+function initMap() {
+	var loc= "";
+	var wh = document.getElementById("city").innerText;
+	
+	if(wh === "도쿄"){
+		loc =  {lat : 35.68111, lng : 139.76667};
+	}else if (wh === "오사카"){
+		loc = {lat : 34.6937378, lng : 135.5021651};
+	}
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: loc,
+    zoom: 12,
+  });
+  service = new google.maps.places.PlacesService(map);
+  
+  select();
+}
+	
+function select(){
+	var day = document.getElementById("day_cnt");
+	  for(var a = 1 ; a <= day.value; a++){
+		  var img_id = document.getElementsByName("place_id_src"+a);
+		  for(var i=0 ; i < img_id.length ; i++){
+			  const re_request = {
+				      placeId : img_id[i].value,
+				      fields : ["photos","url"]
+				    };
+			  
+			service.getDetails(re_request, callback);
+		  }
+	}
+}
+
+function img_fix(img_src, pla_url){
+	var day = document.getElementById("day_cnt");
+	
+	for(var a = 1; a <= day.value ; a++){
+		var img_v = document.getElementsByName("pla_img"+a);
+		var url_v = document.getElementsByName("pla_url"+a);
+		for(var i = 0 ; i < img_v.length; i++){
+			if(img_v[i].getAttribute('src') == ""){
+				
+				img_v[i].setAttribute("src", img_src);
+				url_v[i].setAttribute("href",pla_url);
+				
+				break;
+			}else{
+				
+			}
+		}
+	}
+}
+
+function callback(place, status) {
+	  if (status == google.maps.places.PlacesServiceStatus.OK) {
+		var photos = place.photos;
+		
+		var pla_ph = photos[0].getUrl();
+		var pla_url = place.url; 
+		img_fix(pla_ph, pla_url);
+	  }
+	}
+	
+window.initMap = initMap;
+</script>
 <body>
 	<!-- menu bar -->
 	<jsp:include page="main_header.jsp"></jsp:include>
@@ -71,7 +145,7 @@
 	<section>
 	<form action="planner.jj?page=insert" method="post">
 	<input type="hidden" name="e_no" value="<%=e_no%>">	
-	<input type="hidden" name="day" value="<%=day%>">
+	<input type="hidden" name="day" value="<%=day%>" id="day_cnt">
 		<div id="content">
 			<div id="list_text">
 				<p id="list_text">| 여행일정</p>
@@ -114,6 +188,7 @@
 				for(int a = 1 ; a <= datecnt ; a++){
 				
 					String st_list = "";
+					String id_list = "";
 					if(edit0 == null){
 						String place =request.getParameter("selected"+a);
 						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_").replaceAll(" ", "-");
@@ -128,19 +203,20 @@
 				<%	int z= 0;
 					for(String st : list_place){
 						st_list += st+",";
+						id_list += list_id[z]+",";
 						z++;
 				%>
 				<div id="list_content<%=a*100+z%>">
-					<input type="hidden" name="place_id_src" value="<%=list_id[z-1]%>">
-					<img src="img\japan\tokyo1.jpg" class="place_pic" />	
+					<input type="hidden" name="place_id_src<%=a %>" value="<%=list_id[z-1]%>" id="id_srcs<%=a*100+z%>">
+					<img src="" class="place_pic" name="pla_img<%=a%>"/>
 					<div class="content_fdiv">
 						<div class="list_place">
-							<p class="list_place" >#<%=st%></p>				
-							<input type="hidden" id="pla_val<%=a*100+z %>" value="<%=st %>">		
+							<p class="list_place" >#<%=st%></p>
+							<input type="hidden" id="pla_val<%=a*100+z %>" value="<%=st %>">
 						</div>
 						<div class="list_thema">
 						
-						</div>	
+						</div>
 						<input type="button" name="delete" value="삭제" onclick="del_list(<%=a*100+z %>)" class="button"/>	
 					</div>
 					<div class="content_detail">
@@ -148,11 +224,12 @@
 							<p>평균예산</p>
 							<p>약 99,000 ~</p>
 						</div>
-						<input type="button" name="detail" value="상세정보 보기" class="button"/>
+						<a href="" name="pla_url<%=a%>" target='_blank'><input type="button" name="detail" value="상세정보 보기" class="button"/></a>
 					</div>
 				</div>
 				<% }%>
 				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" id = "place_name<%=a%>" />
+				<input type="hidden" name="place_ids<%=a %>" value="empty<%=id_list %>" id = "place_ids<%=a %>" />
 				</div>		
 						
 			<%
@@ -230,6 +307,7 @@
 					<input type="submit" name="plan_sel_add" value="여행지&#10;추가하기" class="button">
 		</div>
 		</form>
+		<div id="map"></div>
 	</section>
 	<footer>
        <jsp:include page="main_footer.jsp" />	

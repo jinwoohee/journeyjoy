@@ -111,8 +111,8 @@ function plan_add_btn(num){
 	$("input[name='place_one']").each(function(){
 	    if( $(this).is(":checked") == true ){	    	
 	      var id = $(this).attr('id');
-	      var checkVal = " #"+$(this).val()+"(new)";
-	      var checkvalue = "#"+$(this).val()+"(new)"; 
+	      var checkVal = " #"+$("label[for="+id+"]").text()+"(new)";
+	      var checkvalue = "#"+$("label[for="+id+"]").text()+"(new)"; 
 	      document.getElementById("places_text"+num).textContent = before+checkVal ;
 	      
 	      $(this).prop("checked", false);
@@ -135,10 +135,10 @@ function plan_add_btn(num){
 					<div id="result_list">
 					
 					<%
-					
 					List<Place> pla = (List<Place>) request.getAttribute("search_place");
-					
-					if(pla == null){
+					List<Eatery> eat = (List<Eatery>) request.getAttribute("search_eatery");
+					System.out.println(pla.size());
+					if(pla == null && eat == null){
 						out.println("<input type='radio' name='place_one' id='search_plz'><label for='search_plz' class='pl_label'>검색어를 입력해주세요.</label>");
 						out.println("</div>");		
 						for(int a = 1 ; a <= datecnt ; a++){
@@ -150,10 +150,17 @@ function plan_add_btn(num){
 						int z=-1;
 						for(Place plalist : pla){
 							z++;
-											
-							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_name()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
+
+							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_id()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
 							out.println("<label for='pone"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");		
 							out.println("<input type='hidden' name='place_num' value='"+plalist.getPlac_id()+"'>");
+						}
+						for(Eatery eatlist : eat){
+							z++;
+
+							out.println("<input type='checkbox' name='place_one' value='"+eatlist.getEat_id()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
+							out.println("<label for='pone"+z+"' class='pl_label'>"+eatlist.getEat_name()+"</label>");		
+							out.println("<input type='hidden' name='place_num' value='"+eatlist.getEat_id()+"'>");
 						}
 						out.println("</div>");
 						for(int a = 1 ; a <= datecnt ; a++){
