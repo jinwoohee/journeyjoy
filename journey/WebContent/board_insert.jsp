@@ -42,7 +42,7 @@
 			$('.del_btn').click(function () { //취소버튼
 				if (confirm("취소하시겠습니까?")) {
 					console.log("취소완료");
-					$('form[name="boardForm"]').attr('action', 'board_selectDB.jsp?no=-1');
+					$('form[name="boardForm"]').attr('action', 'board_selectDB.jsp?no=-1&nowPage=1');
 				} else {
 					console.log("그대로");
 					return false;

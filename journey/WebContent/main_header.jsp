@@ -258,7 +258,8 @@ function hideMenu(){
 		
 		<!-- 알림창 -->
 		<input type="hidden" name="uid" value="<%=u_id %>" />
-		<div class="notice">
+		<div class="noticeBox">
+			<div class="notice"></div>
 		</div> 
 	</header>
 </body>

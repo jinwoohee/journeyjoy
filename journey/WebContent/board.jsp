@@ -185,25 +185,25 @@
 				<c:set var="maxPage" value="<%= pageInfo.getMaxPage() %>" />
 				
 				<c:choose>
-					<c:when test="${ nowPage <= 1 }"><li>이전</li></c:when>
+					<c:when test="${ nowPage <= 1 }"><li><p>이전</p></li></c:when>
 					<c:otherwise>
-						<li><a href="board_listCountDB.jsp?nowPage=${ nowPage - 1 }">이전</a></li>
+						<li><a href="board_listCountDB.jsp?nowPage=${ nowPage - 1 }"><p>이전</p></a></li>
 					</c:otherwise>
 				</c:choose>
 				<c:forEach var="i" begin="<%= pageInfo.getStartPage() %>" end="<%= pageInfo.getEndPage() %>">
 					<c:choose>
 						<c:when test="${ i == nowPage }">
-							<li>${ i }</li>
+							<li><p style="text-decoration: underline;">${ i }</p></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="board_listCountDB.jsp?nowPage=${ i }">${ i }</a></li>
+							<li><a href="board_listCountDB.jsp?nowPage=${ i }"><p>${ i }</p></a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				<c:choose>
-					<c:when test="${ nowPage >= maxPage }"><li>다음</li></c:when>
+					<c:when test="${ nowPage >= maxPage }"><li><p>다음</p></li></c:when>
 					<c:otherwise>
-						<li><a href="board_listCountDB.jsp?nowPage=${ nowPage + 1 }">다음</a></li>
+						<li><a href="board_listCountDB.jsp?nowPage=${ nowPage + 1 }"><p>다음</p></a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

@@ -208,7 +208,6 @@ body::after {
 
 .pagination li{
 	display : table-cell;
-    padding: 5px 10px;
     text-align: center;
     border : 1px solid #f1f1f3;
 }
@@ -221,6 +220,12 @@ body::after {
 .pagination li a:hover{
 	background : #6C94B8;
 	color : white;
+}
+
+.pagination p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 5px 10px;
 }
 
 

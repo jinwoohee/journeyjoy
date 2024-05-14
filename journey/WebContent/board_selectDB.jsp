@@ -11,8 +11,9 @@
 	<%
 		request.setCharacterEncoding("utf-8");
 		int no = Integer.parseInt(request.getParameter("no"));
+		int nowPage = Integer.parseInt(request.getParameter("nowPage"));
 		
-		board.selectRow(no);
+		board.selectRow(no, nowPage);
 		response.sendRedirect("board.jsp");
 	%>
 	</jsp:useBean>
