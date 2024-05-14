@@ -47,7 +47,8 @@
 			$('.del_btn').click(function () { //취소버튼
 				if (confirm("취소하시겠습니까?")) {
 					console.log("취소완료");
-					$('form[name="boardForm"]').attr('action', 'board.jsp');
+					window.location.href = 'board.jsp';
+					//$('form[name="boardForm"]').attr('action', 'board.jsp');
 				} else {
 					console.log("그대로");
 					return false;
@@ -86,7 +87,7 @@
 
 	<jsp:useBean id="board" class="com.jj.dao.BoardDB">
 	<%
-		ArrayList<Board> alist = board.selectRow(no);
+		ArrayList<Board> alist = board.selectRow(no, 0);
 		
 			for (Board b : alist) {
 	%>
@@ -178,7 +179,7 @@
 				</div>
 				<!-- 버튼 -->
 				<div class="btn_wrap">
-					<button class="del_btn">취소</button>
+					<button type="button" class="del_btn">취소</button>
 					<button class="chg_btn">등록</button>
 				</div>
 			</form>

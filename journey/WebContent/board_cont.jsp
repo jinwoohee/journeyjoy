@@ -41,7 +41,7 @@
 	
 	<jsp:useBean id="board" class="com.jj.dao.BoardDB">
 	<%
-		ArrayList<Board> alist = board.selectRow(no);
+		ArrayList<Board> alist = board.selectRow(no, 0);
 			
 			for (Board b : alist) {
 		out.println(b.getU_id());

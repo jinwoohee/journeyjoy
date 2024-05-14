@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.jj.dao.JourneySql;
+import com.jj.dto.Board;
 import com.jj.dto.Class_list;
 
 public class PageInfoDB {
@@ -50,4 +51,6 @@ public class PageInfoDB {
 		
 		return classList;
 	}
+	
+	
 }

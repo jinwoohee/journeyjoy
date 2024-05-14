@@ -10,6 +10,7 @@ import com.jj.conn.ClassListSelectDB;
 import com.jj.conn.LikeSelectDB;
 import com.jj.conn.PageInfoDB;
 import com.jj.dao.JourneyInterface;
+import com.jj.dto.Board;
 import com.jj.dto.Class_list;
 import com.jj.dto.Estimate;
 import com.jj.dto.Package_like;

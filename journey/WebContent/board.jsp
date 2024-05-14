@@ -7,12 +7,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String u_id = (String)session.getAttribute("u_id");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	int listCount = pageInfo.getListCount();
-	int nowPage = pageInfo.getPage();
-	int maxPage=pageInfo.getMaxPage();
-	int startPage=pageInfo.getStartPage();
-	int endPage=pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -69,6 +63,12 @@
 				alert("로그인 후 이용가능합니다.");
 				$('form[name="write"]').attr('action', 'login.jsp');
 			});
+			
+			/* 페이징 */
+	        $('#pagination li').click(function(){
+	        	$(this).css({"background":"#6C94B8", "color":"white"});
+	    		$(this).siblings('li').css({"background":"white", "color":"#646464"});
+	        });
 		});
     </script>
 </head>
@@ -119,12 +119,20 @@
 		<!-- 게시판 리스트 -->
 		<jsp:useBean id="board" class="com.jj.dao.BoardDB">
 		<%
+			PageInfo pageInfo;
+			
+			if ((PageInfo) request.getAttribute("pageInfo") != null) {
+				pageInfo = (PageInfo) request.getAttribute("pageInfo");
+			} else {
+				pageInfo = board.listCountSelect(1);
+			}
+		
 			request.setCharacterEncoding("utf-8");
 			String stxt = request.getParameter("stxt");
 			String nation = request.getParameter("nation");
 			String city = request.getParameter("city");
 			String month = request.getParameter("month");
-			String category = request.getParameter("category");
+			String category = request.getParameter("category"); 
 			//System.out.println("jsp----->" + stxt + "/" + nation + "/" + city + "/" + month + "/" + category);
 			
 			ArrayList<Board> alist;
@@ -132,13 +140,13 @@
 			if (stxt != null || nation != null || city != null || month != null || category != null) {
 				alist = board.searchRow(stxt, nation, city, month, category);
 			} else {
-				alist = board.selectRow(-1);
+				alist = board.selectRow(-1, pageInfo.getPage());
 			}
 			
 			out.println("<div class='board_wrap'>");
 			out.println("<div class='board'>");
 			out.println("<div class='board_title'>");
-			out.println("<p class='sch_result'>총 게시물<strong> " + alist.size() + "</strong>개</p>");
+			out.println("<p class='sch_result'>총 게시물<strong> " + pageInfo.getListCount() + "</strong>개</p>");
 			out.println("</div>"); //board_title 끝
 			out.println("<div class='board_list_wrap'>");
 			out.println("<div class='board_list'>");
@@ -173,16 +181,31 @@
 		%>
 		<div class="pagination_div">
 			<ul class="pagination">
-				<c:set var="nowPage" value="<%= nowPage %>" />
+				<c:set var="nowPage" value="<%= pageInfo.getPage() %>" />
+				<c:set var="maxPage" value="<%= pageInfo.getMaxPage() %>" />
+				
 				<c:choose>
 					<c:when test="${ nowPage <= 1 }"><li>이전</li></c:when>
 					<c:otherwise>
-						<li><a href="classList.jj?page=selectPageInfo&nowPage=${ nowPage - 1 }&table=package">이전</a></li>
+						<li><a href="board_listCountDB.jsp?nowPage=${ nowPage - 1 }">이전</a></li>
 					</c:otherwise>
 				</c:choose>
-				<c:forEach var="i" begin="<%= startPage %>" end="<%= endPage %>">
-				
+				<c:forEach var="i" begin="<%= pageInfo.getStartPage() %>" end="<%= pageInfo.getEndPage() %>">
+					<c:choose>
+						<c:when test="${ i == nowPage }">
+							<li>${ i }</li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="board_listCountDB.jsp?nowPage=${ i }">${ i }</a></li>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
+				<c:choose>
+					<c:when test="${ nowPage >= maxPage }"><li>다음</li></c:when>
+					<c:otherwise>
+						<li><a href="board_listCountDB.jsp?nowPage=${ nowPage + 1 }">다음</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 		<%	

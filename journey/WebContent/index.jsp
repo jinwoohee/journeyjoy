@@ -102,7 +102,14 @@ $(function(){
 function barChartDraw() {
     const ctx = document.getElementById('myChart').getContext('2d');
     
-    var nation0 = document.getElementById('nation0').value;
+    var total = document.getElementById('total').value;
+    for(var i=0; i<total; i++){
+    	window["nation"+i] = document.getElementById('nation'+i+'').value;
+    	window["nation"+i+"Cnt"] = document.getElementById('cnt'+i+'').value;
+    }
+
+    
+    /* var nation0 = document.getElementById('nation0').value;
     var nation1 = document.getElementById('nation1').value;
     var nation2 = document.getElementById('nation2').value;
     var nation3 = document.getElementById('nation3').value;
@@ -112,15 +119,15 @@ function barChartDraw() {
     var nation1Cnt = document.getElementById('cnt1').value;
     var nation2Cnt = document.getElementById('cnt2').value;
     var nation3Cnt = document.getElementById('cnt3').value;
-    var nation4Cnt = document.getElementById('cnt4').value;
+    var nation4Cnt = document.getElementById('cnt4').value; */
     
     window.barChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-        	labels:[nation0, nation1, nation2, nation3, nation4],
+        	labels:[nation0, nation1/* , nation2, nation3, nation4 */],
         	datasets : [{
         		label : "가장 많이 견적 요청한 나라 TOP5",
-        		data : [nation0Cnt, nation1Cnt, nation2Cnt, nation3Cnt, nation4Cnt],
+        		data : [nation0Cnt, nation1Cnt/* , nation2Cnt, nation3Cnt, nation4Cnt */],
         		backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)'],
         		fill : false,
         		barThickness : 45,
@@ -128,6 +135,14 @@ function barChartDraw() {
         },
         options: {
         	legend : {display: false},
+        	scales : {
+        		xAxes : [{
+        			ticks : {
+        				beginAtZero : true,
+        				stepSize : 1
+        			}
+        		}]
+        	}
         		
         }
     });
@@ -144,13 +159,13 @@ function pieChartDraw() {
     }
     
     window.barChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
         	labels:[departure_nation0, departure_nation1, departure_nation2, departure_nation3, departure_nation4, departure_nation5, departure_nation6, departure_nation7, departure_nation8, departure_nation9],
         	datasets : [{
         		label : "2023 인기있는 여행지 TOP10!",
         		data : [sum0,sum1,sum2,sum3,sum4,sum5,sum6,sum7,sum8,sum9],
-        		backgroundColor: ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple', 'pink', 'skyblue', 'yellowgreen'],
+        		backgroundColor: ['#8474A1', '#CCABD8', '#6EC6CA', '#08979D', '#055B5C', '#86E3CE', '#7EA00E', '#DCD964', '#D0E6A5', '#FFDD94'],
         		fill : false,
         	}]
         },
@@ -294,8 +309,10 @@ xhr.send('');
 								for(int i=0; i<eList.size(); i++){%>
 									<input type='hidden' id='nation<%=i%>' value='<%=eList.get(i).gete_destination()%>'>
 									<input type='hidden' id='cnt<%=i%>' value=<%=eList.get(i).getCnt() %>>
+									
 							<%	}
 							%>
+							<input type='hidden' value='<%=eList.size() %>' id='total'>
 						</jsp:useBean>
 						<canvas id="myChart" width="1100" height="350"></canvas>
 					</div>

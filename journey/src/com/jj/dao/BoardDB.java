@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.jj.dto.Board;
+import com.jj.dto.PageInfo;
 
 public class BoardDB {
 	Connection conn = null;
@@ -54,14 +55,18 @@ public class BoardDB {
 	}
 	
 	//row 선택
-	public ArrayList<Board> selectRow(int no) throws Exception {
+	public ArrayList<Board> selectRow(int no, int nowPage) throws Exception {
 		connDB();
-		ArrayList<Board> alist = new ArrayList<Board>();
-		
 		ResultSet rs = null;
 		
+		ArrayList<Board> alist = new ArrayList<Board>();
 		if (no < 0) { //전체리스트출력
-			rs = stmt.executeQuery("select *, (select u_nickname from user where user.u_id = board.u_id) as u_nickname from board order by b_no desc;");
+			String sql = "select *, (select u_nickname from user where user.u_id = board.u_id) as u_nickname from board order by b_no desc limit ?,10";
+			int startRow = (nowPage - 1)*10;
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Board blist = new Board();
 				blist.setB_no(rs.getInt("b_no"));
@@ -74,8 +79,6 @@ public class BoardDB {
 				blist.setB_month(rs.getString("b_month"));
 				blist.setB_date(rs.getDate("b_date"));
 				blist.setU_nickname(rs.getString("u_nickname"));
-				
-				
 				
 				alist.add(blist);
 			}
@@ -166,5 +169,47 @@ public class BoardDB {
 		
 		closeDB();
 		return alist;
+	}
+	
+	public com.jj.dto.PageInfo listCountSelect(int nowPage) throws Exception {
+		connDB();
+		
+		int listCount = 0; //리스트 갯수
+		int page = 1; // 현재페이지
+		int limit = 10; // 한페이지 최대 row갯수
+		
+		if (String.valueOf(nowPage) != null) {
+			page = nowPage;
+		}
+		
+		String sql = "select count(*) from board";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("sql listCountSelect Error-------->"+e);
+		}
+		
+		int maxPage = (int)((double)listCount/limit+0.95); //최대페이지
+		int startPage = (((int) ((double)page / 10 + 0.9)) - 1) * 10 + 1; //시작페이지
+   	    int endPage = startPage+10-1; //마지막페이지
+   	    
+   	    if(endPage > maxPage) {
+   	    	endPage = maxPage;
+   	    }
+   	    
+   	    com.jj.dto.PageInfo pageInfo = new com.jj.dto.PageInfo();
+	    pageInfo.setListCount(listCount);
+	    pageInfo.setPage(page);
+	    pageInfo.setMaxPage(maxPage);
+	    pageInfo.setStartPage(startPage);
+	    pageInfo.setEndPage(endPage);
+		
+		closeDB();
+		return pageInfo;
 	}
 }

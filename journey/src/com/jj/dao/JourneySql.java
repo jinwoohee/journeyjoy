@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.jj.dto.Board;
 import com.jj.dto.Class_list;
 import com.jj.dto.Eatery;
 import com.jj.dto.Estimate;
@@ -433,6 +434,44 @@ public class JourneySql {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return alist;
+	}
+	
+	public ArrayList<Board> boardListSelect(int page, int limit) { //자유게시판 select
+		ArrayList<Board> alist = new ArrayList<Board>();
+		
+		String sql = "select * from board order by b_no desc limit ?,10";
+		int startRow = (page - 1)*10;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Board board = new Board();
+				board.setB_no(rs.getInt("b_no"));
+				board.setU_id(rs.getString("u_id"));
+				board.setB_category(rs.getString("b_category"));
+				board.setB_title(rs.getString("b_title"));
+				board.setB_contents(rs.getString("b_contents"));
+				board.setB_nation(rs.getString("b_nation"));
+				board.setB_city(rs.getString("b_city"));
+				board.setB_month(rs.getString("b_month"));
+				board.setB_file1(rs.getString("b_file1"));
+				board.setB_file2(rs.getString("b_file2"));
+				board.setB_file3(rs.getString("b_file3"));
+				board.setB_date(rs.getDate("b_date"));
+				
+				alist.add(board);
+			}
+		} catch (SQLException e) {
+			System.out.println("sql boardListSelect Error-------->"+e);
 		} finally {
 			close(rs);
 			close(pstmt);
