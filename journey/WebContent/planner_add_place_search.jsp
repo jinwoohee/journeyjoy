@@ -128,7 +128,7 @@ function plan_add_btn(num){
 </head>
 
 <%
-	String u_id = (String)session.getAttribute("u_id");
+	String u_id = (String)session.getAttribute("u_id"); 
 %>
 <body>
 <div id="search_result1">
