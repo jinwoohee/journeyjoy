@@ -82,7 +82,7 @@ String aaaa = datecnt+"";
 	<jsp:include page="main_header.jsp"></jsp:include>
 	<!-- 페이지 섹션 -->
 	<section>
-	<form action="planner.jj?page=save_plan" method="post">
+	<form action="planner.jj?page=save_plan" method="post"> 
 	<div id="content">
 	<%
 	if(paging != null){
