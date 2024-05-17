@@ -130,17 +130,17 @@ $(function(){
 			  }
 		  });
     	  
-    	  if ($('.notice').css('display') == 'none') {
-    		  $('.notice').css('display', 'block');
+    	  if ($('.noticeBox').css('display') == 'none') {
+    		  $('.noticeBox').css('display', 'block');
     		  $('.alarm').attr('src', 'img/icon/alarm.png');
     	  } else {
-    		  $('.notice').css('display', 'none');
+    		  $('.noticeBox').css('display', 'none');
     		  $('.alarm').attr('src', 'img/icon/alarm.png');
     	  }
       });
       
       $('.adiv').blur(function() {
-    	  $('.notice').css('display', 'none');
+    	  $('.noticeBox').css('display', 'none');
 		  $('.alarm').attr('src', 'img/icon/alarm.png');
 	  }); 
       

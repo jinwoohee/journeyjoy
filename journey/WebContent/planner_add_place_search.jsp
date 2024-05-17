@@ -103,6 +103,8 @@ function plan_add_btn(num){
 	var edit = document.getElementById("edited"+num);
 	var before =document.getElementById("places_text"+num).innerText;
 	var empty = document.getElementById("places_textb"+num);
+	
+	var edit_id = document.getElementById("edited_id"+num);
 	if(empty !=null){
 		empty.remove();
 	}
@@ -115,11 +117,15 @@ function plan_add_btn(num){
 	      var checkvalue = "#"+$("label[for="+id+"]").text()+"(new)"; 
 	      document.getElementById("places_text"+num).textContent = before+checkVal ;
 	      
+	      var id_v = $(this).val();
+	      
 	      $(this).prop("checked", false);
 	      $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
 	      
 	      var after = edit.value+checkvalue+"_";
 	  	  edit.setAttribute('value',after);
+	  	  var after_id = edit_id.value+id_v+",";
+	  	  edit_id.setAttribute('value',after_id);
 	    }
 	});
 }

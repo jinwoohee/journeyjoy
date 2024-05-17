@@ -172,8 +172,9 @@ a[class=sub_menu_a]{
     height: 500px;
     top: 55px;
     right: 225px;
-    z-index: 9999;
+    z-index: 900;
     padding: 15px 15px 0 15px;
+    display: none;
 }
 
 .notice { 
@@ -183,10 +184,10 @@ a[class=sub_menu_a]{
     height: 100%;
     background-color: #f5f6f8;
 	overflow-y: auto;
-	display: none;
+	
 }
 
-.notice::before {
+.noticeBox::before {
 	content: "";
     display: block;
     position: absolute;
@@ -198,6 +199,7 @@ a[class=sub_menu_a]{
     background-repeat: no-repeat;
     width: 22px;
     height: 13px;
+     z-index: 901;
 }
 
 .n_box { /* 알림창 내용div */

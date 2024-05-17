@@ -202,7 +202,7 @@ div[class="list_place"]{ /* 리스트의 여행지 이름 div*/
 	height: 60px;
 	overflow: hidden;
 }
-p[class="list_place"]{ /* 리스트의 장소이름 글자 */
+p[class*="list_place"]{ /* 리스트의 장소이름 글자 */
 	font-size: 17px;
 	margin-top: 0;
 	font-weight: bold; 

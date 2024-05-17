@@ -86,19 +86,21 @@ function select(){
 
 		  const re_request = {
 			      placeId : pla.value,
-			      fields : ["photos"]
+			      fields : ["photos","name"]
 			    };
 		
 		service.getDetails(re_request, callback);
 	}
 }
 
-function img_fix(img_src){
+function img_fix(img_src, name){
 	var a = 0;
 	var img_v = document.getElementsByName("img_fix");
-
+	
 	for(a = 0; a < img_v.length ; a++){
-		if(img_v[a].getAttribute('src') == ""){
+		var b = a+1;
+		var name_v = document.getElementsByName("select_values"+b);
+		if(name == name_v[0].value){
 
 			img_v[a].setAttribute("src", img_src);
 			
@@ -115,7 +117,7 @@ function callback(place, status) {
 		
 		var pla_ph = photos[0].getUrl();
 		
-		img_fix(pla_ph);
+		img_fix(pla_ph, place.name);
 	  }
 	}
 	

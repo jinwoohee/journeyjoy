@@ -42,8 +42,7 @@ public class EstimateInsert implements JourneyInterface{
 		Map<String, Object> param = idb.insertMth(u_id, e_departure, e_destination, e_start_date, e_end_date, e_thema, thema_arr, e_volume, food_arr, e_airplane, e_hotel);
 		
 		request.setAttribute("e_no", param.get("e_no"));
-		
-		System.out.println("hi4");
+
 		return "planner.jj?page=schedule_insert";
 		
 	}

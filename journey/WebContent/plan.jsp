@@ -35,9 +35,6 @@ List<Product> prod = (List<Product>) request.getAttribute("product");
 String paging = (String) request.getAttribute("paging");
 
 int items = (int) Math.ceil((double) (tick.size()+prod.size())/4);
-System.out.println("플랜jsp"+paging+items);
-
-
 
 String e_destination = esti.get(0).gete_destination();
 String e_start_date = esti.get(0).gete_start_date();

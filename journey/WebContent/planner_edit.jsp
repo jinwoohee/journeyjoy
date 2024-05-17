@@ -98,7 +98,7 @@ function select(){
 		  for(var i=0 ; i < img_id.length ; i++){
 			  const re_request = {
 				      placeId : img_id[i].value,
-				      fields : ["photos","url"]
+				      fields : ["name","photos","url"]
 				    };
 			  
 			service.getDetails(re_request, callback);
@@ -106,14 +106,16 @@ function select(){
 	}
 }
 
-function img_fix(img_src, pla_url){
+function img_fix(img_src, pla_url,name){
 	var day = document.getElementById("day_cnt");
 	
 	for(var a = 1; a <= day.value ; a++){
 		var img_v = document.getElementsByName("pla_img"+a);
 		var url_v = document.getElementsByName("pla_url"+a);
+		var name_v = document.getElementsByClassName("list_place"+a);
+
 		for(var i = 0 ; i < img_v.length; i++){
-			if(img_v[i].getAttribute('src') == ""){
+			if(name == name_v[i].innerText.replaceAll("#","")){
 				
 				img_v[i].setAttribute("src", img_src);
 				url_v[i].setAttribute("href",pla_url);
@@ -132,7 +134,7 @@ function callback(place, status) {
 		
 		var pla_ph = photos[0].getUrl();
 		var pla_url = place.url; 
-		img_fix(pla_ph, pla_url);
+		img_fix(pla_ph, pla_url, place.name);
 	  }
 	}
 	
@@ -197,7 +199,6 @@ window.initMap = initMap;
 						String [] list_place = place.split(",");
 						String id_value = request.getParameter("id_selected"+a);
 						String [] list_id = id_value.split(",");
-		
 			%> 
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
@@ -211,7 +212,7 @@ window.initMap = initMap;
 					<img src="" class="place_pic" name="pla_img<%=a%>"/>
 					<div class="content_fdiv">
 						<div class="list_place">
-							<p class="list_place" >#<%=st%></p>
+							<p class="list_place<%=a%>" >#<%=st%></p>
 							<input type="hidden" id="pla_val<%=a*100+z %>" value="<%=st %>">
 						</div>
 						<div class="list_thema">
@@ -221,8 +222,8 @@ window.initMap = initMap;
 					</div>
 					<div class="content_detail">
 						<div class="list_budget">
-							<p>평균예산</p>
-							<p>약 99,000 ~</p>
+							<p>평균가격</p>
+							<p>약 22,000 ~</p>
 						</div>
 						<a href="" name="pla_url<%=a%>" target='_blank'><input type="button" name="detail" value="상세정보 보기" class="button"/></a>
 					</div>
@@ -235,6 +236,8 @@ window.initMap = initMap;
 			<%
 					}else if(edit0.equals("1")){
 						String place = request.getParameter("edit_plan"+a);
+						String pl_ids = request.getParameter("edit_plan_id"+a);
+						String pl_id = pl_ids.replaceAll("empty", "");
 						System.out.println("애드플레이스에서 온 값"+place);
 						if(place != ""){
 						String place_list = place.replaceAll("#", "").replaceAll(",","_").replaceAll("new", "").replaceAll("\\(", "").replaceAll("\\)", "").replaceAll(" ", "-");
@@ -244,33 +247,39 @@ window.initMap = initMap;
 						
 						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place_list_sp.split(",");
+						String [] list_id = pl_id.split(",");
 			%>
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
-				
-					for(String st : list_place){	
+					for(String st : list_place){
 						st_list += st+",";
+						id_list += list_id[z]+",";
 						z++;
 				%>
 				<div id="list_content<%=a*100+z%>">
-					<img src="img\japan\tokyo1.jpg" class="place_pic" />	
+					<input type="hidden" name="place_id_src<%=a %>" value="<%=list_id[z-1]%>" id="id_srcs<%=a*100+z%>">
+					<img src="" class="place_pic" name="pla_img<%=a%>"/>
 					<div class="content_fdiv">
 						<div class="list_place">
-							<p class="list_place" >#<%=st%></p>
+							<p class="list_place<%=a%>" >#<%=st%></p>
 							<input type="hidden" id="pla_val<%=a*100+z %>" value="<%=st %>">
 						</div>
 						<div class="list_thema">
 						
-						</div>	
+						</div>
 						<input type="button" name="delete" value="삭제" onclick="del_list(<%=a*100+z %>)" class="button"/>	
 					</div>
 					<div class="content_detail">
-						<p class="list_budget">평균가격<br>약 20,000원 ~</p>
-						<input type="button" name="detail" value="상세정보 보기" class="button"/>
+						<div class="list_budget">
+							<p>평균가격</p>
+							<p>약 22,000 ~</p>
+						</div>
+						<a href="" name="pla_url<%=a%>" target='_blank'><input type="button" name="detail" value="상세정보 보기" class="button"/></a>
 					</div>
 				</div>
 				<% }%>
-				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" id = "place_name<%=a%>"/>
+				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" id = "place_name<%=a%>" />
+				<input type="hidden" name="place_ids<%=a %>" value="empty<%=id_list %>" id = "place_ids<%=a %>" />
 				</div>
 			<%
 					}else{%>

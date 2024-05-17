@@ -99,8 +99,8 @@ System.out.println("edit_edit로 왔다 e_no : "+e_no);
 					<input type="button" name="edit_thema" value="수정하기" class="button" />
 				</a>						
 			</div>
-			<input type="hidden" name="e_no" value="<%=e_no%>">		
-			<input type="hidden" name="day" value="<%=day%>">	
+			<input type="hidden" name="e_no" value="<%=e_no%>">	
+			<input type="hidden" name="day" value="<%=day%>">
 			<div id="plan_list">
 			<%
 				for(int a = 1 ; a <= datecnt ; a++){

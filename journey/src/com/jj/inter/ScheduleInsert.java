@@ -21,12 +21,12 @@ public class ScheduleInsert implements JourneyInterface{
 		Cookie[] ck = request.getCookies();
 		int e_no = (int) request.getAttribute("e_no");	
 		int day = Integer.parseInt(getCookieValue(ck, "datecnt"));
-		System.out.println("hi11");
+		
 		for(int a = 1 ; a <= day ; a++) {		
-			String place_arr= new String(request.getParameter("place_name"+a).getBytes("8859_1"),"UTF-8");
-			System.out.println(place_arr);
+			String place_arr= new String(request.getParameter("place_ids"+a).getBytes("8859_1"),"UTF-8");
+			
 			String place = place_arr.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(" ", "-").replaceAll("empty", "");
-			System.out.println("스케쥴인서트"+place);
+			
 			ScheduleInsertDB isc = ScheduleInsertDB.insertdb();
 			int i = isc.insertMtd(e_no, a, place);
 		}
