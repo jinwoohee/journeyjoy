@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.jj.dao.SqlMapconfig;
 import com.jj.dto.Estimate;
+import com.jj.dto.Place;
 import com.jj.dto.Eatery;;
 
 public class EaterySelectDB {
@@ -33,6 +34,12 @@ public class EaterySelectDB {
 		List<Eatery> eatList = sqls.selectList("eatery_select",param);
 		System.out.println(e_destination);
 		sqls.close();
+		return eatList;
+	}
+	public List<Eatery> select_ea(){
+		SqlSession sqls = sql.openSession();
+		List<Eatery> eatList =sqls.selectList("eatery_selectAll");
+		
 		return eatList;
 	}
 }

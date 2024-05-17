@@ -36,5 +36,12 @@ static PlaceSelectDB pla_sel = new PlaceSelectDB();
 		sqls.close();
 		return plaList;
 	}
+	public List<Place> select_pl(){
+
+		SqlSession sqls = sql.openSession();
+		List<Place> plaList =sqls.selectList("place_selectAll");
+		
+		return plaList;
+	}
 	
 }

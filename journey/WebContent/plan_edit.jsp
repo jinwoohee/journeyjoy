@@ -2,6 +2,8 @@
 <%@page import="com.jj.dto.Schedule"%>
 <%@page import="com.jj.dto.Plan"%>
 <%@page import="java.util.List"%>
+<%@page import="com.jj.dto.Place"%>
+<%@page import="com.jj.dto.Eatery"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date" %>
 <%@page import="com.jj.dto.Product"%>
@@ -31,10 +33,14 @@ List<Estimate> esti = (List<Estimate>) request.getAttribute("estimate");
 List<Schedule> sche = (List<Schedule>) request.getAttribute("schedule");
 List<Ticket> tick = (List<Ticket>) request.getAttribute("ticket");
 List<Product> prod = (List<Product>) request.getAttribute("product");
+List<Place> plac = (List<Place>) request.getAttribute("plaList");
+List<Eatery> eate = (List<Eatery>) request.getAttribute("eatList");
+
+
 String paging = (String) request.getAttribute("paging");
 int items = (int) Math.ceil((double) (tick.size()+prod.size())/3);
 List<Plan> plan = (List<Plan>) request.getAttribute("plan");
-System.out.println("플랜editjsp"+paging);
+
 
 
 String e_destination = esti.get(0).gete_destination();
@@ -122,11 +128,21 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 							<% 
 							int num = a-1;
 							String places = sche.get(num).getPlace();
-							System.out.println("dd4d"+places);
-							String [] place_arr = places.split(",");	
+							String [] place_arr = places.split(",");
+							System.out.println("ddd3"+places);
 							out.println("<p class='place_name'>");
-							for(String st : place_arr){
-								out.println("#"+st+" ");
+							
+							for(Place pl : plac){
+								for(String st : place_arr){
+									if(pl.getPlac_id().equals(st))
+									out.println("#"+pl.getPlac_name()+" ");
+								}
+							}
+							for(Eatery ea : eate){
+								for(String st : place_arr){
+									if(ea.getEat_id().equals(st))
+									out.println("#"+ea.getEat_name()+" ");
+								}
 							}
 							out.println("</p>");
 							%>

@@ -273,11 +273,16 @@
 		select * from account where e_no = #{e_no} and acc_order > 0
 	</select>
 	<!-- 가계부삭제 -->
-	<delete id="account_delete" parameterType="int">
+	<delete id="account_delete" parameterType="int" >
 		delete from account where e_no = #{e_no}
 	</delete>
-	
-	
+	<!--여행지 불러오기 -->
+	<select id="place_selectAll" resultType="com.jj.dto.Place" parameterType="String">
+		select * from place 
+	</select>
+	<select id="eatery_selectAll" resultType="com.jj.dto.Eatery" parameterType="String">
+		select * from eatery
+	</select>
 	
 	<!-- 윤영 부분 -->
 	<!-- 패키지 insert -->

@@ -8,14 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jj.conn.AccountSelectDB;
+import com.jj.conn.EaterySelectDB;
 import com.jj.conn.EstimateSelectDB;
+import com.jj.conn.PlaceSelectDB;
 import com.jj.conn.PlanSelectDB;
 import com.jj.conn.ProductSelectDB;
 import com.jj.conn.ScheduleSelectDB;
 import com.jj.conn.TicketSelectDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Account;
+import com.jj.dto.Eatery;
 import com.jj.dto.Estimate;
+import com.jj.dto.Place;
 import com.jj.dto.Plan;
 import com.jj.dto.Product;
 import com.jj.dto.Schedule;
@@ -72,6 +76,15 @@ public class EstimateSelect implements JourneyInterface{
 				TicketSelectDB tickdb = TicketSelectDB.seldb(); // 티켓 select
 				List<Ticket> tickList = tickdb.selectMth(ticket);
 				request.setAttribute("ticket", tickList);
+				
+				EaterySelectDB eatsel = EaterySelectDB.seldb(); //음식점list select
+				List<Eatery>eatList = eatsel.select_ea(); 
+				request.setAttribute("eatList", eatList);
+				
+				PlaceSelectDB palsel = PlaceSelectDB.seldb(); //여행지 list select
+				List<Place>plaList = palsel.select_pl();		
+				request.setAttribute("plaList", plaList);
+				
 			
 				return "plan.jsp"; 
 				
@@ -103,6 +116,15 @@ public class EstimateSelect implements JourneyInterface{
 				AccountSelectDB accdb = AccountSelectDB.seldb(); //가계부 select
 				List<Account> accList = accdb.selmtd(e_no);
 				request.setAttribute("account", accList);
+				
+
+				EaterySelectDB eatsel = EaterySelectDB.seldb(); //음식점list select
+				List<Eatery>eatList = eatsel.select_ea(); 
+				request.setAttribute("eatList", eatList);
+				
+				PlaceSelectDB palsel = PlaceSelectDB.seldb(); //여행지 list select
+				List<Place>plaList = palsel.select_pl();		
+				request.setAttribute("plaList", plaList);
 				
 				System.out.println("my끝");
 				
@@ -163,6 +185,15 @@ public class EstimateSelect implements JourneyInterface{
 				AccountSelectDB accdb = AccountSelectDB.seldb(); //가계부 select
 				List<Account> accList = accdb.selmtd(e_no);
 				request.setAttribute("account", accList);
+				
+
+				EaterySelectDB eatsel = EaterySelectDB.seldb(); //음식점list select
+				List<Eatery>eatList = eatsel.select_ea(); 
+				request.setAttribute("eatList", eatList);
+				
+				PlaceSelectDB palsel = PlaceSelectDB.seldb(); //여행지 list select
+				List<Place>plaList = palsel.select_pl();		
+				request.setAttribute("plaList", plaList);
 			
 				return "plan_edit.jsp"; 
 				

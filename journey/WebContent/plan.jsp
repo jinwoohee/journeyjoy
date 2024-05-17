@@ -1,5 +1,7 @@
 <%@page import="com.jj.dto.Product"%>
 <%@page import="com.jj.dto.Ticket"%>
+<%@page import="com.jj.dto.Place"%>
+<%@page import="com.jj.dto.Eatery"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Estimate"%>
@@ -32,6 +34,9 @@ List<Estimate> esti = (List<Estimate>) request.getAttribute("estimate");
 List<Schedule> sche = (List<Schedule>) request.getAttribute("schedule");
 List<Ticket> tick = (List<Ticket>) request.getAttribute("ticket");
 List<Product> prod = (List<Product>) request.getAttribute("product");
+List<Place> plac = (List<Place>) request.getAttribute("plaList");
+List<Eatery> eate = (List<Eatery>) request.getAttribute("eatList");
+
 String paging = (String) request.getAttribute("paging");
 
 int items = (int) Math.ceil((double) (tick.size()+prod.size())/4);
@@ -66,7 +71,10 @@ String aaaa = datecnt+"";
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>	
 	<script type="text/javascript" src="js\plan.js"></script>
 
-	<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initMap" type="text/javascript"> </script>
+	<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
 </head>
 
 <body>
@@ -130,12 +138,21 @@ String aaaa = datecnt+"";
 						<div class="place_name_div">
 							<% 
 							int num = a-1;
-							String places = sche.get(num).getPlace().replaceAll("-", " ");
-							System.out.println("ddd"+places);
-							String [] place_arr = places.split(",");	
+							String places = sche.get(num).getPlace();
+							String [] place_arr = places.split(",");
 							out.println("<p class='place_name'>");
-							for(String st : place_arr){
-								out.println("#"+st+" ");
+							
+							for(Place pl : plac){
+								for(String st : place_arr){
+									if(pl.getPlac_id().equals(st))
+									out.println("#"+pl.getPlac_name()+" ");
+								}
+							}
+							for(Eatery ea : eate){
+								for(String st : place_arr){
+									if(ea.getEat_id().equals(st))
+									out.println("#"+ea.getEat_name()+" ");
+								}
 							}
 							out.println("</p>");
 							%>
@@ -401,12 +418,21 @@ String aaaa = datecnt+"";
 						<div class="place_name_div">
 							<% 
 							int num = a-1;
-							String places = sche.get(num).getPlace().replaceAll("-", " ");
+							String places = sche.get(num).getPlace();
 							String [] place_arr = places.split(",");
-							System.out.println("ddd3"+places);
 							out.println("<p class='place_name'>");
+							
 							for(String st : place_arr){
-								out.println("#"+st+" ");
+								for(Place pl : plac){
+									if(pl.getPlac_id().equals(st)){
+										out.println("#"+pl.getPlac_name()+" ");
+									}
+								}
+								for(Eatery ea : eate){
+									if(ea.getEat_id().equals(st)){
+										out.println("#"+ea.getEat_name()+" ");
+									}
+								}
 							}
 							out.println("</p>");
 							%>
@@ -417,18 +443,31 @@ String aaaa = datecnt+"";
 					</div>
 					
 					<div id="detail_info<%=a%>">
-							<div id="map<%=a%>">
+							<div id="map<%=a%>" name = "maps">
 							</div>
 						
 						<div class="pl_eat_div">
 						<%int i = 0;
 							int number;
 							for(String st : place_arr){
-								i++;
-								number = a*100+i;
-								out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name"+number+"'>"+st+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up' onclick='up_pla("+number+")'><img src='img/icon/arrow_down.png' class='down' onclick='down_pla("+number+")'></div></div>");
-								out.println("<input type='hidden' name = 'change_value"+a+"' id='change_name"+number+"' value='"+st+"'>");
+								for(Place pl : plac){
+									if(pl.getPlac_id().equals(st)){
+										i++;
+										number = a*100+i;
+										out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name"+number+"'>"+pl.getPlac_name()+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up' onclick='up_pla("+number+")'><img src='img/icon/arrow_down.png' class='down' onclick='down_pla("+number+")'></div></div>");
+										out.println("<input type='hidden' name = 'change_value"+a+"' id='change_name"+number+"' value='"+st+"'>");
+									}
+								}
+								for(Eatery ea : eate){
+									if(ea.getEat_id().equals(st)){
+										i++;
+										number = a*100+i;
+										out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name"+number+"'>"+ea.getEat_name()+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up' onclick='up_pla("+number+")'><img src='img/icon/arrow_down.png' class='down' onclick='down_pla("+number+")'></div></div>");
+										out.println("<input type='hidden' name = 'change_value"+a+"' id='change_name"+number+"' value='"+st+"'>");
+									}
+								}
 							}
+						
 						%>
 						</div>
 					</div>
