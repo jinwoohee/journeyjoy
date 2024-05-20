@@ -7,8 +7,17 @@ $(function() {
 	$("input[name='save_acc']").click(function(){
 		$("form").attr("action","planner.jj?page=plan_update");
 	});
+	   $("img[name*='acc']").mouseover(function(){
+		   $(this).css({'box-shadow':'rgb(0, 0, 84) 1px 1px','border':'2px solid rgb(218, 218, 218)'});
+		   var id = $(this).attr('id');
+		   $("label[id='"+id+"']").css({});
+	   });
+	   $("img[name*='acc']").mouseout(function(){
+		   $(this).css({'box-shadow':'0px 0px 0px 0px','border':'0px'});
+		   var id = $(this).attr('id');
+		   $("label[id='"+id+"']").css({});
+	   });
 	
-
 	  const kindWrap =  document.querySelector('#slide_div');
 	  const slider = kindWrap.querySelector('.slider');
 	  const slideLis = document.getElementById('plan_li');
@@ -39,16 +48,7 @@ $(function() {
 	          currentIdx -= 1;
 		   }
 	   });
-	   $("img[id='sort_img6']").mouseover(function(){
-		   $(this).css({'box-shadow':'rgb(0, 0, 84) 1px 1px','border':'2px solid rgb(218, 218, 218)'});
-		   var id = $(this).attr('id');
-		   $("label[id='"+id+"']").css({'margin-right':'16px'});
-	   });
-	   $("img[name*='acc']").mouseout(function(){
-		   $(this).css({'box-shadow':'0px 0px 0px 0px','border':'0px'});
-		   var id = $(this).attr('id');
-		   $("label[id='"+id+"']").css({'margin-right':'20px'});
-	   });
+
 });
 
 

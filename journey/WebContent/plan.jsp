@@ -102,7 +102,7 @@ String aaaa = datecnt+"";
 			<div id="radio_div">
 				<label for="plan_btn" id="plan_radio_1" onclick="change_main('1')">여행계획서</label>			
 				<label for="gagyebu_btn" id="plan_radio_2" onclick="change_main('2')">가계부</label>
-				<label for="checklist_btn" id="plan_ra_empty" onclick="change_main('3')"></label>
+				<!-- <label for="checklist_btn" id="plan_ra_empty" onclick="change_main('3')"></label> -->
 			</div>
 			<input type="hidden" name="selected_prod" id="selected_prod" value="<%=my_prod%>">
 			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">
@@ -396,7 +396,7 @@ String aaaa = datecnt+"";
 				</div>
 				<input type="submit" name="save_acc" value="저장">
 			</div>
-		</div>
+		
 			<%}else{ %>
 	<input type="hidden" id="item" value="<%= items%>">
 	<input type="hidden" name="day" value="<%=aaaa %>">
@@ -406,7 +406,7 @@ String aaaa = datecnt+"";
 			<div id="radio_div">
 				<label for="plan_btn" id="plan_radio_1" onclick="change_main('1')">여행계획서</label>			
 				<label for="gagyebu_btn" id="plan_radio_2" onclick="change_main('2')">가계부</label>
-				<label for="checklist_btn" id="plan_radio_3" onclick="change_main('3')">체크리스트</label>
+				<!-- <label for="checklist_btn" id="plan_radio_3" onclick="change_main('3')">체크리스트</label> -->
 			</div>
 			<input type="hidden" name="selected_prod" id="selected_prod" value="">
 			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">
@@ -703,9 +703,7 @@ String aaaa = datecnt+"";
 		<%} %>
 		
 		</div>
-		<div id="plandiv_3">
-			<p>체크리스트</p>
-		</div>
+	
 		</div>
 		</form>
 	</section>
