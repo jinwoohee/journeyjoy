@@ -319,7 +319,7 @@ String aaaa = datecnt+"";
          			<input type="button" name="close_acc_one0" value="닫기" onclick="close_acc_one('0')">
   					<input type="button" name="add_acc_one0" value="추가하기" onclick="add_acc('0')">
 				</div>
-				</div>
+				</div> 
 				
 				<% int rs=0;
 					for(int a = 1 ; a <= datecnt ; a++){
