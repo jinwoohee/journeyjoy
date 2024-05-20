@@ -28,7 +28,7 @@ public class TicketSelectDB {
 		param.put("tick_sort", ticket);
 		
 		List<Ticket> tickList = sqls.selectList("ticket_select",param);
-		System.out.println("티켓결1과"+tickList.size());
+	
 		sqls.close();
 		return tickList ;
 	}
@@ -41,7 +41,7 @@ public class TicketSelectDB {
 		param.put("tick_sort", ticket);
 		
 		List<Ticket> tickList = sqls.selectList("ticket_select",param);
-		System.out.println("티켓결과2"+tickList.size());
+	
 		sqls.close();
 		return tickList ;
 	}

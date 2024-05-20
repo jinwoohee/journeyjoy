@@ -40,7 +40,7 @@ List<Eatery> eate = (List<Eatery>) request.getAttribute("eatList");
 String paging = (String) request.getAttribute("paging");
 int items = (int) Math.ceil((double) (tick.size()+prod.size())/3);
 List<Plan> plan = (List<Plan>) request.getAttribute("plan");
-
+String my_prod = plan.get(0).getPlan_product();
 
 
 String e_destination = esti.get(0).gete_destination();
@@ -97,7 +97,7 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 			
 			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">
 			<div id="plandiv_1">
-				<input type="text" name="plan_subject" placeholder="계획서 제목(최대50자)" maxlength="50" value="<%=esti.get(0).getu_id()%>의 <%=esti.get(0).gete_destination() %>여행계획서"/>
+				<input type="text" name="plan_subject" placeholder="계획서 제목(최대50자)" maxlength="50" value="<%=plan.get(0).getPlan_title()%>"/>
 				<div id="plan_info">
 					<p id="city"><%=e_destination %></p>
 					<p id="plan_date"><%=sdt %>&nbsp;~&nbsp;<%=edt %></p>
@@ -132,16 +132,16 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 							System.out.println("ddd3"+places);
 							out.println("<p class='place_name'>");
 							
-							for(Place pl : plac){
-								for(String st : place_arr){
-									if(pl.getPlac_id().equals(st))
-									out.println("#"+pl.getPlac_name()+" ");
+							for(String st : place_arr){
+								for(Place pl : plac){
+									if(pl.getPlac_id().equals(st)){
+										out.println("#"+pl.getPlac_name()+" ");
+									}
 								}
-							}
-							for(Eatery ea : eate){
-								for(String st : place_arr){
-									if(ea.getEat_id().equals(st))
-									out.println("#"+ea.getEat_name()+" ");
+								for(Eatery ea : eate){
+									if(ea.getEat_id().equals(st)){
+										out.println("#"+ea.getEat_name()+" ");
+									}
 								}
 							}
 							out.println("</p>");
@@ -161,11 +161,26 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 						<%int i = 0;
 							int number;
 							for(String st : place_arr){
-								i++;
-								number = a*100+i;
-								out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name"+number+"'>"+st+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up' onclick='up_pla("+number+")'><img src='img/icon/arrow_down.png' class='down' onclick='down_pla("+number+")'></div></div>");
-								out.println("<input type='hidden' name = 'change_value"+a+"' id='change_name"+number+"' value='"+st+"'>");
+								for(Place pl : plac){
+									if(pl.getPlac_id().equals(st)){
+										i++;
+										number = a*100+i;
+										out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name"+number+"'>"+pl.getPlac_name()+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up' onclick='up_pla("+number+")'><img src='img/icon/arrow_down.png' class='down' onclick='down_pla("+number+")'></div></div>");
+										out.println("<input type='hidden' name = 'change_value"+a+"' id='change_name"+number+"' value='"+st+"'>");
+										out.println("<input type='hidden' name = 'before_value"+a+"' id='before_name"+number+"' value='"+st+"'>");
+									}
+								}
+								for(Eatery ea : eate){
+									if(ea.getEat_id().equals(st)){
+										i++;
+										number = a*100+i;
+										out.println("<div class='places_"+a+"'><div class='no'>"+i+"</div><div id='plac_name"+number+"'>"+ea.getEat_name()+"</div><div class='up_down_btn'><img src='img/icon/arrow_up.png' class='up' onclick='up_pla("+number+")'><img src='img/icon/arrow_down.png' class='down' onclick='down_pla("+number+")'></div></div>");
+										out.println("<input type='hidden' name = 'change_value"+a+"' id='change_name"+number+"' value='"+st+"'>");
+										out.println("<input type='hidden' name = 'before_value"+a+"' id='before_name"+number+"' value='"+st+"'>");
+									}
+								}
 							}
+						
 						%>
 						</div>
 					</div>
@@ -184,6 +199,13 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 								<td id="product_sub_price">가격</td>
 								<td id="del">삭제</td>
 							</tr>
+							<%if(my_prod.equals("")) {%>
+								<tr id="sel_prod_plz">
+									<td id="product_add_name">추가한 상품이 없습니다.</td>
+									<td></td>
+									<td></td>
+								</tr>
+							<%} %>
 							<% String [] pr_arr = plan.get(0).getPlan_product().split(",");
 							String products = "";
 								for(Product pr : prod){

@@ -47,7 +47,7 @@ p[id*="day"]{ /*day 글자 */
 	font-weight: bold;
 	margin-top : 14px;
 	cursor : pointer;
-	padding : 5px 20px;
+	padding : 9px 20px;
 }
 p[id="day1"]{ /*day 글자 */
 	border-top: 3px solid #6C94B8;

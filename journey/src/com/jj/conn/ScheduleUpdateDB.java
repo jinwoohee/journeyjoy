@@ -15,11 +15,9 @@ static ScheduleUpdateDB sch_up = new ScheduleUpdateDB();
 	
 	SqlSessionFactory sql = SqlMapconfig.getSqlSession();
 	
-	public int updateMtd(int e_no, int sche_day, String places) {	
+	public int updateMtd(int e_no, int sche_day, String place) {	
 		Schedule dto = new Schedule();
-		System.out.println("업데이트 db"+places);
-		
-		String place = places.replaceAll("_", ",");
+
 		dto.setE_no(e_no);
 		dto.setSche_day(sche_day);
 		dto.setPlace(place);

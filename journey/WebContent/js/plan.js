@@ -123,6 +123,11 @@ function add_prod(num){
 	
 	var after = select.value+product_no+",";
 	select.setAttribute('value',after);
+	
+	var sel_pla = document.getElementById("sel_prod_plz");
+	if(select.value != ""){
+		sel_pla.style.display = "none";
+	}
 }
 function cancel_prod(num){
 	var select = document.getElementById("selected_prod");
@@ -138,6 +143,10 @@ function cancel_prod(num){
 	var div = document.getElementById("product_item"+num);
 	div.style.display = "block";
 	
+	var sel_pla = document.getElementById("sel_prod_plz");
+	if(select.value == ""){
+		sel_pla.style.display = "block";
+	}
 }
 
 function initMap() {
@@ -180,6 +189,8 @@ function up_pla(num){
 	var change = document.getElementById("plac_name"+ch_num);
 	var save_me = document.getElementById("change_name"+num);
 	var save_change = document.getElementById("change_name"+ch_num);
+	var before_me = document.getElementById("before_name"+num);
+	var before_change = document.getElementById("before_name"+ch_num);	
 	
 	var me_val = me.innerText;
 	var change_val = change.innerText;
@@ -189,7 +200,12 @@ function up_pla(num){
 	
 	me.textContent = save_me.value;
 	change.textContent = save_change.value;
-
+	
+	save_me.setAttribute('value',before_change.value);
+	save_change.setAttribute('value',before_me.value);
+	
+	before_me.setAttribute('value',save_me.value);
+	before_change.setAttribute('value',save_change.value);
 }
 function down_pla(num){
 
@@ -198,15 +214,23 @@ function down_pla(num){
 	var change = document.getElementById("plac_name"+ch_num);
 	var save_me = document.getElementById("change_name"+num);
 	var save_change = document.getElementById("change_name"+ch_num);
+	var before_me = document.getElementById("before_name"+num);
+	var before_change = document.getElementById("before_name"+ch_num);	
 	
 	var me_val = me.innerText;
 	var change_val = change.innerText;
 	
 	save_me.setAttribute('value',change_val);
 	save_change.setAttribute('value',me_val);
-
+	
 	me.textContent = save_me.value;
-	change.textContent = save_change.value;	
+	change.textContent = save_change.value;
+	
+	save_me.setAttribute('value',before_change.value);
+	save_change.setAttribute('value',before_me.value);
+	
+	before_me.setAttribute('value',save_me.value);
+	before_change.setAttribute('value',save_change.value);	
 }
 
 function add_acc(num){

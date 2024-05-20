@@ -98,7 +98,10 @@ function login_check(){
 	alert("로그인을 해주세요.");
 }
 function select_check(){
-	if(document.getElementById("city").value == "1"){
+	var place_check = document.querySelectorAll("input[name='place']:checked").length;
+	var eat_check = document.querySelectorAll("input[name='eat']:checked").length;
+	
+	if(document.getElementById("city_text").value === "목적지(도시)"){
 		alert("목적지를 선택해주세요.");
 		return false;
 	}else if(document.getElementById("startDt").value == ''){
@@ -107,8 +110,14 @@ function select_check(){
 	}else if(document.getElementById("endDt").value == ''){
 		alert("여행 종료일을 입력해주세요.");
 		return false;
+	}else if(place_check == 0){
+		alert("테마를 입력해주세요.");
+		return false;
+	}else if(eat_check == 0){
+		alert("음식취향을 입력해주세요.")
+		return false;
 	}else{
-		
+
 	}
 	
 }

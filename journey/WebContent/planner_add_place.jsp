@@ -44,12 +44,11 @@
 	
 	
 	String e_no = request.getParameter("e_no");
-	System.out.println(e_no+" : add플레이스 e_no");
-	
+
 	if(e_no == null){
 		e_no = "null";	
 	}
-	System.out.println("");
+
 %>
 <html>
 <head>
@@ -273,10 +272,9 @@ window.initMap = initMap;
 							out.println("<input type='hidden' name='edit_plan"+a+"' value='"+place_attr+"' id='edited"+a+"'>");
 						}else{
 							out.println("<p id='places_text"+a+"'>");
-							System.out.println("1번");
+			
 							String pa_list ="";						
 							String place_edit = place_cookie.replaceAll("empty", "").replaceAll("-", " ");
-							System.out.println("aaa"+place_edit);
 							String [] pla_ck = place_edit.split("_");
 							for(String pa : pla_ck){
 								out.println("#"+pa);

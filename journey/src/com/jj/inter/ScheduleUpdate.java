@@ -17,7 +17,6 @@ static ScheduleUpdate sche_upd = new ScheduleUpdate();
 
 	public String journeyInterface(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Cookie[] ck = request.getCookies();
-		System.out.println("hi");
 		
 		int e_no = Integer.parseInt(request.getParameter("e_no"));	
 		int day = Integer.parseInt(request.getParameter("day"));
@@ -26,7 +25,7 @@ static ScheduleUpdate sche_upd = new ScheduleUpdate();
 		System.out.println("day : "+day);
 		
 		for(int a = 1 ; a <= day ; a++) {		
-			String place_arr= new String(request.getParameter("place_name"+a).getBytes("8859_1"),"UTF-8");
+			String place_arr= new String(request.getParameter("place_ids"+a).getBytes("8859_1"),"UTF-8");
 			System.out.println(place_arr);
 			String place = place_arr.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("empty", "");
 			System.out.println("스케쥴업데이트"+place);

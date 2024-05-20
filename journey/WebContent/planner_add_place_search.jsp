@@ -113,8 +113,8 @@ function plan_add_btn(num){
 	$("input[name='place_one']").each(function(){
 	    if( $(this).is(":checked") == true ){	    	
 	      var id = $(this).attr('id');
-	      var checkVal = " #"+$("label[for="+id+"]").text()+"(new)";
-	      var checkvalue = "#"+$("label[for="+id+"]").text()+"(new)"; 
+	      var checkVal = " #"+$("label[for="+id+"]").text()+"!new!";
+	      var checkvalue = "#"+$("label[for="+id+"]").text()+"!new!"; 
 	      document.getElementById("places_text"+num).textContent = before+checkVal ;
 	      
 	      var id_v = $(this).val();
@@ -143,7 +143,7 @@ function plan_add_btn(num){
 					<%
 					List<Place> pla = (List<Place>) request.getAttribute("search_place");
 					List<Eatery> eat = (List<Eatery>) request.getAttribute("search_eatery");
-					System.out.println(pla.size());
+
 					if(pla == null && eat == null){
 						out.println("<input type='radio' name='place_one' id='search_plz'><label for='search_plz' class='pl_label'>검색어를 입력해주세요.</label>");
 						out.println("</div>");		

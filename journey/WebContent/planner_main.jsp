@@ -446,7 +446,7 @@ String u_id = (String) session.getAttribute("u_id");
 						                    		<p class="main_text">어떤 여행지를 가고 싶으신가요?</p>
 						                    		<hr>
 						                    	</div>
-						                        <div id="place_div">
+						                        <div id="place_div">						                        	
 						                        	<input type="checkbox" name="place" value="놀이공원" id="place1" onchange="checking(this.id)">
 					                                <label for="place1" class="place_check">놀이공원</label>
 					                                <input type="checkbox" name="place" value="박물관/미술관" id="place2" onchange="checking(this.id)">

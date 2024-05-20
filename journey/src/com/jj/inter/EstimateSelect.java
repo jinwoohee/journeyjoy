@@ -155,12 +155,20 @@ public class EstimateSelect implements JourneyInterface{
 				TicketSelectDB tickdb = TicketSelectDB.seldb(); // 티켓 select
 				List<Ticket> tickList = tickdb.select_myMth(ticket);
 				request.setAttribute("ticket", tickList);
-				System.out.println("edit끝");
+				
+				EaterySelectDB eatsel = EaterySelectDB.seldb(); //음식점list select
+				List<Eatery>eatList = eatsel.select_ea(); 
+				request.setAttribute("eatList", eatList);
+				
+				PlaceSelectDB palsel = PlaceSelectDB.seldb(); //여행지 list select
+				List<Place>plaList = palsel.select_pl();		
+				request.setAttribute("plaList", plaList);
+				System.out.println(plaList.size()+eatList.size()+"hi");
 				
 				request.setAttribute("paging", "my_edit");
 				return "planner_edit_edit.jsp";
 			}
-			else if(wh.equals("detail_my_edit")){ // 여행계획서 처음 저장시에 detail부분으로 넘어갈때
+			else if(wh.equals("detail_my_edit")){ // 여행계획서 수정 시에 detail부분으로 넘어갈때
 				System.out.println("이스티 셀렉트"+wh);
 				int e_no = Integer.parseInt(num);
 				List<Estimate> estiList = estidb.selmtd(e_no); // 견적 select
