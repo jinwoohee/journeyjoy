@@ -660,10 +660,10 @@ input[name*="acc_content"]{ /* 결제 내용 쓰는 text*/
 	margin-top: 15px;
 	margin-bottom: 10px;
 }
-input[type="radio"]{ /*카테고리 버튼*/
+input[type="checkbox"]{ /*카테고리 버튼*/
 	display: none;
 }
-img[src*="acc"]{ /*카테고리 버튼 이미지*/
+img[name*="acc"]{ /*카테고리 버튼 이미지*/
 	width: 40px;
 	height: 40px;
 	border-radius: 5px;
@@ -697,11 +697,7 @@ input[name*="del_place"]{
 	font-size : 12px;
 	border : none;
 }
-/*라디오버튼 */
-input[type=radio]:checked + label { /* 큰테마와 인원유형 라디오버튼 눌렀을때 */
-	background-color: #0D112D;
-	color: white;
-}
+
 input[name="save_acc"]{/*가계부 저장버튼*/
 	width: 240px;
 	height: 45px;

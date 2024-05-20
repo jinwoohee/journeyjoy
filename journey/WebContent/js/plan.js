@@ -39,13 +39,13 @@ $(function() {
 	          currentIdx -= 1;
 		   }
 	   });
-	   $("img[src*='acc']").mouseover(function(){
-		   $(this).css({'box-shadow':'rgb(0, 0, 84) 1px 1px','border':'2px solid rgb(218, 218, 218)','margin-top':'-5px'});
+	   $("img[id='sort_img6']").mouseover(function(){
+		   $(this).css({'box-shadow':'rgb(0, 0, 84) 1px 1px','border':'2px solid rgb(218, 218, 218)'});
 		   var id = $(this).attr('id');
 		   $("label[id='"+id+"']").css({'margin-right':'16px'});
 	   });
-	   $("img[src*='acc']").mouseout(function(){
-		   $(this).css({'box-shadow':'0px 0px 0px 0px','border':'0px','margin-top':'0px'});
+	   $("img[name*='acc']").mouseout(function(){
+		   $(this).css({'box-shadow':'0px 0px 0px 0px','border':'0px'});
 		   var id = $(this).attr('id');
 		   $("label[id='"+id+"']").css({'margin-right':'20px'});
 	   });
@@ -331,17 +331,23 @@ function close_acc_one(num){
 	$("div[id='pay_one_div"+num+"']").slideUp(300);
 } 
 
-function checking(id){ /*테마 체크 여부 */
+function checking(id,num){ /* 카테고리 체크*/
+	$("input[type='checkbox']").prop("checked", false);
 	$("input[id="+id+"]").prop("checked",true);
-	
+	var all_img = document.getElementsByName("acc"+num);
+	for(var a = 0; a < all_img.length ; a++){
+		var result = all_img[a].src.replaceAll("_check","");
+		all_img[a].setAttribute("src",result);
+	}
+
 	var img_id = $("label[for='"+id+"']").attr('id');
 	var before_src =  $("img[id='"+img_id+"']").attr('src').replaceAll("_check","");
 	var before_cut = before_src.replaceAll(".png","");
 	var after = before_cut+"_check.png";
 
-	if($("input[id='"+id+"']").is(":checked")){  
+	
+	if($("input[type='checkbox']").is(":checked")){  
 	    $("img[id='"+img_id+"']").attr("src",after);
-	  }else{
-	    $("img[id='"+img_id+"']").attr("src",result);
+	    
 	  }
 }

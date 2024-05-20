@@ -300,20 +300,20 @@ String aaaa = datecnt+"";
                      <input type="text" name="acc_content0" maxlength="25" id= "acc_content0" placeholder="내용을 입력해주세요.">
                 
                      <p class="sort_text">카테고리</p>
-                      <input type="radio" name="acc_sort0" id="acc_sort0" value="숙소">
-                      <label for="acc_sort0" id="sort_img0"><img src="img/icon/acc_hotel.png" id="sort_img0"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sort1" value="항공">
-                      <label for="acc_sort1" id="sort_img1"><img src="img/icon/acc_airplane.png" id="sort_img1"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sort2" value="교통">
-                      <label for="acc_sort2" id="sort_img2"><img src="img/icon/acc_car.png" id="sort_img2"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sort3" value="관광">
-                      <label for="acc_sort3" id="sort_img3"><img src="img/icon/acc_trip.png" id="sort_img3"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sort4" value="식비">
-                      <label for="acc_sort4" id="sort_img4"><img src="img/icon/acc_food.png" id="sort_img4"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sort5" value="쇼핑"> 
-                      <label for="acc_sort5" id="sort_img5"><img src="img/icon/acc_shopping.png" id="sort_img5"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sort6" value="기타">
-                      <label for="acc_sort6" id="sort_img6"><img src="img/icon/acc_etc.png" id="sort_img6"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort0" value="숙소" onclick="checking(this.id,0)">
+                      <label for="acc_sort0" id="sort_img0"><img src="img/icon/acc_hotel.png" id="sort_img0" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort1" value="항공" onclick="checking(this.id,0)">
+                      <label for="acc_sort1" id="sort_img1"><img src="img/icon/acc_airplane.png" id="sort_img1" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort2" value="교통" onclick="checking(this.id,0)">
+                      <label for="acc_sort2" id="sort_img2"><img src="img/icon/acc_car.png" id="sort_img2" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort3" value="관광" onclick="checking(this.id,0)">
+                      <label for="acc_sort3" id="sort_img3"><img src="img/icon/acc_trip.png" id="sort_img3" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort4" value="식비" onclick="checking(this.id,0)">
+                      <label for="acc_sort4" id="sort_img4"><img src="img/icon/acc_food.png" id="sort_img4" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort5" value="쇼핑" onclick="checking(this.id,0)"> 
+                      <label for="acc_sort5" id="sort_img5"><img src="img/icon/acc_shopping.png" id="sort_img5" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort6" value="기타" onclick="checking(this.id,0)">
+                      <label for="acc_sort6" id="sort_img6"><img src="img/icon/acc_etc.png" id="sort_img6" name="acc0"/></label>
 					  
 					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one0" value="닫기" onclick="close_acc_one('0')">
@@ -368,20 +368,20 @@ String aaaa = datecnt+"";
                      <input type="text" name="acc_content<%=a%>" maxlength="25" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
                 
                      <p class="sort_text">카테고리</p>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts1" value="숙소">
-                      <label for="acc_sorts1" id="sort_img0_<%=a%>"><img src="img/icon/acc_hotel.png" id="sort_img0_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts2" value="항공">
-                      <label for="acc_sorts2" id="sort_img1_<%=a%>"><img src="img/icon/acc_airplane.png" id="sort_img1_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts3" value="교통">
-                      <label for="acc_sorts3" id="sort_img2_<%=a%>"><img src="img/icon/acc_car.png" id="sort_img2_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts4" value="관광">
-                      <label for="acc_sorts4" id="sort_img3_<%=a%>"><img src="img/icon/acc_trip.png" id="sort_img3_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts5" value="식비">
-                      <label for="acc_sorts5" id="sort_img4_<%=a%>"><img src="img/icon/acc_food.png" id="sort_img4_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts6" value="쇼핑">
-                      <label for="acc_sorts6" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts7" value="기타">
-                      <label for="acc_sorts7"><img src="img/icon/acc_etc.png"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts1" value="숙소" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts1" id="sort_img0_<%=a%>"><img src="img/icon/acc_hotel.png" id="sort_img0_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts2" value="항공" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts2" id="sort_img1_<%=a%>"><img src="img/icon/acc_airplane.png" id="sort_img1_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts3" value="교통" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts3" id="sort_img2_<%=a%>"><img src="img/icon/acc_car.png" id="sort_img2_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts4" value="관광" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts4" id="sort_img3_<%=a%>"><img src="img/icon/acc_trip.png" id="sort_img3_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts5" value="식비" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts5" id="sort_img4_<%=a%>"><img src="img/icon/acc_food.png" id="sort_img4_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts6" value="쇼핑" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts6" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts7" value="기타" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts7"><img src="img/icon/acc_etc.png" name="acc<%=a%>"/></label>
 						
 					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one<%=a %>" value="닫기" onclick="close_acc_one(<%=a%>)">
@@ -617,20 +617,20 @@ String aaaa = datecnt+"";
                      <input type="text" name="acc_content0" maxlength="25" id= "acc_content0" placeholder="내용을 입력해주세요.">
                 
                      <p class="sort_text">카테고리</p>
-                      <input type="radio" name="acc_sort0" id="acc_sorts0" value="숙소" onclick="checking(this.id)">
-                      <label for="acc_sorts0" id="sort_img0"><img src="img/icon/acc_hotel.png" id="sort_img0"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sorts1" value="항공" onclick="checking(this.id)">
-                      <label for="acc_sorts1" id="sort_img1"><img src="img/icon/acc_airplane.png" id="sort_img1"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sorts2" value="교통" onclick="checking(this.id)">
-                      <label for="acc_sorts2" id="sort_img2"><img src="img/icon/acc_car.png" id="sort_img2"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sorts3" value="관광" onclick="checking(this.id)"> 
-                      <label for="acc_sorts3" id="sort_img3"><img src="img/icon/acc_trip.png" id="sort_img3"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sorts4" value="식비" onclick="checking(this.id)">
-                      <label for="acc_sorts4" id="sort_img4"><img src="img/icon/acc_food.png" id="sort_img4"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sorts5" value="쇼핑" onclick="checking(this.id)"> 
-                      <label for="acc_sorts5" id="sort_img5"><img src="img/icon/acc_shopping.png" id="sort_img5"/></label>
-                      <input type="radio" name="acc_sort0" id="acc_sorts6" value="기타" onclick="checking(this.id)">
-                      <label for="acc_sorts6" id="sort_img6"><img src="img/icon/acc_etc.png" id="sort_img6"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort0" value="숙소" onclick="checking(this.id,0)">
+                      <label for="acc_sort0" id="sort_img0"><img src="img/icon/acc_hotel.png" id="sort_img0" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort1" value="항공" onclick="checking(this.id,0)">
+                      <label for="acc_sort1" id="sort_img1"><img src="img/icon/acc_airplane.png" id="sort_img1" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort2" value="교통" onclick="checking(this.id,0)">
+                      <label for="acc_sort2" id="sort_img2"><img src="img/icon/acc_car.png" id="sort_img2" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort3" value="관광" onclick="checking(this.id,0)">
+                      <label for="acc_sort3" id="sort_img3"><img src="img/icon/acc_trip.png" id="sort_img3" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort4" value="식비" onclick="checking(this.id,0)">
+                      <label for="acc_sort4" id="sort_img4"><img src="img/icon/acc_food.png" id="sort_img4" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort5" value="쇼핑" onclick="checking(this.id,0)"> 
+                      <label for="acc_sort5" id="sort_img5"><img src="img/icon/acc_shopping.png" id="sort_img5" name="acc0"/></label>
+                      <input type="checkbox" name="acc_sort0" id="acc_sort6" value="기타" onclick="checking(this.id,0)">
+                      <label for="acc_sort6" id="sort_img6"><img src="img/icon/acc_etc.png" id="sort_img6" name="acc0"/></label>
 					  
 					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one0" value="닫기" onclick="close_acc_one('0')">
@@ -675,20 +675,20 @@ String aaaa = datecnt+"";
                      <input type="text" name="acc_content<%=a%>" maxlength="25" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
                 
                      <p class="sort_text">카테고리</p>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts1" value="숙소">
-                      <label for="acc_sorts1" id="sort_img0_<%=a%>"><img src="img/icon/acc_hotel.png" id="sort_img0_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts2" value="항공">
-                      <label for="acc_sorts2" id="sort_img1_<%=a%>"><img src="img/icon/acc_airplane.png" id="sort_img1_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts3" value="교통">
-                      <label for="acc_sorts3" id="sort_img2_<%=a%>"><img src="img/icon/acc_car.png" id="sort_img2_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts4" value="관광">
-                      <label for="acc_sorts4" id="sort_img3_<%=a%>"><img src="img/icon/acc_trip.png" id="sort_img3_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts5" value="식비">
-                      <label for="acc_sorts5" id="sort_img4_<%=a%>"><img src="img/icon/acc_food.png" id="sort_img4_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts6" value="쇼핑">
-                      <label for="acc_sorts6" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>"/></label>
-                      <input type="radio" name="acc_sort<%=a%>" id="acc_sorts7" value="기타">
-                      <label for="acc_sorts7"><img src="img/icon/acc_etc.png"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts1" value="숙소" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts1" id="sort_img0_<%=a%>"><img src="img/icon/acc_hotel.png" id="sort_img0_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts2" value="항공" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts2" id="sort_img1_<%=a%>"><img src="img/icon/acc_airplane.png" id="sort_img1_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts3" value="교통" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts3" id="sort_img2_<%=a%>"><img src="img/icon/acc_car.png" id="sort_img2_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts4" value="관광" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts4" id="sort_img3_<%=a%>"><img src="img/icon/acc_trip.png" id="sort_img3_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts5" value="식비" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts5" id="sort_img4_<%=a%>"><img src="img/icon/acc_food.png" id="sort_img4_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts6" value="쇼핑" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts6" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts7" value="기타" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts7"><img src="img/icon/acc_etc.png" name="acc<%=a%>"/></label>
 
 					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one<%=a %>" value="닫기" onclick="close_acc_one(<%=a%>)">
