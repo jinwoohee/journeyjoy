@@ -266,7 +266,7 @@
 	</update>
 	<!-- 가계부 저장 -->
 	<insert id="account_insert" parameterType="com.jj.dto.Account">
-		insert into account values(#{e_no}, #{acc_day}, #{acc_order}, #{acc_amount}, #{acc_payment}, #{acc_contents}, #{acc_category})
+		insert into account values(#{e_no}, #{acc_day}, #{acc_order}, #{acc_amount}, #{acc_payment}, #{acc_contents}, #{acc_category}, #{acc_currency})
 	</insert>
 	<!-- 가계부 불러오기 -->
 	<select id="account_select" parameterType="int" resultType="com.jj.dto.Account">
@@ -283,6 +283,8 @@
 	<select id="eatery_selectAll" resultType="com.jj.dto.Eatery" parameterType="String">
 		select * from eatery
 	</select>
+	
+	
 	
 	<!-- 윤영 부분 -->
 	<!-- 패키지 insert -->

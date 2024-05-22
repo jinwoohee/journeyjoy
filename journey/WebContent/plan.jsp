@@ -75,6 +75,8 @@ String aaaa = datecnt+"";
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initMap&libraries=places&v=weekly"
       defer
     ></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 </head>
 
 <body>
@@ -263,28 +265,43 @@ String aaaa = datecnt+"";
 							<td><input type="text" readOnly="true" value="카테고리" name="sort"><input type="hidden" name="sort0" value="0"></td>
 							<td><input type="text" readOnly="true" value="내용" name="content"><input type="hidden" name="content0" value="0"></td>
 							<td><input type="text" readOnly="true" value="결제수단" name="pay_with"><input type="hidden" name="pay_with0" value="0"></td>
-							<td><input type="text" readOnly="true" value="금액" name="prices"><input type="hidden" name="prices0" value="0"></td>				
+							<td><input type="text" readOnly="true" value="금액" name="prices"><input type="hidden" name="prices0" value="0"></td>	
+							<input type="hidden" name="curr0" value="a">			
 							<td></td>
 						</tr>
-					<% for(Account acc : accList){
-						if(acc.getAcc_day() == 0){%>
+					<% int rs_z = 0;
+					String m_sort = "";
+					int m_x = 0;
+						for(Account acc : accList){
+						if(acc.getAcc_day() == 0){
+							if(acc.getAcc_currency().equals("k")){
+								m_sort = "￦";
+								m_x = 1;
+							}else if (acc.getAcc_currency().equals("u")){
+								m_sort = " $";
+								m_x = 1360;
+							}else if (acc.getAcc_currency().equals("j")){
+								m_sort = "￥";
+								m_x = 9;
+							}
+						%>
 						 <tr>
 							<td><input type="text" name="sort0" readOnly="true" value="<%=acc.getAcc_category() %>"></td>
 							<td><input type="text" name="content0" readOnly="true" value="<%=acc.getAcc_contents() %>"></td>
-							<td><input type="text" name="pay_with0" readOnly="true" value="<%=acc.getAcc_payment() %>"></td>
-							<td><input type="text" name="prices0" readOnly="true" value="<%=acc.getAcc_amount() %>"></td>
-							<td><input type="button" name="del_place" value="삭제" ></td>
+							<td><input type="hidden" name="curr0" value="<%=acc.getAcc_currency()%>"><input type="text" name="pay_with0" readOnly="true" value="<%=acc.getAcc_payment() %>"></td>
+							<td><input type="text" name="m_emot0" value="<%=m_sort %>"><input type="text" name="prices0" readOnly="true" value="<%=acc.getAcc_amount() %>"></td>
+							<td><input type="button" name="del_place" value="삭제" onclick="del_pl(this,<%=acc.getAcc_amount()*m_x%>)"></td>
 						</tr> 
-						<%}} %>
+						<%rs_z += (acc.getAcc_amount()*m_x);}} %>
 				</table>
 				
 				<div id="pay_one_div0">
 					<div class="price_div">
 						<input type="text" name="acc_price0" id = "acc_price0"placeholder="금액입력" maxlength="15" value="">
 						<select name="price_sort0" id ="price_sort0">
-                      <option>KRW(원)</option>
-                      <option>USD(달러)</option>
-                      <option>JPY(엔)</option>                 
+                      <option value="k">KRW(원)</option>
+                      <option value="u">USD(달러)</option>
+                      <option value="j">JPY(엔)</option>                 
                   </select>
 
 					</div>
@@ -331,28 +348,42 @@ String aaaa = datecnt+"";
 								<td><input type="text" readOnly="true" value="카테고리" name="sort"><input type="hidden" name="sort<%=a%>" value="0"></td>
 								<td><input type="text" readOnly="true" value="내용" name="content"><input type="hidden" name="content<%=a%>" value="0"></td>
 								<td><input type="text" readOnly="true" value="결제수단" name="pay_with"><input type="hidden" name="pay_with<%=a%>" value="0"></td>
-								<td><input type="text" readOnly="true" value="금액" name="prices"><input type="hidden" name="prices<%=a%>" value="0"></td>					
+								<td><input type="text" readOnly="true" value="금액" name="prices"><input type="hidden" name="prices<%=a%>" value="0"></td>
+								<input type="hidden" name="curr<%=a %>" value="a">					
 								<td></td>
 							</tr>
-					<%	for(Account acc : accList){
+					<%	
+						
+						for(Account acc : accList){
 							if(acc.getAcc_day() == a){
-				%>	
+								if(acc.getAcc_currency().equals("k")){
+									m_sort = "￦";
+									m_x = 1;
+								}else if (acc.getAcc_currency().equals("u")){
+									m_sort = " $";
+									m_x = 1360;
+								}else if (acc.getAcc_currency().equals("j")){
+									m_sort = "￥";
+									m_x = 9;
+								}
+								
+				%>	 
 							<tr>
 								<td><input type="text" name="sort<%=a%>" readOnly="true" value="<%=acc.getAcc_category() %>"></td>
 								<td><input type="text" name="content<%=a%>" readOnly="true" value="<%=acc.getAcc_contents() %>"></td>
-								<td><input type="text" name="pay_with<%=a%>" readOnly="true" value="<%=acc.getAcc_payment() %>"></td>
-								<td><input type="text" name="prices<%=a%>" readOnly="true" value="<%=acc.getAcc_amount() %>"></td>
-								<td><input type="button" name="del_place" value="삭제" ></td>
+								<td><input type="hidden" name="curr<%=a %>" value="<%=acc.getAcc_currency()%>"><input type="text" name="pay_with<%=a%>" readOnly="true" value="<%=acc.getAcc_payment() %>"></td>
+								<td><input type="text" name="m_emot<%=a%>" value="<%=m_sort %>"><input type="text" name="prices<%=a%>" readOnly="true" value="<%=acc.getAcc_amount() %>"></td>
+								<td><input type="button" name="del_place" value="삭제" onclick="del_pl(this,<%=acc.getAcc_amount()*m_x%>)"></td>
 							</tr>
-				<%rs += acc.getAcc_amount();}} %>
+				<%rs += (acc.getAcc_amount()*m_x);}} %>
 				</table>
 				<div id="pay_one_div<%=a%>">
 					<div class="price_div">
 						<input type="text" name="acc_price<%=a%>" id = "acc_price<%=a%>"placeholder="금액입력" maxlength="15" value="">
 						<select name="price_sort<%=a%>" id ="price_sort<%=a%>">
-                      <option>KRW(원)</option>
-                      <option>USD(달러)</option>
-                      <option>JPY(엔)</option>                 
+                      <option value="k">KRW(원)</option>
+                      <option value="u">USD(달러)</option>
+                      <option value="j">JPY(엔)</option>                 
                   </select>
 
 					</div>
@@ -368,20 +399,20 @@ String aaaa = datecnt+"";
                      <input type="text" name="acc_content<%=a%>" maxlength="25" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
                 
                      <p class="sort_text">카테고리</p>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts1" value="숙소" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts1" id="sort_img0_<%=a%>"><img src="img/icon/acc_hotel.png" id="sort_img0_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts2" value="항공" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts2" id="sort_img1_<%=a%>"><img src="img/icon/acc_airplane.png" id="sort_img1_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts3" value="교통" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts3" id="sort_img2_<%=a%>"><img src="img/icon/acc_car.png" id="sort_img2_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts4" value="관광" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts4" id="sort_img3_<%=a%>"><img src="img/icon/acc_trip.png" id="sort_img3_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts5" value="식비" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts5" id="sort_img4_<%=a%>"><img src="img/icon/acc_food.png" id="sort_img4_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts6" value="쇼핑" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts6" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts7" value="기타" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts7"><img src="img/icon/acc_etc.png" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts1_<%=a %>" value="숙소" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts1_<%=a %>" id="sort_img0_<%=a%>"><img src="img/icon/acc_hotel.png" id="sort_img0_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts2_<%=a %>" value="항공" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts2_<%=a %>" id="sort_img1_<%=a%>"><img src="img/icon/acc_airplane.png" id="sort_img1_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts3_<%=a %>" value="교통" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts3_<%=a %>" id="sort_img2_<%=a%>"><img src="img/icon/acc_car.png" id="sort_img2_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts4_<%=a %>" value="관광" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts4_<%=a %>" id="sort_img3_<%=a%>"><img src="img/icon/acc_trip.png" id="sort_img3_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts5_<%=a %>" value="식비" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts5_<%=a %>" id="sort_img4_<%=a%>"><img src="img/icon/acc_food.png" id="sort_img4_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts6_<%=a %>" value="쇼핑" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts6_<%=a %>" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts7_<%=a %>" value="기타" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts7_<%=a %>"><img src="img/icon/acc_etc.png" name="acc<%=a%>"/></label>
 						
 					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one<%=a %>" value="닫기" onclick="close_acc_one(<%=a%>)">
@@ -389,11 +420,12 @@ String aaaa = datecnt+"";
 				</div>
 				</div>
 				<%} %>
-				<input type="hidden" id="result_price" value="<%=rs %>">
+				<input type="hidden" id="result_price" value="<%=rs_z+rs %>">
 				
 				<div id="acc_result_div">
-				<p id= "result_price_text"><%=rs %>원</p>
+				<span id= "result_price_text"><%=rs_z+rs %></span>원
 				</div>
+  
 				<input type="submit" name="save_acc" value="저장">
 			</div>
 		
@@ -591,7 +623,8 @@ String aaaa = datecnt+"";
 							<td><input type="text" readOnly="true" value="카테고리" name="sort"><input type="hidden" name="sort0" value="0"></td>
 							<td><input type="text" readOnly="true" value="내용" name="content"><input type="hidden" name="content0" value="0"></td>
 							<td><input type="text" readOnly="true" value="결제수단" name="pay_with"><input type="hidden" name="pay_with0" value="0"></td>
-							<td><input type="text" readOnly="true" value="금액" name="prices"><input type="hidden" name="prices0" value="0"></td>				
+							<td><input type="text" readOnly="true" value="금액" name="prices"><input type="hidden" name="prices0" value="0"></td>		
+							<input type="hidden" name="curr0" value="a">			
 							<td></td>
 						</tr>
 					</table>	
@@ -648,7 +681,8 @@ String aaaa = datecnt+"";
 								<td><input type="text" readOnly="true" value="카테고리" name="sort"><input type="hidden" name="sort<%=a%>" value="0"></td>
 								<td><input type="text" readOnly="true" value="내용" name="content"><input type="hidden" name="content<%=a%>" value="0"></td>
 								<td><input type="text" readOnly="true" value="결제수단" name="pay_with"><input type="hidden" name="pay_with<%=a%>" value="0"></td>
-								<td><input type="text" readOnly="true" value="금액" name="prices"><input type="hidden" name="prices<%=a%>" value="0"></td>					
+								<td><input type="text" readOnly="true" value="금액" name="prices"><input type="hidden" name="prices<%=a%>" value="0"></td>
+								<input type="hidden" name="curr<%=a %>" value="a">						
 								<td></td>
 							</tr>
 
@@ -675,20 +709,20 @@ String aaaa = datecnt+"";
                      <input type="text" name="acc_content<%=a%>" maxlength="25" id= "acc_content<%=a%>" placeholder="내용을 입력해주세요.">
                 
                      <p class="sort_text">카테고리</p>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts1" value="숙소" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts1" id="sort_img0_<%=a%>"><img src="img/icon/acc_hotel.png" id="sort_img0_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts2" value="항공" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts2" id="sort_img1_<%=a%>"><img src="img/icon/acc_airplane.png" id="sort_img1_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts3" value="교통" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts3" id="sort_img2_<%=a%>"><img src="img/icon/acc_car.png" id="sort_img2_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts4" value="관광" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts4" id="sort_img3_<%=a%>"><img src="img/icon/acc_trip.png" id="sort_img3_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts5" value="식비" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts5" id="sort_img4_<%=a%>"><img src="img/icon/acc_food.png" id="sort_img4_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts6" value="쇼핑" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts6" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>" name="acc<%=a%>"/></label>
-                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts7" value="기타" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts7"><img src="img/icon/acc_etc.png" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts1_<%=a %>" value="숙소" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts1_<%=a %>" id="sort_img0_<%=a%>"><img src="img/icon/acc_hotel.png" id="sort_img0_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts2_<%=a %>" value="항공" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts2_<%=a %>" id="sort_img1_<%=a%>"><img src="img/icon/acc_airplane.png" id="sort_img1_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts3_<%=a %>" value="교통" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts3_<%=a %>" id="sort_img2_<%=a%>"><img src="img/icon/acc_car.png" id="sort_img2_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts4_<%=a %>" value="관광" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts4_<%=a %>" id="sort_img3_<%=a%>"><img src="img/icon/acc_trip.png" id="sort_img3_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts5_<%=a %>" value="식비" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts5_<%=a %>" id="sort_img4_<%=a%>"><img src="img/icon/acc_food.png" id="sort_img4_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts6_<%=a %>" value="쇼핑" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts6_<%=a %>" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>" name="acc<%=a%>"/></label>
+                      <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts7_<%=a %>" value="기타" onclick="checking(this.id,<%=a%>)">
+                      <label for="acc_sorts7_<%=a %>"><img src="img/icon/acc_etc.png" name="acc<%=a%>"/></label>
 
 					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one<%=a %>" value="닫기" onclick="close_acc_one(<%=a%>)">
