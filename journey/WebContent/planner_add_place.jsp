@@ -256,7 +256,8 @@ window.initMap = initMap;
 					String place_name = request.getParameter("place_name"+a);
 					String place_cookie = getCookieValue(cookies, "pla"+a);
 					String place_id = request.getParameter("place_ids"+a);
-					
+					System.out.println("aaaxx"+a+place_id);
+					System.out.println("aaaxx"+a+place_name);
 					String place_attr = (String) request.getAttribute("planList"+a);
 
 					out.println("<div id='places"+a+"'>");
@@ -285,14 +286,21 @@ window.initMap = initMap;
 				<input type="hidden" name="edit_plan<%=a %>" value="<%=pa_list%>" id="edited<%=a%>">
 				<% 	
 						}
-					}else if(place_name.equals("empty") || place_cookie.equals("")){
+					}else if(place_name.equals("empty")){
+						response.addCookie(new Cookie("pla"+a, ""));
+						out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
+						out.println("<p id='places_text"+a+"'></p>");
+						out.println("<input type='hidden' name='edit_plan"+a+"'value='' id='edited"+a+"'>");
+						out.println("<input type='hidden' name='edit_plan_id"+a+"'value='' id='edited_id"+a+"'>");
+					}else if(place_cookie.equals("")){
 						response.addCookie(new Cookie("pla"+a, ""));
 						out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
 						out.println("<p id='places_text"+a+"'></p>");
 						out.println("<input type='hidden' name='edit_plan"+a+"'value='' id='edited"+a+"'>");
 						out.println("<input type='hidden' name='edit_plan_id"+a+"'value='' id='edited_id"+a+"'>");
 					}
-					else{System.out.println("2번");
+					else if(!place_name.equals("empty")){
+						System.out.println("2번");
 						String place_ck = place_name.replaceAll(",", "_").replaceAll("empty","").replaceAll("-", " ");
 						String []place = place_ck.split("_");
 						String st_list = "";
@@ -307,7 +315,7 @@ window.initMap = initMap;
 						System.out.println("2-2:"+st_list_arr);
 						response.addCookie(new Cookie("pla"+a, st_list_arr));
 						System.out.println("2-3:"+st_list);
-				%>	
+				%>	 
 				<input type="hidden" name="edit_plan<%=a%>" value="<%=st_list%>" id="edited<%=a%>">
 				<input type="hidden" name="edit_plan_id<%=a %>" value="<%=place_id %>" id="edited_id<%=a %>">
 				<% 
