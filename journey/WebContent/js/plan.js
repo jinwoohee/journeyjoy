@@ -286,7 +286,7 @@ function add_acc(num){
 	var price = document.createElement("input");
 	price.setAttribute("type","text");
 	price.name="prices"+num;
-	price.setAttribute("value", add_price.value);
+	price.setAttribute("value", add_price.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	price.readOnly = true;
 	
 	var pay = document.createElement("input");
