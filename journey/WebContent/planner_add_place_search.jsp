@@ -78,13 +78,7 @@ div[id="search_result1"]{
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
-	$(".button").mouseover(function(){
-		$(this).css({'box-shadow':'inset 5px 5px 10px #CCCCCC'});
-	});
-	$(".button").mouseout(function(){
-		$(this).css({'box-shadow':''});
-	});
-	
+
 });
 	
 function checking(id){ /*테마 체크 여부 */

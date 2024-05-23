@@ -305,9 +305,6 @@ window.initMap = initMap;
 			</div>
 		<div id="side_menu">
 			<p id="side_menu_p" align="center">side menu</p>
-				<a href="planner_select.jsp">
-					<input type="button" name="plan_sel" value="일정선택&#10;목록으로" class="button">
-				</a>
 					<input type="submit" name="plan_sel_add" value="여행지&#10;추가하기" class="button">
 		</div>
 		</form>

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jj.conn.AccountDeleteDB;
 import com.jj.conn.AccountInsertDB;
+import com.jj.conn.PlanDeleteDB;
 import com.jj.conn.PlanInsertDB;
 import com.jj.conn.PlanUpdateDB;
 import com.jj.conn.ScheduleUpdateDB;
@@ -23,9 +24,11 @@ public class PlanUpdate implements JourneyInterface{
 		String plan_title = new String(request.getParameter("plan_subject").getBytes("8859_1"),"UTF-8");
 		String plan_product = request.getParameter("selected_prod");
 		// plan update
-		PlanUpdateDB udb = PlanUpdateDB.updb(); 
-		udb.updateMth(e_no, plan_title, plan_product);
-			
+		PlanDeleteDB pddb = PlanDeleteDB.deldb();
+		pddb.deletePlan(e_no);
+		PlanInsertDB pidb = PlanInsertDB.indb();
+		pidb.insertMth(e_no, plan_title, plan_product);
+		
 		int day = Integer.parseInt(request.getParameter("day"));	
 		//schedule update
 		for(int a = 1 ; a <= day ; a++) { 

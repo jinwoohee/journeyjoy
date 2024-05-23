@@ -8,10 +8,10 @@ $(function() {
 		$("form").attr("action","planner.jj?page=plan_update");
 	});
 	   $("img[name*='acc']").mouseover(function(){
-		   $(this).css({'box-shadow':'rgb(0, 0, 84) 1px 1px','border':'2px solid rgb(218, 218, 218)','margin-right':'-4px','margin-top':'-4px'});
+		   $(this).css({'border':'2px solid rgb(218, 218, 218)'});
 	   });
 	   $("img[name*='acc']").mouseout(function(){
-		   $(this).css({'box-shadow':'0px 0px 0px 0px','border':'0px','margin-right':'0px','margin-top':'0px'});
+		   $(this).css({'border':'2px solid white'});
 	   });
 	
 	  const kindWrap =  document.querySelector('#slide_div');
@@ -269,7 +269,7 @@ function add_acc(num){
 		
 	}else if(m_sort.value == "j"){
 		emot = "￥";
-		tra = 8.8;
+		tra = 9;
 
 	}
 	var curr = document.createElement("input");
@@ -328,7 +328,7 @@ function add_acc(num){
 	var after = before + bb;
 
 	var text = document.getElementById("result_price_text");
-	text.textContent = after;
+	text.textContent = after.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	result_price.setAttribute("value", after);
 	
 	//입력한 정보 초기화
@@ -358,7 +358,7 @@ function del_pl(st, i){
 	var after = before - bb;
 	
 	var text = document.getElementById("result_price_text");
-	text.textContent = after;
+	text.textContent = after.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	result_price.setAttribute("value", after);
 }
 function open_acc_div(num){

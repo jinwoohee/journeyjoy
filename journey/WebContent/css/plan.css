@@ -345,30 +345,36 @@ table[id="product_table"]{/*異붽��긽�뭹 �뀒�씠釉�*/
 	margin: 15px auto;
 	background-color: white;
 }
+td[id*="product"]{
+	font-size : 15px;
+}
 td[id="product_sub_name"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
-	height: 40px;
+	height: 27px;
 	border-bottom: 1px solid #646464;
 	margin-top : 15px;
 	width : 420px;
 	padding-left : 5px;
 }
 td[id="product_sub_sort"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
-	height: 40px;
 	border-bottom: 1px solid #646464;
 	margin-top : 15px;
 	width : 160px;
 	padding-left : 5px;
 }
 td[id="product_sub_price"]{/*�뀒�씠釉� 留⑥쐞 �젙蹂� �뻾*/
-	height: 40px;
 	border-bottom: 1px solid #646464;
 	margin-top : 15px;
 	width : 115px;
 	padding-left : 5px;
 }
+td[id*="product_add"]{
+		height : 25px;
+		padding-left : 5px;
+}
 p[id*="product_add"]{
 	font-size : 15px;
 	margin-left : 5px;
+	height : 25px;
 }
 td[class="item"]{
 	height: 30px;
@@ -453,7 +459,6 @@ input[name="save_plan"]{ /*���옣 踰꾪듉*/
     background: #2a799c;
     color: white;
     border : none;
-    box-shadow: 2px 2px 10px #CCCCCC;
 }
 input[name="edit_plan"]{ /*���옣 踰꾪듉*/
 	width: 240px;
@@ -467,7 +472,6 @@ input[name="edit_plan"]{ /*���옣 踰꾪듉*/
     background: #2a799c;
     color: white;
     border : none;
-    box-shadow: 2px 2px 10px #CCCCCC;
 }
 img[src*="minus"]{ /*異붽��긽�뭹 異붽�踰꾪듉*/
 	cursor: pointer;
@@ -572,7 +576,7 @@ div[id*="acc_div"]{/* 가계부 day 마다의 div*/
 	margin: 0 70px;
     min-height: 100px;
     margin-bottom: 30px;
-    padding-top: 80px;
+    padding-top: 35px;
 }
 .acc_sub{ /*여행준비, day 글자*/
 	padding-bottom: 5px;
@@ -667,6 +671,8 @@ img[name*="acc"]{ /*카테고리 버튼 이미지*/
 	width: 40px;
 	height: 40px;
 	border-radius: 5px;
+	border : 2px solid white;
+	margin : -2px;
 }
 label{ /*카테고리 버튼 라벨*/
 	margin-right: 20px;
@@ -714,7 +720,6 @@ input[name="save_acc"]{/*가계부 저장버튼*/
     background: #2a799c;
     color: white;
     border : none;
-    box-shadow: 2px 2px 10px #CCCCCC;
     margin-bottom: 50px;
 }
 #acc_result_div{

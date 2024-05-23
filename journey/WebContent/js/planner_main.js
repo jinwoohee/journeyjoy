@@ -80,6 +80,8 @@ window.onload = function() {
 	   }else  if(text == "뉴질랜드"){
 		   $("table[id='city_table_newz']").show();
 	   }
+	   
+	   $("#city_text").attr("value","목적지(도시)");
    });
    $(".city_one").click(function(){
 	   $("#city_text").attr("value",$(this).text());
@@ -133,6 +135,8 @@ function text_div(id){
 }
 
 function nation_open(id){
+	var na_btn = document.getElementById("na_"+id);
+	
 	if(id === "a"){
 		var text = document.getElementById("nation_text");
 		text.setAttribute("value","일본");
@@ -140,8 +144,14 @@ function nation_open(id){
 		$("table[id*='city_table_']").hide();
 		$("table[id='city_table_jp']").show();
 		$("#plz_pick_nation").hide();
+		$("table[id*='nation_table']").hide();
+		$("table[id='nation_table_empty']").show();
+		$("#city_text").attr("value","목적지(도시)");
+		$("td[id*='na_']").css({'font-weight':'normal', 'border' : '1px solid #6C94B8'});
 	}else{
 	var open_table = document.getElementById("nation_table_"+id);
+	$("td[id*='na_']").css({'font-weight':'normal', 'border' : '1px solid #6C94B8'});
+	$("td[id='na_"+id+"']").css({'font-weight':'bold', 'border' : '1px solid #285b89'});
 	$("table[id*='nation_table']").hide();
 	
 	open_table.style.display = "block";

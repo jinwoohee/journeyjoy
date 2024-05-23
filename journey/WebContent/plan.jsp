@@ -11,6 +11,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date" %>
+<%@page import="java.text.DecimalFormat"%>
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -29,7 +30,7 @@ request.setCharacterEncoding("utf-8");
 	}
 %>
 <% 
-
+DecimalFormat f = new DecimalFormat("###,###,###");
 List<Estimate> esti = (List<Estimate>) request.getAttribute("estimate");
 List<Schedule> sche = (List<Schedule>) request.getAttribute("schedule");
 List<Ticket> tick = (List<Ticket>) request.getAttribute("ticket");
@@ -109,13 +110,14 @@ String aaaa = datecnt+"";
 			<input type="hidden" name="selected_prod" id="selected_prod" value="<%=my_prod%>">
 			<input type="hidden" name="e_no" value="<%=esti.get(0).gete_no()%>">
 			<div id="plandiv_1">
-				<input type="text" name="plan_subject" placeholder="계획서 제목(최대50자)" maxlength="50" value="<%=plan.get(0).getPlan_title()%>"/>
+				<input type="text" name="plan_subject" placeholder="계획서 제목(최대50자)" maxlength="50" value="<%=plan.get(0).getPlan_title()%>" readonly="true"/>
 				<div id="plan_info">
 					<p id="city"><%=e_destination %></p>
 					<p id="plan_date"><%=sdt %>&nbsp;~&nbsp;<%=edt %></p>
 					<p class="list_thema"><%=thema %></p>	
 					<%
 						for(String st : e_detail_thema){
+							
 							out.println("<p class='list_thema'>"+st+"</p>");
 						}
 						for(String ft : e_food_taste){
@@ -147,11 +149,13 @@ String aaaa = datecnt+"";
 								for(Place pl : plac){
 									if(pl.getPlac_id().equals(st)){
 										out.println("#"+pl.getPlac_name()+" ");
+										System.out.println("!!!!"+pl.getPlac_name());
 									}
 								}
 								for(Eatery ea : eate){
 									if(ea.getEat_id().equals(st)){
 										out.println("#"+ea.getEat_name()+" ");
+										System.out.println("!!!!"+ea.getEat_name());
 									}
 								}
 							}
@@ -228,7 +232,7 @@ String aaaa = datecnt+"";
 											<tr>
 												<td id="product_add_name<%=pr_no%>"><%=pr.getProd_name() %></td>
 												<td id="product_add_sort<%=pr_no%>"><%=pr.getProd_sort() %></td>
-												<td id="product_add_price<%=pr_no%>"><%=pr.getProd_price() %></td>
+												<td id="product_add_price<%=pr_no%>"><%="￦"+f.format(pr.getProd_price()) %></td>
 											</tr>							
 											<% 
 										}
@@ -243,7 +247,7 @@ String aaaa = datecnt+"";
 											<tr>
 												<td id="product_add_name<%=ti_no%>"><%=ti.getTick_name()%></td>
 												<td id="product_add_sort<%=ti_no%>"><%=ti.getTick_sort() %></td>
-												<td id="product_add_price<%=ti_no%>"><%=ti.getTick_price() %></td>
+												<td id="product_add_price<%=ti_no%>"><%="￦"+f.format(ti.getTick_price())%></td>
 											</tr>							
 											<% 
 										}
@@ -289,7 +293,7 @@ String aaaa = datecnt+"";
 							<td><input type="text" name="sort0" readOnly="true" value="<%=acc.getAcc_category() %>"></td>
 							<td><input type="text" name="content0" readOnly="true" value="<%=acc.getAcc_contents() %>"></td>
 							<td><input type="hidden" name="curr0" value="<%=acc.getAcc_currency()%>"><input type="text" name="pay_with0" readOnly="true" value="<%=acc.getAcc_payment() %>"></td>
-							<td><input type="text" name="m_emot0" value="<%=m_sort %>"><input type="text" name="prices0" readOnly="true" value="<%=acc.getAcc_amount() %>"></td>
+							<td><input type="text" name="m_emot0" value="<%=m_sort %>"><input type="text" name="prices0" readOnly="true" value="<%=f.format(acc.getAcc_amount()) %>"></td>
 							<td><input type="button" name="del_place" value="삭제" onclick="del_pl(this,<%=acc.getAcc_amount()*m_x%>)"></td>
 						</tr> 
 						<%rs_z += (acc.getAcc_amount()*m_x);}} %>
@@ -372,7 +376,7 @@ String aaaa = datecnt+"";
 								<td><input type="text" name="sort<%=a%>" readOnly="true" value="<%=acc.getAcc_category() %>"></td>
 								<td><input type="text" name="content<%=a%>" readOnly="true" value="<%=acc.getAcc_contents() %>"></td>
 								<td><input type="hidden" name="curr<%=a %>" value="<%=acc.getAcc_currency()%>"><input type="text" name="pay_with<%=a%>" readOnly="true" value="<%=acc.getAcc_payment() %>"></td>
-								<td><input type="text" name="m_emot<%=a%>" value="<%=m_sort %>"><input type="text" name="prices<%=a%>" readOnly="true" value="<%=acc.getAcc_amount() %>"></td>
+								<td><input type="text" name="m_emot<%=a%>" value="<%=m_sort %>"><input type="text" name="prices<%=a%>" readOnly="true" value="<%=f.format(acc.getAcc_amount()) %>"></td>
 								<td><input type="button" name="del_place" value="삭제" onclick="del_pl(this,<%=acc.getAcc_amount()*m_x%>)"></td>
 							</tr>
 				<%rs += (acc.getAcc_amount()*m_x);}} %>
@@ -412,7 +416,7 @@ String aaaa = datecnt+"";
                       <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts6_<%=a %>" value="쇼핑" onclick="checking(this.id,<%=a%>)">
                       <label for="acc_sorts6_<%=a %>" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>" name="acc<%=a%>"/></label>
                       <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts7_<%=a %>" value="기타" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts7_<%=a %>"><img src="img/icon/acc_etc.png" name="acc<%=a%>"/></label>
+                      <label for="acc_sorts7_<%=a %>" id="sort_img6_<%=a%>"><img src="img/icon/acc_etc.png"  id="sort_img6_<%=a%>" name="acc<%=a%>" /></label>
 						
 					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one<%=a %>" value="닫기" onclick="close_acc_one(<%=a%>)">
@@ -423,7 +427,7 @@ String aaaa = datecnt+"";
 				<input type="hidden" id="result_price" value="<%=rs_z+rs %>">
 				
 				<div id="acc_result_div">
-				<span id= "result_price_text"><%=rs_z+rs %></span>원
+				<span id= "result_price_text"><%=f.format(rs_z+rs) %></span>원
 				</div>
   
 				<input type="submit" name="save_acc" value="저장">
@@ -570,7 +574,7 @@ String aaaa = datecnt+"";
 										<td colspan='2' name="prod_name" id="product_name<%=ti.getTick_no()%>"><%=ti.getTick_name() %></td>
 									</tr>
 									<tr>
-										<td name="prod_price" id="product_price<%=ti.getTick_no()%>" ><%=ti.getTick_price() %>
+										<td name="prod_price" id="product_price<%=ti.getTick_no()%>" ><%="￦"+f.format(ti.getTick_price()) %>
 										<img src="img/icon/plus.png" onclick="add_prod(<%=ti.getTick_no()%>)"/>
 										</td>
 									</tr>
@@ -591,7 +595,7 @@ String aaaa = datecnt+"";
 									</tr>
 
 									<tr>
-										<td name="prod_price" id="product_price<%=pro.getProd_no()%>" ><%=pro.getProd_price() %>
+										<td name="prod_price" id="product_price<%=pro.getProd_no()%>" ><%="￦"+f.format(pro.getProd_price()) %>
 											<img src="img/icon/plus.png" onclick="add_prod(<%=pro.getProd_no()%>)"/>											
 										</td>
 									</tr>
@@ -632,9 +636,9 @@ String aaaa = datecnt+"";
 					<div class="price_div">
 						<input type="text" name="acc_price0" id = "acc_price0"placeholder="금액입력" maxlength="15" value="">
 						<select name="price_sort0" id ="price_sort0">
-                      <option>KRW(원)</option>
-                      <option>USD(달러)</option>
-                      <option>JPY(엔)</option>                 
+                      <option value="k">KRW(원)</option>
+                      <option value="u">USD(달러)</option>
+                      <option value="j">JPY(엔)</option>                   
                   </select>
 
 					</div>
@@ -691,9 +695,9 @@ String aaaa = datecnt+"";
 					<div class="price_div">
 						<input type="text" name="acc_price<%=a%>" id = "acc_price<%=a%>"placeholder="금액입력" maxlength="15" value="">
 						<select name="price_sort<%=a%>" id ="price_sort<%=a%>">
-                      <option>KRW(원)</option>
-                      <option>USD(달러)</option>
-                      <option>JPY(엔)</option>                 
+                      <option value="k">KRW(원)</option>
+                      <option value="u">USD(달러)</option>
+                      <option value="j">JPY(엔)</option>                   
                   </select>
 
 					</div>
@@ -722,7 +726,7 @@ String aaaa = datecnt+"";
                       <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts6_<%=a %>" value="쇼핑" onclick="checking(this.id,<%=a%>)">
                       <label for="acc_sorts6_<%=a %>" id="sort_img5_<%=a%>"><img src="img/icon/acc_shopping.png" id="sort_img5_<%=a%>" name="acc<%=a%>"/></label>
                       <input type="checkbox" name="acc_sort<%=a%>" id="acc_sorts7_<%=a %>" value="기타" onclick="checking(this.id,<%=a%>)">
-                      <label for="acc_sorts7_<%=a %>"><img src="img/icon/acc_etc.png" name="acc<%=a%>"/></label>
+                      <label for="acc_sorts7_<%=a %>" id="sort_img6_<%=a%>"><img src="img/icon/acc_etc.png" id="sort_img6_<%=a%>"name="acc<%=a%>"/></label>
 
 					  <p class="ctg_t">숙소 항공 교통 관광 식비 쇼핑 기타</p>
          			<input type="button" name="close_acc_one<%=a %>" value="닫기" onclick="close_acc_one(<%=a%>)">
@@ -731,8 +735,10 @@ String aaaa = datecnt+"";
 				</div>
 				<%} %>
 				<input type="hidden" id="result_price" value="<%=rs %>">
-				<p id= "result_price_text"></p>
-				<input type="button" name="save_acc" value="저장">
+				<div id="acc_result_div">
+				<span id= "result_price_text"><%=f.format(rs) %></span>원
+				</div>
+				<input type="submit" name="save_acc" value="저장">
 			
 		<%} %>
 		

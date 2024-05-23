@@ -104,27 +104,34 @@ String u_id = (String) session.getAttribute("u_id");
 				                            				<p id="nation_sel">목적지 선택(국가)</p>
 					                            			<table cellspacing="0" id="continent_table">
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('a')">일본</td>	           
+					                            					<td class="continent_one" id="na_a" onclick="nation_open('a')">일본</td>	           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('b')">동남아/대만/서남아</td>			           
+					                            					<td class="continent_one" id="na_b" onclick="nation_open('b')">동남아/대만/서남아</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('c')">미주/캐나다/남중미</td>			           
+					                            					<td class="continent_one" id="na_c" onclick="nation_open('c')">미주/캐나다/남중미</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('d')">유럽/아프리카</td>			           
+					                            					<td class="continent_one" id="na_d" onclick="nation_open('d')">유럽/아프리카</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('e')">괌/사이판/하와이</td>			           
+					                            					<td class="continent_one" id="na_e" onclick="nation_open('e')">괌/사이판/하와이</td>			           
 					                            				</tr>					                            				
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('f')">중국/홍콩/마카오</td>			           
+					                            					<td class="continent_one" id="na_f" onclick="nation_open('f')">중국/홍콩/마카오</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('g')">호주/뉴질랜드</td>			           
+					                            					<td class="continent_one" id="na_g" onclick="nation_open('g')">호주/뉴질랜드</td>			           
 					                            				</tr>
 					                            								                            				
+					                            			</table>
+					                            			<table id="nation_table_empty">
+					                            				<tr>
+					                            					<td id="nation_one_plz">지역을 선택해주세요.</td>
+					                            					
+				                            					</tr>
+					                            				
 					                            			</table>
 					                            			<table id="nation_table_b">
 					                            				<tr>

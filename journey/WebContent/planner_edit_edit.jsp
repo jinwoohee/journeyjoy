@@ -270,7 +270,7 @@ window.initMap = initMap;
 						
 			<%	System.out.println("플랜editx23"+st_list);}
 			%>
-					
+			
 			</div>
 			<input type="submit" name="add_place" value="여행지 추가하기" class="button">
 					<input type="submit" name="save_plan" value="수정" class="button"/>
@@ -278,9 +278,6 @@ window.initMap = initMap;
 		<div id="side_menu">
 			<p id="side_menu_p" align="center">side menu</p>
 			<div id= "side_inner">
-				<a href="planner_select.jsp">
-					<input type="button" name="plan_sel" value="일정선택&#10;목록으로" class="button">
-				</a>
 					<input type="submit" name="plan_sel_add" value="여행지&#10;추가하기" class="button">
 			</div>
 		</div>

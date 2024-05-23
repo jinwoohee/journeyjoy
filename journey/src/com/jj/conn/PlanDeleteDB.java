@@ -31,5 +31,15 @@ public class PlanDeleteDB {
 		sqls.commit();
 		sqls.close();
 		
+	}public void deletePlan(int e_no) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("e_no", e_no);
+
+		SqlSession sqls = sql.openSession();
+
+		sqls.delete("plan_delete", param);
+
+		sqls.commit();
+		sqls.close();
 	}
 }
