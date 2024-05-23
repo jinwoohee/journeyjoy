@@ -27,19 +27,25 @@ div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
     background: white;
 }
 
-#content > p:first-of-type{
-	margin-left: 38px;
-    font-size: 18px;
+.depart_div{
+	width: 150px;
+    height: 40px;
+    background: #6C94B8;
+    color : white;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 79px;
 }
 
 .plan_div{
-	width: 900px;
+	width: 820px;
     height: 75px;
-    border: 1px solid #6CB498;
-    border-radius: 10px;
-    margin: 20px auto;
+    border: 1px solid #6C94B8;
+    margin: 0 auto;
     padding: 10px;
-    box-shadow: 1px 1px 7px #CCCCCC;
+    margin-bottom: 30px;
 }
 
 .plan_div > a >div:fitst-of-type{
@@ -47,34 +53,27 @@ div[id="content"]{ /*헤더, 푸터를 제외한 섹션 전체 div*/
 }
 
 .plan_div > a > div:first-of-type > img{
-	width: 30px;
-    height: 30px;
-    object-fit: cover;
-    float: left;
-    margin-left: 20px;
+	width : 40px;
+	height: 40px;
+	float : left;
 }
-
 .plan_div > a > div:first-of-type > p{
 	float: left;
     font-size: 20px;
     color: #0D112D;
     margin-left: 10px;
+    padding-top: 4px;
     font-weight: bold;
-    width: 460px;
+    width: 80%;
 }
 
 .plan_div > a > div:nth-of-type(2){
-	float: right;
-    margin-top: 5px;
-}
-
-.plan_div > a > div:nth-of-type(3){
     float: left;
     margin-top: 8px;
-    margin-left: -25px;
+    margin-left: 5px;
     border: none;
-    background: #6C94B8;
+    background: #0D112D;
     color: white;
-    padding: 5px 10px;
+    padding: 5px 15px;
     border-radius: 30px;
 }

@@ -22,11 +22,11 @@ List<Estimate> esti = (List<Estimate>) request.getAttribute("estilist");
 <script type="text/javascript">
 $(function(){
 	$(".plan_div").mouseenter(function(){
-    	$(this).css({'background':'#f1f1f3'});
+    	$(this).css({'box-shadow':'3px 3px 10px #CCCCCC'});
     });
 	
 	$(".plan_div").mouseleave(function(){
-    	$(this).css({'background':'white'});
+    	$(this).css({'box-shadow':'none'});
     });
 });
 </script>
@@ -36,13 +36,15 @@ $(function(){
 	<!-- 페이지 섹션 -->
 	<section>
 		<div id="content">
-			<p>일정 선택</p>
 			<%
 				for(Estimate es : esti){%>
+					<div class="depart_div"><p><%=es.gete_destination() %></p></div>
 					<div class="plan_div">
 						<a href="plan_review_write.jsp?e_no=<%=es.gete_no()%>&e_destination=<%=es.gete_destination()%>&page_no=write&e_start_date=<%=es.gete_start_date() %>&e_end_date=<%=es.gete_end_date() %>">
-							<div><img src='img/icon/flag.png'><p><%=es.gete_destination() %></p></div>
-							<div><p><%=es.gete_start_date() %> ~ <%=es.gete_end_date() %></p></div>
+							<div>
+								<img src='img/icon/acc_trip_check.png'>
+								<p><%=es.gete_start_date() %> ~ <%=es.gete_end_date() %></p>
+							</div>
 							<div>#<%=es.gete_thema() %>
 								<%
 									String detailTheme = es.gete_detail_thema();
@@ -54,8 +56,6 @@ $(function(){
 									<%}
 								%>
 							</div>
-							<%-- <div><p><%=es.gete_food_taste() %></p></div>
-							<div><p><%=es.gete_volume() %></p></div> --%>
 						</a>
 					</div>
 			<%} %>
