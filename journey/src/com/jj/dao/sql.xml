@@ -330,14 +330,15 @@
 		</where>
 		
 		<if test="param.equals('recent')">
-			ORDER BY p.p_no DESC;
+			ORDER BY p.p_no DESC
 		</if>
 		<if test="param.equals('popular')">
-			ORDER BY count DESC;
+			ORDER BY count DESC
 		</if>
 		<if test="param.equals('closing')">
-			ORDER BY p.p_due_date DESC;		
+			ORDER BY p.p_due_date DESC
 		</if>
+		LIMIT 8;
 	</select>
 	
 	<!-- 좋아요 select --> 
@@ -371,7 +372,8 @@
 	<!-- 상세보기 select -->
 	<select id="packageDetailSelect" resultType="com.jj.dto.Package" parameterType="int">
 		SELECT DISTINCT p.p_no, p.u_id, p.p_title, p.p_theme, p.p_nation, p.p_city, p.p_start_date, p.p_end_date, p.p_volume, p.p_due_date, p.p_file, 
-		       p.p_notification, p.p_url, u.u_nickname, u.u_profile, r.adult_fee, r.std_fee, r.child_fee
+		       p.p_notification, p.p_url, u.u_nickname, u.u_profile, r.adult_fee, r.std_fee, r.child_fee,
+		       (SELECT SUM(adult_num+std_num+child_num) FROM purchase WHERE p_no = ${p_no}) AS cnt
 		FROM package p
 		LEFT JOIN user u
 		ON p.u_id = u.u_id
