@@ -128,7 +128,7 @@ window.initMap = initMap;
 	<jsp:include page="main_header.jsp"></jsp:include>
 	<!-- 페이지 섹션 -->
 	<section>
-	<form action="planner_edit.jsp" method="post">
+	<form action="planner_edit.jsp" method="post" onsubmit="return check_plan()">
 		<div id="content">
 			<div id="list_text">
 				<p id="list_text">| 여행일정 선택</p>
@@ -212,7 +212,7 @@ window.initMap = initMap;
 					}				
 				%>
 				</div>
-				<input type="button" name="finish_btn" value="선택완료" class="button" onclick="check_plan()"/>			
+				<input type="button" name="finish_btn" value="선택완료" class="button" />			
 			</div>
 		</div>
 		<div id="select_div">
@@ -232,7 +232,7 @@ window.initMap = initMap;
 				<%}%>
 				</div>
 				<input type="button" name="close" value="닫기" class="button" />
-					<input type="button" name="finish" value="선택완료" class="button" onclick="check_plan()" />			
+					<input type="button" name="finish" value="선택완료" class="button" />			
 			</div>
 		</div>
 			<div id="side_menu">

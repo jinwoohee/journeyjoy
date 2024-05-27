@@ -52,10 +52,47 @@ String u_id = (String) session.getAttribute("u_id");
     });
   });
 
+//세계 날씨 정보 api
+var weatherIcon = {
+    '01' : 'fas fa-sun',
+    '02' : 'fas fa-cloud-sun',
+    '03' : 'fas fa-cloud',
+    '04' : 'fas fa-cloud-meatball',
+    '09' : 'fas fa-cloud-sun-rain',
+    '10' : 'fas fa-cloud-showers-heavy',
+    '11' : 'fas fa-poo-storm',
+    '13' : 'far fa-snowflake',
+    '50' : 'fas fa-smog'
+};
+var apiuri = "https://api.openweathermap.org/data/3.0/onecall/day_summary?lat=39.099724&lon=-94.578331&date=2020-03-04&appid=edc97f86adc75ba3a64493193adf5a45";
 
- 
+$.ajax({
+    url: apiuri,
+    dataType: "json",
+    type: "GET",
+    async: "false",
+    success: function(resp) {
 
- 
+        var $date = resp.date;
+        var $humidity = '습도&nbsp;&nbsp;&nbsp;&nbsp;' + resp.humidity+ ' %';
+        var $wind = '바람&nbsp;&nbsp;&nbsp;&nbsp;' +resp.wind.speed + ' m/s';
+        var $city = '서울';
+        var $cloud = '구름&nbsp;&nbsp;&nbsp;&nbsp;' + "a"+"%";
+        var $temp_min = '최저 온도&nbsp;&nbsp;&nbsp;&nbsp;' +"a" + 'º';
+        var $temp_max = '최고 온도&nbsp;&nbsp;&nbsp;&nbsp;' +"a"+ 'º';
+        
+
+       	$('.datea').prepend($date);
+        $('.humidity').prepend($humidity);
+        $('.wind').prepend($wind);
+        $('.city').append($city);
+        $('.cloud').append($cloud);
+        $('.temp_min').append($temp_min);
+        $('.temp_max').append($temp_max);               
+    }
+})
+
+
 </script>
 <body>
 	<!-- menu bar -->
@@ -104,27 +141,34 @@ String u_id = (String) session.getAttribute("u_id");
 				                            				<p id="nation_sel">목적지 선택(국가)</p>
 					                            			<table cellspacing="0" id="continent_table">
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('a')">일본</td>	           
+					                            					<td class="continent_one" id="na_a" onclick="nation_open('a')">일본</td>	           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('b')">동남아/대만/서남아</td>			           
+					                            					<td class="continent_one" id="na_b" onclick="nation_open('b')">동남아/대만/서남아</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('c')">미주/캐나다/남중미</td>			           
+					                            					<td class="continent_one" id="na_c" onclick="nation_open('c')">미주/캐나다/남중미</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('d')">유럽/아프리카</td>			           
+					                            					<td class="continent_one" id="na_d" onclick="nation_open('d')">유럽/아프리카</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('e')">괌/사이판/하와이</td>			           
+					                            					<td class="continent_one" id="na_e" onclick="nation_open('e')">괌/사이판/하와이</td>			           
 					                            				</tr>					                            				
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('f')">중국/홍콩/마카오</td>			           
+					                            					<td class="continent_one" id="na_f" onclick="nation_open('f')">중국/홍콩/마카오</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('g')">호주/뉴질랜드</td>			           
+					                            					<td class="continent_one" id="na_g" onclick="nation_open('g')">호주/뉴질랜드</td>			           
 					                            				</tr>
 					                            								                            				
+					                            			</table>
+					                            			<table id="nation_table_empty">
+					                            				<tr>
+					                            					<td id="nation_one_plz">지역을 선택해주세요.</td>
+					                            					
+				                            					</tr>
+					                            				
 					                            			</table>
 					                            			<table id="nation_table_b">
 					                            				<tr>
@@ -446,7 +490,7 @@ String u_id = (String) session.getAttribute("u_id");
 						                    		<p class="main_text">어떤 여행지를 가고 싶으신가요?</p>
 						                    		<hr>
 						                    	</div>
-						                        <div id="place_div">
+						                        <div id="place_div">						                        	
 						                        	<input type="checkbox" name="place" value="놀이공원" id="place1" onchange="checking(this.id)">
 					                                <label for="place1" class="place_check">놀이공원</label>
 					                                <input type="checkbox" name="place" value="박물관/미술관" id="place2" onchange="checking(this.id)">
@@ -519,7 +563,28 @@ String u_id = (String) session.getAttribute("u_id");
 				<%} %>					
 			</div>
 			<div id="img_div">
-			
+				
+				날씨<br>
+				도시 : <br>
+				기온 : <br>
+				날씨 : 
+				<div style="float : left;">
+        <div class="weather_icon"></div>
+    </div><br>
+
+    <div style="float : right; margin : -5px 0px 0px 60px; font-size : 11pt">
+            <div class="temp_min"></div>
+            <div class="temp_max"></div>
+            <div class="humidity"></div>
+            <div class="wind"></div>
+            <div class="cloud"></div>
+            <div class ="datea"></div>
+    </div>
+    <div style="float : right; margin-top : -45px;">
+        <div class="current_temp" style="font-size : 50pt"></div>
+        <div class="weather_description" style="font-size : 20pt"></div>
+        <div class="city" style="font-size : 13pt"></div>
+    </div>
 			</div>
 		</div>
 	</section>

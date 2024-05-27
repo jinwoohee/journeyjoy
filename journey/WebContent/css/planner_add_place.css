@@ -276,7 +276,7 @@ input[id*="plan_add"]{ /*여행지 추가 버튼 */
     height: 40px;
     margin-top: 30px;
     margin-left: 6%;
-    background: #0D112D;
+    background: #2a799c;
     color: white;
 	display : none;
 }

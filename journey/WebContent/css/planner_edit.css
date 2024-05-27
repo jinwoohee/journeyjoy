@@ -48,6 +48,7 @@ p[id*="day"]{ /*day 글자 */
 	margin-top : 14px;
 	cursor : pointer;
 	padding : 5px 20px;
+	border : none;
 }
 p[id="day1"]{ /*day 글자 */
 	border-top: 3px solid #6C94B8;
@@ -123,7 +124,6 @@ p[id="thema"]{ /*여행테마 자체 글자 */
 	color: #6C94B8;
 	font-size: 15px;
 	font-family: "Noto Sans KR", sans-serif;
-	box-shadow: 2px 2px 10px #CCCCCC;
 	cursor: pointer;
 	border : none;
 }
@@ -155,6 +155,7 @@ div[id="plan_list"]{ /*여행지 리스트 전체 div */
 	float: left;
 	margin-left: 5px;
 	margin-top : 5px;
+	min-height: 450px;
 }
 div[id="plan_list"]::-webkit-scrollbar{
 	width: 10px;
@@ -231,7 +232,7 @@ p[class="list_thema"]{ /*리스트의 태그 글자 */
 input[name="delete"]{ /*장소 삭제버튼 */
 	width: 110px;
     height: 40px;
-    background: #CCCCCC;
+    background: #2a799c;
     color: white;
     margin-left: 20px;
     margin-top: 60px;
@@ -288,7 +289,7 @@ input[name*="save_plan"]{ /*저장 버튼 */
 div[id="side_menu"]{ /*사이드 메뉴 div*/
 	position: fixed;
     width: 120px;
-    height: 225px;
+    height: 135px;
     top: 200px;
     right: 210px;
     border: 1px solid #2a799c;

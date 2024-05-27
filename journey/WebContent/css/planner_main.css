@@ -89,9 +89,11 @@ div[id="img_div"]{ /*이미지 슬라이드의 div */
 	width: 630px;
 	height: 630px; 
 	float: right;
-	margin-top: 90px;
+	margin-top: 110px;
 	margin-right: 240px;
 	overflow: hidden;
+	background-color : violet;
+	
 }
 
 /*첫번째 화면*/
@@ -108,7 +110,7 @@ input[name*=_text]{
 }
 #departure_text_div{ /*출발지 버튼누르면 나오는 div*/
 	width: 398px;
-    height: 330px;
+    height: 280px;
     border: 1px solid #CCCCCC;
     background-color: white;
     position: absolute;
@@ -116,7 +118,7 @@ input[name*=_text]{
     display: none;
     margin-top: -6px;
     margin-left: 30px;
-    box-shadow: 4px 6px 20px 3px #CCCCCC
+    box-shadow: 4px 6px 20px 3px #CCCCCC;
 }
 #departure_sel{
 	width: 320px;
@@ -137,14 +139,14 @@ input[name*=_text]{
     width: 155px;
     height: 20px;
     margin: 0px;
-    border: 1px solid #0D112D;
+    border: 1px solid #6C94B8;
     text-align: center;
-    padding-top: 13px;
-    padding-bottom: 17px;
+    padding-top: 5px;
+    padding-bottom: 8px;
     cursor: pointer;
     margin-bottom: 5px;
     color: #0D112D;
-    border-radius: 10px;
+    font-size: 13px;
 }
 
 .departure_one:nth-of-type(2n){
@@ -177,40 +179,56 @@ input[name*=_text]{
 
 #continent_table{
 	margin :0;
-	margin-top : 2px;
 	float:left;
 }
 
 .continent_one{
 	float: left;
     width: 130px;
-    height: 12px;
+    height: 9px;
     argin: 0px;
-    border: 1px solid #0D112D;
+    border: 1px solid #6c94b8;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 7px;
     padding-bottom: 18px;
     cursor: pointer;
     font-size: 13px;
     margin-bottom: 5px;
     color: #0D112D;
-    border-radius: 10px;
 }
 table[id*="nation_table"]{
-	margin:0;
-	float:left;
-	display : none;
+	margin: 0;	
+    float: left;
+    display: none;
+    border: 1px solid #6C94B8;
+    height: 285px;
+    padding: 0 0px;
+    margin-left: 9px;
+}
+#nation_table_empty{
+	display : block;
 }
 .nation_one{
-	float : left;
-	width : 100px;
-	height : 13px;
-	margin: 0px;
-	text-align : center;
-	padding-top : 13px;
-	padding-bottom : 17px;
-	cursor : pointer;
-	font-size : 13px;
+    float: left;
+    width: 85px;
+    height: 13px;
+    margin: 0px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    cursor: pointer;
+    font-size: 13px;
+}
+#nation_one_plz{
+	float: left;
+    width: 172px;
+    height: 13px;
+    margin: 0px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    cursor: pointer;
+    font-size: 13px;
 }
 #city_text_div{ /*출발지 버튼누르면 나오는 div*/
 	width : 398px;

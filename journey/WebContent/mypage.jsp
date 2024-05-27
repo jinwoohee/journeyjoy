@@ -512,7 +512,7 @@
 					<% for (Package p : plist) { %>
 						<li>
 							<div class="pk_list">
-								<div class="pk_img"><img src="<%= p.getP_file() %>" /></div>
+								<div class="pk_img"><img src="uploadFile/<%= p.getP_file() %>" /></div>
 								<div class="pk_cont">
 									<div>
 										<p class="pk_tag"><%= p.getP_nation() %></p>
@@ -635,7 +635,7 @@
 					<% for (Package p : plist) { %>
 						<li>
 							<div class="pk_list">
-								<div class="pk_img"><img src="<%= p.getP_file() %>" /></div>
+								<div class="pk_img"><img src="uploadFile/<%= p.getP_file() %>" /></div>
 								<div class="pk_cont">
 									<div>
 										<p class="pk_tag"><%= p.getP_nation() %></p>
@@ -769,7 +769,7 @@
 								<div class="plan_list">
 									<div class="plan_img">
 										<% if (pr.getPr_file() != null) { %>
-										<img src="<%= pr.getPr_file() %>" />
+										<img src="uploadFile/<%= pr.getPr_file() %>" />
 										<% } else { %>
 										<img src="img/travel/travel1.jpg" />
 										<% } %>
@@ -815,7 +815,7 @@
 								<div class="plan_list">
 									<div class="plan_img">
 										<% if (pr.getPr_file() != null) { %>
-										<img src="<%= pr.getPr_file() %>" />
+										<img src="uploadFile/<%= pr.getPr_file() %>" />
 										<% } else { %>
 										<img src="img/travel/travel1.jpg" />
 										<% } %>

@@ -47,6 +47,14 @@
         		$("input[name='participate']").css({'color':'#FFE400', 'font-weight':'bold'});
         		$("input[name='made']").css({'color': 'white', 'font-weight':'none'});
         	}
+        	
+        	$.ajax({
+        		url : "class_list.jj?page=classTab",
+        		data : {"tab" : $(this).attr('name'), "u_id" : $("input[name=u_id]").val()},
+        		success : function(re){
+        			$("#class_div").html(re);
+        		}	
+        	});
         });
 
         $(".joinClass").click(function(){
@@ -66,17 +74,6 @@
         		$(location).attr('href', 'class_insert.jsp?city='+$("select[name=city]").val()+'');
         	}
         });
-        
-        /* 탭 */
-        $('#sector_section > input[type=button]').click(function(){
-        	$.ajax({
-        		url : "class_list.jj?page=classTab",
-        		data : {"tab" : $(this).attr('name'), "u_id" : $("input[name=u_id]").val()},
-        		success : function(re){
-        			$("#class_div").html(re);
-        		}	
-        	});
-        });
 
         /* 검색필터 */
         $('#filter div').click(function(){
@@ -85,6 +82,10 @@
         		$(this).find('p').css({'color' : 'white'});
         		$(this).siblings('div').css({"background":"white"});
         		$(this).siblings('div').find('p').css({'color' : '#0D112D'});
+        		
+        		/* 탭 글씨 색원래대로 */
+        		$("input[name='participate']").css({'color': 'white', 'font-weight':'none'});
+        		$("input[name='made']").css({'color': 'white', 'font-weight':'none'});
 
         		$.ajax({
         			url : "class_list.jj?page=classFilter",

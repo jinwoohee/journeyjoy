@@ -108,12 +108,10 @@ img[class="day_write"]{
 p[class="place_info"]{
 	font-size: 15px;
     width: 600px;
-    height: 30px;
     color: white;
     background: #6C94B8;
     border-radius: 30px;
-    padding-left: 20px;
-    padding-top: 4px;
+    padding: 5px 20px;
     margin-top: 60px;
     margin-left: 37px;
 }

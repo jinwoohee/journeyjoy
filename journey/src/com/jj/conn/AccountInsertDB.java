@@ -15,7 +15,7 @@ public class AccountInsertDB {
 	
 	SqlSessionFactory sql = SqlMapconfig.getSqlSession();
 	
-	public void insertMth(int e_no, int acc_day, int acc_order, int acc_amount, String acc_payment, String acc_contents, String acc_category) {
+	public void insertMth(int e_no, int acc_day, int acc_order, int acc_amount, String acc_payment, String acc_contents, String acc_category, String acc_curr) {
 		System.out.println("db들어옴");
 		Account dto = new Account();
 		dto.setE_no(e_no);
@@ -25,6 +25,7 @@ public class AccountInsertDB {
 		dto.setAcc_payment(acc_payment);
 		dto.setAcc_contents(acc_contents);
 		dto.setAcc_category(acc_category);
+		dto.setAcc_currency(acc_curr);
 		
 		SqlSession sqls = sql.openSession();
 			

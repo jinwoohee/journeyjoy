@@ -22,7 +22,7 @@ public class EstimateInsertDB {
 	public Map<String, Object> insertMth(String u_id, String e_departure, String e_destination, String e_start_date, String e_end_date, String e_thema, String e_detail_thema, String e_volume, String e_food_taste, String e_airplane, String e_hotel) {
 		Estimate dto = new Estimate();
 		Map<String, Object> param = new HashMap<String, Object>();
-		System.out.println("hi5");
+		
 		dto.setu_id(u_id);
 		dto.sete_departure(e_departure);
 		dto.sete_destination(e_destination);
@@ -34,7 +34,7 @@ public class EstimateInsertDB {
 		dto.sete_food_taste(e_food_taste);
 		dto.sete_airplane(e_airplane);
 		dto.sete_hotel(e_hotel);
-		System.out.println("hi7");
+	
 		SqlSession sqls = sql.openSession();
 			
 		int i = sqls.insert("estimate_insert", dto);

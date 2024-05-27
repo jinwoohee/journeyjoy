@@ -160,13 +160,6 @@ window.initMap = initMap;
 					%>				
 				</div>
 			</div>
-			<%
-			if(edit0 == null){
-				
-			}else if(edit0.equals("1")){
-				
-			}
-			%>
 			<div id="main_content">
 			<div id="thema_div">
 				<img src="img/icon/point.png">
@@ -199,6 +192,7 @@ window.initMap = initMap;
 						String [] list_place = place.split(",");
 						String id_value = request.getParameter("id_selected"+a);
 						String [] list_id = id_value.split(",");
+						
 			%> 
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
@@ -218,12 +212,13 @@ window.initMap = initMap;
 						<div class="list_thema">
 						
 						</div>
+						
 						<input type="button" name="delete" value="삭제" onclick="del_list(<%=a*100+z %>)" class="button"/>	
 					</div>
 					<div class="content_detail">
 						<div class="list_budget">
-							<p>평균가격</p>
-							<p>약 22,000 ~</p>
+						<p>평균가격</p>
+						<p>약 20,000원 ~</p>
 						</div>
 						<a href="" name="pla_url<%=a%>" target='_blank'><input type="button" name="detail" value="상세정보 보기" class="button"/></a>
 					</div>
@@ -237,17 +232,17 @@ window.initMap = initMap;
 					}else if(edit0.equals("1")){
 						String place = request.getParameter("edit_plan"+a);
 						String pl_ids = request.getParameter("edit_plan_id"+a);
-						String pl_id = pl_ids.replaceAll("empty", "");
-						System.out.println("애드플레이스에서 온 값"+place);
-						if(place != ""){
-						String place_list = place.replaceAll("#", "").replaceAll(",","_").replaceAll("new", "").replaceAll("\\(", "").replaceAll("\\)", "").replaceAll(" ", "-");
+
+						if(place != "" ){
+							String pl_id = pl_ids.replaceAll("empty", "");
+						String place_list = place.replaceAll("#", "").replaceAll(",","_").replaceAll("!new!", "").replaceAll(" ", "-");
 						String place_list_sp = place_list.replaceAll("-", " ").replaceAll("_",",");
-						System.out.println("dsadsa"+place_list_sp);
-						System.out.println("dsadsa2"+place_list);
-						
+
+						System.out.println(pl_id);
 						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place_list_sp.split(",");
 						String [] list_id = pl_id.split(",");
+						System.out.println(list_id[0]);
 			%>
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
@@ -272,8 +267,9 @@ window.initMap = initMap;
 					<div class="content_detail">
 						<div class="list_budget">
 							<p>평균가격</p>
-							<p>약 22,000 ~</p>
+						<p>약 20,000원 ~</p>
 						</div>
+						
 						<a href="" name="pla_url<%=a%>" target='_blank'><input type="button" name="detail" value="상세정보 보기" class="button"/></a>
 					</div>
 				</div>
@@ -310,9 +306,6 @@ window.initMap = initMap;
 			</div>
 		<div id="side_menu">
 			<p id="side_menu_p" align="center">side menu</p>
-				<a href="planner_select.jsp">
-					<input type="button" name="plan_sel" value="일정선택&#10;목록으로" class="button">
-				</a>
 					<input type="submit" name="plan_sel_add" value="여행지&#10;추가하기" class="button">
 		</div>
 		</form>

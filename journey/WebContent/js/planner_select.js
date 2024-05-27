@@ -31,7 +31,7 @@ $(document).ready(function() {
 		$("#side_inner").css({"border-bottom":"0"});
 		$("#select_div").show();
 	});
-	$("input[name='finish']").click(function(){
+	$("input[name*='finish']").click(function(){
 		$("form").submit();
 	});
 });
@@ -140,8 +140,6 @@ function check_plan(){
 		if(pick.value === "none"){
 			alert("일정을 선택해주세요.");
 			return false;
-		}else{
-			$("form").submit();
 		}
 		
 	}

@@ -46,28 +46,29 @@ public class PlanInsert implements JourneyInterface{
 		}
 		
 		//account insert
-		System.out.println("인설트db1");
+	
 		AccountInsertDB accdb = AccountInsertDB.indb();
-		System.out.println("인설트db6");
-		for(int a = 1 ; a<= day ; a++) {
-			System.out.println("인설트db7");
+	
+		for(int a = 0 ; a<= day ; a++) {
+			
 			String [] amount = request.getParameterValues("prices"+a);
 			String [] payment = request.getParameterValues("pay_with"+a);
 			String [] contents = request.getParameterValues("content"+a);
 			String [] category = request.getParameterValues("sort"+a);
+			String [] curr = request.getParameterValues("curr"+a);
 			
-				System.out.println("인설트db4");
+			
 				for(int i = 0 ; i < amount.length ; i++) {
-					System.out.println(amount[i]+payment[i]+contents[i]);
+					
 					int acc_amount = Integer.parseInt(amount[i].replaceAll(" ", ""));
 					String acc_payment = new String(payment[i].getBytes("8859_1"),"UTF-8");
 					String acc_contents = new String(contents[i].getBytes("8859_1"),"UTF-8");
 					String acc_category = new String(category[i].getBytes("8859_1"),"UTF-8");
-							
-					accdb.insertMth(e_no, a, i, acc_amount, acc_payment, acc_contents, acc_category);
+					String acc_curr = curr[i];			
+					accdb.insertMth(e_no, a, i, acc_amount, acc_payment, acc_contents, acc_category, acc_curr);
 			}
 		}
-		System.out.println("인설트db2");
+	
 		//page
 		request.setAttribute("paging", "list");
 		System.out.println("plan인설트 마지막");

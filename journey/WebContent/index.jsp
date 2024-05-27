@@ -62,6 +62,16 @@ $(function(){
 		$("#departure_div_in").css({"display":"none"});
 	});
 	
+	/* 견적내기 버튼 */
+	$("input[name=planBtn]").click(function(){
+		var nation = $("#nation").val();
+		var departure = $("#departure").val();
+		var startDt = $("#startDt").val();
+		var endDt = $("#endDt").val();
+		
+		location.href="planner_main.jsp?nation="+nation+"&departure="+departure+"&startDt="+startDt+"&endDt="+endDt;
+	});
+	
 	
 	/* 날짜 */
 	$("#startDt").datepicker({
@@ -146,7 +156,7 @@ function barChartDraw() {
         		
         }
     });
-};
+}; 
 
 
 //가장많이 여행간 나라(2023년기준)
@@ -269,7 +279,8 @@ xhr.send('');
    			</div>
 			<input type="text" id="startDt" placeholder="여행출발일">
 			<input type="text" id="endDt" placeholder="여행도착일">
-			<input type="button" value="견적내기" onclick="location.href='planner_main.jsp'">
+			<input type='button' name='planBtn' value='견적내기'>
+			<!-- <input type="button" value="견적내기" onclick="location.href='planner_main.jsp'"> -->
 		</div>
 	</section>
 
