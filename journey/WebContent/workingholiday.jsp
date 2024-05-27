@@ -702,7 +702,7 @@
 				});
 			});
 			
-			//사이드바
+			//사이드바 
 			$('.sideBar_cont li').click(function() {
 				$('.modal_contents').empty(); //내용칸 비워두기
 				
