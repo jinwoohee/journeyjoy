@@ -26,6 +26,7 @@ import com.jj.inter.MypageLikeSelect;
 import com.jj.inter.MypagePackageSelect;
 import com.jj.inter.MypagePlaceReviewSelect;
 import com.jj.inter.MypagePlanReviewSelect;
+import com.jj.inter.MypagePlannerSelect;
 import com.jj.inter.MypagePurchaseSelect;
 import com.jj.inter.MypageUserInfoSelect;
 import com.jj.inter.NaverLogin;
@@ -145,6 +146,15 @@ public class JourneyController extends HttpServlet {
 			}
 		} else if (page.equals("mypageUserInfo")) { //마이페이지-회원정보수정
 			ji = MypageUserInfoSelect.mypageUserInfoSelect();
+			try {
+				String url = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(url).forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (page.equals("mypagePlanner")) { //마이페이지-여행계획서
+			ji = MypagePlannerSelect.mypagePlannerSelect();
 			try {
 				String url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(url).forward(request, response);

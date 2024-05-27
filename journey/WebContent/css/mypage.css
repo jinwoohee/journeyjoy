@@ -97,6 +97,118 @@ button, input[type="button"], .notification_wrap li, .dot {
 }
 
 /* 여행계획서 */
+.pn_wrap {
+	background-color: white;
+}
+
+.pn_list {
+	width: 1200px;
+	height: 100%;
+}
+
+.pn {
+	width: 1200px;
+    height: 280px;
+    margin: 35px auto;
+    border: 0;
+    border-radius : 5px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+}
+
+.pn_img {
+	width : 400px;
+	height : 100%;
+	background-color : violet;
+	float : left;
+	position :relative;
+	z-index : 10;
+	border-radius : 5px 0 0 5px;
+}
+
+.city_img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position :relative;
+	z-index : 11;
+	border-radius : 5px 0 0 5px;
+}
+.square{
+    background-color: white;
+    transform: rotate(45deg);
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 13;
+    margin-left: 380px;
+    margin-top: -167px;
+}
+
+.pn_content {
+	width: calc(100% - 400px);
+    height: 100%;
+    margin-left: 50px;
+	margin-right: 50px;
+	display: flex;
+    align-items: center;
+}
+
+.pn_sub {
+	width: 100%;
+    height: fit-content;
+}
+
+.pn_title {
+	display: flex;
+    justify-content: space-between;
+}
+
+.pn_title span {
+	font-size : 15px;
+	padding-top: 7px;
+}
+
+.pn_title { /*계획서 제목 글자*/
+	font-size : 20px;
+	font-weight : bold;
+	margin-top: 0px;
+}
+
+.destination { /*계획서 도시*/
+	font-size : 17px;
+	font-weight : bold;
+}
+
+img[src*="location"] {
+	width : 25px;
+	height : 25px;
+}
+
+.trip_date { /*계획서 여행일자*/
+	font-size : 15px;
+}
+
+.thema_text { /*테마 글자*/
+	font-size : 13px;
+}
+
+.pn_chkList {
+	display: flex;
+    justify-content: flex-end;
+}
+
+button[name*="chkList"] {
+	width: 90px;
+	height: 40px;
+    border-radius : 5px;
+    border: 1px solid #6C94B8;
+    color: #6C94B8;
+    font-weight: 600;
+    background-color: #fff;
+}
+
 .pn_blank {
 	/* text-align: center; */
     font-size: 18px;
@@ -107,6 +219,42 @@ button, input[type="button"], .notification_wrap li, .dot {
     align-items: center;
 }
 
+/* 여행계획서-체크리스트 */
+.modal_wrap {
+	width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    z-index: 100;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+	background-color: rgba(0, 0, 0, 0.65);
+	display: none;
+}
+
+.modal_wrap::before {
+	content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.05em;
+}
+
+.modal {
+	width: 45%;
+    height: 70%;
+    position: relative;
+    z-index: 101;
+    background-color: #fff;
+    vertical-align: middle;
+    box-sizing: border-box;
+    display: inline-block;
+}
 
 
 .package, .review, .userInfo { /* cards li */

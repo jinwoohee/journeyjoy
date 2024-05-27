@@ -12,6 +12,7 @@
 <%@page import="java.util.Map.Entry"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String u_id = (String) session.getAttribute("u_id");
 	String mpg = request.getParameter("tab");	
@@ -109,12 +110,24 @@
 				$('.user_wrap').show();
 				$('.user_wrap').siblings('div').hide();
 			} else {
-				$('.plan_wrap').show();
+				$('.pn_wrap').show();
 				$('.cards').children('div').hide();
-				$('.plan_wrap').siblings('div').hide();
+				$('.pn_wrap').siblings('div').hide();
 			}
 		});
 		
+		/* 여행계획서 */
+		$("button[name*='chkList']").mouseover(function(){
+			$(this).css({'border-color':'red','color':'red'})
+		});
+		
+		$("button[name*='chkList']").mouseout(function(){
+			$(this).css({'border-color':'#6C94B8','color':'#6C94B8'})
+		});
+		
+		$("button[name*='chkList']").click() {
+			
+		}
 		
 		
 		/* 패키지 */
@@ -422,26 +435,59 @@
 			<div class="content_wrap">
 				<!-- 여행계획서 -->
 				<% if (mpg.equals("myplan")) { %>
-				<div class="plan_wrap">
-					<%--
-					<%
-					ArrayList<Plan> pnlist = (ArrayList<Plan>)request.getAttribute("pnlist"); //여행계획서
-					
-					if (pnlist.size() != 0) {
-					%>
-					<div></div>
-					<% } else { %>
-					<div class="cont_blank">
-						여행계획서가 존재하지 않습니다.
+				<div class="pn_wrap">
+					<c:set var="estList" value="${ requestScope.estimate }" />
+					<c:set var="planList" value="${ requestScope.planList }" />
+					<div class="pn_list">
+					<c:if test="${ fn:length(planList) != 0 }">
+						<c:forEach var="es" items="${ estList }">
+							<c:forEach var="plan" items="${ planList }">
+								<c:if test="${ es.e_no == plan.e_no }">
+									<c:set var="date" value="${ plan.plan_date }" />
+									<c:set var="city" value="${ es.e_destination }" />
+									<c:set var="city_img" />
+									<c:if test="${ city == '도쿄' }">
+										<c:set var="city_img" value="img/japan/tokyo3.jpg" />
+									</c:if>
+									<c:if test="${ city == '오사카' }">
+										<c:set var="city_img" value="img/japan/osaka6.jpg" />
+									</c:if>
+									<div class="pn">
+										<div class="pn_img">
+											<img src="${ city_img }" class="city_img"/>
+											<div class="square"></div>
+										</div>
+										<div class="pn_content">
+											<div class="pn_sub">								
+												<p class="pn_title">${ plan.plan_title }<span>${ date }</span></p>
+												<p class="destination"><img src="img/icon/location.png"/>&nbsp;&nbsp;${ city }</p>
+												<p class="trip_date">${ fn:replace(es.e_start_date, '-', '.') } ~ ${ fn:replace(es.e_end_date, '-', '.') }</p>
+												<p class="thema_text">${ es.e_thema }, ${ es.e_detail_thema }</p>
+												<div class="pn_chkList"><button type="submit" name="chkList${ es.e_no }" class="button">체크리스트</button></div>
+												<input type="hidden" name="e_no" value="${ es.e_no }" />
+											</div>
+										</div>
+									</div>
+								</c:if>
+							</c:forEach>
+						</c:forEach>
+					</c:if>
 					</div>
-					<% } %>
-					--%>
-					<div class="pn_blank">
-						여행계획서가 존재하지 않습니다.
+					<c:if test="${ fn:length(planList) == 0 }">
+						<div class="pn_blank">
+							여행계획서가 존재하지 않습니다.
+						</div>
+					</c:if>
+				</div>
+				<div class="modal_wrap">
+					<div class="modal">
+						<div class="modal_title"></div>
+						<div class="modal_contents"></div>
+						<div class="modal_close"><img src="img/icon/btn-layer.png"></div>
 					</div>
 				</div>
 				<% } else { %>
-				<div class="plan_wrap no_active">
+				<div class="pn_wrap no_active">
 					<div class="pn_blank">
 						여행계획서가 존재하지 않습니다.
 					</div>
