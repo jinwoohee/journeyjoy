@@ -268,9 +268,11 @@ window.initMap = initMap;
 							out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
 							out.println("<p id='places_text"+a+"'></p>");
 							out.println("<input type='hidden' name='edit_plan"+a+"' value='' id='edited"+a+"'>");
+							out.println("<input type='hidden' name='edit_plan_id"+a+"'value='' id='edited_id"+a+"'>");
 						}else if(place_attr != null && !place_cookie.equals("")){
 							out.println("<p id='places_text"+a+"'>"+place_attr+"</p>");
 							out.println("<input type='hidden' name='edit_plan"+a+"' value='"+place_attr+"' id='edited"+a+"'>");
+							out.println("<input type='hidden' name='edit_plan_id"+a+"'value='' id='edited_id"+a+"'>");
 						}else{
 							out.println("<p id='places_text"+a+"'>");
 			
@@ -284,6 +286,7 @@ window.initMap = initMap;
 						out.println("</p>");
 				%>		
 				<input type="hidden" name="edit_plan<%=a %>" value="<%=pa_list%>" id="edited<%=a%>">
+				<input type="hidden" name="edit_plan_id<%=a %>" value="<%=place_id %>" id="edited_id<%=a %>">
 				<% 	
 						}
 					}else if(place_name.equals("empty")){

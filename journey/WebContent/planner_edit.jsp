@@ -192,6 +192,7 @@ window.initMap = initMap;
 						String [] list_place = place.split(",");
 						String id_value = request.getParameter("id_selected"+a);
 						String [] list_id = id_value.split(",");
+						
 			%> 
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
@@ -231,9 +232,9 @@ window.initMap = initMap;
 					}else if(edit0.equals("1")){
 						String place = request.getParameter("edit_plan"+a);
 						String pl_ids = request.getParameter("edit_plan_id"+a);
-						String pl_id = pl_ids.replaceAll("empty", "");
-	
-						if(place != ""){
+
+						if(place != "" ){
+							String pl_id = pl_ids.replaceAll("empty", "");
 						String place_list = place.replaceAll("#", "").replaceAll(",","_").replaceAll("!new!", "").replaceAll(" ", "-");
 						String place_list_sp = place_list.replaceAll("-", " ").replaceAll("_",",");
 
