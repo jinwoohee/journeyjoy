@@ -144,20 +144,23 @@ String aaaa = datecnt+"";
 							String places = sche.get(num).getPlace();
 							String [] place_arr = places.split(",");
 							out.println("<p class='place_name'>");
-							
+							String empty_pl = "";
+							String empty_ea = "";
 							for(String st : place_arr){
 								for(Place pl : plac){
 									if(pl.getPlac_id().equals(st)){
 										out.println("#"+pl.getPlac_name()+" ");
-										System.out.println("!!!!"+pl.getPlac_name());
+										empty_pl = "1";
 									}
 								}
 								for(Eatery ea : eate){
 									if(ea.getEat_id().equals(st)){
 										out.println("#"+ea.getEat_name()+" ");
-										System.out.println("!!!!"+ea.getEat_name());
+										empty_ea = "2";
 									}
 								}
+							}if(empty_pl.equals("") && empty_ea.equals("")){
+								out.println("일정이 없습니다.");
 							}
 							out.println("</p>");
 							%>
@@ -480,18 +483,23 @@ String aaaa = datecnt+"";
 							String places = sche.get(num).getPlace();
 							String [] place_arr = places.split(",");
 							out.println("<p class='place_name'>");
-							
+							String empty_pl = "";
+							String empty_ea = "";
 							for(String st : place_arr){
 								for(Place pl : plac){
 									if(pl.getPlac_id().equals(st)){
 										out.println("#"+pl.getPlac_name()+" ");
+										empty_pl = "1";
 									}
 								}
 								for(Eatery ea : eate){
 									if(ea.getEat_id().equals(st)){
 										out.println("#"+ea.getEat_name()+" ");
+										empty_ea = "2";
 									}
 								}
+							}if(empty_pl.equals("") && empty_ea.equals("")){
+								out.println("일정이 없습니다.");
 							}
 							out.println("</p>");
 							%>

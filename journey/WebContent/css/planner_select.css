@@ -137,7 +137,6 @@ input[name="edit_thema"]{ /*테마 수정하기 버튼 */
 div[id="plan_list"]{ /*일정 리스트 전체 div */
 	width: 945px;
     min-height: 650px;
-    max-height : 1220px;
     float: left;
     margin-left: 10px;
     overflow: auto;
@@ -257,7 +256,7 @@ input[name="finish_btn"]{ /*선택완료 버튼 */
 	margin-left: 42%;
     width: 180px;
     height: 45px;
-    margin-top: 60px;
+    margin-top: 30px;
     margin-bottom: 60px;
     cursor: pointer;
     background: #2a799c;
@@ -358,7 +357,21 @@ div[id="side_menu"]{ /*사이드 메뉴 div*/
 	font-weight: bold;
 	color : #2a799c;
 }
-
+#more_div{
+	width: 1050px;
+    height: 80px;
+    float: left;
+    margin-left: 47px;
+}
+input[name="more_btn"]{
+	font-size : 20px;
+	color : #646464;
+	border : none;
+	background-color : white;
+	cursor : pointer;
+    margin-left: 489px;
+    margin-top: 20px;
+}
 footer {
 	margin-top: 0px;
 }

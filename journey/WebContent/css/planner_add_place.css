@@ -269,7 +269,7 @@ div[id="places1"]{
 }
 p[id*="places_text"]{
 	font-size : 17px;
-	width : 950px;
+	width : 930px;
 }
 input[id*="plan_add"]{ /*여행지 추가 버튼 */
 	width: 240px;

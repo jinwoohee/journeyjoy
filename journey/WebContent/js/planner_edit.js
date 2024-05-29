@@ -21,6 +21,7 @@ $(document).ready(function() {
 	$("input[name='save_plan_edit']").click(function(){
 		$("form").attr("action","planner.jj?page=schedule_update");
 	});
+	
 });
 
 function day_select(num){
@@ -50,4 +51,8 @@ function del_list(num){
 	 
 	var list = document.getElementById("list_content"+num);
 	list.remove();
+	
+	if($("input[name='place_id_src"+day+"']").length == 0){
+		 $("div[id='list_empty"+day+"']").show();
+	 }
 }

@@ -183,6 +183,12 @@ div[id*="list_content"]{ /* 여행지 하나하나의 div */
 	border-bottom: 0.7px solid #CCCCCC;
 	margin: 0;
 }
+div[id*="list_empty"]{
+	width: 890px;
+	height: 200px;
+	border-bottom: 0.7px solid #CCCCCC;
+	margin: 0;
+}
 img[class="place_pic"]{ /* 여행지의 사진 형식*/ 
 	width: 170px;
     height: 160px;

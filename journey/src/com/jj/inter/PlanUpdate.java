@@ -33,21 +33,25 @@ public class PlanUpdate implements JourneyInterface{
 		//schedule update
 		for(int a = 1 ; a <= day ; a++) { 
 			String [] schedule = request.getParameterValues("change_value"+a);
+			
 			String result ="";
+			if(schedule != null) {
 			for(int i = 0 ; i < schedule.length ; i++) {
+			
 				String ss = new String(schedule[i].getBytes("8859_1"),"UTF-8"); 
 				result += ss+",";
 			}
-			System.out.println("result day"+a+":"+result);
+			}
+		
 
 			ScheduleUpdateDB upsc = ScheduleUpdateDB.updatedb();
 			int i = upsc.updateMtd(e_no, a, result);
-		}
 		
+		}
 		// account update
 		AccountDeleteDB accdel = AccountDeleteDB.deldb();
 		accdel.deleteMth(e_no);
-
+		
 		AccountInsertDB accdb = AccountInsertDB.indb();
 		for(int a = 0 ; a<= day ; a++) {
 			String [] amount = request.getParameterValues("prices"+a);
@@ -56,12 +60,13 @@ public class PlanUpdate implements JourneyInterface{
 			String [] category = request.getParameterValues("sort"+a);
 			String [] curr = request.getParameterValues("curr"+a);
 			for(int i = 0 ; i < amount.length ; i++) {
-				int acc_amount = Integer.parseInt(amount[i]);
+				String am_ed = amount[i].replaceAll(",", "");
+				int acc_amount = Integer.parseInt(am_ed);
 				String acc_payment = new String(payment[i].getBytes("8859_1"),"UTF-8");
 				String acc_contents = new String(contents[i].getBytes("8859_1"),"UTF-8");
 				String acc_category = new String(category[i].getBytes("8859_1"),"UTF-8");
 				String acc_curr = curr[i];		
-				accdb.insertMth(e_no, a, i, acc_amount, acc_payment, acc_contents, acc_category, acc_curr);	
+				accdb.insertMth(e_no, a, i, acc_amount, acc_payment, acc_contents, acc_category, acc_curr);
 			}
 		}	
 

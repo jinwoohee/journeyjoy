@@ -143,6 +143,9 @@ function cancel_prod(num){
 	if(select.value == ""){
 		sel_pla.style.display = "block";
 	}
+	if($("p[id*='product_add_name']").length == 0){
+		$("#sel_prod_plz").show();
+	}
 }
 
 function initMap() {

@@ -64,8 +64,9 @@ var weatherIcon = {
     '13' : 'far fa-snowflake',
     '50' : 'fas fa-smog'
 };
-var apiuri = "https://api.openweathermap.org/data/3.0/onecall/day_summary?lat=39.099724&lon=-94.578331&date=2020-03-04&appid=edc97f86adc75ba3a64493193adf5a45";
-
+var apiuri = "https://api.openweathermap.org/data/2.5/forecast?q=seoul&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
+var str = "";
+var a = 1;
 $.ajax({
     url: apiuri,
     dataType: "json",
@@ -73,22 +74,32 @@ $.ajax({
     async: "false",
     success: function(resp) {
 
-        var $date = resp.date;
-        var $humidity = '습도&nbsp;&nbsp;&nbsp;&nbsp;' + resp.humidity+ ' %';
-        var $wind = '바람&nbsp;&nbsp;&nbsp;&nbsp;' +resp.wind.speed + ' m/s';
-        var $city = '서울';
-        var $cloud = '구름&nbsp;&nbsp;&nbsp;&nbsp;' + "a"+"%";
-        var $temp_min = '최저 온도&nbsp;&nbsp;&nbsp;&nbsp;' +"a" + 'º';
-        var $temp_max = '최고 온도&nbsp;&nbsp;&nbsp;&nbsp;' +"a"+ 'º';
-        
-
-       	$('.datea').prepend($date);
-        $('.humidity').prepend($humidity);
-        $('.wind').prepend($wind);
-        $('.city').append($city);
-        $('.cloud').append($cloud);
-        $('.temp_min').append($temp_min);
-        $('.temp_max').append($temp_max);               
+		for(var i = 0 ; i < resp.list.length ; i++){
+			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
+				
+				var $weather = "날씨"+a+" : "+resp.list[i].weather.description+"<br>";
+				alert(resp.list[i].weather.description);
+				$('.datea').append($weather);
+				a++;
+			}
+		}
+	
+	       // var $date = resp.list.dt;
+	        /* var $humidity = '습도&nbsp;&nbsp;&nbsp;&nbsp;' + resp.humidity+ ' %';
+	        var $wind = '바람&nbsp;&nbsp;&nbsp;&nbsp;' +resp.wind.speed + ' m/s';
+	        var $city = '서울';
+	        var $cloud = '구름&nbsp;&nbsp;&nbsp;&nbsp;' + "a"+"%";
+	        var $temp_min = '최저 온도&nbsp;&nbsp;&nbsp;&nbsp;' +"a" + 'º';
+	        var $temp_max = '최고 온도&nbsp;&nbsp;&nbsp;&nbsp;' +"a"+ 'º';
+	         */
+	
+	    //   	$('.datea').prepend($date);
+	       /*  $('.humidity').prepend($humidity);
+	        $('.wind').prepend($wind);
+	        $('.city').append($city);
+	        $('.cloud').append($cloud);
+	        $('.temp_min').append($temp_min);
+	        $('.temp_max').append($temp_max);  */              
     }
 })
 

@@ -255,6 +255,7 @@ window.initMap = initMap;
 				for(int a = 1 ; a <= datecnt ; a++){ 
 					String place_name = request.getParameter("place_name"+a);
 					String place_cookie = getCookieValue(cookies, "pla"+a);
+
 					String place_id = request.getParameter("place_ids"+a);
 					System.out.println("aaaxx"+a+place_id);
 					System.out.println("aaaxx"+a+place_name);
@@ -263,13 +264,7 @@ window.initMap = initMap;
 					out.println("<div id='places"+a+"'>");
 					out.println("<p class='my_place'>나의 여행지 (Day"+a+")</p>");
 					if(place_name == null ){
-						if(place_cookie.equals("")){
-							
-							out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
-							out.println("<p id='places_text"+a+"'></p>");
-							out.println("<input type='hidden' name='edit_plan"+a+"' value='' id='edited"+a+"'>");
-							out.println("<input type='hidden' name='edit_plan_id"+a+"'value='' id='edited_id"+a+"'>");
-						}else if(place_attr != null && !place_cookie.equals("")){
+						if(place_attr != null){
 							out.println("<p id='places_text"+a+"'>"+place_attr+"</p>");
 							out.println("<input type='hidden' name='edit_plan"+a+"' value='"+place_attr+"' id='edited"+a+"'>");
 							out.println("<input type='hidden' name='edit_plan_id"+a+"'value='' id='edited_id"+a+"'>");
@@ -289,22 +284,18 @@ window.initMap = initMap;
 				<input type="hidden" name="edit_plan_id<%=a %>" value="<%=place_id %>" id="edited_id<%=a %>">
 				<% 	
 						}
-					}else if(place_name.equals("empty")){
-						response.addCookie(new Cookie("pla"+a, ""));
-						out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
-						out.println("<p id='places_text"+a+"'></p>");
-						out.println("<input type='hidden' name='edit_plan"+a+"'value='' id='edited"+a+"'>");
-						out.println("<input type='hidden' name='edit_plan_id"+a+"'value='' id='edited_id"+a+"'>");
-					}else if(place_cookie.equals("")){
+					}else{ 
+					if(place_name.equals("empty")){
+						System.out.println("aa");
 						response.addCookie(new Cookie("pla"+a, ""));
 						out.println("<p id='places_textb"+a+"'>일정이 비어있습니다.</p>");
 						out.println("<p id='places_text"+a+"'></p>");
 						out.println("<input type='hidden' name='edit_plan"+a+"'value='' id='edited"+a+"'>");
 						out.println("<input type='hidden' name='edit_plan_id"+a+"'value='' id='edited_id"+a+"'>");
 					}
-					else if(!place_name.equals("empty")){
+					else{
 						System.out.println("2번");
-						String place_ck = place_name.replaceAll(",", "_").replaceAll("empty","").replaceAll("-", " ");
+						String place_ck = place_name.replaceAll(",", "_").replaceAll("empty","");
 						String []place = place_ck.split("_");
 						String st_list = "";
 						System.out.println("2번="+place_ck);
@@ -314,15 +305,16 @@ window.initMap = initMap;
 								st_list += "#"+st+"_";
 							}
 						out.println("</p>");
-						String st_list_arr = st_list.replaceAll("#", "").replaceAll(",", "_").replaceAll(" ", "-");
+						String st_list_arr = st_list.replaceAll("#", "").replaceAll(",", "_");
 						System.out.println("2-2:"+st_list_arr);
-						response.addCookie(new Cookie("pla"+a, st_list_arr));
 						System.out.println("2-3:"+st_list);
+						System.out.println("204:"+place_id);
 				%>	 
 				<input type="hidden" name="edit_plan<%=a%>" value="<%=st_list%>" id="edited<%=a%>">
 				<input type="hidden" name="edit_plan_id<%=a %>" value="<%=place_id %>" id="edited_id<%=a %>">
 				<% 
-					}			
+					}
+				}
 					out.println("</div>");
 				}
 				%>	

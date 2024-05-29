@@ -132,18 +132,23 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 							String [] place_arr = places.split(",");
 							System.out.println("ddd3"+places);
 							out.println("<p class='place_name'>");
-							
+							String empty_pl = "";
+							String empty_ea = "";
 							for(String st : place_arr){
 								for(Place pl : plac){
 									if(pl.getPlac_id().equals(st)){
 										out.println("#"+pl.getPlac_name()+" ");
+										empty_pl = "1";
 									}
 								}
 								for(Eatery ea : eate){
 									if(ea.getEat_id().equals(st)){
 										out.println("#"+ea.getEat_name()+" ");
+										empty_ea = "2";
 									}
 								}
+							}if(empty_pl.equals("") && empty_ea.equals("")){
+								out.println("일정이 없습니다.");
 							}
 							out.println("</p>");
 							%>
@@ -207,6 +212,11 @@ List<Account> accList = (List<Account>)request.getAttribute("account");
 									<td></td>
 								</tr>
 							<%} %>
+							<tr id="sel_prod_plz" style="display:none;">
+									<td id="product_add_name">추가한 상품이 없습니다.</td>
+									<td></td>
+									<td></td>
+								</tr>
 							<% String [] pr_arr = plan.get(0).getPlan_product().split(",");
 							String products = "";
 								for(Product pr : prod){

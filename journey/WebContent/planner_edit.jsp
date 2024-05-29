@@ -186,12 +186,12 @@ window.initMap = initMap;
 					String id_list = "";
 					if(edit0 == null){
 						String place =request.getParameter("selected"+a);
-						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_").replaceAll(" ", "-");
+						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_");
 						response.addCookie(new Cookie("pla"+a, place_list));
-						System.out.println("1번째:"+place_list);
 						String [] list_place = place.split(",");
 						String id_value = request.getParameter("id_selected"+a);
 						String [] list_id = id_value.split(",");
+						System.out.println("pla_coo = "+place_list);
 						
 			%> 
 				<div id="plan_list_day<%=a%>">
@@ -235,11 +235,9 @@ window.initMap = initMap;
 
 						if(place != "" ){
 							String pl_id = pl_ids.replaceAll("empty", "");
-						String place_list = place.replaceAll("#", "").replaceAll(",","_").replaceAll("!new!", "").replaceAll(" ", "-");
-						String place_list_sp = place_list.replaceAll("-", " ").replaceAll("_",",");
-
+						String place_list = place.replaceAll("#", "").replaceAll(",","_").replaceAll("!new!", "");
+						String place_list_sp = place_list.replaceAll("_",",");
 						System.out.println(pl_id);
-						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place_list_sp.split(",");
 						String [] list_id = pl_id.split(",");
 						System.out.println(list_id[0]);
@@ -276,14 +274,25 @@ window.initMap = initMap;
 				<% }%>
 				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" id = "place_name<%=a%>" />
 				<input type="hidden" name="place_ids<%=a %>" value="empty<%=id_list %>" id = "place_ids<%=a %>" />
+					<div id="list_empty<%=a%>" style="display:none;">
+						<div class="content_fdiv">
+							<div class="list_place">
+								<p class="list_place_empty" >일정이 비었습니다.</p>
+								<input type="hidden" name="place_name<%=a%>" value="empty" id = "place_name<%=a%>" />
+								<input type="hidden" name="place_ids<%=a %>" value="empty" id = "place_ids<%=a %>" />
+							</div>
+						</div>
+					</div>
 				</div>
 			<%
 					}else{%>
 					<div id="plan_list_day<%=a%>">
-						<div id="list_content">
+						<div id="list_empty<%=a%>">
 							<div class="content_fdiv">
 								<div class="list_place">
-									<p class="list_place" >일정이 비었습니다.</p>
+									<p class="list_place_empty" >일정이 비었습니다.</p>
+									<input type="hidden" name="place_name<%=a%>" value="empty" id = "place_name<%=a%>" />
+									<input type="hidden" name="place_ids<%=a %>" value="empty" id = "place_ids<%=a %>" />
 								</div>
 							</div>
 						</div>

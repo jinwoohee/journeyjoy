@@ -34,6 +34,26 @@ $(document).ready(function() {
 	$("input[name*='finish']").click(function(){
 		$("form").submit();
 	});
+	
+	/*페이징*/
+	 $(".list_content").hide();
+	 $(".list_content").slice(0, 6).css("display", "block");
+	 	
+	 if($(".list_content:hidden").length == 0){
+		 $('input[name="more_btn"]').hide();
+	 }
+	 //더보기 버튼
+	 $('input[name="more_btn"]').click(function(){
+		 $(".list_content:hidden").slice(0, 3).css("display", "block");
+		 
+		 
+	 });
+	 $('input[name="more_btn"]').mouseover(function(){
+		 $('input[name="more_btn"]').css({"border-bottom":"1px solid #646464"});
+	 });
+	 $('input[name="more_btn"]').mouseout(function(){
+		 $('input[name="more_btn"]').css({"border-bottom":"none"});
+	 });
 });
 function add_plan(num){
 	var button = document.getElementsByName("select"+num);

@@ -30,7 +30,7 @@ public class AccountInsertDB {
 		SqlSession sqls = sql.openSession();
 			
 		int i = sqls.insert("account_insert", dto);
-		
+		System.out.println("acc_is_db 나가기");
 		sqls.commit();
 		sqls.close();
 		

@@ -28,7 +28,6 @@ request.setCharacterEncoding("utf-8");
 	String d_thema = getCookieValue(cookies, "e_detail_thema");
 	String volume = getCookieValue(cookies, "e_volume");
 	String food_st = getCookieValue(cookies, "e_food_taste");
-	
 	String e_detail_thema = d_thema.replaceAll("_", ", ");
 	String e_food_taste = food_st.replaceAll("_", ", ");
 	
@@ -212,6 +211,9 @@ window.initMap = initMap;
 					}				
 				%>
 				</div>
+				<div id='more_div'>
+            		<input type="button" name="more_btn" value="일정 더보기" class="button">
+          	 	 </div>
 				<input type="button" name="finish_btn" value="선택완료" class="button" />			
 			</div>
 		</div>
@@ -240,6 +242,7 @@ window.initMap = initMap;
 				<input type="button" name="open" value="목록열기" class="button" />
 			</div>
 			</form>
+			
 			<div id="map"></div>
 	</section>
 		
