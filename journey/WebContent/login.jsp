@@ -39,6 +39,29 @@
 	
 	$(function() {
 		
+		/*ID/PW 찾기 모달창*/
+		$("p[id*=find]").click(function(){
+			if($(this).attr('id') == 'findID'){
+				//ID찾기
+				$('.modal_title').text("ID 찾기");
+				$('.modal_contents').html($('.findID_div'));
+				$('.findID_div').show();
+			}else{
+				//PW찾기
+			}
+			
+			
+			$('.modal_wrap').show();
+			
+			//스크롤 막기
+			$('body').css({'overflow' : 'hidden'});
+		});
+		
+		//모달창 close 클릭시
+		$('.modal_close').click(function() {
+			$('.modal_wrap').hide();
+			$('body').css({'overflow' : 'auto'});
+		});
 	});
 </script>
 <body>
@@ -52,9 +75,11 @@
 					<input type="password" name="u_pw" placeholder="비밀번호">
 					<input type="submit" value="로그인">
 				</form>
-				<div id="serch">
+				<div id="search">
 					<div>
-						<p><a>아이디찾기</a>ㅣ<a>비밀번호찾기</a></p>
+						<p id='findID'>아이디찾기</p>
+						<p>ㅣ</p>
+						<p id='findPW'>비밀번호찾기</p>
 					</div>
 					<div>
 						<a href="join.jsp"><p>회원가입</p></a>
@@ -87,5 +112,21 @@
 			</div>
 		</div>
 	</section>
+	<div class="modal_wrap">
+		<div class="modal">
+			<div class="modal_title"></div>
+			<div class="modal_contents"></div>
+			<div class="modal_close">X</div>
+		</div>
+	</div>
+	
+	<!-- ID찾기 -->
+	<div class="findID_div">
+		<div>
+			<input type="text" name="find_id" placeholder="아이디">
+			<input type="text" name="find_email" placeholder="이메일">
+			<input type="button" value="아이디 찾기">
+		</div>
+	</div>
 </body>
 </html>

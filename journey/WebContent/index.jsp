@@ -247,10 +247,10 @@ xhr.send('');
 			<div id="nation_div_in">
 				<table cellspacing="0" id="nation_table">
     				<tr>
-    					<td>일본</td>
-    					<td>캐나다</td>	
-    					<td>필리핀</td>
-    					<td>미국</td>				           
+    					<td>캐나다</td>
+    					<td>베트남</td>	
+    					<td>미국</td>
+    					<td>일본</td>				           
     				</tr>
     				<tr>
     					<td>호주</td>

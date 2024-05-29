@@ -38,7 +38,7 @@ public class ClassInsert implements JourneyInterface{
 		
 		Class_list cl = new Class_list();
 		cl.setU_id(multi.getParameter("u_id"));
-		cl.setC_nation("canada");
+		cl.setC_nation("*");
 		//cl.setC_nation(request.getParameter("")); > plan에서 내가 여행중인 국가 값 가져오기
 		
 		cl.setC_city(multi.getParameter("city"));

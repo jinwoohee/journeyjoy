@@ -6,6 +6,7 @@ body{
 	font-family: "Noto Sans KR", sans-serif;
 	background : url("https://logincdn.msauth.net/shared/5/images/2_bc3d32a696895f78c19d.svg");
 	background-size: cover;
+	overflow-y: hidden; 
 }
 
 a{text-decoration: none; color: #646464;}
@@ -76,14 +77,19 @@ input[type="submit"]{
 }
 
 /* 찾기 구간 div */
-div[id="serch"]{
+div[id="search"]{
 	width: 520px;
     display: flex;
     margin: 20px auto;
 }  
 
+#search div:first-of-type{
+	display: flex;
+}
+
+
 /* 회원가입 */
-div[id="serch"]>div:last-of-type{
+div[id="search"]>div:last-of-type{
 	margin-left: 280px;
 }
 
@@ -111,3 +117,89 @@ div[id="easy_log"]>div:first-of-type{
 	heigth : 60px;
 	object-fit : cover;
 }
+
+/* ID/PW찾기 모달 */
+.modal_wrap {
+	width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    z-index: 100;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+	background-color: rgba(0, 0, 0, 0.65);
+	display: none;
+}
+
+.modal_wrap::before {
+	content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.05em;
+}
+
+.modal {
+	width: 30%;
+    height: 60%;
+    position: relative;
+    z-index: 101;
+    background-color: #fff;
+    vertical-align: middle;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.modal_title {
+	height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    color: #0D112D;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: left;
+}
+
+.modal_contents {
+	padding: 20px;
+    height: calc(100% - 100px);
+}
+
+.modal_close {
+	display: block;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    color: #0D112D;
+    font-size: 15px;
+    font-weight: 600;
+    background: #f1f1f3;
+}
+
+.findID_div{
+	display : none;
+}
+
+input[name=find_id]{
+	margin-top : 110px;
+	margin-bottom : 20px;
+}
+
+.findID_div >div> input[type=button]{
+	width : 100px;
+	height : 50px;
+	background: #0D112D;
+	color : white;
+	text-align: center;
+	border : none;
+	margin-top : 30px;
+}
+
