@@ -219,7 +219,7 @@ function join(){
 		txt[0].innerHTML="아이디를 입력해주세요.";
 		joinForm.id.focus();
 		return false;
-	}else if(joinForm.id.readOnly == false){
+	}else if(txt[0].innerHTML != "사용가능한 아이디 입니다"){
 		alert("아이디 중복확인을 해주세요");
 		return false;
 	}else if(joinForm.pw.value == ''){
