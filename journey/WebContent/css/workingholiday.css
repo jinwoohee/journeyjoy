@@ -482,12 +482,18 @@ li button {
 
 
 /* 검색리스트 */
+.wrap_form {
+	width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .wh_list {
 	width: 368px;
     border: 1px groove #2c609c;
     border-radius: 10px;
     margin-bottom: 50px;
-	float: left;
     margin-right: 15px;
     margin-left: 15px;
 	background-color: white;

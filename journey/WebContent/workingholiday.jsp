@@ -652,6 +652,9 @@
 					url : 'workingholiday.jj?page=whclear',
 					success : function(data) {
 						$('.list_form').html(data);
+						$('.wh_list').hide();
+						$('.wh_list').slice(0, 15).css('display', 'inline-block');
+						$('.more_div').show();
 					}
 				});
 			});
@@ -698,6 +701,14 @@
 					url : 'workingholiday.jj?page=whsearch&txt='+txt,
 					success : function(data) {
 						$('.list_form').html(data);
+						
+						if ($('.wh_list').length > 15) {
+							$('.wh_list').hide();
+							$('.wh_list').slice(0, 15).css('display', 'inline-block');	
+						} else {
+							$('.wh_list').css('display', 'inline-block');	
+							$('.more_div').hide();
+						}
 					}
 				});
 			});
@@ -754,10 +765,10 @@
 			
 			//페이징
 			$('.wh_list').hide();
-			$('.wh_list').slice(0, 15).css('display', 'block');
+			$('.wh_list').slice(0, 15).css('display', 'inline-block');
 			
 			$('.more_div').click(function() {
-				$('.wh_list:hidden').slice(0, 9).css('display', 'block');
+				$('.wh_list:hidden').slice(0, 9).css('display', 'inline-block');
 				
 				if ($('.wh_list:hidden').length == 0)
 					$('input[name=more_btn]').hide();
