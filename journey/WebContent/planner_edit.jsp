@@ -187,7 +187,6 @@ window.initMap = initMap;
 					if(edit0 == null){
 						String place =request.getParameter("selected"+a);
 						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_");
-						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place.split(",");
 						String id_value = request.getParameter("id_selected"+a);
 						String [] list_id = id_value.split(",");

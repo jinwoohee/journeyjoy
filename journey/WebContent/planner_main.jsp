@@ -64,11 +64,11 @@ var weatherIcon = {
     '13' : 'far fa-snowflake',
     '50' : 'fas fa-smog'
 };
-var apiuri = "https://api.openweathermap.org/data/2.5/forecast?q=seoul&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
-var str = "";
-var a = 1;
+var apiuri_s = "https://api.openweathermap.org/data/2.5/forecast?q=seoul&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
+var apiuri_t = "https://api.openweathermap.org/data/2.5/forecast?q=tokyo&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
+
 $.ajax({
-    url: apiuri,
+    url: apiuri_s,
     dataType: "json",
     type: "GET",
     async: "false",
@@ -76,30 +76,41 @@ $.ajax({
 
 		for(var i = 0 ; i < resp.list.length ; i++){
 			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
+				var date_t = resp.list[i].dt_txt;
+				var $date = date_t.substr(5,5)+"&nbsp;&nbsp;&nbsp;";	
+				var temp_o = resp.list[i].main.temp-273.15;
+				var $temp = Math.floor(temp_o)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				var $weather = resp.list[i].weather[0].description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 				
-				var $weather = "날씨"+a+" : "+resp.list[i].weather.description+"<br>";
-				alert(resp.list[i].weather.description);
-				$('.datea').append($weather);
-				a++;
+				$('#w_date').append($date);
+				$('#w_weather').append($weather);
+				$('#w_temp').append($temp);
 			}
 		}
 	
-	       // var $date = resp.list.dt;
-	        /* var $humidity = '습도&nbsp;&nbsp;&nbsp;&nbsp;' + resp.humidity+ ' %';
-	        var $wind = '바람&nbsp;&nbsp;&nbsp;&nbsp;' +resp.wind.speed + ' m/s';
-	        var $city = '서울';
-	        var $cloud = '구름&nbsp;&nbsp;&nbsp;&nbsp;' + "a"+"%";
-	        var $temp_min = '최저 온도&nbsp;&nbsp;&nbsp;&nbsp;' +"a" + 'º';
-	        var $temp_max = '최고 온도&nbsp;&nbsp;&nbsp;&nbsp;' +"a"+ 'º';
-	         */
+    }
+})
+$.ajax({
+    url: apiuri_t,
+    dataType: "json",
+    type: "GET",
+    async: "false",
+    success: function(resp) {
+
+		for(var i = 0 ; i < resp.list.length ; i++){
+			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
+				var date_t = resp.list[i].dt_txt;
+				var $date = date_t.substr(5,5)+"&nbsp;&nbsp;&nbsp;";	
+				var temp_o  = resp.list[i].main.temp-273.15;
+				var $temp = Math.floor(temp_o)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				var $weather = resp.list[i].weather[0].description+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				
+				$('#tw_date').append($date);
+				$('#tw_weather').append($weather);
+				$('#tw_temp').append($temp);
+			}
+		}
 	
-	    //   	$('.datea').prepend($date);
-	       /*  $('.humidity').prepend($humidity);
-	        $('.wind').prepend($wind);
-	        $('.city').append($city);
-	        $('.cloud').append($cloud);
-	        $('.temp_min').append($temp_min);
-	        $('.temp_max').append($temp_max);  */              
     }
 })
 
@@ -574,28 +585,15 @@ $.ajax({
 				<%} %>					
 			</div>
 			<div id="img_div">
-				
-				날씨<br>
-				도시 : <br>
-				기온 : <br>
-				날씨 : 
-				<div style="float : left;">
-        <div class="weather_icon"></div>
-    </div><br>
-
-    <div style="float : right; margin : -5px 0px 0px 60px; font-size : 11pt">
-            <div class="temp_min"></div>
-            <div class="temp_max"></div>
-            <div class="humidity"></div>
-            <div class="wind"></div>
-            <div class="cloud"></div>
-            <div class ="datea"></div>
-    </div>
-    <div style="float : right; margin-top : -45px;">
-        <div class="current_temp" style="font-size : 50pt"></div>
-        <div class="weather_description" style="font-size : 20pt"></div>
-        <div class="city" style="font-size : 13pt"></div>
-    </div>
+				서울날씨
+				<p id="w_date"></p>
+				<p id="w_weather"></p>
+				<p id="w_temp"></p>
+				<br><br>
+				도쿄날씨
+				<p id="tw_date"></p>
+				<p id="tw_weather"></p>
+				<p id="tw_temp"></p>
 			</div>
 		</div>
 	</section>
