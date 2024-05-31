@@ -127,6 +127,11 @@
 			/*페이징*/
 			 $(".review_div").hide();
 			 $(".review_div").slice(0, 9).css("display", "block");
+			 
+			 //맨처음에 더보기 버튼
+			 if($(".review_div:hidden").length == 0){
+				 $('input[name="more_btn"]').hide();
+			 }
 			 	
 			 //더보기 버튼
 			 $('input[name="more_btn"]').click(function(){

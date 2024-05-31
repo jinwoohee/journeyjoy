@@ -14,8 +14,8 @@ public class Plan_review {
 	Connection conn = null;
 	Statement stmt = null;
 	public void connDb() throws Exception{
-		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/trip","root","1234");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/trip", "root", "1234");
 		if(conn == null) 
 			throw new Exception("db연결실패<br>");
 		stmt = conn.createStatement();

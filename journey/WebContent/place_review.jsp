@@ -44,14 +44,6 @@
 			$(location).attr('href', 'placeReview_delete.jsp?lr_no='+$(this).val());
 		});
 		
-		//mouseenter, leave
-		/* $(".review").mouseenter(function(){
-        	$(this).css({'background':'#f1f1f3'});
-        });
-		 $(".review").mouseleave(function(){
-			 $(this).css({'background':'white'});
-        }); */
-		 
 		 //검색창 
 		 $("input[name='search']").click(function(){
 			 $.ajax({ //검색버튼 

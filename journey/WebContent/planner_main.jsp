@@ -123,6 +123,15 @@ $.ajax({
     }
 })
 
+/* 환율 */
+$.ajax({
+	type : "post",
+	url : "currencyInfo.jj?page=currency",
+	success : function(data){
+			$("#exchange_div").html(data);
+	}
+});
+
 </script>
 <body>
 	<!-- menu bar -->
@@ -606,7 +615,10 @@ $.ajax({
 				<p id="tw_date"></p>
 				<p id="tw_weather"></p>
 				<p id="tw_temp"></p>
+				
+				<div id="exchange_div"></div>
 			</div>
+			
 		</div>
 	</section>
 	<footer>
