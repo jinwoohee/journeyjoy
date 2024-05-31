@@ -7,6 +7,9 @@
 <% 
 	request.setCharacterEncoding("utf-8");
 	String u_id = (String) session.getAttribute("u_id");	
+	String place_id = (String)request.getParameter("place_id");
+	
+	System.out.println(place_id);
 %>
 
 <!DOCTYPE html>
@@ -110,12 +113,20 @@
 							placeList = selectPlace.select_place(search);
 							eatList = selectPlace.select_eat(search);
 							
-							for(Place p : placeList){%>
-								<option value="<%=p.getPlac_no()%>"><%=p.getPlac_name() %></option>
+							for(Place p : placeList){
+								if(place_id.equals(p.getPlac_id())){%>
+									<option value="<%=p.getPlac_no()%>" selected><%=p.getPlac_name() %></option>
+								<%}else{%>
+									<option value="<%=p.getPlac_no()%>"><%=p.getPlac_name() %></option>
+								<%}%>
+								
 							<%}
-							
-							for(Eatery e : eatList){%>
-								<option value="<%=e.getEat_no() %>"><%=e.getEat_name() %></option>
+							for(Eatery e : eatList){
+								if(place_id.equals(e.getEat_id())){%>
+									<option value="<%=e.getEat_no() %>" selected><%=e.getEat_name() %></option>
+								<%}else{%>
+									<option value="<%=e.getEat_no() %>"><%=e.getEat_name() %></option>
+								<%}%>
 							<%}%> 
 							</select>
 					</jsp:useBean>

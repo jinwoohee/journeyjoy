@@ -139,11 +139,18 @@
 								<%
 								String schedule_place = sc.getPlace();
 								schedule_place = schedule_place.replaceAll(",", " ");
-								String [] place = schedule_place.split(" ");%>
+								String [] place = schedule_place.split(" ");
+								String place_name = "";
+								String eat_name = "";
+								%>
 								
 								<p class='place_info'>
-								<%for(int i=0; i<place.length; i++){%>
-									#<%=place[i] %>
+								<%for(int i=0; i<place.length; i++){
+									place_name = (String)dao.selectPlaceName(place[i]);
+									eat_name = (String)dao.selectEatName(place[i]);
+								%>
+									#<%=place_name%>
+									<%=eat_name%>
 								<%} %></p>
 								<img src='img/icon/arrow_down.png' id='down<%=sc.getSche_day()%>' onclick='place_down(<%=sc.getSche_day()%>)'/>
 								<img src='img/icon/arrow_up.png' id='up<%=sc.getSche_day()%>' onclick='place_up(<%=sc.getSche_day()%>)'/>
@@ -153,9 +160,12 @@
 								<div id='day_review<%=sc.getSche_day()%>'>
 									<textarea name='day_review<%=sc.getSche_day()%>' placeholder='일정후기'></textarea>
 								</div>
-								<%for(int i=0; i<place.length; i++){%>
-									<p class='place'><div class='no'><%=i+1 %></div><%=place[i] %></p>
-									<a href='place_review_write.jsp?place_name=<%=place[i] %>'><img src='img/icon/write.png' class='place_write'></a>
+								<%for(int i=0; i<place.length; i++){
+									place_name = (String)dao.selectPlaceName(place[i]);
+									eat_name = (String)dao.selectEatName(place[i]);
+								%>
+									<p class='place'><div class='no'><%=i+1 %></div><%=place_name %><%=eat_name%></p>
+									<a href='place_review_write.jsp?place_id=<%=place[i] %>'><img src='img/icon/write.png' class='place_write'></a>
 								<%} %>
 								</div>
 							</div>

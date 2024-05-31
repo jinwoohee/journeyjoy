@@ -128,8 +128,14 @@ function tab(num){
 								schedule_place = schedule_place.replaceAll(",", " ");
 								String [] place = schedule_place.split(" ");
 								
-								for(int i = 0; i < place.length ; i ++){%>
-									<p class='place'><div class='no'><%=i+1 %></div><%=place[i] %></p>
+								String place_name ="";
+								String eat_name = "";
+								
+								for(int i = 0; i < place.length ; i ++){
+									place_name = (String)dao.selectPlaceName(place[i]);
+									eat_name = (String)dao.selectEatName(place[i]);
+								%>
+									<p class='place'><div class='no'><%=i+1 %></div><%=place_name %><%=eat_name%></p>
 								<%}%>
 							</div>
 						</div>
