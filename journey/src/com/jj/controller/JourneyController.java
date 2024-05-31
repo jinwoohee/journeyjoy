@@ -12,6 +12,7 @@ import com.jj.inter.ClassListSelect;
 import com.jj.inter.ClassSearch;
 import com.jj.inter.ClassTabSelect;
 import com.jj.inter.CommInsert;
+import com.jj.inter.Currency;
 import com.jj.inter.EaterySelect;
 import com.jj.inter.EstimateInsert;
 import com.jj.inter.EstimateSelect;
@@ -552,8 +553,17 @@ public class JourneyController extends HttpServlet {
 				System.out.println("--- Controller / 페이징 ---" + e);
 				e.printStackTrace();
 			}
-			
-		}else {
+		}else if(page.equals("currency")) { //환율
+			ji = Currency.currency();
+			try {
+				String result = ji.journeyInterface(request, response);
+				request.getRequestDispatcher(result).forward(request, response);
+			} catch (Exception e) {
+				System.out.println(e);
+				e.printStackTrace();
+			}
+		}
+		else {
 			System.out.println("--- controller else ---");
 		}
 	}

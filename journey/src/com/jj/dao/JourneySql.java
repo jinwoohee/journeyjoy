@@ -5,18 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.sql.DataSource;
 
 import com.jj.dto.Board;
 import com.jj.dto.Class_list;
-import com.jj.dto.Eatery;
 import com.jj.dto.Estimate;
 import com.jj.dto.Inquiry;
 import com.jj.dto.Location_review;
 import com.jj.dto.Place;
-import com.jj.dto.Plan;
 import com.jj.dto.Plan_review;
 import com.jj.dto.Purchase;
 import com.jj.dto.User;
