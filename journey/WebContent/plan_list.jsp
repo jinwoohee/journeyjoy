@@ -158,8 +158,8 @@ System.out.println("셀렉트 완료 이스 : "+esti.size()+"플랜 : "+plan.siz
 										city_img = "img/japan/sapporo1.jpg";
 									}else if(city.equals("뉴욕")){
 										city_img = "img/usa/newyork1.jpg";
-									}else if(city.equals("라스베가스")){
-										city_img = "img/usa/lasvegas1.jpg";
+									}else if(city.equals("로스앤젤레스")){
+										city_img = "img/usa/lasvegas.jpg";
 									}else if(city.equals("다낭")){
 										city_img = "img/vietnam/danang1.jpg";
 									}else if(city.equals("나트랑")){

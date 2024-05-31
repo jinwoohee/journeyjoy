@@ -26,6 +26,7 @@
 	
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
 	
 	<!-- 주소찾기 -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -125,9 +126,78 @@
 			$(this).css({'border-color':'#6C94B8','color':'#6C94B8'})
 		});
 		
-		$("button[name*='chkList']").click() {
+		$("button[name*='chkList']").click(function() {
+			$('.modal_wrap').show();
+			$('body').css({'overflow' : 'hidden'}); //스크롤 막기
+		});
+		
+		//체크리스트 추가
+		$('#add-todo').click(function() {
+			var lastSibling = $(this).prev('span').find('input[type=checkbox]').attr('id'); //마지막 리스트
+			var newId = Number(lastSibling) + 1;
 			
+			$(this).before('<span class="editing todo-wrap">' + 
+					'<input type="checkbox" id="' + newId + '"/>' + 
+						'<label for="' + newId + '" class="todo"><i class="fa fa-check"></i><input type="text" class="input-todo" id="input-todo' + newId + '"/></label>' + 
+						'</span>');
+			
+			$('#input-todo' + newId).closest('span').animate({height : '40px'}, 200);
+			$('#input-todo' + newId).focus();
+			$('#input-todo' + newId).enterKey(function() {
+				$(this).trigger('enterEvent');
+			});
+			
+			$('#input-todo' + newId).on('blur enterEvent', function() {
+				var todoTitle = $('#input-todo' + newId).val();
+				var todoTitleLength = todoTitle.length;
+				
+				if (todoTitleLength > 0) {
+					$(this).before(todoTitle);
+					$(this).parent().parent().removeClass('editing');
+					$(this).parent().after('<span class="delete-item" title="remove"><i class="fa fa-times-circle"></i></span>');
+					$(this).remove();
+					$('.delete-item').click(function() {
+						var parentItem = $(this).parent();
+						parentItem.animate({left : '-30px', height : '0', opacity : '0'}, 200);
+						setTimeout(function() {
+							$(parentItem).remove();
+						}, 1000);
+					});
+				} else {
+					$('.editing').animate({height : '0px'}, 200);
+					setTimeout(function() {
+				        $('.editing').remove();
+					}, 400);
+				}
+			});
+		});
+		
+		//체크리스트 삭제 
+		$('.delete-item').click(function(){
+			var parentItem = $(this).parent();
+			parentItem.animate({left : '-30px', height : '0', opacity : '0'}, 200);
+			setTimeout(function() {
+				$(parentItem).remove(); 
+			}, 1000);
+		});
+		
+		// Enter Key detect
+		$.fn.enterKey = function (fnc) {
+		    return this.each(function () {
+		        $(this).keypress(function (ev) {
+		            var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+		            if (keycode == '13') {
+		                fnc.call(this, ev);
+		            }
+		        })
+		    })
 		}
+		
+		//모달창 close 클릭시
+		$('.modal_close').click(function() {
+			$('.modal_wrap').hide();
+			$('body').css({'overflow' : 'auto'});
+		});
 		
 		
 		/* 패키지 */
@@ -452,6 +522,15 @@
 									<c:if test="${ city == '오사카' }">
 										<c:set var="city_img" value="img/japan/osaka6.jpg" />
 									</c:if>
+									<c:if test="${ city == '밴쿠버' }">
+										<c:set var="city_img" value="img/canada/vancouver1.jpg" />
+									</c:if>
+									<c:if test="${ city == '뉴욕' }">
+										<c:set var="city_img" value="img/usa/newyork1.jpg" />
+									</c:if>
+									<c:if test="${ city == '로스앤젤레스' }">
+										<c:set var="city_img" value="img/usa/lasvegas.jpg" />
+									</c:if>
 									<div class="pn">
 										<div class="pn_img">
 											<img src="${ city_img }" class="city_img"/>
@@ -482,7 +561,50 @@
 				<div class="modal_wrap">
 					<div class="modal">
 						<div class="modal_title"></div>
-						<div class="modal_contents"></div>
+						<div class="modal_contents">
+							<h1><i class="fa fa-check"></i>To Do Checklist</h1>
+							<form id="todo-list">
+								<span class="todo-wrap">
+							    	<input type="checkbox" id="1"/>
+							    	<label for="1" class="todo">
+								      	<i class="fa fa-check"></i>여권
+							    	</label>
+								    <span class="delete-item" title="remove">
+								    	<i class="fa fa-times-circle"></i>
+								    </span>
+								</span>
+								<span class="todo-wrap">
+								    <input type="checkbox" id="2"/>
+								    <label for="2" class="todo">
+								    	<i class="fa fa-check"></i>항공티켓
+								    </label>
+								    <span class="delete-item" title="remove">
+								    	<i class="fa fa-times-circle"></i>
+								    </span>
+								</span>
+								<span class="todo-wrap">
+								    <input type="checkbox" id="3"/>
+								    <label for="3" class="todo">
+								    	<i class="fa fa-check"></i>환전
+								    </label>
+								    <span class="delete-item" title="remove">
+								    	<i class="fa fa-times-circle"></i>
+								    </span>
+								</span>
+								<span class="todo-wrap">
+								    <input type="checkbox" id="4"/>
+								    <label for="4" class="todo">
+								    	<i class="fa fa-check"></i>여행자보험
+								    </label>
+								    <span class="delete-item" title="remove">
+								    	<i class="fa fa-times-circle"></i>
+								    </span>
+								</span>
+								<div id="add-todo">
+								    <i class="fa fa-plus"></i> Add an Item
+								</div>
+							</form>
+						</div>
 						<div class="modal_close"><img src="img/icon/btn-layer.png"></div>
 					</div>
 				</div>

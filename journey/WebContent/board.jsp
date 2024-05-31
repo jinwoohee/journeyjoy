@@ -132,7 +132,7 @@
 			String nation = request.getParameter("nation");
 			String city = request.getParameter("city");
 			String month = request.getParameter("month");
-			String category = request.getParameter("category"); 
+			String category = request.getParameter("category");
 			//System.out.println("jsp----->" + stxt + "/" + nation + "/" + city + "/" + month + "/" + category);
 			
 			ArrayList<Board> alist;

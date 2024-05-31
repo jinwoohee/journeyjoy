@@ -134,10 +134,10 @@ function barChartDraw() {
     window.barChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-        	labels:[nation0, nation1/* , nation2, nation3, nation4 */],
+        	labels:[nation0, nation1, nation2, nation3, nation4],
         	datasets : [{
         		label : "가장 많이 견적 요청한 나라 TOP5",
-        		data : [nation0Cnt, nation1Cnt/* , nation2Cnt, nation3Cnt, nation4Cnt */],
+        		data : [nation0Cnt, nation1Cnt, nation2Cnt, nation3Cnt, nation4Cnt],
         		backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)'],
         		fill : false,
         		barThickness : 45,

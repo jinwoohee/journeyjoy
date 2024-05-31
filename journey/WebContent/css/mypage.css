@@ -246,14 +246,231 @@ button[name*="chkList"] {
 }
 
 .modal {
-	width: 45%;
-    height: 70%;
+	width: 30%;
+    height: 50%;
     position: relative;
     z-index: 101;
     background-color: #fff;
     vertical-align: middle;
     box-sizing: border-box;
     display: inline-block;
+}
+
+.modal_title {
+	height: 25px;
+    padding: 0 20px;
+    line-height: 60px;
+    color: #000;
+    background-color: #e3e3e3;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: left;
+}
+
+.modal_contents {
+	padding: 10px 20px;
+	overflow-y: auto;
+    height: calc(100% - 45px);
+    text-align: left;
+}
+
+.modal_contents h1 {
+	text-align: center;
+    font-size: 30px;
+    margin: 0;
+    padding-bottom: 10px;
+    font-weight: 200;
+    color: #454545;
+}
+
+.fa-check {
+	font-size: 30px;
+	margin-right: 10px;
+	color: #6c94b8;
+}
+
+#todo-list {
+	width: 100%;
+    /* margin: 0 auto 50px auto; */
+    position: relative;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.todo-wrap {
+	display: block;
+    position: relative;
+    padding-left: 35px;
+    box-shadow: 0 2px 0 -1px #ebebeb;
+}
+
+.todo-wrap:last-of-type {
+	box-shadow: none;
+}
+
+.todo-wrap input[type="checkbox"] {
+	position: absolute;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    top: -600px;
+}
+
+.todo {
+	display: inline-block;
+    font-weight: 200;
+    padding: 7px 5px;
+    height: 26px;
+    position: relative;
+	cursor: pointer;
+}
+
+.todo:before {
+	content: "";
+    display: block;
+    position: absolute;
+    top: calc(50% + 2px);
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: #FF4848;
+    transition: .25s ease-in-out;
+}
+
+.todo:after {
+	content: "";
+    display: block;
+    position: absolute;
+    z-index: 0;
+    height: 18px;
+    width: 18px;
+    top: 12px;
+    left: -25px;
+    box-shadow: inset 0 0 0 2px #d8d8d8;
+    transition: .25s ease-in-out;
+    border-radius: 4px;
+}
+
+.todo:hover:after {
+	box-shadow: inset 0 0 0 2px #949494;
+}
+
+.todo .fa-check{
+	position: absolute;
+	z-index: 1;
+	left: -31px;
+	top: 0;
+	font-size: 1px;
+	line-height: 36px;
+	width: 36px;
+	height: 36px;
+	text-align: center;
+	color: transparent;
+	text-shadow: 1px 1px 0 white, -1px -1px 0 white;
+}
+
+:checked + .todo {
+	color: #717171;
+}
+
+:checked + .todo:before {
+	width: 100%;
+}
+
+:checked + .todo:after {
+	box-shadow:inset 0 0 0 2px #6c94b8;
+}
+
+:checked + .todo .fa-check {
+	font-size: 20px;
+	line-height: 35px;
+	color: #6c94b8;
+}
+
+/* Delete Items */
+.delete-item {
+	display: block;
+	position: absolute;
+	height: 36px;
+	width: 36px;
+	line-height: 36px;
+	right: 0;
+	top: 0;
+	text-align: center;
+	color: #d8d8d8;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.todo-wrap:hover .delete-item {
+	opacity:1;
+}
+
+.delete-item:hover {
+	color: #FF4848;
+}
+
+/* Add Items */
+#add-todo {
+	margin: 25px 0 10px 12px;
+	font-size: 14px;
+	font-weight: 200;
+	color: #d8d8d8;
+	display: inline-block;
+	cursor: pointer;
+}
+
+#add-todo:hover {
+	color: #6c94b8;
+	transition: none;
+}
+
+.fa-plus {
+	font-size: 14px;
+	transition:none;
+}
+
+.input-todo {
+	border: none;
+	outline: none;
+	font-weight: 200;
+	position: relative;
+	top: -1px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.editing {
+  height: 0;
+  overflow: hidden;
+}
+
+.editing .todo-wrap {
+  box-shadow: 0 0 400px rgba(0,0,0,.8),inset 0 0px 0 2px #ebebeb;
+}
+
+
+
+
+.modal_close {
+	display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    background-color: #FF5A5A;
+    padding: 5px;
+}
+
+.modal_close img {
+	width: 12px;
+    height: 12px;
+    position: relative;
+    top: -4px;
+    left: 0px;
 }
 
 
