@@ -165,3 +165,6 @@ function check_plan(){
 	}
 	
 }
+function detail_open(num){
+	window.open("planner_plan_detail.jsp?num="+num,"일정상세보기");
+}

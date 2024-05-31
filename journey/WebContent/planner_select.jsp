@@ -202,9 +202,7 @@ window.initMap = initMap;
 							<p>평균예산</p>
 							<p>약 99,000 ~</p>
 						</div>
-						<a href="planner_plan_detail.html">
-							<input type="button" name="detail" value="일정 상세보기" class="button" >
-						</a>
+							<input type="button" name="detail" value="일정 상세보기" class="button" onclick="detail_open(<%=a%>)">
 					</div>
 				</div>
 				<%						

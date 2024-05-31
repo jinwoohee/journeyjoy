@@ -60,7 +60,6 @@ p[id="day1"]{ /*day 글자 */
 #main_content{
 	width: 1200px;
     border: 1px solid #CCCCCC;
-    box-shadow: 3px 3px 10px #CCCCCC;
     background-color: white;
     overflow: auto;
     margin: 0 auto;
@@ -326,6 +325,12 @@ input[name*="plan_sel"]{ /*일정선택목록으로, 일정추가하기 버튼 *
     font-size: 14px;
     border: none;
     color : white;
+}
+.list_name{
+	font-size: 17px;
+	margin-top: 0;
+	font-weight: bold; 
+	overflow : hidden;
 }
 
 footer {

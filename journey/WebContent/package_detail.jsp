@@ -26,6 +26,7 @@
 
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	
 </head>
 <script>
 	$(function(){
@@ -165,7 +166,11 @@
 				document.commForm.submit();
 			}
 		});
-	});
+		
+		$("input[name='join']").click(function(){
+			window.open("package_payment.jsp","네이버페이 결제","width = 700, height = 800, location = no");
+		});
+	}); 
 	
 	function regist(){
 		if(pForm.adultCount.value == "0" && pForm.stdCount.value == "0" && pForm.childCount.value == "0"){
@@ -199,7 +204,7 @@
 		$("div[class='day_detail"+num+"']").slideUp();
 	}
 	
-	
+
 </script>
 
 <body>
@@ -239,7 +244,7 @@
 				<div id="guide">
 					<% 
 						out.println("<img id='profile' src='"+pk.getU_profile()+"'>"); 
-						out.println("<p>"+pk.getU_nickname()+"</p>");
+						out.println("<p id='nick_name'>"+pk.getU_nickname()+"</p>");
 					%>
 					<div id="icon"> <!-- 좋아요한거 하트 값 가져오기 -->
 					<%
@@ -397,7 +402,7 @@
 					</div>
 					<div>
 						<p>총금액</p>
-						<p id="total"></p>
+						<p id="total"></p>						
 					</div>
 					
 					<%

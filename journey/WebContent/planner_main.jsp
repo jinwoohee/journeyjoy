@@ -90,13 +90,13 @@ $.ajax({
 	
     }
 })
+
 $.ajax({
     url: apiuri_t,
     dataType: "json",
     type: "GET",
     async: "false",
     success: function(resp) {
-
 		for(var i = 0 ; i < resp.list.length ; i++){
 			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
 				var date_t = resp.list[i].dt_txt;
@@ -110,10 +110,18 @@ $.ajax({
 				$('#tw_temp').append($temp);
 			}
 		}
-	
     }
 })
 
+$.ajax({
+    url: "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=cSbAPPbCZnZRACrILukqKUUM9qewJzGK&data=AP01",
+    dataType: "json",
+    type: "GET",
+    success: function(data) {
+    	alert(data[1].cur_unit);
+
+    }
+})
 
 </script>
 <body>
@@ -585,6 +593,10 @@ $.ajax({
 				<%} %>					
 			</div>
 			<div id="img_div">
+				<div id="curr_div">
+					환율
+					<p id="curr_li"></p>
+				</div>
 				서울날씨
 				<p id="w_date"></p>
 				<p id="w_weather"></p>

@@ -48,7 +48,6 @@ p[id="list_text"]{ /* "여행일정" 글자 */
 #main_content{
 	width: 1200px;
     border: 1px solid #CCCCCC;
-    box-shadow: 3px 3px 10px #CCCCCC;
     background-color: white;
     overflow: auto;
     margin: 0 auto;
@@ -133,7 +132,6 @@ p[id="thema"]{ /*여행테마 자체 글자 */
 	color: #6C94B8;
 	font-size: 15px;
 	font-family: "Noto Sans KR", sans-serif;
-	box-shadow: 2px 2px 10px #CCCCCC;
 	cursor: pointer;
 	border : none;
 }
