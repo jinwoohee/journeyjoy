@@ -40,7 +40,7 @@ $(function(){
 		window.close(); 
 	});
 });
-
+ 
 let map;
 let service;
 function initMap() {
