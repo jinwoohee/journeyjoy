@@ -52,10 +52,268 @@ String u_id = (String) session.getAttribute("u_id");
     });
   });
 
+//세계 날씨 정보 api
+var weatherIcon = {
+    '01' : 'fas fa-sun',
+    '02' : 'fas fa-cloud-sun',
+    '03' : 'fas fa-cloud',
+    '04' : 'fas fa-cloud-meatball',
+    '09' : 'fas fa-cloud-sun-rain',
+    '10' : 'fas fa-cloud-showers-heavy',
+    '11' : 'fas fa-poo-storm',
+    '13' : 'far fa-snowflake',
+    '50' : 'fas fa-smog'
+};
+var apiuri_s = "https://api.openweathermap.org/data/2.5/forecast?q=seoul&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
+var apiuri_t = "https://api.openweathermap.org/data/2.5/forecast?q=tokyo&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
+var apiuri_o = "https://api.openweathermap.org/data/2.5/forecast?q=osaka&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
+var apiuri_b = "https://api.openweathermap.org/data/2.5/forecast?q=bangkok&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
+var apiuri_tr = "https://api.openweathermap.org/data/2.5/forecast?q=toronto&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
+var apiuri_n = "https://api.openweathermap.org/data/2.5/forecast?q=New York City&lang=kr&appid=fd030a11701fb174c6d72a31e5b7d170";
 
- 
 
- 
+$.ajax({
+    url: apiuri_s,
+    dataType: "json",
+    type: "GET",
+    async: "false",
+    success: function(resp) {
+
+		for(var i = 0 ; i < resp.list.length ; i++){
+			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
+				var date_t = resp.list[i].dt_txt;
+				var date_mo = date_t.substr(5,5);
+				var date_re = date_mo.replaceAll("-","/");
+				var $date = date_re + " ";
+				var temp_o = resp.list[i].main.temp-273.15;
+				var $temp = Math.floor(temp_o)+" ";
+				var weather = resp.list[i].weather[0].main;
+				var img_src ="";
+				if(weather == "Clear"){
+					img_src = "img/icon/w_clear.jpg";
+				}else if(weather == "Wind"){
+					img_src = "img/icon/w_wind.jpg";
+				}else if(weather == "Clouds"){
+					img_src = "img/icon/w_cloud.jpg";
+				}else if(weather == "Rain"){
+					img_src = "img/icon/w_rain.jpg";
+				}else if(weather == "Snow"){
+					img_src = "img/icon/w_snow.jpg";
+				}
+				var img_re = document.createElement("img");
+				img_re.setAttribute("src", img_src);
+				img_re.name = "weather_img";
+				$('#w_weather').append(img_re);
+				
+				$('#w_date').append($date);			
+				$('#w_temp').append($temp);
+			}
+		}
+	
+    }
+})
+
+$.ajax({
+    url: apiuri_t,
+    dataType: "json",
+    type: "GET",
+    async: "false",
+    success: function(resp) {
+    	
+		for(var i = 0 ; i < resp.list.length ; i++){
+			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
+				var date_t = resp.list[i].dt_txt;
+				var $date = date_t.substr(5,5)+" ";	
+				var temp_o = resp.list[i].main.temp-273.15;
+				var $temp = Math.floor(temp_o)+" ";
+				var weather = resp.list[i].weather[0].main;
+				var img_src ="";
+				if(weather == "Clear"){
+					img_src = "img/icon/w_clear.jpg";
+				}else if(weather == "Wind"){
+					img_src = "img/icon/w_wind.jpg";
+				}else if(weather == "Clouds"){
+					img_src = "img/icon/w_cloud.jpg";
+				}else if(weather == "Rain"){
+					img_src = "img/icon/w_rain.jpg";
+				}else if(weather == "Snow"){
+					img_src = "img/icon/w_snow.jpg";
+				}
+				var img_re = document.createElement("img");
+				img_re.setAttribute("src", img_src);
+				img_re.name = "weather_img";
+				$('#tw_weather').append(img_re);
+				
+				$('#tw_date').append($date);			
+				$('#tw_temp').append($temp);
+			}
+		}
+    }
+})
+$.ajax({
+    url: apiuri_o,
+    dataType: "json",
+    type: "GET",
+    async: "false",
+    success: function(resp) {
+
+		for(var i = 0 ; i < resp.list.length ; i++){
+			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
+				var date_t = resp.list[i].dt_txt;
+				var $date = date_t.substr(5,5)+" ";	
+				var temp_o = resp.list[i].main.temp-273.15;
+				var $temp = Math.floor(temp_o)+" ";
+				var weather = resp.list[i].weather[0].main;
+				var img_src ="";
+				if(weather == "Clear"){
+					img_src = "img/icon/w_clear.jpg";
+				}else if(weather == "Wind"){
+					img_src = "img/icon/w_wind.jpg";
+				}else if(weather == "Clouds"){
+					img_src = "img/icon/w_cloud.jpg";
+				}else if(weather == "Rain"){
+					img_src = "img/icon/w_rain.jpg";
+				}else if(weather == "Snow"){
+					img_src = "img/icon/w_snow.jpg";
+				}
+				var img_re = document.createElement("img");
+				img_re.setAttribute("src", img_src);
+				img_re.name = "weather_img";
+				$('#ow_weather').append(img_re);
+				
+				$('#ow_date').append($date);			
+				$('#ow_temp').append($temp);
+			}
+		}
+	
+    }
+})
+$.ajax({
+    url: apiuri_b,
+    dataType: "json",
+    type: "GET",
+    async: "false",
+    success: function(resp) {
+
+		for(var i = 0 ; i < resp.list.length ; i++){
+			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
+				var date_t = resp.list[i].dt_txt;
+				var $date = date_t.substr(5,5)+" ";		
+				var temp_o = resp.list[i].main.temp-273.15;
+				var $temp = Math.floor(temp_o)+" ";
+				var weather = resp.list[i].weather[0].main;
+				var img_src ="";
+				if(weather == "Clear"){
+					img_src = "img/icon/w_clear.jpg";
+				}else if(weather == "Wind"){
+					img_src = "img/icon/w_wind.jpg";
+				}else if(weather == "Clouds"){
+					img_src = "img/icon/w_cloud.jpg";
+				}else if(weather == "Rain"){
+					img_src = "img/icon/w_rain.jpg";
+				}else if(weather == "Snow"){
+					img_src = "img/icon/w_snow.jpg";
+				}
+				var img_re = document.createElement("img");
+				img_re.setAttribute("src", img_src);
+				img_re.name = "weather_img";
+				$('#bw_weather').append(img_re);
+				
+				$('#bw_date').append($date);			
+				$('#bw_temp').append($temp);
+			}
+		}
+	
+    }
+})
+$.ajax({
+    url: apiuri_tr,
+    dataType: "json",
+    type: "GET",
+    async: "false",
+    success: function(resp) {
+
+		for(var i = 0 ; i < resp.list.length ; i++){
+			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
+				var date_t = resp.list[i].dt_txt;
+				var $date = date_t.substr(5,5)+" ";	
+				var temp_o = resp.list[i].main.temp-273.15;
+				var $temp = Math.floor(temp_o)+" ";
+				var weather = resp.list[i].weather[0].main;
+				var img_src ="";
+				if(weather == "Clear"){
+					img_src = "img/icon/w_clear.jpg";
+				}else if(weather == "Wind"){
+					img_src = "img/icon/w_wind.jpg";
+				}else if(weather == "Clouds"){
+					img_src = "img/icon/w_cloud.jpg";
+				}else if(weather == "Rain"){
+					img_src = "img/icon/w_rain.jpg";
+				}else if(weather == "Snow"){
+					img_src = "img/icon/w_snow.jpg";
+				}
+				var img_re = document.createElement("img");
+				img_re.setAttribute("src", img_src);
+				img_re.name = "weather_img";
+				$('#trw_weather').append(img_re);
+				
+				$('#trw_date').append($date);			
+				$('#trw_temp').append($temp);
+			}
+		}
+	
+    }
+})
+$.ajax({
+    url: apiuri_n,
+    dataType: "json",
+    type: "GET",
+    async: "false",
+    success: function(resp) {
+
+		for(var i = 0 ; i < resp.list.length ; i++){
+			if((resp.list[i].dt-resp.list[0].dt)%86400 == 0){
+				var date_t = resp.list[i].dt_txt;
+				var $date = date_t.substr(5,5)+" ";	
+				var temp_o = resp.list[i].main.temp-273.15;
+				var $temp = Math.floor(temp_o)+" ";
+				var weather = resp.list[i].weather[0].main;
+				var img_src ="";
+				if(weather == "Clear"){
+					img_src = "img/icon/w_clear.jpg";
+				}else if(weather == "Wind"){
+					img_src = "img/icon/w_wind.jpg";
+				}else if(weather == "Clouds"){
+					img_src = "img/icon/w_cloud.jpg";
+				}else if(weather == "Rain"){
+					img_src = "img/icon/w_rain.jpg";
+				}else if(weather == "Snow"){
+					img_src = "img/icon/w_snow.jpg";
+				}
+				var img_re = document.createElement("img");
+				img_re.setAttribute("src", img_src);
+				img_re.name = "weather_img";
+				$('#nw_weather').append(img_re);
+				
+				$('#nw_date').append($date);			
+				$('#nw_temp').append($temp);
+			}
+		}
+	
+    }
+})
+
+/* 환율 */
+$.ajax({
+	type : "post",
+	url : "currencyInfo.jj?page=currency",
+	success : function(data){
+		for(var i = 1 ; i <= 13 ; i++){
+			$("#exchange_div"+i).html(data);
+		}
+	}
+});
+
 </script>
 <body>
 	<!-- menu bar -->
@@ -104,27 +362,34 @@ String u_id = (String) session.getAttribute("u_id");
 				                            				<p id="nation_sel">목적지 선택(국가)</p>
 					                            			<table cellspacing="0" id="continent_table">
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('a')">일본</td>	           
+					                            					<td class="continent_one" id="na_a" onclick="nation_open('a')">일본</td>	           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('b')">동남아/대만/서남아</td>			           
+					                            					<td class="continent_one" id="na_b" onclick="nation_open('b')">동남아/대만/서남아</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('c')">미주/캐나다/남중미</td>			           
+					                            					<td class="continent_one" id="na_c" onclick="nation_open('c')">미주/캐나다/남중미</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('d')">유럽/아프리카</td>			           
+					                            					<td class="continent_one" id="na_d" onclick="nation_open('d')">유럽/아프리카</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('e')">괌/사이판/하와이</td>			           
+					                            					<td class="continent_one" id="na_e" onclick="nation_open('e')">괌/사이판/하와이</td>			           
 					                            				</tr>					                            				
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('f')">중국/홍콩/마카오</td>			           
+					                            					<td class="continent_one" id="na_f" onclick="nation_open('f')">중국/홍콩/마카오</td>			           
 					                            				</tr>
 					                            				<tr>
-					                            					<td class="continent_one" onclick="nation_open('g')">호주/뉴질랜드</td>			           
+					                            					<td class="continent_one" id="na_g" onclick="nation_open('g')">호주/뉴질랜드</td>			           
 					                            				</tr>
 					                            								                            				
+					                            			</table>
+					                            			<table id="nation_table_empty">
+					                            				<tr>
+					                            					<td id="nation_one_plz">지역을 선택해주세요.</td>
+					                            					
+				                            					</tr>
+					                            				
 					                            			</table>
 					                            			<table id="nation_table_b">
 					                            				<tr>
@@ -152,7 +417,7 @@ String u_id = (String) session.getAttribute("u_id");
 					                            			
 					                            			<table id="nation_table_c">
 					                            				<tr>
-					                            					<td class="nation_one">미국</td>	
+					                            					<td class="nation_one">미주</td>	
 					                            					<td class="nation_one">캐나다</td>	
 					                            					           
 					                            				</tr>
@@ -322,6 +587,44 @@ String u_id = (String) session.getAttribute("u_id");
 					                            					<td class=""></td>
 					                            				</tr>					                            		                      				
 					                            			</table>
+					                            			<table cellspacing="0" id="city_table_usa">
+					                            				<tr>
+					                            					<td class="city_one">뉴욕</td>
+					                            					<td class="city_one">보스턴</td>
+					                            					<td class="city_one">시카고</td>
+					                            				</tr>
+					                            				<tr>
+					                            					<td class="city_one">로스앤젤레스</td>
+					                            					<td class="city_one">워싱턴D.C</td>
+					                            					<td class="city_one">산호세</td>
+					                            				</tr>	
+					                            				<tr>
+					                            					<td class="city_one">샌프란시스코</td>
+					                            					<td class="city_one"></td>
+					                            					<td class="city_one"></td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_can">
+					                            				<tr>
+					                            					<td class="city_one">밴쿠버</td>
+					                            					<td class="city_one">토론토</td>
+					                            					<td class="city_one">나이아가라</td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_aust">
+					                            				<tr>
+					                            					<td class="city_one">시드니</td>
+					                            					<td class="city_one">멜버른</td>
+					                            					<td class="city_one">퀸즈랜드</td>
+					                            				</tr>					                            		                      				
+					                            			</table>
+					                            			<table cellspacing="0" id="city_table_newz">
+					                            				<tr>
+					                            					<td class="city_one">퀸즈타운</td>
+					                            					<td class="city_one">오클랜드</td>
+					                            					<td class="city_one">웰링턴</td>
+					                            				</tr>					                            		                      				
+					                            			</table>
 				                            			</div>
 				                            		</div>
 				                        		    <div id="cal_div">
@@ -358,7 +661,7 @@ String u_id = (String) session.getAttribute("u_id");
 						                   			<hr>
 						                    	</div>
 						                        <div id="thema_div">
-						                                <input type="radio" name="thema" value="힐링" id="thema1" checked>
+						                                <input type="radio" name="thema" value="여유롭게힐링" id="thema1" checked>
 						                                <label for="thema1" class="thema_check">힐링</label>
 						                                <input type="radio" name="thema" value="체험/액티비티" id="thema2">
 						                                <label for="thema2" class="thema_check">체험/액티비티</label>
@@ -408,27 +711,27 @@ String u_id = (String) session.getAttribute("u_id");
 						                    		<p class="main_text">어떤 여행지를 가고 싶으신가요?</p>
 						                    		<hr>
 						                    	</div>
-						                        <div id="place_div">
+						                        <div id="place_div">						                        	
 						                        	<input type="checkbox" name="place" value="놀이공원" id="place1" onchange="checking(this.id)">
 					                                <label for="place1" class="place_check">놀이공원</label>
 					                                <input type="checkbox" name="place" value="박물관/미술관" id="place2" onchange="checking(this.id)">
 					                                <label for="place2" class="place_check">박물관/미술관</label>
-					                                <input type="checkbox" name="place" value="쇼핑" id="place3" onchange="checking(this.id)">
-					                                <label for="place3" class="place_check">선택불가</label>
-					                                <input type="checkbox" name="place" value="휴양림" id="place4" onchange="checking(this.id)">
-					                                <label for="place4" class="place_check">휴양림</label>
-					                                <input type="checkbox" name="place" value="랜드마크" id="place5" onchange="checking(this.id)">
-					                                <label for="place5" class="place_check">랜드마크</label>
-					                                <input type="checkbox" name="place" value="덕질" id="place6" onchange="checking(this.id)">
-					                                <label for="place6" class="place_check">덕질</label>
-					                                <input type="checkbox" name="place" value="맛집" id="place7" onchange="checking(this.id)">			
-					                                <label for="place7" class="place_check">맛집</label>		                                		
-				                                    <input type="checkbox" name="place" value="문화재" id="place8" onchange="checking(this.id)">
-				                                    <label for="place8" class="place_check">문화재</label>
-					                                <input type="checkbox" name="place" value="수영장/바다" id="place9" onchange="checking(this.id)">
-					                                <label for="place9" class="place_check">수영장/바다</label>
-					                                <input type="checkbox" name="place" value="온천/스파" id="place10" onchange="checking(this.id)">
-			                                		<label for="place10" class="place_check">온천/스파</label>
+					                                <input type="checkbox" name="place" value="휴양림" id="place3" onchange="checking(this.id)">
+					                                <label for="place3" class="place_check">휴양림</label>
+					                                <input type="checkbox" name="place" value="랜드마크" id="place4" onchange="checking(this.id)">
+					                                <label for="place4" class="place_check">랜드마크</label>
+					                                <input type="checkbox" name="place" value="덕질" id="place5" onchange="checking(this.id)">
+					                                <label for="place5" class="place_check">덕질</label>
+					                                <input type="checkbox" name="place" value="문화재" id="place6" onchange="checking(this.id)">
+					                                <label for="place6" class="place_check">문화재</label>
+					                                <input type="checkbox" name="place" value="수영장/바다" id="place7" onchange="checking(this.id)">			
+					                                <label for="place7" class="place_check">수영장/바다</label>		                                		
+				                                    <input type="checkbox" name="place" value="온천/스파" id="place8" onchange="checking(this.id)">
+				                                    <label for="place8" class="place_check">온천/스파</label>
+					                                <input type="checkbox" name="place" value="백화점/쇼핑" id="place9" onchange="checking(this.id)">
+					                                <label for="place9" class="place_check">백화점/쇼핑</label>
+					                                <input type="checkbox" name="place" value="가볍게한잔" id="place10" onchange="checking(this.id)">
+			                                		<label for="place10" class="place_check">가볍게 한잔</label>
 					                            </div>
 					                            <div class='title_icon'>
 					                            	<img src="img/icon/food.png">
@@ -446,16 +749,14 @@ String u_id = (String) session.getAttribute("u_id");
 				                                    <label for="eat4" class="eat_check">양식</label>
 				                                    <input type="checkbox" name="eat" value="아시아" id="eat5" onchange="checking(this.id)">
 				                                    <label for="eat5" class="eat_check">아시아</label>
-				                               		<input type="checkbox" name="eat" value="레스토랑" id="eat6" onchange="checking(this.id)">   
-				                               		<label for="eat6" class="eat_check">선택불가</label>
-				                               		<input type="checkbox" name="eat" value="길거리음식" id="eat7" onchange="checking(this.id)">
-				                               		<label for="eat7" class="eat_check">길거리 음식</label>
-				                                    <input type="checkbox" name="eat" value="비건" id="eat8" onchange="checking(this.id)">
-				                                    <label for="eat8" class="eat_check">비건</label>
-				                                    <input type="checkbox" name="eat" value="음식취향" id="eat9" onchange="checking(this.id)"> 
-				                                    <label for="eat9" class="eat_check">선택불가</label>
-				                                    <input type="checkbox" name="eat" value="음식취향" id="eat10" onchange="checking(this.id)">
-				                                    <label for="eat10" class="eat_check">선택불가</label>
+				                               		<input type="checkbox" name="eat" value="비건" id="eat6" onchange="checking(this.id)">   
+				                               		<label for="eat6" class="eat_check">비건</label>
+				                               		<input type="checkbox" name="eat" value="해산물" id="eat7" onchange="checking(this.id)">
+				                               		<label for="eat7" class="eat_check">해산물</label>
+				                                    <input type="checkbox" name="eat" value="육류" id="eat8" onchange="checking(this.id)">
+				                                    <label for="eat8" class="eat_check">육류</label>
+				                                    <input type="checkbox" name="eat" value="빵" id="eat9" onchange="checking(this.id)"> 
+				                                    <label for="eat9" class="eat_check">빵지순례</label>
 				                           		</div>
 				                           		<% if(u_id == null){%>
 				                           			<input type="button" value="일정만들기" id="save_login" onclick="login_check()"/>
@@ -483,7 +784,58 @@ String u_id = (String) session.getAttribute("u_id");
 				<%} %>					
 			</div>
 			<div id="img_div">
+			<div id="ex_slide">
+				<div id="exchange_view">
+					<div id="exchange_div1" class="exc"></div>
+					<div id="exchange_div2" class="exc"></div>
+					<div id="exchange_div3" class="exc"></div>
+					<div id="exchange_div4" class="exc"></div>
+					<div id="exchange_div5" class="exc"></div>
+					<div id="exchange_div6" class="exc"></div>
+					<div id="exchange_div8" class="exc"></div>
+					<div id="exchange_div9" class="exc"></div>
+					<div id="exchange_div10" class="exc"></div>
+					<div id="exchange_div11" class="exc"></div>
+					<div id="exchange_div12" class="exc"></div>
+					<div id="exchange_div13" class="exc"></div>
+				</div>
+			</div>
 			
+				<div id="weather_div">
+				<div id="w_info">
+					<span id="w_city">도시</span><span id = "w_date"></span>
+				</div>
+				<div class="forecast">
+					<span class="w_city_name">서울</span>
+					<span id="w_weather"></span>
+					<p id="w_temp"></p>
+				</div>
+				<div class="forecast">
+					<span class="w_city_name">도쿄</span>
+					<span id="tw_weather"></span>
+					<p id="tw_temp"></p>
+				</div>
+				<div class="forecast">
+					<span class="w_city_name">오사카</span>
+					<span id="ow_weather"></span>
+					<p id="ow_temp"></p>
+				</div>
+				<div class="forecast">
+					<span class="w_city_name">방콕</span>
+					<span id="bw_weather"></span>
+					<p id="bw_temp"></p>
+				</div>
+				<div class="forecast">
+					<span class="w_city_name">토론토</span>
+					<span id="trw_weather"></span>
+					<p id="trw_temp"></p>
+				</div>
+				<div class="forecast">
+					<span class="w_city_name">뉴욕</span>
+					<span id="nw_weather"></span>
+					<p id="nw_temp"></p>
+				</div>
+				</div>
 			</div>
 		</div>
 	</section>
