@@ -87,7 +87,7 @@ $(function(){
 	 });
       
 	 
-       $(window).on('load', function() { //page 띄우자마자 새알림 체크
+       /* $(window).on('load', function() { //page 띄우자마자 새알림 체크
     	  //console.log('window ready');
     	  var uid = $('input[name=uid]').val();
     	  
@@ -103,7 +103,7 @@ $(function(){
 				  }
 			  }
 		  }); 
-      });
+      }); */
       
       $('.alarm').click(function() { //알람 버튼 클릭시
     	  var uid = $('input[name=uid]').val();
@@ -257,7 +257,7 @@ function hideMenu(){
 		
 		<!-- 알림창 -->
 		<input type="hidden" name="uid" value="<%=u_id %>" />
-		<div class="notice">
+		<div class="notice"> 
 		</div> 
 	</header>
 </body>
