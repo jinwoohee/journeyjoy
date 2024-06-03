@@ -36,6 +36,7 @@
 <!-- 날짜 -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+
 </head>
 <script>
 $(function(){
@@ -87,7 +88,7 @@ $(function(){
 	 });
       
 	 
-       /* $(window).on('load', function() { //page 띄우자마자 새알림 체크
+       $(window).on('load', function() { //page 띄우자마자 새알림 체크
     	  //console.log('window ready');
     	  var uid = $('input[name=uid]').val();
     	  
@@ -103,7 +104,7 @@ $(function(){
 				  }
 			  }
 		  }); 
-      }); */
+      });
       
       $('.alarm').click(function() { //알람 버튼 클릭시
     	  var uid = $('input[name=uid]').val();
@@ -129,17 +130,17 @@ $(function(){
 			  }
 		  });
     	  
-    	  if ($('.notice').css('display') == 'none') {
-    		  $('.notice').css('display', 'block');
+    	  if ($('.noticeBox').css('display') == 'none') {
+    		  $('.noticeBox').css('display', 'block');
     		  $('.alarm').attr('src', 'img/icon/alarm.png');
     	  } else {
-    		  $('.notice').css('display', 'none');
+    		  $('.noticeBox').css('display', 'none');
     		  $('.alarm').attr('src', 'img/icon/alarm.png');
     	  }
       });
       
       $('.adiv').blur(function() {
-    	  $('.notice').css('display', 'none');
+    	  $('.noticeBox').css('display', 'none');
 		  $('.alarm').attr('src', 'img/icon/alarm.png');
 	  }); 
       
@@ -257,7 +258,8 @@ function hideMenu(){
 		
 		<!-- 알림창 -->
 		<input type="hidden" name="uid" value="<%=u_id %>" />
-		<div class="notice"> 
+		<div class="noticeBox">
+			<div class="notice"></div>
 		</div> 
 	</header>
 </body>
