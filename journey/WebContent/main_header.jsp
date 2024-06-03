@@ -14,7 +14,7 @@
 		joinChk = "로그아웃";
 	}else{
 		loginChk = "로그인";
-		joinChk = "회원가입";
+		joinChk = "회원가입"; 
 	}
 	
 %>
