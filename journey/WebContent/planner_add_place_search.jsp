@@ -72,13 +72,20 @@ label{
 div[id="search_result1"]{
 	width : 280px;
 	height : 545px;
+	border-radius : 5px;
 	float:left;
 }
 
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
-
+	$(".button").mouseover(function(){
+		$(this).css({'box-shadow':'inset 5px 5px 10px #CCCCCC'});
+	});
+	$(".button").mouseout(function(){
+		$(this).css({'box-shadow':''});
+	});
+	
 });
 	
 function checking(id){ /*테마 체크 여부 */
@@ -97,8 +104,6 @@ function plan_add_btn(num){
 	var edit = document.getElementById("edited"+num);
 	var before =document.getElementById("places_text"+num).innerText;
 	var empty = document.getElementById("places_textb"+num);
-	
-	var edit_id = document.getElementById("edited_id"+num);
 	if(empty !=null){
 		empty.remove();
 	}
@@ -107,19 +112,15 @@ function plan_add_btn(num){
 	$("input[name='place_one']").each(function(){
 	    if( $(this).is(":checked") == true ){	    	
 	      var id = $(this).attr('id');
-	      var checkVal = " #"+$("label[for="+id+"]").text()+"!new!";
-	      var checkvalue = "#"+$("label[for="+id+"]").text()+"!new!"; 
+	      var checkVal = " #"+$(this).val()+"(new)";
+	      var checkvalue = "#"+$(this).val()+"(new)"; 
 	      document.getElementById("places_text"+num).textContent = before+checkVal ;
-	      
-	      var id_v = $(this).val();
 	      
 	      $(this).prop("checked", false);
 	      $("label[for="+id+"]").css({"background-color":"white", "color":"rgb(64,64,64)"});
 	      
 	      var after = edit.value+checkvalue+"_";
 	  	  edit.setAttribute('value',after);
-	  	  var after_id = edit_id.value+id_v+",";
-	  	  edit_id.setAttribute('value',after_id);
 	    }
 	});
 }
@@ -128,17 +129,17 @@ function plan_add_btn(num){
 </head>
 
 <%
-	String u_id = (String)session.getAttribute("u_id"); 
+	String u_id = (String)session.getAttribute("u_id");
 %>
 <body>
 <div id="search_result1">
 					<div id="result_list">
 					
 					<%
+					
 					List<Place> pla = (List<Place>) request.getAttribute("search_place");
-					List<Eatery> eat = (List<Eatery>) request.getAttribute("search_eatery");
-
-					if(pla == null && eat == null){
+					
+					if(pla == null){
 						out.println("<input type='radio' name='place_one' id='search_plz'><label for='search_plz' class='pl_label'>검색어를 입력해주세요.</label>");
 						out.println("</div>");		
 						for(int a = 1 ; a <= datecnt ; a++){
@@ -150,17 +151,10 @@ function plan_add_btn(num){
 						int z=-1;
 						for(Place plalist : pla){
 							z++;
-
-							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_id()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
+											
+							out.println("<input type='checkbox' name='place_one' value='"+plalist.getPlac_name()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
 							out.println("<label for='pone"+z+"' class='pl_label'>"+plalist.getPlac_name()+"</label>");		
 							out.println("<input type='hidden' name='place_num' value='"+plalist.getPlac_id()+"'>");
-						}
-						for(Eatery eatlist : eat){
-							z++;
-
-							out.println("<input type='checkbox' name='place_one' value='"+eatlist.getEat_id()+"' id= 'pone"+z+"' onclick='checking(this.id)'>");
-							out.println("<label for='pone"+z+"' class='pl_label'>"+eatlist.getEat_name()+"</label>");		
-							out.println("<input type='hidden' name='place_num' value='"+eatlist.getEat_id()+"'>");
 						}
 						out.println("</div>");
 						for(int a = 1 ; a <= datecnt ; a++){

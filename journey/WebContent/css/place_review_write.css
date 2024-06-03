@@ -21,6 +21,7 @@ section{
 	width: 500px;
     border: 2px solid #cccccc;
     padding: 50px 50px;
+    border-radius: 10px;
     box-shadow: 3px 3px 3px #cccccc	;
 	margin: 0 auto;
 	background : white;
@@ -80,6 +81,7 @@ textarea{
 	width: 480px;
 	height: 350px;
 	border: 1px solid #cccccc;
+	border-radius: 10px;
 	padding: 10px 10px;
 	resize: none;
 }
@@ -92,6 +94,7 @@ textarea{
     width: 500px;
     height: 190px;
     border: 1px solid #cccccc;
+    border-radius: 10px;
 }
 
 #file > div{
@@ -103,6 +106,7 @@ textarea{
 div[id*=thumnail]{
 	width: 120px;
 	height: 120px;
+	border-radius: 10px;
 	background: #f1f1f3;
 	margin-right: 20px;
 }
@@ -124,7 +128,7 @@ input[name *=upload_btn]{
 
 /* 삭제버튼 */
 input[name *=del_btn]{
-	width: 20px;
+	    width: 20px;
     height: 20px;
     background: #FF2424;
     color: white;
@@ -145,6 +149,7 @@ div[id *= preview] img{
 	height : 120px;
 	overflow: hidden;
 	object-fit : cover;
+	border-radius: 10px;
 	background : white;
 	border : 1px solid #CCCCCC;
 }
@@ -154,6 +159,7 @@ div[id *= preview] img{
 	height: 120px;
 	object-fit : cover;
 	overflow: hidden;
+	border-radius: 10px;
 }
 
 #buttonArea{
@@ -168,6 +174,7 @@ div[id *= preview] img{
     background: #0D112D;
     border: none;
     color: white;
+    border-radius: 10px;
 }
 
 /* 취소버튼 */
@@ -177,6 +184,7 @@ div[id *= preview] img{
     background : #f1f1f3;
     border: none;
     color: #646464;
+    border-radius: 10px;
     margin-right: 10px;
 }
 

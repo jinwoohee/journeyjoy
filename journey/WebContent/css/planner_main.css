@@ -474,8 +474,64 @@ li {
   right:-50px; 
   top:100px;
 }
+
 label{
 	cursor: pointer;
+}
+#ex_slide{
+	width : 640px;
+	height : 50px;
+	overflow : hidden;
+	position : relative;
+}
+#exchange_view{
+	width : 18720px;
+	height : 100%;
+	display : flex;
+}
+div[id*='exchange_div']{
+	width : 1440px;
+	height : 100%;
+	display : flex;
+	background-color : white;
+}
+#w_info{
+	width : 630px;
+	margin-top : 20px;
+	    height: 40px;
+	border-bottom : 1px solid gray;
+}
+#w_city{
+	font-size : 17px;
+	padding-left : 20px;
+}
+#w_date{
+    margin-left: 55px;
+    word-spacing: 60px;
+}
+.forecast{
+	height : 70px;
+	margin-top : 15px;
+}
+.w_city_name{
+    width: 70px;
+    text-align: center;
+    font-size: 15px;
+    float: left;
+    margin-top: 13px;
+}
+img[name='weather_img']{ 
+	width : 50px;
+	height : 50px;
+	margin-left : 57px;
+}
+p[id*='temp']{
+    margin-left: 118px;
+    word-spacing: 85px;
+    margin-top: 0px;
+}
+span[id*=weather]{
+	margin-left : -26px;
 }
 img[src*="left"], img[src*="right"]{
 	cursor: pointer;

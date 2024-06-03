@@ -166,16 +166,16 @@
 	
 	<!-- 음식점 불러오기 -->
 	<select id="eatery_select" resultType="com.jj.dto.Eatery" parameterType="java.util.HashMap">	
-		select * from eatery where eat_city = #{e_destination} and 	
-		<foreach collection="eat_food_taste" item="item" index="index" separator="or" open="(" close=")"> 
-			eat_food_taste like CONCAT('%',#{item},'%')
+		select * from eatery where eat_food_taste in 	
+		<foreach collection="eat_food_taste" item="item" index="index" separator="," open="(" close=")"> 
+			#{item}
 		</foreach>
 			order by RAND() LIMIT #{day} 
 	</select>
 	
 	<!-- 관광지 불러오기 -->
 	<select id="place_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">		
-		select * from place where plac_city = #{e_destination} and plac_thema like CONCAT('%',#{plac_thema},'%') and 	
+		select * from place where plac_thema like CONCAT('%',#{plac_thema},'%') and 	
 		<foreach collection="plac_detail_thema" item="item" index="index" separator="or" open="(" close=")">
 			plac_detail_thema like CONCAT('%',#{item},'%')
 		</foreach> 
@@ -183,11 +183,8 @@
 	</select>
 	
 	<!-- 장소검색 한거 불러오기 -->
-	<select id="search_place" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">
-		select * from place where plac_city = #{city} and plac_name like CONCAT('%',#{text},'%') or plac_detail_thema like CONCAT('%',#{text},'%') order by plac_rating limit 15
-	</select>
-	<select id="search_eatery" resultType="com.jj.dto.Eatery" parameterType="java.util.HashMap">
-		select * from eatery where eat_city = #{city} and eat_name like CONCAT('%',#{text},'%') or eat_food_taste like CONCAT('%',#{text},'%') order by plac_rating limit 15
+	<select id="search_select" resultType="com.jj.dto.Place" parameterType="java.util.HashMap">
+		select * from place where plac_name like CONCAT('%',#{text},'%') or plac_detail_thema like CONCAT('%',#{text},'%')
 	</select>
 	
 	<!-- 일정 저장 -->
@@ -266,23 +263,16 @@
 	</update>
 	<!-- 가계부 저장 -->
 	<insert id="account_insert" parameterType="com.jj.dto.Account">
-		insert into account values(#{e_no}, #{acc_day}, #{acc_order}, #{acc_amount}, #{acc_payment}, #{acc_contents}, #{acc_category}, #{acc_currency})
+		insert into account values(#{e_no}, #{acc_day}, #{acc_order}, #{acc_amount}, #{acc_payment}, #{acc_contents}, #{acc_category})
 	</insert>
 	<!-- 가계부 불러오기 -->
 	<select id="account_select" parameterType="int" resultType="com.jj.dto.Account">
 		select * from account where e_no = #{e_no} and acc_order > 0
 	</select>
 	<!-- 가계부삭제 -->
-	<delete id="account_delete" parameterType="int" >
+	<delete id="account_delete" parameterType="int">
 		delete from account where e_no = #{e_no}
 	</delete>
-	<!--여행지 불러오기 -->
-	<select id="place_selectAll" resultType="com.jj.dto.Place" parameterType="String">
-		select * from place 
-	</select>
-	<select id="eatery_selectAll" resultType="com.jj.dto.Eatery" parameterType="String">
-		select * from eatery
-	</select>
 	
 	
 	
@@ -303,8 +293,7 @@
 		ON p.u_id = u.u_id
 		LEFT JOIN reward r
 		ON p.p_no = r.p_no
-		ORDER BY p.p_no DESC
-		LIMIT 8;
+		ORDER BY p.p_no DESC;
 	</select>
 	
 	<!-- 패키지 검색 -->
@@ -330,15 +319,14 @@
 		</where>
 		
 		<if test="param.equals('recent')">
-			ORDER BY p.p_no DESC
+			ORDER BY p.p_no DESC;
 		</if>
 		<if test="param.equals('popular')">
-			ORDER BY count DESC
+			ORDER BY count DESC;
 		</if>
 		<if test="param.equals('closing')">
-			ORDER BY p.p_due_date DESC
+			ORDER BY p.p_due_date DESC;		
 		</if>
-		LIMIT 8;
 	</select>
 	
 	<!-- 좋아요 select --> 
@@ -347,13 +335,13 @@
 	</select>
 	
 	<!-- 일정 리스트/장소 select -->
-	<select id="packagePlaceSelect" resultType="com.jj.dto.Place" parameterType="String">
-		SELECT * FROM place WHERE plac_city = #{selectCity}
+	<select id="packagePlaceSelect" resultType="com.jj.dto.Place">
+		SELECT * FROM place WHERE plac_addr
 	</select>
 	
 	<!-- 일정 리스트/식당 select -->
-	<select id="packageEatSelect" resultType="com.jj.dto.Eatery" parameterType="String">
-		SELECT * FROM eatery WHERE eat_city = #{selectCity}
+	<select id="packageEatSelect" resultType="com.jj.dto.Eatery">
+		SELECT * FROM eatery WHERE eat_addr
 	</select>
 	
 	<!-- 일정 insert -->
@@ -372,8 +360,7 @@
 	<!-- 상세보기 select -->
 	<select id="packageDetailSelect" resultType="com.jj.dto.Package" parameterType="int">
 		SELECT DISTINCT p.p_no, p.u_id, p.p_title, p.p_theme, p.p_nation, p.p_city, p.p_start_date, p.p_end_date, p.p_volume, p.p_due_date, p.p_file, 
-		       p.p_notification, p.p_url, u.u_nickname, u.u_profile, r.adult_fee, r.std_fee, r.child_fee,
-		       (SELECT SUM(adult_num+std_num+child_num) FROM purchase WHERE p_no = ${p_no}) AS cnt
+		       p.p_notification, p.p_url, u.u_nickname, u.u_profile, r.adult_fee, r.std_fee, r.child_fee
 		FROM package p
 		LEFT JOIN user u
 		ON p.u_id = u.u_id
@@ -448,16 +435,14 @@
 		LEFT JOIN eatery e
 		ON l.pl_eat_no = e.eat_no
 		<where>
-			<if test="city != null or search != null">
-				<if test="city!= '' and search == ''">
-					p.plac_city = #{city} or e.eat_city = #{city}
-				</if>
-				<if test="search!= '' and city == ''">
-					l.lr_contents like concat('%', #{search}, '%')
-				</if>
-				<if test="city !='' and search != ''">
-					(p.plac_city = #{city} or e.eat_city = #{city}) and l.lr_contents like concat('%', #{search}, '%')
-				</if>
+			<if test="city!= '' and search == ''">
+				p.plac_city = #{city} or e.eat_city = #{city}
+			</if>
+			<if test="search!= '' and city == ''">
+				l.lr_contents like concat('%', #{search}, '%') ORDER BY l.lr_no
+			</if>
+			<if test="city !='' and search != ''">
+				p.plac_city = #{city} or e.eat_city = #{city} and l.lr_contents like concat('%', #{search}, '%') ORDER BY l.lr_no
 			</if>
 		</where>
 		<if test="param != null">

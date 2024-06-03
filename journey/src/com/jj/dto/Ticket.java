@@ -7,8 +7,6 @@ public class Ticket {
 	String tick_sort;
 	String tick_explan;
 	int tick_price;
-	String tick_file;
-	
 	public int getTick_no() {
 		return tick_no;
 	}
@@ -44,12 +42,6 @@ public class Ticket {
 	}
 	public void setTick_price(int tick_price) {
 		this.tick_price = tick_price;
-	}
-	public String getTick_file() {
-		return tick_file;
-	}
-	public void setTick_file(String tick_file) {
-		this.tick_file = tick_file;
 	}
 	
 	

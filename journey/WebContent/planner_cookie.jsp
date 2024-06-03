@@ -8,7 +8,7 @@
 	
 	String id = (String) session.getAttribute("u_id");
 	String departure = request.getParameter("departure");
-	String destination = request.getParameter("city_text");
+	String destination = request.getParameter("city");
 	String start_date = request.getParameter("startDt");
 	String end_date = request.getParameter("endDt");
 	String thema = request.getParameter("thema");

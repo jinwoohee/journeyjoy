@@ -8,8 +8,6 @@ public class Account {
 	String acc_payment;
 	String acc_contents;
 	String acc_category;
-	String acc_currency;
-	
 	public int getE_no() {
 		return e_no;
 	}
@@ -51,12 +49,6 @@ public class Account {
 	}
 	public void setAcc_category(String acc_category) {
 		this.acc_category = acc_category;
-	}
-	public String getAcc_currency() {
-		return acc_currency;
-	}
-	public void setAcc_currency(String acc_currency) {
-		this.acc_currency = acc_currency;
 	}
 	
 	

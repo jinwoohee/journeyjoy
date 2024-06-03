@@ -1,20 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="com.jj.dto.Package_like"%>
 <%@page import="com.jj.dto.Package"%>
-<%@page import="com.jj.dto.PageInfo"%>
 <%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
 	request.setCharacterEncoding("utf-8");
 	String u_id = (String) session.getAttribute("u_id");
-	
- 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	int listCount = pageInfo.getListCount();
-	int nowPage = pageInfo.getPage();
-	int maxPage=pageInfo.getMaxPage();
-	int startPage=pageInfo.getStartPage();
-	int endPage=pageInfo.getEndPage();
 %>   
 
 <!DOCTYPE html>
@@ -33,7 +25,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 </head>
-<script type="text/javascript">
+<script>
 	$(function() {
 		/* 로그인 한 사용자만 이용 */
 		$("#write").click(function(){
@@ -117,13 +109,22 @@
         	}
         });
         
-    	/* 페이징 */
-        $('#pagination li').click(function(){
-        	$(this).css({"background":"#6C94B8", "color":"white"});
-    		$(this).siblings('li').css({"background":"white", "color":"#646464"});
-        });
-	});
 
+        /* 페이징 */
+        /* $("#paging").twbsPagination({
+        	startPage:1,	//시작시 표시되는 현재 페이지
+        	totalPages:5,	//총 페이지
+        	visiblePages:12, //한페이지당 보여지는 페이지 수
+        	first:"<<",
+        	last:">>",
+        	prev:"<이전",
+        	next:"다음>",
+
+        	onPageClick: function(event, page){
+        		//클릭이벤트
+        	}
+        });  */
+	});
 </script>
 <body>
 	<!-- menu bar -->
@@ -132,7 +133,7 @@
 	<!-- header(이미지) -->
 	<section>
 		<div id="top_section">
-			<img src="img/travel/travel.jpg">
+			<img src="img/travel/travel15.jpg">
 			<div>
 				<div>
 					<p>패키지 여행</p>
@@ -143,7 +144,7 @@
 	</section>
 
 	<!-- 계획하기 버튼 -->
-	<div id='packageWrite_div'>
+	<div>
 		<%
 			if(u_id != null){
 				out.println("<input type='button' id='write' value='패키지 기획하기'>");
@@ -179,11 +180,8 @@
 				<ul>
 					<%
 						List<Package> pkList = (List<Package>)request.getAttribute("pkList");
-						List<Package_like> likeList = (List<Package_like>)request.getAttribute("likeList");%>
-						
-						<input type='hidden' name='total' value=<%=pkList.size() %>>
-						
-						<%					
+						List<Package_like> likeList = (List<Package_like>)request.getAttribute("likeList");
+												
 						for(Package list : pkList){
 							out.println("<li>");
 							out.println("<input type='hidden' name='p_no' value='"+list.getP_no()+"'>");
@@ -215,34 +213,7 @@
 			</div>	
 		</article>
 	</section>
-	<div class="pagination_div">
-		<ul class="pagination">
-			<%
-				if(nowPage<=1){%>
-					<li>이전</li>
-			<%}else{%>
-				<li><a href="classList.jj?page=selectPageInfo&nowPage=<%=nowPage-1%>&table=package">이전</a></li>
-			<%} %>
-			
-			<%
-				for(int i=startPage; i<=endPage; i++){
-					if(i == nowPage){%>
-						<li><%=i %></li>
-			<%		}else{%>
-						<li><a href="classList.jj?page=selectPageInfo&nowPage=<%=i%>&table=package"><%=i %></a></li>
-				
-			<%		}
-				}
-			%>
-			
-			<%
-				if(nowPage >= maxPage){%>
-					<li>다음</li>
-			<%	}else{%>
-				<li><a href="classList.jj?page=selectPageInfo&nowPage=<%=nowPage+1%>&table=package">다음</a></li>
-			<%}%>
-		</ul>
-	</div>
+	  <div id="paging"></div>
 	<jsp:include page="main_footer.jsp" />
 </body>
 </html>

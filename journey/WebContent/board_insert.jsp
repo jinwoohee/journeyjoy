@@ -15,34 +15,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function () {
-    		$('select[name=nation]').change(function() { //국가, 도시 선택
-				console.log($(this).find('option:selected').text());
-				if ($(this).find('option:selected').text() == '국가') {
-					$('select[name=city]').find('option').remove();
-					$('select[name=city]').append('<option>도시</option>');
-				} else if ($(this).find('option:selected').text() == '일본') {
-					$('select[name=city]').find('option').remove();
-					$('select[name=city]').append('<option>도시</option>');
-					$('select[name=city]').append('<option>도쿄</option>');
-					$('select[name=city]').append('<option>오사카</option>');
-					$('select[name=city]').append('<option>후쿠오카</option>');
-					$('select[name=city]').append('<option>교토</option>');
-					$('select[name=city]').append('<option>나리타</option>');
-				} else if ($(this).find('option:selected').text() == '캐나다') {
-					$('select[name=city]').find('option').remove();
-					$('select[name=city]').append('<option>도시</option>');
-					$('select[name=city]').append('<option>벤쿠버</option>');
-					$('select[name=city]').append('<option>토론토</option>');
-					$('select[name=city]').append('<option>캘거리</option>');
-					$('select[name=city]').append('<option>빅토리아</option>');
-					$('select[name=city]').append('<option>몬트리올</option>');
-				}
-			});
+    		//String pattern = "^[\']*$";
     		
 			$('.del_btn').click(function () { //취소버튼
 				if (confirm("취소하시겠습니까?")) {
 					console.log("취소완료");
-					$('form[name="boardForm"]').attr('action', 'board_selectDB.jsp?no=-1&nowPage=1');
+					$('form[name="boardForm"]').attr('action', 'board.jsp');
 				} else {
 					console.log("그대로");
 					return false;
@@ -105,6 +83,8 @@
 							</select>
 							<select name="city">
 								<option>도시</option>
+								<option>도쿄</option>
+								<option>오사카</option>
 							</select>
 						</div>
 					</div>
@@ -139,11 +119,10 @@
 						<div class="slt">
 							<select name="category">
 								<option>카테고리</option>
-								<option>음식</option>
-								<option>쇼핑</option>
-								<option>일상</option>
 								<option>날씨</option>
-								<option>휴업/폐업</option>
+								<option>휴업</option>
+								<option>폐업</option>
+								<option>이전</option>
 							</select>
 						</div>
 					</div>

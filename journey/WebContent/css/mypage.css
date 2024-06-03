@@ -10,7 +10,7 @@ body {
 	background-size: cover;
 }
 
-button, input[type="button"], .notification_wrap li, .dot {
+button, input[type="button"], .notification_wrap li {
 	cursor: pointer;
 }
 
@@ -86,394 +86,6 @@ button, input[type="button"], .notification_wrap li, .dot {
 	display: none;
 }
 
-.cont_blank { /* 내용 없을 때 div */
-	/* text-align: center; */
-    font-size: 18px;
-    font-weight: 600;
-	height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 여행계획서 */
-.pn_wrap {
-	background-color: white;
-}
-
-.pn_list {
-	width: 1200px;
-	height: 100%;
-}
-
-.pn {
-	width: 1200px;
-    height: 280px;
-    margin: 35px auto;
-    border: 0;
-    border-radius : 5px;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: flex;
-}
-
-.pn_img {
-	width : 400px;
-	height : 100%;
-	background-color : violet;
-	float : left;
-	position :relative;
-	z-index : 10;
-	border-radius : 5px 0 0 5px;
-}
-
-.city_img{
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	position :relative;
-	z-index : 11;
-	border-radius : 5px 0 0 5px;
-}
-.square{
-    background-color: white;
-    transform: rotate(45deg);
-    width: 40px;
-    height: 40px;
-    position: relative;
-    z-index: 13;
-    margin-left: 380px;
-    margin-top: -167px;
-}
-
-.pn_content {
-	width: calc(100% - 400px);
-    height: 100%;
-    margin-left: 50px;
-	margin-right: 50px;
-	display: flex;
-    align-items: center;
-}
-
-.pn_sub {
-	width: 100%;
-    height: fit-content;
-}
-
-.pn_title {
-	display: flex;
-    justify-content: space-between;
-}
-
-.pn_title span {
-	font-size : 15px;
-	padding-top: 7px;
-}
-
-.pn_title { /*계획서 제목 글자*/
-	font-size : 20px;
-	font-weight : bold;
-	margin-top: 0px;
-}
-
-.destination { /*계획서 도시*/
-	font-size : 17px;
-	font-weight : bold;
-}
-
-img[src*="location"] {
-	width : 25px;
-	height : 25px;
-}
-
-.trip_date { /*계획서 여행일자*/
-	font-size : 15px;
-}
-
-.thema_text { /*테마 글자*/
-	font-size : 13px;
-}
-
-.pn_chkList {
-	display: flex;
-    justify-content: flex-end;
-}
-
-button[name*="chkList"] {
-	width: 90px;
-	height: 40px;
-    border-radius : 5px;
-    border: 1px solid #6C94B8;
-    color: #6C94B8;
-    font-weight: 600;
-    background-color: #fff;
-}
-
-.pn_blank {
-	/* text-align: center; */
-    font-size: 18px;
-    font-weight: 600;
-	height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 여행계획서-체크리스트 */
-.modal_wrap {
-	width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: auto;
-    z-index: 100;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-	background-color: rgba(0, 0, 0, 0.65);
-	display: none;
-}
-
-.modal_wrap::before {
-	content: "";
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-    margin-right: -0.05em;
-}
-
-.modal {
-	width: 30%;
-    height: 50%;
-    position: relative;
-    z-index: 101;
-    background-color: #fff;
-    vertical-align: middle;
-    box-sizing: border-box;
-    display: inline-block;
-}
-
-.modal_title {
-	height: 25px;
-    padding: 0 20px;
-    line-height: 60px;
-    color: #000;
-    background-color: #e3e3e3;
-    font-weight: 600;
-    font-size: 20px;
-    text-align: left;
-}
-
-.modal_contents {
-	padding: 10px 20px;
-	overflow-y: auto;
-    height: calc(100% - 45px);
-    text-align: left;
-}
-
-.modal_contents h1 {
-	text-align: center;
-    font-size: 30px;
-    margin: 0;
-    padding-bottom: 10px;
-    font-weight: 200;
-    color: #454545;
-}
-
-.fa-check {
-	font-size: 30px;
-	margin-right: 10px;
-	color: #6c94b8;
-}
-
-#todo-list {
-	width: 100%;
-    /* margin: 0 auto 50px auto; */
-    position: relative;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-}
-
-.todo-wrap {
-	display: block;
-    position: relative;
-    padding-left: 35px;
-    box-shadow: 0 2px 0 -1px #ebebeb;
-}
-
-.todo-wrap:last-of-type {
-	box-shadow: none;
-}
-
-.todo-wrap input[type="checkbox"] {
-	position: absolute;
-    height: 0;
-    width: 0;
-    opacity: 0;
-    top: -600px;
-}
-
-.todo {
-	display: inline-block;
-    font-weight: 200;
-    padding: 7px 5px;
-    height: 26px;
-    position: relative;
-	cursor: pointer;
-}
-
-.todo:before {
-	content: "";
-    display: block;
-    position: absolute;
-    top: calc(50% + 2px);
-    left: 0;
-    width: 0%;
-    height: 1px;
-    background: #FF4848;
-    transition: .25s ease-in-out;
-}
-
-.todo:after {
-	content: "";
-    display: block;
-    position: absolute;
-    z-index: 0;
-    height: 18px;
-    width: 18px;
-    top: 12px;
-    left: -25px;
-    box-shadow: inset 0 0 0 2px #d8d8d8;
-    transition: .25s ease-in-out;
-    border-radius: 4px;
-}
-
-.todo:hover:after {
-	box-shadow: inset 0 0 0 2px #949494;
-}
-
-.todo .fa-check{
-	position: absolute;
-	z-index: 1;
-	left: -31px;
-	top: 0;
-	font-size: 1px;
-	line-height: 36px;
-	width: 36px;
-	height: 36px;
-	text-align: center;
-	color: transparent;
-	text-shadow: 1px 1px 0 white, -1px -1px 0 white;
-}
-
-:checked + .todo {
-	color: #717171;
-}
-
-:checked + .todo:before {
-	width: 100%;
-}
-
-:checked + .todo:after {
-	box-shadow:inset 0 0 0 2px #6c94b8;
-}
-
-:checked + .todo .fa-check {
-	font-size: 20px;
-	line-height: 35px;
-	color: #6c94b8;
-}
-
-/* Delete Items */
-.delete-item {
-	display: block;
-	position: absolute;
-	height: 36px;
-	width: 36px;
-	line-height: 36px;
-	right: 0;
-	top: 0;
-	text-align: center;
-	color: #d8d8d8;
-	opacity: 0;
-	cursor: pointer;
-}
-
-.todo-wrap:hover .delete-item {
-	opacity:1;
-}
-
-.delete-item:hover {
-	color: #FF4848;
-}
-
-/* Add Items */
-#add-todo {
-	margin: 25px 0 10px 12px;
-	font-size: 14px;
-	font-weight: 200;
-	color: #d8d8d8;
-	display: inline-block;
-	cursor: pointer;
-}
-
-#add-todo:hover {
-	color: #6c94b8;
-	transition: none;
-}
-
-.fa-plus {
-	font-size: 14px;
-	transition:none;
-}
-
-.input-todo {
-	border: none;
-	outline: none;
-	font-weight: 200;
-	position: relative;
-	top: -1px;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-}
-
-.editing {
-  height: 0;
-  overflow: hidden;
-}
-
-.editing .todo-wrap {
-  box-shadow: 0 0 400px rgba(0,0,0,.8),inset 0 0px 0 2px #ebebeb;
-}
-
-
-
-
-.modal_close {
-	display: block;
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-    background-color: #FF5A5A;
-    padding: 5px;
-}
-
-.modal_close img {
-	width: 12px;
-    height: 12px;
-    position: relative;
-    top: -4px;
-    left: 0px;
-}
-
-
 .package, .review, .userInfo { /* cards li */
 	border-bottom: 1px solid #2b2b2b;
 }
@@ -518,7 +130,10 @@ button[name*="chkList"] {
 }
 
 .package_making, .package_attending, .package_like { /* 패키지 */
-    padding: 30px 40px 100px 40px;
+	padding-top: 30px;
+    padding-bottom: 100px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .package_making ul {
@@ -682,7 +297,7 @@ button[name*="chkList"] {
 
 .pk_update_btn { /* 패키지 기획내역-수정버튼 하위div */
 	position: relative;
-    top: 125px;
+    top: 303px;
 	right: 120px;
     /* display: inline-grid; */
     z-index: 5;
@@ -710,8 +325,17 @@ button[name*="chkList"] {
     color: #6c94b8;
 }
 
+.pk_blank { /* 패키지 기획내역 없을 때 div */
+	text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .plan_review, .place_review { /* 일정리뷰, 장소리뷰 */
-	padding: 30px 40px 100px 40px;
+	padding-top: 30px;
+    padding-bottom: 100px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .plan_review ul { /* 일정리뷰 */
@@ -720,19 +344,15 @@ button[name*="chkList"] {
 	margin-top: 0px;
     margin-bottom: 0px;
     display: flex;
+    justify-content: space-between;
 }
 
 .plan_review li {
-    width: calc((100% - 115px) / 2);
+    width: calc((100% - 120px) / 2);
     border: 1px solid #666666;
     border-radius: 10px;
     padding: 20px;
     float: left;
-	margin-bottom: 25px;
-}
-
-.plan_review li:nth-of-type(2n-1) {
-	margin-right: 30px;
 }
 
 .plan_size {
@@ -751,7 +371,7 @@ button[name*="chkList"] {
 }
 
 .plan_li {
-	width: 100%;
+	
 }
 
 .plan_list { /* 일정리뷰 전체div */
@@ -839,6 +459,12 @@ button[name*="chkList"] {
 	border: 1px solid red;
 }
 
+.plan_blank { /* 일정리뷰 없을 때 div */
+	text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 
 
 
@@ -853,7 +479,9 @@ button[name*="chkList"] {
 
 
 .user_wrap { /* 회원정보수정div */
-	padding: 30px 40px 100px 40px;
+	color: black;
+	padding-top: 25px;
+    padding-bottom: 50px;
 }
 
 .profile { /* 회원정보-프로필div */

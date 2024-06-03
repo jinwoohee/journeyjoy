@@ -8,8 +8,7 @@ public class Plan {
 	private String plan_title;
 	private String plan_product;
 	private Date plan_date;
-	private String plan_url;
-	
+	private String plan_url; 
 	public int getPlan_no() {
 		return plan_no;
 	}

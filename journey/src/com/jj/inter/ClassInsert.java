@@ -1,16 +1,12 @@
 package com.jj.inter;
 
-import java.util.ArrayList;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jj.conn.ClassInsertDB;
-import com.jj.conn.ClassListSelectDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Class_list;
-import com.jj.dto.Estimate;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -38,7 +34,7 @@ public class ClassInsert implements JourneyInterface{
 		
 		Class_list cl = new Class_list();
 		cl.setU_id(multi.getParameter("u_id"));
-		cl.setC_nation("*");
+		cl.setC_nation("canada");
 		//cl.setC_nation(request.getParameter("")); > plan에서 내가 여행중인 국가 값 가져오기
 		
 		cl.setC_city(multi.getParameter("city"));

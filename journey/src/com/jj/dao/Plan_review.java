@@ -8,15 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.jj.dto.Day_review;
-import com.jj.dto.Place;
 import com.jj.dto.Schedule;
 
 public class Plan_review {
 	Connection conn = null;
 	Statement stmt = null;
 	public void connDb() throws Exception{
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/trip", "root", "1234");
+		Class.forName("com.mysql.jdbc.Driver");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/trip","root","1234");
 		if(conn == null) 
 			throw new Exception("db연결실패<br>");
 		stmt = conn.createStatement();
@@ -204,47 +203,6 @@ public class Plan_review {
 		}
 		return scList;
 	}
-	
-	/* 장소 이름 */
-	public String selectPlaceName(String place) throws Exception{
-		String plac_name = "";
-		ResultSet rs = null;
-		
-		try {
-			connDb();
-			rs = stmt.executeQuery("SELECT plac_name FROM place WHERE plac_id = '"+place+"';");
-		
-			while(rs.next()) {
-				plac_name = rs.getString("plac_name");
-			}
-		} finally {
-			closeDb();
-		}
-		
-		return plac_name;
-		
-	}
-	
-	/* 식당 이름 */
-	public String selectEatName(String place) throws Exception{
-		String eat_name = "";
-		ResultSet rs = null;
-		
-		try {
-			connDb();
-			rs = stmt.executeQuery("SELECT eat_name FROM eatery WHERE eat_id ='"+place+"';");
-		
-			while(rs.next()) {
-				eat_name = rs.getString("eat_name");
-			}
-		} finally {
-			closeDb();
-		}
-		
-		return eat_name;
-		
-	}
-	
 	
 	
 	/* 데이리뷰 select */

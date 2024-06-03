@@ -5,15 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
-import com.jj.dto.Board;
 import com.jj.dto.Class_list;
+import com.jj.dto.Eatery;
 import com.jj.dto.Estimate;
 import com.jj.dto.Inquiry;
 import com.jj.dto.Location_review;
 import com.jj.dto.Place;
+import com.jj.dto.Plan;
 import com.jj.dto.Plan_review;
 import com.jj.dto.Purchase;
 import com.jj.dto.User;
@@ -439,44 +441,6 @@ public class JourneySql {
 		return alist;
 	}
 	
-	public ArrayList<Board> boardListSelect(int page, int limit) { //자유게시판 select
-		ArrayList<Board> alist = new ArrayList<Board>();
-		
-		String sql = "select * from board order by b_no desc limit ?,10";
-		int startRow = (page - 1)*10;
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				Board board = new Board();
-				board.setB_no(rs.getInt("b_no"));
-				board.setU_id(rs.getString("u_id"));
-				board.setB_category(rs.getString("b_category"));
-				board.setB_title(rs.getString("b_title"));
-				board.setB_contents(rs.getString("b_contents"));
-				board.setB_nation(rs.getString("b_nation"));
-				board.setB_city(rs.getString("b_city"));
-				board.setB_month(rs.getString("b_month"));
-				board.setB_file1(rs.getString("b_file1"));
-				board.setB_file2(rs.getString("b_file2"));
-				board.setB_file3(rs.getString("b_file3"));
-				board.setB_date(rs.getDate("b_date"));
-				
-				alist.add(board);
-			}
-		} catch (SQLException e) {
-			System.out.println("sql boardListSelect Error-------->"+e);
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return alist;
-	}
-	
 	
 	
 	
@@ -524,7 +488,7 @@ public class JourneySql {
 						"ON c.u_id = u.u_id \r\n" + 
 						"LEFT JOIN class_apply a\r\n" + 
 						"ON c.c_no = a.c_no \r\n" +
-						"order by c.c_no limit 10";
+						"order by c.c_no";
 		ArrayList<Class_list> classList = new ArrayList<Class_list>();
 		Class_list cl = null;
 		
@@ -579,7 +543,7 @@ public class JourneySql {
 					"LEFT JOIN class_apply a \r\n" + 
 					"ON c.c_no = a.c_no \r\n" + 
 					"WHERE c.u_id ='"+u_id+"' \r\n" + 
-					"order by c.c_no limit 10";
+					"order by c.c_no";
 		}else {
 			sql = "SELECT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no, (SELECT COUNT(*) FROM class_apply a WHERE c.c_no=a.c_no GROUP BY c_no) AS count \r\n" + 
 					"FROM class_list c \r\n" + 
@@ -588,7 +552,7 @@ public class JourneySql {
 					"LEFT JOIN class_apply a \r\n" + 
 					"ON c.c_no = a.c_no \r\n" + 
 					"WHERE a.u_id = '"+u_id+"' \r\n" + 
-					"order by c.c_no limit 10";
+					"order by c.c_no";
 		}
 		
 		ArrayList<Class_list> classList = new ArrayList<Class_list>();
@@ -682,62 +646,54 @@ public class JourneySql {
 				"LEFT JOIN user u \r\n" + 
 				"ON c.u_id = u.u_id \r\n" + 
 				"LEFT JOIN class_apply a \r\n" + 
-				"ON c.c_no = a.c_no \r\n ";
+				"ON c.c_no = a.c_no \r\n";
 		
-		if(!city.equals("여행중인 도시")) { //여행국가 선택 ㅒ
-			if(param == null && search == null) {//검색필터, 검색창 X
-				condition = "WHERE c.c_city = '"+city+"' limit 10";
-			}else if(param != null && search == null) {//검색필터 O, 검색창 X
-				if(param.equals("entire")) {
-					condition = "ORDER BY c.c_no limit 10";
-				}else if(param.equals("recent")) {
-					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date >= DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_no limit 10";
+		if(!city.equals("여행중인 도시")) {
+			if(param == null && search == null) {
+				condition = "WHERE c.c_city = '"+city+"'";
+			}else if(param != null && search == null) {
+				if(param.equals("recent")) {
+					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("closing")) {
-					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date >= DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_end_date limit 10";
+					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date > now() ORDER BY c.c_end_date";
 				}else if(param.equals("ing")) {
-					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date > DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_no limit 10";
+					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("end")){
-					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date < DATE_FORMAT(now(), '%Y-%m-%d') - INTERVAL 1 DAY ORDER BY c.c_no limit 10";
+					condition = "WHERE c.c_city = '"+city+"'and c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
 				}
-			}else if(param != null && search != null) { //검색필터 O, 검색창 O
-				if(param.equals("entire")) {
-					condition = "ORDER BY c.c_no limit 10";
-				}else if(param.equals("recent")) {
-					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date >= DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_no limit 10";
+			}else if(param != null && search != null) {
+				if(param.equals("recent")) {
+					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("closing")) {
-					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date >= DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_end_date limit 10";
+					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_end_date";
 				}else if(param.equals("ing")) {
-					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date > DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_no limit 10";
+					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("end")){
-					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%'and c.c_end_date < DATE_FORMAT(now(), '%Y-%m-%d') - INTERVAL 1 DAY ORDER BY c.c_no limit 10";
+					condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE '%"+search+"%'and c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
 				}
-			}else if(param == null && search != null) { //검색필터 X, 검색창 O
-				condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE %"+search+"%' ORDER BY c.c_no limit 10";
+			}else if(param == null && search != null) {
+				condition = "WHERE c.c_city = '"+city+"'and c.c_title LIKE %"+search+"%' ORDER BY c.c_no";
 			}
-		}else if(city.equals("여행중인 도시")){ //여행국가 선택 X
+		}else if(city.equals("여행중인 도시")){
 			if(search  == null) { //검색창 값 없을때
-				if(param.equals("entire")) {
-					condition = "ORDER BY c.c_no limit 10";
-				}else if(param.equals("recent")) {
-					condition = "WHERE c.c_end_date >= DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_no limit 10";
+				if(param.equals("recent")) {
+					condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("closing")) {
-					condition = "WHERE c.c_end_date >= DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_end_date limit 10";
+					condition = "WHERE c.c_end_date > now() ORDER BY c.c_end_date";
 				}else if(param.equals("ing")) {
-					condition = "WHERE c.c_end_date > DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_no limit 10";
+					condition = "WHERE c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("end")){
-					condition = "WHERE c.c_end_date < DATE_FORMAT(now(), '%Y-%m-%d') - INTERVAL 1 DAY ORDER BY c.c_no limit 10";
+					condition = "WHERE c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
 				}
 			}else { //검색창 값 있을때 
-				if(param.equals("entire")) {
-					condition = "ORDER BY c.c_no limit 10";
-				}else if(param.equals("recent")) {
-					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date >= DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_no limit 10";
+				if(param.equals("recent")) {
+					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("closing")) {
-					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date >= DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_end_date limit 10";
+					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_end_date";
 				}else if(param.equals("ing")) {
-					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > DATE_FORMAT(now(), '%Y-%m-%d') ORDER BY c.c_no limit 10";
+					condition = "WHERE c.c_title LIKE '%"+search+"%' and c.c_end_date > now() ORDER BY c.c_no";
 				}else if(param.equals("end")){
-					condition = "WHERE c.c_title LIKE '%"+search+"%'and c.c_end_date < DATE_FORMAT(now(), '%Y-%m-%d') - INTERVAL 1 DAY ORDER BY c.c_no limit 10";
+					condition = "WHERE c.c_title LIKE '%"+search+"%'and c.c_end_date < now() - INTERVAL 1 DAY ORDER BY c.c_no";
 				}
 			}
 		}
@@ -818,7 +774,6 @@ public class JourneySql {
 		
 		return estimateList;
 	}
-	
 	public ArrayList<Estimate> selectPlanList(String u_id) {
 		String sql = null;
 	
@@ -852,120 +807,6 @@ public class JourneySql {
 		}
 		
 		return estiList;
-	}
-	
-	//pageInfo
-	public int selectListCount(String table) {
-		int listCount = 0;
-		
-		String sql = null;
-		sql = "SELECT COUNT(*) FROM "+table;
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				listCount = rs.getInt(1);
-			}
-		} catch (Exception e) {
-			close(rs);
-			close(pstmt);
-		}
-		return listCount;
-	}
-
-	//package 페이징 리스트
-	public ArrayList<Package> selectPackageList(int page, int limit) {
-		
-		ArrayList<Package> packageList = new ArrayList<Package>();
-		
-		String sql = null;
-		sql = "SELECT DISTINCT p.p_no, p.p_file, p.p_nation, p.p_city, p.p_title, u.u_nickname, r.child_fee\r\n" + 
-				"FROM package p\r\n" + 
-				"LEFT JOIN user u\r\n" + 
-				"ON p.u_id = u.u_id\r\n" + 
-				"LEFT JOIN reward r\r\n" + 
-				"ON p.p_no = r.p_no\r\n" + 
-				"ORDER BY p.p_no DESC limit ?,8";
-		int startRow = (page-1)*8;
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1,  startRow);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Package p = new Package();
-				p.setP_no(rs.getInt("p_no"));
-				p.setP_file(rs.getString("p_file"));
-				p.setP_nation(rs.getString("p_nation"));
-				p.setP_city(rs.getString("p_city"));
-				p.setP_title(rs.getString("p_title"));
-				p.setU_nickname(rs.getString("u_nickname"));
-				p.setChild_fee(rs.getInt("child_fee"));
-				
-				packageList.add(p);
-				
-			}
-		} catch (Exception e) {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return packageList;
-	}
-
-	//class 페이징 리스트
-	public ArrayList<Class_list> selectClassCount(int page, int limit) {
-		
-		String sql = "SELECT DISTINCT c.*, u.u_profile, u.u_nickname AS u_nickname, a.u_id AS a_id, a.c_no AS a_no, (SELECT COUNT(*) FROM class_apply a WHERE c.c_no=a.c_no GROUP BY c_no) AS count \r\n" + 
-				"FROM class_list c\r\n" + 
-				"LEFT JOIN user u\r\n" + 
-				"ON c.u_id = u.u_id \r\n" + 
-				"LEFT JOIN class_apply a\r\n" + 
-				"ON c.c_no = a.c_no \r\n" +
-				"order by c.c_no limit ?,10";
-		
-		ArrayList<Class_list> classList = new ArrayList<Class_list>();
-		Class_list cl = null;
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				cl = new Class_list();
-				cl.setC_no(rs.getInt("c_no"));
-				cl.setU_id(rs.getString("u_id"));
-				cl.setU_profile(rs.getString("u_profile"));
-				cl.setC_nation(rs.getString("c_nation"));
-				cl.setC_city(rs.getString("c_city"));
-				cl.setC_title(rs.getString("c_title"));
-				cl.setC_contents(rs.getString("c_contents"));
-				cl.setC_file1(rs.getString("c_file1"));
-				cl.setC_file2(rs.getString("c_file2"));
-				cl.setC_file3(rs.getString("c_file3"));
-				cl.setC_volume(rs.getInt("c_volume"));
-				cl.setC_charge(rs.getInt("c_charge"));
-				cl.setC_end_date(rs.getString("c_end_date"));
-				cl.setC_date(rs.getString("c_date"));
-				cl.setC_url(rs.getString("c_url"));
-				cl.setU_nickname(rs.getString("u_nickname"));
-				cl.setA_id(rs.getString("a_id"));
-				cl.setA_no(rs.getInt("a_no"));
-				cl.setCount(rs.getInt("count"));
-				
-				classList.add(cl);
-			}
-		} catch (Exception e) {
-			System.out.println("--- JourneySql/selectClassList---");
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return classList;
 	}
 
 }

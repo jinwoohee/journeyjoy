@@ -15,7 +15,7 @@ public class Eatery {
 	String eat_file1;
 	String eat_file2;
 	String eat_file3;
-	String eat_id;
+	
 	public int getEat_no() {
 		return eat_no;
 	}
@@ -99,12 +99,6 @@ public class Eatery {
 	}
 	public void setEat_file3(String eat_file3) {
 		this.eat_file3 = eat_file3;
-	}
-	public String getEat_id() {
-		return eat_id;
-	}
-	public void setEat_id(String eat_id) {
-		this.eat_id = eat_id;
 	}
 	
 }

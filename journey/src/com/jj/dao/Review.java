@@ -120,9 +120,9 @@ public class Review {
 			dbConn();
 			
 			if(search == null) {
-				rs = stmt.executeQuery("SELECT plac_no, plac_name, plac_id FROM place;");
+				rs = stmt.executeQuery("SELECT plac_no, plac_name FROM place;");
 			}else {
-				rs = stmt.executeQuery("SELECT DISTINCT plac_no, plac_name, plac_id \r\n" + 
+				rs = stmt.executeQuery("SELECT DISTINCT plac_no, plac_name \r\n" + 
 						"FROM place \r\n" + 
 						"WHERE plac_name like '%"+search+"%';");
 			}
@@ -132,7 +132,6 @@ public class Review {
 
 				place.setPlac_no(rs.getInt("plac_no"));
 				place.setPlac_name(rs.getString("plac_name"));
-				place.setPlac_id(rs.getString("plac_id"));
 				
 				placeList.add(place);
 			}
@@ -152,9 +151,9 @@ public class Review {
 			dbConn();
 			
 			if(search == null) {
-				rs = stmt.executeQuery("SELECT eat_no, eat_name, eat_id FROM eatery;");
+				rs = stmt.executeQuery("SELECT eat_no, eat_name FROM eatery;");
 			}else {
-				rs = stmt.executeQuery("SELECT DISTINCT eat_no, eat_name, eat_id \r\n" + 
+				rs = stmt.executeQuery("SELECT DISTINCT eat_no, eat_name\r\n" + 
 						"FROM eatery\r\n" + 
 						"WHERE eat_name like '%"+search+"%';");
 			}
@@ -164,7 +163,6 @@ public class Review {
 				
 				eat.setEat_no(rs.getInt("eat_no"));
 				eat.setEat_name(rs.getString("eat_name"));
-				eat.setEat_id(rs.getString("eat_id"));
 				
 				eatList.add(eat);
 			}

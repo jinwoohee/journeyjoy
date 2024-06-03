@@ -1,18 +1,15 @@
-<%@page import="com.jj.dto.KakaoUser"%>
-<%@page import="com.jj.dto.Plan"%>
+<%@page import="com.jj.dto.Plan_review"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.jj.dto.Package" %>
 <%@page import="com.jj.dto.Package_schedule"%>
 <%@page import="com.jj.dto.User"%>
-<%@page import="com.jj.dto.Plan_review"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map.Entry"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	String u_id = (String) session.getAttribute("u_id");
 	String mpg = request.getParameter("tab");	
@@ -26,7 +23,6 @@
 	
 	<!-- font -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
 	
 	<!-- 주소찾기 -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -111,93 +107,12 @@
 				$('.user_wrap').show();
 				$('.user_wrap').siblings('div').hide();
 			} else {
-				$('.pn_wrap').show();
+				$('.plan_wrap').show();
 				$('.cards').children('div').hide();
-				$('.pn_wrap').siblings('div').hide();
+				$('.plan_wrap').siblings('div').hide();
 			}
 		});
 		
-		/* 여행계획서 */
-		$("button[name*='chkList']").mouseover(function(){
-			$(this).css({'border-color':'red','color':'red'})
-		});
-		
-		$("button[name*='chkList']").mouseout(function(){
-			$(this).css({'border-color':'#6C94B8','color':'#6C94B8'})
-		});
-		
-		$("button[name*='chkList']").click(function() {
-			$('.modal_wrap').show();
-			$('body').css({'overflow' : 'hidden'}); //스크롤 막기
-		});
-		
-		//체크리스트 추가
-		$('#add-todo').click(function() {
-			var lastSibling = $(this).prev('span').find('input[type=checkbox]').attr('id'); //마지막 리스트
-			var newId = Number(lastSibling) + 1;
-			
-			$(this).before('<span class="editing todo-wrap">' + 
-					'<input type="checkbox" id="' + newId + '"/>' + 
-						'<label for="' + newId + '" class="todo"><i class="fa fa-check"></i><input type="text" class="input-todo" id="input-todo' + newId + '"/></label>' + 
-						'</span>');
-			
-			$('#input-todo' + newId).closest('span').animate({height : '40px'}, 200);
-			$('#input-todo' + newId).focus();
-			$('#input-todo' + newId).enterKey(function() {
-				$(this).trigger('enterEvent');
-			});
-			
-			$('#input-todo' + newId).on('blur enterEvent', function() {
-				var todoTitle = $('#input-todo' + newId).val();
-				var todoTitleLength = todoTitle.length;
-				
-				if (todoTitleLength > 0) {
-					$(this).before(todoTitle);
-					$(this).parent().parent().removeClass('editing');
-					$(this).parent().after('<span class="delete-item" title="remove"><i class="fa fa-times-circle"></i></span>');
-					$(this).remove();
-					$('.delete-item').click(function() {
-						var parentItem = $(this).parent();
-						parentItem.animate({left : '-30px', height : '0', opacity : '0'}, 200);
-						setTimeout(function() {
-							$(parentItem).remove();
-						}, 1000);
-					});
-				} else {
-					$('.editing').animate({height : '0px'}, 200);
-					setTimeout(function() {
-				        $('.editing').remove();
-					}, 400);
-				}
-			});
-		});
-		
-		//체크리스트 삭제 
-		$('.delete-item').click(function(){
-			var parentItem = $(this).parent();
-			parentItem.animate({left : '-30px', height : '0', opacity : '0'}, 200);
-			setTimeout(function() {
-				$(parentItem).remove(); 
-			}, 1000);
-		});
-		
-		// Enter Key detect
-		$.fn.enterKey = function (fnc) {
-		    return this.each(function () {
-		        $(this).keypress(function (ev) {
-		            var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-		            if (keycode == '13') {
-		                fnc.call(this, ev);
-		            }
-		        })
-		    })
-		}
-		
-		//모달창 close 클릭시
-		$('.modal_close').click(function() {
-			$('.modal_wrap').hide();
-			$('body').css({'overflow' : 'auto'});
-		});
 		
 		
 		/* 패키지 */
@@ -371,7 +286,7 @@
 			}
 		});
 		
-		$('input[name=nickname]').blur(function() { //회원정보수정-닉네임 중복체크	
+		$('input[name=nickname]').blur(function() { //회원정보수정-닉네임 중복체크			
 			$(this).off().on('change', function() {
 				$.ajax({
 					type : 'post',
@@ -414,16 +329,10 @@
 				<%
 				ArrayList<User> ulist = (ArrayList<User>)request.getAttribute("ulist");
 				
-				if (ulist.size() != 0) {
-					for (User u : ulist) {
+				for (User u : ulist) {
 				%>
 				<h1><%= u.getU_name() %>님</h1>
-				<%
-					}
-				} else {
-				%>
-				<h1><%= u_id %>님</h1>
-				<%} %>
+				<% } %>
 				<div class="tab">
 					<ul>
 						<% if (mpg.equals("myplan")) { %>
@@ -505,114 +414,12 @@
 			<div class="content_wrap">
 				<!-- 여행계획서 -->
 				<% if (mpg.equals("myplan")) { %>
-				<div class="pn_wrap">
-					<c:set var="estList" value="${ requestScope.estimate }" />
-					<c:set var="planList" value="${ requestScope.planList }" />
-					<div class="pn_list">
-					<c:if test="${ fn:length(planList) != 0 }">
-						<c:forEach var="es" items="${ estList }">
-							<c:forEach var="plan" items="${ planList }">
-								<c:if test="${ es.e_no == plan.e_no }">
-									<c:set var="date" value="${ plan.plan_date }" />
-									<c:set var="city" value="${ es.e_destination }" />
-									<c:set var="city_img" />
-									<c:if test="${ city == '도쿄' }">
-										<c:set var="city_img" value="img/japan/tokyo3.jpg" />
-									</c:if>
-									<c:if test="${ city == '오사카' }">
-										<c:set var="city_img" value="img/japan/osaka6.jpg" />
-									</c:if>
-									<c:if test="${ city == '밴쿠버' }">
-										<c:set var="city_img" value="img/canada/vancouver1.jpg" />
-									</c:if>
-									<c:if test="${ city == '뉴욕' }">
-										<c:set var="city_img" value="img/usa/newyork1.jpg" />
-									</c:if>
-									<c:if test="${ city == '로스앤젤레스' }">
-										<c:set var="city_img" value="img/usa/lasvegas.jpg" />
-									</c:if>
-									<div class="pn">
-										<div class="pn_img">
-											<img src="${ city_img }" class="city_img"/>
-											<div class="square"></div>
-										</div>
-										<div class="pn_content">
-											<div class="pn_sub">								
-												<p class="pn_title">${ plan.plan_title }<span>${ date }</span></p>
-												<p class="destination"><img src="img/icon/location.png"/>&nbsp;&nbsp;${ city }</p>
-												<p class="trip_date">${ fn:replace(es.e_start_date, '-', '.') } ~ ${ fn:replace(es.e_end_date, '-', '.') }</p>
-												<p class="thema_text">${ es.e_thema }, ${ es.e_detail_thema }</p>
-												<div class="pn_chkList"><button type="submit" name="chkList${ es.e_no }" class="button">체크리스트</button></div>
-												<input type="hidden" name="e_no" value="${ es.e_no }" />
-											</div>
-										</div>
-									</div>
-								</c:if>
-							</c:forEach>
-						</c:forEach>
-					</c:if>
-					</div>
-					<c:if test="${ fn:length(planList) == 0 }">
-						<div class="pn_blank">
-							여행계획서가 존재하지 않습니다.
-						</div>
-					</c:if>
-				</div>
-				<div class="modal_wrap">
-					<div class="modal">
-						<div class="modal_title"></div>
-						<div class="modal_contents">
-							<h1><i class="fa fa-check"></i>To Do Checklist</h1>
-							<form id="todo-list">
-								<span class="todo-wrap">
-							    	<input type="checkbox" id="1"/>
-							    	<label for="1" class="todo">
-								      	<i class="fa fa-check"></i>여권
-							    	</label>
-								    <span class="delete-item" title="remove">
-								    	<i class="fa fa-times-circle"></i>
-								    </span>
-								</span>
-								<span class="todo-wrap">
-								    <input type="checkbox" id="2"/>
-								    <label for="2" class="todo">
-								    	<i class="fa fa-check"></i>항공티켓
-								    </label>
-								    <span class="delete-item" title="remove">
-								    	<i class="fa fa-times-circle"></i>
-								    </span>
-								</span>
-								<span class="todo-wrap">
-								    <input type="checkbox" id="3"/>
-								    <label for="3" class="todo">
-								    	<i class="fa fa-check"></i>환전
-								    </label>
-								    <span class="delete-item" title="remove">
-								    	<i class="fa fa-times-circle"></i>
-								    </span>
-								</span>
-								<span class="todo-wrap">
-								    <input type="checkbox" id="4"/>
-								    <label for="4" class="todo">
-								    	<i class="fa fa-check"></i>여행자보험
-								    </label>
-								    <span class="delete-item" title="remove">
-								    	<i class="fa fa-times-circle"></i>
-								    </span>
-								</span>
-								<div id="add-todo">
-								    <i class="fa fa-plus"></i> Add an Item
-								</div>
-							</form>
-						</div>
-						<div class="modal_close"><img src="img/icon/btn-layer.png"></div>
-					</div>
+				<div class="plan_wrap">
+					나의 여행계획서
 				</div>
 				<% } else { %>
-				<div class="pn_wrap no_active">
-					<div class="pn_blank">
-						여행계획서가 존재하지 않습니다.
-					</div>
+				<div class="plan_wrap no_active">
+					나의 여행계획서
 				</div>
 				<% } %>
 				
@@ -634,7 +441,7 @@
 					<% for (Package p : plist) { %>
 						<li>
 							<div class="pk_list">
-								<div class="pk_img"><img src="uploadFile/<%= p.getP_file() %>" /></div>
+								<div class="pk_img"><img src="<%= p.getP_file() %>" /></div>
 								<div class="pk_cont">
 									<div>
 										<p class="pk_tag"><%= p.getP_nation() %></p>
@@ -735,7 +542,7 @@
 					<% } %>
 					</ul>
 					<% } else { %>
-					<div class="cont_blank">
+					<div class="pk_blank">
 						패키지가 존재하지 않습니다.
 					</div>
 					<% } %>
@@ -757,7 +564,7 @@
 					<% for (Package p : plist) { %>
 						<li>
 							<div class="pk_list">
-								<div class="pk_img"><img src="uploadFile/<%= p.getP_file() %>" /></div>
+								<div class="pk_img"><img src="<%= p.getP_file() %>" /></div>
 								<div class="pk_cont">
 									<div>
 										<p class="pk_tag"><%= p.getP_nation() %></p>
@@ -858,7 +665,7 @@
 					<% } %>
 					</ul>
 					<% } else { %>
-					<div class="cont_blank">
+					<div class="pk_blank">
 						패키지가 존재하지 않습니다.
 					</div>
 					<% } %>
@@ -891,7 +698,7 @@
 								<div class="plan_list">
 									<div class="plan_img">
 										<% if (pr.getPr_file() != null) { %>
-										<img src="uploadFile/<%= pr.getPr_file() %>" />
+										<img src="<%= pr.getPr_file() %>" />
 										<% } else { %>
 										<img src="img/travel/travel1.jpg" />
 										<% } %>
@@ -915,7 +722,7 @@
 						</div>
 					</ul>
 					<% } else { %>
-					<div class="cont_blank">
+					<div class="plan_blank">
 						일정리뷰가 존재하지 않습니다.
 					</div>
 					<% } %>
@@ -931,37 +738,35 @@
 						<p>일정리뷰 <strong><%= prList.size() %></strong>개</p>
 					</div>
 					<ul>
-						<div class="plan_li">
-							<% for (Plan_review pr : prList) { %>
-							<li>
-								<div class="plan_list">
-									<div class="plan_img">
-										<% if (pr.getPr_file() != null) { %>
-										<img src="uploadFile/<%= pr.getPr_file() %>" />
-										<% } else { %>
-										<img src="img/travel/travel1.jpg" />
-										<% } %>
+						<% for (Plan_review pr : prList) { %>
+						<li>
+							<div class="plan_list">
+								<div class="plan_img">
+									<% if (pr.getPr_file() != null) { %>
+									<img src="<%= pr.getPr_file() %>" />
+									<% } else { %>
+									<img src="img/travel/travel1.jpg" />
+									<% } %>
+								</div>
+								<div class="plan_cont">
+									<div>
+										<p>작성날짜 : <%= pr.getPr_date() %></p>
 									</div>
-									<div class="plan_cont">
-										<div class="plan_date">
-											<p><%= pr.getPr_date() %></p>
-										</div>
-										<div class="plan_ctitle">
-											<p class="plan_title"><strong><%= pr.getPr_title() %></strong></p>
-											<p class="plan_word"><%= pr.getPr_contents() %></p>
-										</div>
-										<div class="plan_btn"> 
-											<button>상세내역</button>
-											<button>리뷰삭제</button>
-										</div>
+									<div>
+										<p class="plan_title"><strong><%= pr.getPr_title() %></strong></p>
+										<p><%= pr.getPr_contents() %></p>
+									</div>
+									<div class="plan_btn">
+										<button>상세내역</button>
+										<button>리뷰삭제</button>
 									</div>
 								</div>
-							</li>
-							<% } %>
-						</div>
+							</div>
+						</li>
+						<% } %>
 					</ul>
 					<% } else { %>
-					<div class="cont_blank">
+					<div class="plan_blank">
 						일정리뷰가 존재하지 않습니다.
 					</div>
 					<% } %>
@@ -975,8 +780,7 @@
 				<!-- 회원정보 수정 -->
 				<% if (mpg.equals("myinfo")) { %>
 				<div class="user_wrap">
-					<%
-					if (ulist.size() != 0) {
+					<% 
 						for (User u : ulist) { 
 						String[] addr = u.getU_addr().split("/");
 					%>
@@ -1044,19 +848,11 @@
 							<button type="button" class="save_btn">저장하기</button>
 						</div>
 					</form>
-					<% 
-						}
-					} else {	
-					%>
-					<div class="cont_blank">
-						외부 SNS 연동 회원입니다.
-					</div>
 					<% } %>
 				</div>
 				<% } else { %>
 				<div class="user_wrap no_active">
 					<% 
-					if (ulist.size() != 0) {
 						for (User u : ulist) { 
 						String[] addr = u.getU_addr().split("/");
 					%>
@@ -1124,13 +920,6 @@
 							<button type="button" class="save_btn">저장하기</button>
 						</div>
 					</form>
-					<% 
-						}
-					} else {	
-					%>
-					<div class="cont_blank">
-						외부 SNS 연동 회원입니다.
-					</div>
 					<% } %>
 				</div>
 				<% } %>

@@ -26,7 +26,6 @@
 
 	<!-- jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	
 </head>
 <script>
 	$(function(){
@@ -156,21 +155,7 @@
 			
 			
 		});
-		
-		$('input[name=register]').click(function(){
-			if($('input[name=comment_txt]').val() == ''){
-				alert("댓글을 입력해주세요.");
-				return false;
-			}else{
-				alert("댓글이 등록되었습니다.");
-				document.commForm.submit();
-			}
-		});
-		
-		$("input[name='join']").click(function(){
-			window.open("package_payment.jsp","네이버페이 결제","width = 700, height = 800, location = no");
-		});
-	}); 
+	});
 	
 	function regist(){
 		if(pForm.adultCount.value == "0" && pForm.stdCount.value == "0" && pForm.childCount.value == "0"){
@@ -178,6 +163,17 @@
 			return false;
 		}else{
 			alert("패키지 여행에 참여하였습니다.");
+		}
+	}
+	
+	/* 커뮤니티 */
+	function commRegist(){
+		if(commForm.comment_txt.value == ''){
+			alert("댓글을 입력해주세요.");
+			return false;
+		}else{
+			alert("댓글이 등록되었습니다.");
+			document.commForm.submit();
 		}
 	}
 	
@@ -204,7 +200,7 @@
 		$("div[class='day_detail"+num+"']").slideUp();
 	}
 	
-
+	
 </script>
 
 <body>
@@ -244,7 +240,7 @@
 				<div id="guide">
 					<% 
 						out.println("<img id='profile' src='"+pk.getU_profile()+"'>"); 
-						out.println("<p id='nick_name'>"+pk.getU_nickname()+"</p>");
+						out.println("<p>"+pk.getU_nickname()+"</p>");
 					%>
 					<div id="icon"> <!-- 좋아요한거 하트 값 가져오기 -->
 					<%
@@ -278,7 +274,6 @@
 						<%
 							out.println("<p>여행시작일 : "+pk.getP_start_date()+"</p>");
 							out.println("<p>여행종료일 : "+pk.getP_end_date()+"</p>");
-							out.println("<p>모집마감일 : "+pk.getP_due_date()+"</p>");
 						%>
 					</div>
 				</div>
@@ -402,7 +397,7 @@
 					</div>
 					<div>
 						<p>총금액</p>
-						<p id="total"></p>						
+						<p id="total"></p>
 					</div>
 					
 					<%
@@ -461,24 +456,24 @@
 					List<Community> comm = (List<Community>)request.getAttribute("comm");
 
 					for(Community commList : comm){
-						out.println("<div id='comm_profile'>");
+						out.println("<div>");
 						out.println("<img id='profile' src='"+commList.getU_profile()+"'>");
 						out.println("<p>"+commList.getU_nickname()+"</p>");
-						out.println("<div id='comm_contents'><p>"+commList.getComm_contents()+"</p></div>");
-						out.println("<div id='comm_date'><p>"+commList.getComm_date()+"</p></div>");
+						out.println("<div><p>"+commList.getComm_contents()+"</p></div>");
+						out.println("<div><p>"+commList.getComm_date()+"</p></div>");
 						out.println("</div>");
 					}
 					
 				%>
 				</div>
-				<form name='commForm' action="commInsert.jj?page=commInsert" method='post' ">
+				<form name='commForm' method='post'>
 					<div id="comment">
 						<%
 							out.println("<input type='hidden' name='no' value='"+pk.getP_no()+"'>");
 							out.println("<input type='hidden' name='id' value='"+(String)session.getAttribute("u_id")+"'>");
 						%>
 						<input type="text" name="comment_txt" placeholder=" 댓글을 남겨주세요.">
-						<input type="button" name="register" value="등록">
+						<input type="button" name="register" value="등록" class="inquiry_btn" onclick="commRegist()">
 					</div>
 				</form>
 			</div>

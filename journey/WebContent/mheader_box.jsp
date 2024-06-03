@@ -7,6 +7,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<style type="text/css">
+		body {
+			font-family: "Noto Sans KR", sans-serif;
+			color: #646464;
+		}
+		
+		.n_box { /* 알림창 내용div */
+			border: 1px solid #6c94b8;
+		    border-radius: 10px;
+		    padding: 7px;
+		    margin-bottom: 10px;
+			background-color: white;
+		}
+	</style>
 </head>
 <body>
 	<%

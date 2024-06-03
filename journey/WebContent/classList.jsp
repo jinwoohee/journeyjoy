@@ -1,4 +1,3 @@
-<%@page import="com.jj.dto.PageInfo"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.jj.dto.Class_list"%>
@@ -13,13 +12,6 @@
 	request.setCharacterEncoding("utf-8");
 	String u_id = (String)session.getAttribute("u_id");
 	ArrayList<Estimate> estimateList = (ArrayList<Estimate>)request.getAttribute("elist");
-	
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	int listCount = pageInfo.getListCount();
-	int nowPage = pageInfo.getPage();
-	int maxPage=pageInfo.getMaxPage();
-	int startPage=pageInfo.getStartPage();
-	int endPage=pageInfo.getEndPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -32,8 +24,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 	<!-- 페이징 -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-	<!-- <script src="js/jquery.twbsPagination.js" type="text/javascript"></script> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="js/jquery.twbsPagination.js" type="text/javascript"></script>
 
 </head>
 <script>
@@ -47,14 +39,6 @@
         		$("input[name='participate']").css({'color':'#FFE400', 'font-weight':'bold'});
         		$("input[name='made']").css({'color': 'white', 'font-weight':'none'});
         	}
-        	
-        	$.ajax({
-        		url : "class_list.jj?page=classTab",
-        		data : {"tab" : $(this).attr('name'), "u_id" : $("input[name=u_id]").val()},
-        		success : function(re){
-        			$("#class_div").html(re);
-        		}	
-        	});
         });
 
         $(".joinClass").click(function(){
@@ -67,29 +51,29 @@
         
         /* 모임만들기 버튼 */
         $('.make_btn').click(function(){
-        	var city = $("select[name=city]").val();
-        	if(city == "여행중인 도시"){
-        		alert("여행중인 도시를 선택해주세요.");
-        	}else{
-        		$(location).attr('href', 'class_insert.jsp?city='+$("select[name=city]").val()+'');
-        	}
+        	$(location).attr('href', 'class_insert.jsp?city='+$("select[name=city]").val()+'');
+        })
+        
+        /* 탭 */
+        $('#sector_section > input[type=button]').click(function(){
+        	$.ajax({
+        		url : "class_list.jj?page=classTab",
+        		data : {"tab" : $(this).attr('name'), "u_id" : $("input[name=u_id]").val()},
+        		success : function(re){
+        			$("#class_div").html(re);
+        		}	
+        	});
         });
 
         /* 검색필터 */
         $('#filter div').click(function(){
         	if($(this).css('background-color') != 'rgb(241, 241, 243)'){
-        		$(this).css({'background':'#0D112D'});
-        		$(this).find('p').css({'color' : 'white'});
+        		$(this).css({"background":"#f1f1f3"});
         		$(this).siblings('div').css({"background":"white"});
-        		$(this).siblings('div').find('p').css({'color' : '#0D112D'});
-        		
-        		/* 탭 글씨 색원래대로 */
-        		$("input[name='participate']").css({'color': 'white', 'font-weight':'none'});
-        		$("input[name='made']").css({'color': 'white', 'font-weight':'none'});
 
         		$.ajax({
         			url : "class_list.jj?page=classFilter",
-        			data : {"city": $('select[name=city]').val(), "param" : $(this).attr('id'), "u_id" : $("input[name=u_id]").val()},
+        			data : {"city": $('select[name=city]').val(), "param" : $(this).attr('id')},
         			success : function(re){
         				$("#class_div").html(re);
         			}
@@ -101,9 +85,7 @@
         $('#search img').click(function(){
         	var filter;
         	
-        	if($('#entire').css('background-color') == '#0D112D'){
-        		filter = 'entire';
-        	}else if($('#recent').css('background-color') == 'rgb(241, 241, 243)'){
+        	if($('#recent').css('background-color') == 'rgb(241, 241, 243)'){
         		filter = "recent";
         	}else if($('#closing').css('background-color') == 'rgb(241, 241, 243)'){
         		filter = "closing";
@@ -131,7 +113,21 @@
     			}
         	});
         });
+        
+        /* 페이징
+        $("#paging").twbsPagination({
+        	startPage:1,	//시작시 표시되는 현재 페이지
+        	totalPages:5,	//총 페이지
+        	visiblePages:12, //한페이지당 보여지는 페이지 수
+        	first:"<<",
+        	last:">>",
+        	prev:"<이전",
+        	next:"다음>",
 
+        	onPageClick: function(event, page){
+        		//클릭이벤트
+        	}
+        });  */
 	});
 	
 	/* 모임참여 버튼 */
@@ -156,12 +152,6 @@
     		}	
     	});
 	}
-	
-	/* 페이징 */
-    $('#pagination li').click(function(){
-    	$(this).css({"background":"#6C94B8", "color":"white"});
-		$(this).siblings('li').css({"background":"white", "color":"#646464"});
-    });
 </script>
 <body>
 	<jsp:include page="main_header.jsp" />
@@ -169,10 +159,10 @@
 	<!-- header(이미지) -->
 	<section>
 		<div id="top_section">
-			<img src="img/travel/class.jpg">
+			<img src="img/travel/travel16.jpg">
 			<div>
 				<div>
-					<p>모임만들기</p>
+					<h1>모임만들기</h1>
 					<p>#여행지에서 #만드는 #새로운 #인연</p>
 				</div>
 			</div>
@@ -192,7 +182,7 @@
 			<img id="icon" src="img/icon/plane.png">
 			<div>
 				<select name='city'>
-				<option>여행중인 도시</option>
+					<option>여행중인 도시</option>
 				<%
 					for(Estimate e : estimateList){%>
 						<option><%=e.gete_destination() %></option>
@@ -208,11 +198,10 @@
 		<div id="search_section">
 			<div>
 				<div id='filter'>
-					<div id='entire'><p>#전체</p></div>
-					<div id='recent'><p>#최신순</p></div>
-					<div id='closing'><p>#마감순</p></div>
-					<div id='ing'><p>#진행중</p></div>
-					<div id='end'><p>#종료</p></div>
+					<div id='recent'><img src='img/icon/classIcon1.png'></div>
+					<div id='closing'><img src='img/icon/classIcon2.png'></div>
+					<div id='ing'><img src='img/icon/classIcon3.png'></div>
+					<div id='end'><img src='img/icon/classIcon4.png'></div>
 				</div>
 				<div id="search">
 					<input type="text" name="searchBox" placeholder=" 검색단어 입력">
@@ -290,6 +279,7 @@
 								</table>
 								<%
 								  if(flag == 1){
+									  
 									//참여 하기, 취소하기
 									if(c.getA_id() != null && c.getA_id().equals(u_id)){ //참여여부(a_id : 참여한 사람 아이디)
 										if(c.getC_no() == c.getA_no()){%>
@@ -309,7 +299,7 @@
 									int date = Integer.parseInt(today.replaceAll("-", ""));
 									int getDate = Integer.parseInt(c.getC_end_date().replaceAll("-", ""));
 									
-									if(date > getDate || c.getCount() == c.getC_volume()){ //모집마감날짜, 모집인원
+									if(date > getDate || c.getCount() == c.getC_volume()){ //모집마감날짜
 										out.println("<input type='button' name='end_btn' value='참여마감'>");
 									}else{
 								%>
@@ -323,34 +313,12 @@
 			</div>
 		</article>
 	</section>
-	<div class="pagination_div">
-		<ul class="pagination">
-			<%
-				if(nowPage<=1){%>
-					<li>이전</li>
-			<%}else{%>
-				<li><a href="classList.jj?page=selectPageInfo&nowPage=<%=nowPage-1%>&table=class_list">이전</a></li>
-			<%} %>
-			
-			<%
-				for(int i=startPage; i<=endPage; i++){
-					if(i == nowPage){%>
-						<li><%=i %></li>
-			<%		}else{%>
-						<li><a href="classList.jj?page=selectPageInfo&nowPage=<%=i%>&table=class_list"><%=i %></a></li>
-				
-			<%		}
-				}
-			%>
-			
-			<%
-				if(nowPage >= maxPage){%>
-					<li>다음</li>
-			<%	}else{%>
-				<li><a href="classList.jj?page=selectPageInfo&nowPage=<%=nowPage+1%>&table=class_list">다음</a></li>
-			<%}%>
-		</ul>
+	
+	<%-- 
+	<div id="paging">
 	</div>
+	--%>
+
 	<jsp:include page="main_footer.jsp" />
 </body>
 </html>

@@ -4,8 +4,6 @@
 <%@page import="com.jj.dto.Estimate"%>
 <%@page import="com.jj.dto.Schedule"%>
 <%@page import="com.jj.dto.Plan"%>
-<%@page import="com.jj.dto.Place"%>
-<%@page import="com.jj.dto.Eatery"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date" %>
@@ -15,12 +13,11 @@ request.setCharacterEncoding("utf-8");
 List<Estimate> esti = (List<Estimate>) request.getAttribute("estimate");
 List<Schedule> sche = (List<Schedule>) request.getAttribute("schedule");
 List<Plan> planList = (List<Plan>)request.getAttribute("plan");
-List<Eatery> eate = (List<Eatery>) request.getAttribute("eatList");
-List<Place> plac = (List<Place>) request.getAttribute("plaList");
-System.out.println("사이즈"+plac.size());
 request.setAttribute("plan", planList);
 
 String paging = (String) request.getAttribute("paging");
+
+System.out.println("플랜editx2"+paging);
 
 String e_destination = esti.get(0).gete_destination();
 String e_start_date = esti.get(0).gete_start_date();
@@ -29,7 +26,7 @@ String thema = esti.get(0).gete_thema();
 String d_thema = esti.get(0).gete_detail_thema();
 String volume = esti.get(0).gete_volume();
 String food_st = esti.get(0).gete_food_taste();
-
+System.out.println("플랜editx21"+paging);
 String [] e_detail_thema = d_thema.split(",");
 String [] e_food_taste = food_st.split(",");
 String e_no = esti.get(0).gete_no()+"";
@@ -66,82 +63,7 @@ System.out.println("edit_edit로 왔다 e_no : "+e_no);
 	<link rel="stylesheet" type="text/css" href="css\planner_edit.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript" src="js\planner_edit.js"></script>
-	<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAN8pqDt8WwrtCF3kkPS7Snko0A-RTUns0&callback=initMap&libraries=places&v=weekly"
-      defer
-    ></script>
 </head>
-<script>
-let map;
-let service;
-function initMap() {
-	var loc= "";
-	var wh = document.getElementById("city").innerText;
-	
-	if(wh === "도쿄"){
-		loc =  {lat : 35.68111, lng : 139.76667};
-	}else if (wh === "오사카"){
-		loc = {lat : 34.6937378, lng : 135.5021651};
-	}
-
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: loc,
-    zoom: 12,
-  });
-  service = new google.maps.places.PlacesService(map);
-  
-  select();
-}
-	
-function select(){
-	var day = document.getElementById("day_cnt");
-	  for(var a = 1 ; a <= day.value; a++){
-		  var img_id = document.getElementsByName("place_id_src"+a);
-		  for(var i=0 ; i < img_id.length ; i++){
-			  const re_request = {
-				      placeId : img_id[i].value,
-				      fields : ["name","photos","url"]
-				    };
-			  
-			service.getDetails(re_request, callback);
-		  }
-	}
-}
-
-function img_fix(img_src, pla_url,name){
-	var day = document.getElementById("day_cnt");
-	
-	for(var a = 1; a <= day.value ; a++){
-		var img_v = document.getElementsByName("pla_img"+a);
-		var url_v = document.getElementsByName("pla_url"+a);
-		var name_v = document.getElementsByClassName("list_place"+a);
-
-		for(var i = 0 ; i < img_v.length; i++){
-			if(name == name_v[i].innerText.replaceAll("#","")){
-				
-				img_v[i].setAttribute("src", img_src);
-				url_v[i].setAttribute("href",pla_url);
-				
-				break;
-			}else{
-				
-			}
-		}
-	}
-}
-
-function callback(place, status) {
-	  if (status == google.maps.places.PlacesServiceStatus.OK) {
-		var photos = place.photos;
-		
-		var pla_ph = photos[0].getUrl();
-		var pla_url = place.url; 
-		img_fix(pla_ph, pla_url, place.name);
-	  }
-	}
-	
-window.initMap = initMap;
-</script>
 <body>
 	<!-- menu bar -->
 	<jsp:include page="main_header.jsp"></jsp:include>
@@ -158,60 +80,52 @@ window.initMap = initMap;
 						
 							out.println("<p id='day"+a+"' onclick='day_select("+a+")'>Day"+a+"</p>");
 						}
-						String d_th = d_thema.replaceAll(",",", ");
-						String f_st = food_st.replaceAll(",",", ");
-					%>				 
+					%>				
 				</div>
 			</div>
-			<div id="main_content">
-						<div id="thema_div">
-				<img src="img/icon/point.png">
+			
+			<div id="thema_div">
 				<p id="city"><%=e_destination%></p>
-				<hr>
 				<p id="thema">여행테마</p>
 				<img src="img\icon\arrow_up.png" width="23px" height="23px" id="up"/>			
 				<img src="img\icon\arrow_down.png" width="23px" height="23px" id="down"/>
 				<div id="detail_div">
-					<div><p class="thema_text"><%=thema%></p></div>
-					<div><p class="thema_text"><%=volume%></p></div>
-					<div><p class="sub_thema"><%=d_th %></p></div>
-					<div><p class="sub_thema"><%=f_st%></p></div>
+					<p class="thema_text"><%=thema%></p>
+					<p class="thema_text"><%=volume%></p>
+					<p class="sub_thema"><%=d_thema%></p>
+					<p class="sub_thema"><%=food_st%></p>
 				</div>
-						
-			</div>		
-			<input type="hidden" name="e_no" value="<%=e_no%>">	
-			<input type="hidden" name="day" value="<%=day%>" id="day_cnt">
+				<a href="planner_main.jsp">
+					<input type="button" name="edit_thema" value="수정하기" class="button" />
+				</a>						
+			</div>
+			<input type="hidden" name="e_no" value="<%=e_no%>">		
+			<input type="hidden" name="day" value="<%=day%>">	
 			<div id="plan_list">
 			<%
 				for(int a = 1 ; a <= datecnt ; a++){
 					int j = a-1;
 					String st_list = "";
-					String id_list = "";
-						String place =sche.get(j).getPlace();
-						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "&");
+						String place =sche.get(j).getPlace().replaceAll("-"," ");
+						String place_list = place.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll(",", "_").replaceAll(" ","-");
 						System.out.println("dsadsa"+place);
 						response.addCookie(new Cookie("pla"+a, place_list));
 						String [] list_place = place.split(",");
 						
+						System.out.println("1번"+place);
 			%>
 				<div id="plan_list_day<%=a%>">
 				<%	int z= 0;
-				
 					for(String st : list_place){
-						for(Place pl : plac){
-							if(pl.getPlac_id().equals(st)){
-								String name = pl.getPlac_name();
-						st_list += name+",";
-						id_list += st+",";
+						st_list += st+",";
 						z++;
 				%>
 				<div id="list_content<%=a*100+z%>">
-				<input type="hidden" name="place_id_src<%=a %>" value="<%=st%>" id="id_srcs<%=a*100+z%>">
-					<img src="" class="place_pic" name="pla_img<%=a%>"/>
+					<img src="img\japan\tokyo1.jpg" class="place_pic" />	
 					<div class="content_fdiv">
 						<div class="list_place">
-							<p class="list_place<%=a %>" >#<%=name%></p>				
-							<input type="hidden" id="pla_val<%=a*100+z %>" value="<%=name %>">		
+							<p class="list_place" >#<%=st%></p>				
+							<input type="hidden" id="pla_val<%=a*100+z %>" value="<%=st %>">		
 						</div>
 						<div class="list_thema">
 						
@@ -219,70 +133,29 @@ window.initMap = initMap;
 						<input type="button" name="delete" value="삭제" onclick="del_list(<%=a*100+z %>)" class="button"/>	
 					</div>
 					<div class="content_detail">
-						<div class="list_budget">
-							<p>평균가격</p>
-						<p>약 20,000원 ~</p>
-						</div>
-						<a href="" name="pla_url<%=a%>" target='_blank'><input type="button" name="detail" value="상세정보 보기" class="button"/></a>
+						<p class="list_budget">평균가격<br>약 20,000원 ~</p>
+						<input type="button" name="detail" value="상세정보 보기" class="button"/>
 					</div>
 				</div>
-				<% 
-							}
-						}
-						for(Eatery ea : eate){
-							if(ea.getEat_id().equals(st)){
-								String name = ea.getEat_name();
-								st_list += name+",";
-								id_list += st+",";
-								z++;
-								%>
-				<div id="list_content<%=a*100+z%>">
-				<input type="hidden" name="place_id_src<%=a %>" value="<%=st%>" id="id_srcs<%=a*100+z%>">
-					<img src="" class="place_pic" name="pla_img<%=a%>"/>
-					<div class="content_fdiv">
-						<div class="list_place">
-							<p class="list_place<%=a %>" >#<%=name%></p>				
-							<input type="hidden" id="pla_val<%=a*100+z %>" value="<%=name %>">		
-						</div>
-						<div class="list_thema">
-						
-						</div>	
-						<input type="button" name="delete" value="삭제" onclick="del_list(<%=a*100+z %>)" class="button"/>	
-					</div>
-					<div class="content_detail">
-						<div class="list_budget">
-							<p>평균가격</p>
-						<p>약 20,000원 ~</p>
-						</div>
-						<a href="" name="pla_url<%=a%>" target='_blank'><input type="button" name="detail" value="상세정보 보기" class="button"/></a>
-					</div>
-				</div>
-								
-					<% 
-							}
-						}
-						
-					
-					}%>
+				<% }%>
 				<input type="hidden" name="place_name<%=a%>" value="empty<%=st_list %>" id = "place_name<%=a%>" />
-				<input type="hidden" name="place_ids<%=a %>" value="empty<%=id_list %>" id = "place_ids<%=a %>" />
 				</div>		
 						
 			<%	System.out.println("플랜editx23"+st_list);}
 			%>
-			
-			</div>
-			<input type="submit" name="add_place" value="여행지 추가하기" class="button">
+					<input type="submit" name="add_place" value="여행지 추가하기" class="button">
 					<input type="submit" name="save_plan" value="수정" class="button"/>
+			</div>
 			</div>
 		<div id="side_menu">
 			<p id="side_menu_p" align="center">side menu</p>
 			<div id= "side_inner">
+				<a href="planner_select.jsp">
+					<input type="button" name="plan_sel" value="일정선택&#10;목록으로" class="button">
+				</a>
 					<input type="submit" name="plan_sel_add" value="여행지&#10;추가하기" class="button">
 			</div>
 		</div>
-		</div>
-		<div id="map"></div>
 		</form>
 	</section>
 	<footer>

@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jj.conn.ClassListSelectDB;
 import com.jj.conn.ClassTabSelectDB;
 import com.jj.dao.JourneyInterface;
 import com.jj.dto.Class_list;
-import com.jj.dto.Estimate;
 
 public class ClassTabSelect implements JourneyInterface{
 	
@@ -27,15 +25,9 @@ public class ClassTabSelect implements JourneyInterface{
 		String u_id = request.getParameter("u_id");
 		
 		ClassTabSelectDB selectDB = new ClassTabSelectDB();
-		ClassListSelectDB selectEstiDB = new ClassListSelectDB();
 		
 		ArrayList<Class_list> clist = selectDB.selectTabClass(tab, u_id);
 		request.setAttribute("clist", clist);
-		
-		ArrayList<Estimate> elist = selectEstiDB.selectEstimate(request.getParameter("u_id"));
-		request.setAttribute("elist", elist);
-		
-		
 		
 		return "classTabAjax.jsp";
 	}

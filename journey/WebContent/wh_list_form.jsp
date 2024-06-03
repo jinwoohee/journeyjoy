@@ -10,6 +10,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>workingholiday_list_form</title>
+	<link href="css/wh_list_form.css" rel="stylesheet" type="text/css">
 	
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -21,7 +22,7 @@
 			
 			for (Company com : list) {
 		%>
-		<div class="wh_list">
+		<div>
 			<a href="workingholiday.jj?page=whlist&com_no=<%= com.getCom_no() %>">
 			<ul>
 				<li>

@@ -12,12 +12,10 @@ import com.jj.inter.ClassListSelect;
 import com.jj.inter.ClassSearch;
 import com.jj.inter.ClassTabSelect;
 import com.jj.inter.CommInsert;
-import com.jj.inter.Currency;
 import com.jj.inter.EaterySelect;
 import com.jj.inter.EstimateInsert;
 import com.jj.inter.EstimateSelect;
 import com.jj.inter.InquiryUpdateFlag;
-import com.jj.inter.KakaoLogin;
 import com.jj.inter.InquiryFlag;
 import com.jj.inter.InquiryInsert;
 import com.jj.inter.InquiryNotice;
@@ -27,15 +25,12 @@ import com.jj.inter.MypageLikeSelect;
 import com.jj.inter.MypagePackageSelect;
 import com.jj.inter.MypagePlaceReviewSelect;
 import com.jj.inter.MypagePlanReviewSelect;
-import com.jj.inter.MypagePlannerSelect;
 import com.jj.inter.MypagePurchaseSelect;
 import com.jj.inter.MypageUserInfoSelect;
-import com.jj.inter.NaverLogin;
 import com.jj.inter.PackageDetail;
 import com.jj.inter.PackageInsert;
 import com.jj.inter.PackageSearch;
 import com.jj.inter.PackageSelect;
-import com.jj.inter.PageInfo;
 import com.jj.inter.PlaceReviewSearch;
 import com.jj.inter.PlaceSearch;
 import com.jj.inter.PlanDelete;
@@ -45,9 +40,6 @@ import com.jj.inter.PlanSelect;
 import com.jj.inter.PlanUpdate;
 import com.jj.inter.Plan_reviewTabSelect;
 import com.jj.inter.PsInsert;
-import com.jj.inter.PublicInfo1;
-import com.jj.inter.PublicInfo2;
-import com.jj.inter.PublicInfo3;
 import com.jj.inter.PurchaseDelete;
 import com.jj.inter.PurchaseInsert;
 import com.jj.inter.RewardInsert;
@@ -147,60 +139,6 @@ public class JourneyController extends HttpServlet {
 			}
 		} else if (page.equals("mypageUserInfo")) { //마이페이지-회원정보수정
 			ji = MypageUserInfoSelect.mypageUserInfoSelect();
-			try {
-				String url = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(url).forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if (page.equals("mypagePlanner")) { //마이페이지-여행계획서
-			ji = MypagePlannerSelect.mypagePlannerSelect();
-			try {
-				String url = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(url).forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if (page.equals("naverLogin")) { //네이버 로그인
-			ji = NaverLogin.naverLogin();
-			try {
-				String url = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(url).forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}			
-		} else if (page.equals("kakaoLogin")) { //카카오 로그인
-			ji = KakaoLogin.kakaoLogin();
-			try {
-				String url = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(url).forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if (page.equals("publicInfo1")) { //워홀 sideBar(해외취업 통계정보)
-			ji = PublicInfo1.publicInfo1();
-			try {
-				String url = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(url).forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if (page.equals("publicInfo2")) { //워홀 sideBar(해외취업 모집공고 정보)
-			ji = PublicInfo2.publicInfo2();
-			try {
-				String url = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(url).forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else if (page.equals("publicInfo3")) { //워홀 sideBar(해외취업 News 소식)
-			ji = PublicInfo3.publicInfo3();
 			try {
 				String url = ji.journeyInterface(request, response);
 				request.getRequestDispatcher(url).forward(request, response);
@@ -418,7 +356,7 @@ public class JourneyController extends HttpServlet {
 				e.printStackTrace();
 				System.out.println("--- Controller / 구매취소 ---" + e);
 			}
-		}else if(page.equals("commInsert")) { //패키지 댓글
+		}else if(page.equals("commInsert")) {
 			ji = CommInsert.commentInsert();
 			String result;
 			try {
@@ -544,26 +482,7 @@ public class JourneyController extends HttpServlet {
 				System.out.println("--- Controller / 일정리뷰>검색 ---" + e);
 				e.printStackTrace();
 			}
-		}else if(page.equals("selectPageInfo")) { //페이징
-			ji = PageInfo.pageInfoSelect();
-			try {
-				String result = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(result).forward(request, response);
-			} catch (Exception e) {
-				System.out.println("--- Controller / 페이징 ---" + e);
-				e.printStackTrace();
-			}
-		}else if(page.equals("currency")) { //환율
-			ji = Currency.currency();
-			try {
-				String result = ji.journeyInterface(request, response);
-				request.getRequestDispatcher(result).forward(request, response);
-			} catch (Exception e) {
-				System.out.println(e);
-				e.printStackTrace();
-			}
-		}
-		else {
+		}else {
 			System.out.println("--- controller else ---");
 		}
 	}

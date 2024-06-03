@@ -11,9 +11,6 @@ public class Board {
 	private String b_nation;
 	private String b_city;
 	private String b_month;
-	private String b_file1;
-	private String b_file2;
-	private String b_file3;
 	private Date b_date;
 	private String u_nickname;
 	
@@ -77,23 +74,9 @@ public class Board {
 	public void setU_nickname(String u_nickname) {
 		this.u_nickname = u_nickname;
 	}
-	public String getB_file1() {
-		return b_file1;
-	}
-	public void setB_file1(String b_file1) {
-		this.b_file1 = b_file1;
-	}
-	public String getB_file2() {
-		return b_file2;
-	}
-	public void setB_file2(String b_file2) {
-		this.b_file2 = b_file2;
-	}
-	public String getB_file3() {
-		return b_file3;
-	}
-	public void setB_file3(String b_file3) {
-		this.b_file3 = b_file3;
-	}
+	
+	
+	
+	
 	
 }

@@ -3,8 +3,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.jj.dao.BoardDB"%>
 <%@page import="com.jj.dto.Board"%>
-<%@page import="com.jj.dto.PageInfo"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String u_id = (String)session.getAttribute("u_id");
 %>
@@ -63,12 +61,6 @@
 				alert("로그인 후 이용가능합니다.");
 				$('form[name="write"]').attr('action', 'login.jsp');
 			});
-			
-			/* 페이징 */
-	        $('#pagination li').click(function(){
-	        	$(this).css({"background":"#6C94B8", "color":"white"});
-	    		$(this).siblings('li').css({"background":"white", "color":"#646464"});
-	        });
 		});
     </script>
 </head>
@@ -100,16 +92,15 @@
 					<option>8월</option>
 					<option>9월</option>
 					<option>10월</option>
-					<option>11월</option> 
+					<option>11월</option>
 					<option>12월</option>
 				</select>
 				<select name="category">
 					<option>카테고리</option>
-					<option>음식</option>
-					<option>쇼핑</option>
-					<option>일상</option>
 					<option>날씨</option>
-					<option>휴업/폐업</option>
+					<option>휴업</option>
+					<option>폐업</option>
+					<option>이전</option>
 				</select>
 				<input type="text" name="stxt" placeholder="검색어를 입력해주세요">
 				<button type="submit" id="search_btn" name="sbtn">검색</button>
@@ -119,34 +110,25 @@
 		<!-- 게시판 리스트 -->
 		<jsp:useBean id="board" class="com.jj.dao.BoardDB">
 		<%
-			PageInfo pageInfo;
-			
-			if ((PageInfo) request.getAttribute("pageInfo") != null) {
-				pageInfo = (PageInfo) request.getAttribute("pageInfo");
-			} else {
-				pageInfo = board.listCountSelect(1);
-			}
-		
 			request.setCharacterEncoding("utf-8");
 			String stxt = request.getParameter("stxt");
 			String nation = request.getParameter("nation");
 			String city = request.getParameter("city");
 			String month = request.getParameter("month");
 			String category = request.getParameter("category");
-			//System.out.println("jsp----->" + stxt + "/" + nation + "/" + city + "/" + month + "/" + category);
 			
 			ArrayList<Board> alist;
 			
-			if (stxt != null || nation != null || city != null || month != null || category != null) {
+			if (stxt != null) {
 				alist = board.searchRow(stxt, nation, city, month, category);
 			} else {
-				alist = board.selectRow(-1, pageInfo.getPage());
+				alist = board.selectRow(-1);
 			}
 			
 			out.println("<div class='board_wrap'>");
 			out.println("<div class='board'>");
 			out.println("<div class='board_title'>");
-			out.println("<p class='sch_result'>총 게시물<strong> " + pageInfo.getListCount() + "</strong>개</p>");
+			out.println("<p class='sch_result'>총 게시물<b> " + alist.size() + "</b>개</p>");
 			out.println("</div>"); //board_title 끝
 			out.println("<div class='board_list_wrap'>");
 			out.println("<div class='board_list'>");
@@ -178,37 +160,6 @@
 				out.println("<button class='no_write'>글쓰기</button>");
 			}
 			out.println("</form>");
-		%>
-		<div class="pagination_div">
-			<ul class="pagination">
-				<c:set var="nowPage" value="<%= pageInfo.getPage() %>" />
-				<c:set var="maxPage" value="<%= pageInfo.getMaxPage() %>" />
-				
-				<c:choose>
-					<c:when test="${ nowPage <= 1 }"><li><p>이전</p></li></c:when>
-					<c:otherwise>
-						<li><a href="board_listCountDB.jsp?nowPage=${ nowPage - 1 }"><p>이전</p></a></li>
-					</c:otherwise>
-				</c:choose>
-				<c:forEach var="i" begin="<%= pageInfo.getStartPage() %>" end="<%= pageInfo.getEndPage() %>">
-					<c:choose>
-						<c:when test="${ i == nowPage }">
-							<li><p style="text-decoration: underline;">${ i }</p></li>
-						</c:when>
-						<c:otherwise>
-							<li><a href="board_listCountDB.jsp?nowPage=${ i }"><p>${ i }</p></a></li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${ nowPage >= maxPage }"><li><p>다음</p></li></c:when>
-					<c:otherwise>
-						<li><a href="board_listCountDB.jsp?nowPage=${ nowPage + 1 }"><p>다음</p></a></li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
-		<%	
 			out.println("</div>"); //board 끝
 			out.println("</div>"); //board_wrap 끝
 		%>

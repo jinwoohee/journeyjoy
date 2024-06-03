@@ -27,7 +27,7 @@ public class ProductSelectDB {
 		
 		List<Product> prodList = sqls.selectList("product_select",param);
 		sqls.close();
-
+		System.out.println("상품결과"+prodList.size());
 		return prodList ;
 	}
 }

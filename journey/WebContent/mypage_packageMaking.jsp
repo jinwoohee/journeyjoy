@@ -214,7 +214,7 @@
 	<% for (Package p : plist) { %>
 		<li>
 			<div class="pk_list">
-				<div class="pk_img"><img src="uploadFile/<%= p.getP_file() %>" /></div>
+				<div class="pk_img"><img src="<%= p.getP_file() %>" /></div>
 				<div class="pk_cont">
 					<div>
 						<p class="pk_tag"><%= p.getP_nation() %></p>

@@ -79,16 +79,9 @@ function tab(num){
 						<div id='img_div'>
 							<div id = 'kind_slider'>
 								<ul id='slider'>
-									<%if(!pr.getPr_file().equals("bg1.jpg") && pr.getPr_file2().equals("bg1.jpg") && pr.getPr_file3().equals("bg1.jpg")){%>
-									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file() %>"></li> 
-									<%}else if(!pr.getPr_file().equals("bg1.jpg") && !pr.getPr_file2().equals("bg1.jpg") && pr.getPr_file3().equals("bg1.jpg")) {%>
-									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file() %>"></li> 
-									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file2() %>"></li>
-									<%}else if(!pr.getPr_file().equals("bg1.jpg") && !pr.getPr_file2().equals("bg1.jpg") && !pr.getPr_file3().equals("bg1.jpg")) {%>
-									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file() %>"></li> 
-									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file2() %>"></li>
-									<li class='li_sli'><img src="uploadFile/<%=pr.getPr_file3() %>"></li>
-									<%}%>
+									<li class='li_sli'><img src="img\icon\arrow_down.png"/></li> 
+									<li class='li_sli'><img src="img\icon\arrow_down.png"/></li>
+									<li class='li_sli'><img src="img\icon\arrow_down.png"/></li>
 								</ul>
 							</div>
 						</div> 
@@ -128,14 +121,8 @@ function tab(num){
 								schedule_place = schedule_place.replaceAll(",", " ");
 								String [] place = schedule_place.split(" ");
 								
-								String place_name ="";
-								String eat_name = "";
-								
-								for(int i = 0; i < place.length ; i ++){
-									place_name = (String)dao.selectPlaceName(place[i]);
-									eat_name = (String)dao.selectEatName(place[i]);
-								%>
-									<p class='place'><div class='no'><%=i+1 %></div><%=place_name %><%=eat_name%></p>
+								for(int i = 0; i < place.length ; i ++){%>
+									<p class='place'><div class='no'><%=i+1 %></div><%=place[i] %></p>
 								<%}%>
 							</div>
 						</div>

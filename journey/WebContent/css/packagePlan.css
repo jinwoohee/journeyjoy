@@ -18,8 +18,9 @@ body{
     height: 1270px;
     background: white;
     margin: 0 auto;
+    border-radius: 10px;
     padding-top: 50px;
-    box-shadow: 3px 3px 15px #CCCCCC;
+    box-shadow: 5px 5px 10px #CCCCCC;
 }
 
 /* 테이블 중앙정렬 */
@@ -32,29 +33,30 @@ body{
 select{
 	width: 245px;
 	height: 50px;
+	border-radius: 10px;
 	border-color: #CCCCCC;
 	margin-bottom: 20px;
 	text-align: center;
 }
 
 #startDt, #endDt{
-	width: 231px;
+	width: 239px;
 	height: 50px;
-	padding-left: 10px;
 }
 
 input[type="text"]{
-	width: 480px;
+	width: 490px;
 	height: 50px;
 	margin-bottom: 20px;
+	border-radius: 10px;
 	border: 0.7px solid #CCCCCC;
-	padding-left: 10px;
 }
 
 textarea {
 	width: 475px;
 	height: 80px;
 	margin-bottom: 10px;
+	border-radius: 10px;
 	border: 0.7px solid #CCCCCC;
 	resize: none;
 	padding : 10px;
@@ -71,6 +73,7 @@ textarea {
 #thumnail>div:first-child{
 	width: 150px;
 	height: 150px;
+	border-radius: 10px;
 	overflow: hidden;
 	background-position: center;
 	background: #f1f1f3;
@@ -89,6 +92,7 @@ textarea {
 	width: 80px;
 	height: 30px;
 	margin-left: 10px;
+	border-radius: 5px;
 	border: none;
 	background: #0D112D;
 	color: #CCCCCC;
@@ -99,6 +103,7 @@ textarea {
 #delBtn{
 	width: 80px;
 	height: 30px;
+	border-radius: 5px;
 	border: 0.7px solid #6C94B8;
 	background: white;
 	color: #6C94B8;
@@ -121,6 +126,7 @@ input[type="file"]{
 	width: 240px;
 	height: 50px;
 	border:none;
+	border-radius: 10px;
 	font-weight: bold;
 	color: #646464;
 	margin-top: 20px;
@@ -133,6 +139,7 @@ input[type="file"]{
 #buttonArea > input[type="submit"]{
 	width: 240px;
 	height: 50px;
+	border-radius: 10px;
 	background: #0D112D;
 	border:none;
 	color: white;

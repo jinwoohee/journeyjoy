@@ -3,7 +3,6 @@ body{
 	font-family: "Noto Sans KR", sans-serif;
 	monospace; font-size: 15px;
 	color: #646464;
-	overflow-x: hidden;
 }
 
 header>iframe {
@@ -56,7 +55,7 @@ header>iframe {
 	height: 30px;
 	border: 1px solid #6C94B8;
 	border-radius: 20px;
-	box-shadow: 3px 3px 7px #CCCCCC;
+	box-shadow: 2px 2px 5px rgba(0,0,0,.25);
 	float: left;
 	margin-top: 30px;
 	margin-right: 10px;
@@ -88,7 +87,7 @@ header>iframe {
 	padding-left: 10px;
 	width: 250px;
 	float: left;
-	margin-top: 14px;
+
 }
 
 /* 찜하기, 공유하기 이미지 */
@@ -109,8 +108,9 @@ input[name='inquiry']{
 	width: 580px;
 	height: 50px;
 	background: #6C94B8;
+	border-radius: 10px;
 	border: none;
-	box-shadow: 3px 3px 7px #CCCCCC;
+	box-shadow: 2px 2px 5px rgba(0,0,0,.25);
 	color: white;
 	font-weight: bold;
 	margin-top: 28px;
@@ -147,12 +147,14 @@ tr:first-of-type >td>p{
 }
 
 table{
-  	font-size: .9em;
-    box-shadow: 3px 3px 7px #CCCCCC;
-    width: 880px;
-    border-collapse: collapse;
-    overflow: hidden;
-    text-align: center;
+  border: 1px #0D112D solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 880px;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
 }
 
 /* 인원선택(aside) */
@@ -180,7 +182,7 @@ aside input[type=button]{
 	height: 30px; 
 	background: #f1f1f3; 
 	border: 0.5px solid #f1f1f3;
-	box-shadow: 3px 3px 7px #CCCCCC;
+	box-shadow: 0 2px 5px rgba(0,0,0,.25);
 }
 
 /* 총금액 */
@@ -196,7 +198,7 @@ aside input[type=text]{
     text-align: center;
     background: white;
     border: none;
-    box-shadow: 3px 3px 7px #CCCCCC;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
     float: left;
 }
 
@@ -214,7 +216,8 @@ aside input[name='join']{
 	width: 230px;
 	height: 50px;
 	background: white;
-	border: 1px solid #6C94B8;
+	border: 2px solid #6C94B8;
+	border-radius: 10px;
 	color: #6C94B8;
 	font-weight: bold;
 }
@@ -226,6 +229,7 @@ aside input[name='end']{
 	height: 50px;
 	background: #CCCCCC;
 	border: none;
+	border-radius: 10px;
 	color: white;
 	font-weight: bold;
 }
@@ -237,6 +241,7 @@ aside input[name='cancel']{
 	height: 50px;
 	background: #0D112D;
 	border: none;
+	border-radius: 10px;
 	color: white;
 	font-weight: bold;
 }
@@ -247,6 +252,7 @@ aside input[name='cancel']{
 .day{
 	width: 200px;
 	background: #6C94B8;
+	border-radius: 10px 0 0 10px;
 	border: none;
 	color: white;
 	text-align: center;
@@ -261,6 +267,7 @@ aside input[name='cancel']{
 
 .day_title{
 	width: 680px;
+	border-radius: 0 10px 10px 0;
 	border: 1px solid #6C94B8;
 	margin-left: 0;
 	font-size: 20px;
@@ -274,8 +281,8 @@ aside input[name='cancel']{
 }
 
 .day_title > img{
-	width: 20px;
-    height: 20px;
+	width: 30px;
+    height: 30px;
     padding-left: 40px;
 }
 
@@ -340,26 +347,26 @@ div[class *= day_detail]{width: 880px; border: 1px solid #CCCCCC; display: none;
 .contents{width:840px; margin-left: 20px; margin-top: 80px;}
 
 .contents > div:first-of-type > p{
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
 .contents > div:nth-of-type(2) > p{
 	width : 840px;
 	line-height : 2;
-	font-size : 15px;
+	font-size : 18px;
 	margin-bottom: 50px;
 }
 
 .contents > div:nth-of-type(3) > p{
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: bold;
 }
 
 .contents > div:last-of-type > p{
 	width : 840px;
 	line-height : 2;
-	font-size : 15px;
+	font-size : 18px;
 	margin-bottom: 50px;
 }
 
@@ -383,6 +390,7 @@ article:last-of-type > hr{ border: 0.7px solid #cccccc; margin-top: 50px; margin
 	margin: 120px auto;
 	background: #f1f1f3;
 	position: relative;
+	border-radius: 10px;
 }
 
 /* 댓글 */
@@ -399,8 +407,7 @@ article:last-of-type > hr{ border: 0.7px solid #cccccc; margin-top: 50px; margin
 }
 
 #reply > div > div:last-of-type{
-	float: right;
-	margin-left: 160px;
+	float: left;
 }
 
 /* 댓글창 */
@@ -411,18 +418,18 @@ article:last-of-type > hr{ border: 0.7px solid #cccccc; margin-top: 50px; margin
 }
 
 input[name='comment_txt']{
-	width: 1045px;
-    height: 40px;
-    border: 1px solid #CCCCCC;
-    margin-right: 10px;
-    margin-left: 10px;
-    padding-left: 10px;
+	width: 1080px;
+	height: 40px;
+	border-radius: 10px;
+	border: 0.5px solid #CCCCCC;
+	margin-right: 10px;
 }
 
 input[name='register']{
 	width: 80px;
 	height: 45px;
 	background: #6C94B8;
+	border-radius: 10px;
 	border: none;
 	color: white;
 	font-weight: bold;
@@ -438,7 +445,8 @@ input[name='register']{
     top: 65%;
     background: white;
     border: 1px solid #6C94B8;
-    box-shadow: 3px 3px 7px #CCCCCC;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 1px 1px 5px #CCCCCC;
     display : none;
 }
 
@@ -469,31 +477,3 @@ input[name='register']{
     color : white;
     font-weight : bold;
 }
-
-/* 댓글 > 프로필*/
-#comm_profile> img{
-	width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-    float: left;
-}
-
-#comm_profile>p{
-	font-size: 16px;
-    color: #646464;
-    padding-left: 10px;
-    width: 100px;
-    float: left;
-    margin-top: 7px;
-}
-
-#comm_contents>p{
-	margin-top : 10px;
-}
-
-#comm_date>p{
-	margin-top : 7px;
-}
-
-

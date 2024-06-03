@@ -4,34 +4,20 @@ body {
 	font-family: "Noto Sans KR", sans-serif;
 	color: #646464;
 	margin: 0px auto;
-	background: url("https://copilot.microsoft.com/rp/itdq0TGlsM-BDvSovDaQdrVxPbo.jpg");
-    background-size: cover;
-    position: relative;
-    isolation: isolate;
-}
-
-body::after {
-  content: "";
-  position: absolute;
-  background-color: white;
-  z-index: -1;
-  inset: 0;
-  opacity: 0.7;
 }
 
 .board_wrap { /* 글쓰기 전체 */
 	width: 1200px;
 	padding-top: 220px;
-	padding-bottom: 220px;
 	margin: 0px auto;
 }
 
 .board {
-	border: 1px solid #f1f1f3;
+	border: 3px solid #f1f1f3;
     border-radius: 10px;
     box-shadow: 3px 3px 3px #cccccc;
     padding: 50px;
-    background-color: #fff;
+    margin-bottom: 210px;
 }
 
 .board > p {

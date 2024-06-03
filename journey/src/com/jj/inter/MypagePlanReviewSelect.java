@@ -30,7 +30,7 @@ public class MypagePlanReviewSelect implements JourneyInterface {
 		request.setAttribute("prList", prList);
 		request.setAttribute("ulist", ulist);
 		
-		return "mypage.jj?page=mypagePlanner&tab="+tab+"&u_id="+u_id;
+		return "mypage.jj?page=mypagePackageMaking&tab="+tab+"&u_id="+u_id;
 	}
 
 }

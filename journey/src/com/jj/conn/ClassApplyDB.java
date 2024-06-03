@@ -20,9 +20,9 @@ public class ClassApplyDB {
 			commit(con);
 		}else {
 			rollback(con);
-		} 
+		}
 		
 		close(con);
 	}
- 
+
 }

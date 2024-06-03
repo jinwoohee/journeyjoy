@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jj.conn.SearchPlaceSelectDB;
 import com.jj.dao.JourneyInterface;
-import com.jj.dto.Eatery;
 import com.jj.dto.Place;
 
 public class SearchPlaceSelect implements JourneyInterface{
@@ -24,21 +23,19 @@ public class SearchPlaceSelect implements JourneyInterface{
 		Cookie[] ck = request.getCookies();
 		
 		String text = request.getParameter("search_place");
-		String city_h = request.getParameter("city");
-		String city ="";
-		if(city_h.equals("오사카")) {
-			city = "osaka";
-		}
-		System.out.println(city);
-		SearchPlaceSelectDB spsdb = SearchPlaceSelectDB.seldb();
-		List<Place> plaList = spsdb.searchmtd(text,city);	
-		List<Eatery> eatList = spsdb.searchmtde(text,city);
-		System.out.println("hi"+plaList.size());
-		request.setAttribute("search_place", plaList);
-		request.setAttribute("search_eatery", eatList);
-
-		request.setAttribute("search", text);
+		/* int day = Integer.parseInt(getCookieValue(ck, "datecnt")); */
+		System.out.println(text);
+		/*
+		 * for(int a = 1 ; a <= day ; a++) { String plan = new
+		 * String(request.getParameter("edit_plan"+a).getBytes("8859_1"),"UTF-8");
+		 * request.setAttribute("planList"+a, plan); }
+		 */
 		
+		SearchPlaceSelectDB spsdb = SearchPlaceSelectDB.seldb();
+		List<Place> plaList = spsdb.searchmtd(text);		
+		request.setAttribute("search_place", plaList);
+		request.setAttribute("search", text);
+		System.out.println("sel"+plaList.size());
 		
 		return "planner_add_place_search.jsp";
 	}

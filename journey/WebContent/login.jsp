@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.security.SecureRandom" %>
-<%@ page import="java.math.BigInteger" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,38 +34,12 @@
 			}
 		%>
 	}
-	
-	$(function() {
-		
-		/*ID/PW 찾기 모달창*/
-		$("p[id*=find]").click(function(){
-			if($(this).attr('id') == 'findID'){
-				//ID찾기
-				$('.modal_title').text("ID 찾기");
-				$('.modal_contents').html($('.findID_div'));
-				$('.findID_div').show();
-			}else{
-				//PW찾기
-			}
-			
-			
-			$('.modal_wrap').show();
-			
-			//스크롤 막기
-			$('body').css({'overflow' : 'hidden'});
-		});
-		
-		//모달창 close 클릭시
-		$('.modal_close').click(function() {
-			$('.modal_wrap').hide();
-			$('body').css({'overflow' : 'auto'});
-		});
-	});
 </script>
 <body>
 	<section>
 		<div>
 			<div>
+				<p>로그인</p>
 				<a href="index.jsp"><img src="img/icon/home.png" /></a>			
 				<img src="img/icon/logo.png" />
 				<form name="loginForm" action="login_session.jsp" align="center" onsubmit="return login()">
@@ -75,11 +47,9 @@
 					<input type="password" name="u_pw" placeholder="비밀번호">
 					<input type="submit" value="로그인">
 				</form>
-				<div id="search">
+				<div id="serch">
 					<div>
-						<p id='findID'>아이디찾기</p>
-						<p>ㅣ</p>
-						<p id='findPW'>비밀번호찾기</p>
+						<p><a>아이디찾기</a>ㅣ<a>비밀번호찾기</a></p>
 					</div>
 					<div>
 						<a href="join.jsp"><p>회원가입</p></a>
@@ -87,46 +57,14 @@
 				</div>
 				<div id="easy_log">
 					<div>
-						<%
-						//네이버
-						String clientId = "lEYwWdovBT_X9ayS_3P9";
-					    String redirectURI = "http://localhost:8091/journey/oauth.jj?page=naverLogin";
-					    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-					    SecureRandom random = new SecureRandom();
-					    String state = new BigInteger(130, random).toString();
-					    apiURL += "&client_id=" + clientId;
-					    apiURL += "&redirect_uri=" + redirectURI;
-					    apiURL += "&state=" + state;
-					    session.setAttribute("state", state);
-						
-						
-						//카카오
-						String client_id = "97d3d4fdd304333d14ac189994d057ea";
-						String redirect_uri = "http://localhost:8091/journey/oauth.jj?page=kakaoLogin";
-						String url = "https://kauth.kakao.com/oauth/authorize?client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&response_type=code";
-						%>
-						<a href="<%= apiURL %>"><img src="img/icon/naver.png"/></a>
-						<a href="<%= url %>"><img src="img/icon/kakao.png"/></a>
+						<p>간편하게<br>로그인하기</p>
+					</div>	
+					<div>
+						<img src="img/icon/easy_log.png" align="right" />
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<div class="modal_wrap">
-		<div class="modal">
-			<div class="modal_title"></div>
-			<div class="modal_contents"></div>
-			<div class="modal_close">X</div>
-		</div>
-	</div>
-	
-	<!-- ID찾기 -->
-	<div class="findID_div">
-		<div>
-			<input type="text" name="find_id" placeholder="아이디">
-			<input type="text" name="find_email" placeholder="이메일">
-			<input type="button" value="아이디 찾기">
-		</div>
-	</div>
 </body>
 </html>

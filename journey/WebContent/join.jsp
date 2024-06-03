@@ -15,9 +15,6 @@
 <!-- 주소찾기 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<!-- jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
 <!-- 유효성검사 -->
 <script>
 var txt = document.getElementsByTagName("label");
@@ -37,7 +34,7 @@ function txt_check(name){
 			txt[0].innerHTML= name+"는 필수입력 값입니다.";
 		}else if(!regId.test(joinForm.id.value)){
 			txt[0].innerHTML= "입력값을 확인해주세요(영문소문자+숫자 6~20자)";
-		} else{
+		}else{
 			txt[0].innerHTML="아이디 중복확인을 해주세요.";
 		}
 	}
@@ -219,7 +216,7 @@ function join(){
 		txt[0].innerHTML="아이디를 입력해주세요.";
 		joinForm.id.focus();
 		return false;
-	}else if(txt[0].innerHTML != "사용가능한 아이디 입니다"){
+	}else if(joinForm.id.readOnly == false){
 		alert("아이디 중복확인을 해주세요");
 		return false;
 	}else if(joinForm.pw.value == ''){
@@ -281,57 +278,21 @@ function join(){
 		return false;
 	}
 }
-
-	$(function() {
-		const regId = /^[0-9a-zA-Z]{6,20}$/; //아이디 : 영문소/대문자+숫자(6~20자)
-		
-		$('.idBtn').click(function() { //아이디 중복버튼 클릭시
-			var id = $('input[name=id]').val();
-			
-			if (id == '' || !id.match(regId)) {
-				$('.idLbl').text('입력값을 확인해주세요(영문소문자+숫자 6~20자)');
-			} else {
-				console.log('1------');
-				$.ajax({
-					type : 'post',
-					data : {'id' : id},
-					url : 'selectId.jsp',
-					success : function(data) {
-						if (data == 1) {
-							$('.idLbl').text('이미 존재하는 아이디 입니다');
-							$('input[name=id]').focus();
-							$('input[name=id]').css({'color' : 'black', 'background-color' : 'white'});
-						} else {
-							$('.idLbl').text('사용가능한 아이디 입니다');
-							$('input[name=id]').css({'color' : 'blue', 'background-color' : '#e4e4e4'});
-						}
-					}
-				});
-			}
-		});
-		
-		//아이디 입력시
-		$('input[name=id]').on('propertychange change keyup paste input', function() { 
-			//console.log('change');
-			$(this).css({'color' : 'black', 'background-color' : 'white'});
-		});
-	});
 </script>
 </head>
 <body>
 <div align="center">
 		<p>회원가입</p>
-		<div class="imgBox"><a href="index.jsp"><img src="img/icon/home.png"></a></div>
+		<a href="index.jsp"><img src="img/icon/home.png"></a>
 		<form name="joinForm" action="join_insert.jsp" method="post" onsubmit="return join()">
 			<table id="joinTable">
 				<tr>
-					<td>아이디<label class="idLbl"></label></td>
+					<td>아이디<label></label></td>
 				</tr>
 				<tr>
 					<td>
 						<input type="text" name="id" maxlength="20" placeholder=" 아이디 입력(6~20자)" onblur="txt_check(this.name)">
-						<input type="button" value="중복 확인" class="idBtn">
-					</td>
+					<input type="button" value="중복 확인" onclick="id_chk()"></td>
 				</tr>
 				<tr>
 					<td>비밀번호<label></label></td>

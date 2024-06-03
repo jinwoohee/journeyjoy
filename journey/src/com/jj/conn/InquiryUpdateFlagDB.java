@@ -13,7 +13,7 @@ public class InquiryUpdateFlagDB {
 		JourneySql sql = JourneySql.getInstance();
 		sql.setConnection(con);
 		int row = sql.inquiryUpdateFlag(u_id);
-		//System.out.println("inquiry update row----->"+row);
+		System.out.println("inquiry update row----->"+row);
 		
 		if (row > 0) {
 			commit(con);

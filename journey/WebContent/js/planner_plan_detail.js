@@ -18,5 +18,16 @@ $(document).ready(function() {
 		$("#select_div").show();
 		$("input[name=open]").hide();
 	});
-	
+	$(".button").mouseover(function(){
+		$(this).css({'box-shadow':'inset 5px 5px 10px #CCCCCC'});
+	});
+	$(".button").mouseout(function(){
+		$(this).css({'box-shadow':''});
+	});
+	$(".del_plan").click(function() {
+		$(".select_pic").attr("src","../img/icon/select_plz.png");
+	});
+	$(".add_plan").click(function() {
+		$(".select_pic").attr("src", "../img/japan/osaka1.jpg");
+	});
 });

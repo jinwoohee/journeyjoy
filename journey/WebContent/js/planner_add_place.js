@@ -10,12 +10,12 @@ $(document).ready(function() {
 		$('#down').css({'display':'none'});
 		$('#up').css({'display':'block'});
 	});
-	/*$(".button").mouseover(function(){
+	$(".button").mouseover(function(){
 		$(this).css({'box-shadow':'inset 5px 5px 10px #CCCCCC'});
 	});
 	$(".button").mouseout(function(){
 		$(this).css({'box-shadow':''});
-	});*/
+	});
 	$("input[name='save_plan']").click(function(){
 		$("form").submit();	
 	});
@@ -29,7 +29,7 @@ $(document).ready(function() {
 	 $('#search_btn').click(function(){
      	$.ajax({
      		url : "planner.jj?page=place_search",
- 			data : {"search_place": $('input[name=search_place]').val(), "city" :$("#city").text()},
+ 			data : {"search_place": $('input[name=search_place]').val()},
  			success : function(re){
  				$("#search_result").html(re);
  				
@@ -37,8 +37,8 @@ $(document).ready(function() {
      	});
     	initMap();
     	
-    	$("p[id*='day']").css({'border':'none', 'color':'#646464','cursor':'pointer', 'margin-top':'14px', 'background-color' : 'transparent'});
-    	$("p[id='day1']").css({'border':'none','cursor':'auto', 'color':'#6C94B8','border-top':'3px solid #6C94B8','margin-top':'11px', 'background-color' : 'white'});
+    	$("p[id*='day']").css({'border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px'});
+    	$("p[id='day1']").css({'border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #fed293','margin-top':'11px'});
     	$("div[id*='places']").css({'display':'none'});
     	$("div[id='places1']").css({'display':'block'});
     	$("input[id*='plan_add']").css({'display':'none'});
@@ -61,8 +61,8 @@ function day_select(num){
 	var places = "#places"+num;
 	var add_btn = "#plan_add"+num;
 	
-	$("p[id*='day']").css({'border':'none', 'color':'#646464','cursor':'pointer', 'margin-top':'14px', 'background-color' : 'transparent'});
-	$(day).css({'border':'none','cursor':'auto', 'color':'#6C94B8','border-top':'3px solid #6C94B8','margin-top':'11px', 'background-color' : 'white'});
+	$("p[id*='day']").css({'border':'0px solid gray', 'cursor':'pointer', 'margin-top':'14px'});
+	$(day).css({'border':'1px solid gray','cursor':'auto', 'border-bottom':'3px solid white', 'border-top':'3px solid #fed293','margin-top':'11px'});
 	$("div[id*='places']").css({'display':'none'});
 	$(places).css({'display':'block'});
 	$("input[id*='plan_add']").css({'display':'none'});
@@ -71,7 +71,6 @@ function day_select(num){
 }
 
 function plan_add_btn(num){	
-	
 	var edit = document.getElementById("edited"+num);
 	var before =document.getElementById("places_text"+num).innerText;
 	var empty = document.getElementById("places_textb"+num);
@@ -102,7 +101,7 @@ function plan_add_btn(num){
 function checking(id){ /*테마 체크 여부 */
 	$("input[type='checkbox']").prop("checked", false);
 	$("label").css({"background-color":"", "color":"rgb(64,64,64)"});
-	$("input[id="+id+"]").prop("checked",true);
+	$("input[id="+id+"]").prop("checked",true);	
 	  
 	if($("input[id="+id+"]").is(":checked")){  
 	    $("label[for="+id+"]").css({"background-color":"#1E427F", "color":"#f1f1f3"});
